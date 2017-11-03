@@ -7,9 +7,9 @@
     <artifactId>financial-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
+        <module>api-rest</module>
         <module>business</module>
         <module>core</module>
-        <module>api-rest</module>
         <module>impl-rest</module>
     </modules>
     <packaging>pom</packaging>
@@ -19,7 +19,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <version.java>1.8</version.java>
+        <maven.compiler.source>${version.java}</maven.compiler.source>
+        <maven.compiler.target>${version.java}</maven.compiler.target>
 
         <version.project>0.0.1-SNAPSHOT</version.project>
 
@@ -44,7 +47,7 @@
 
             <dependency>
                 <groupId>com.perfect.team</groupId>
-                <artifactId>impl-rest-rest</artifactId>
+                <artifactId>impl-rest</artifactId>
                 <version>${version.project}</version>
             </dependency>
 
@@ -76,16 +79,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${version.maven.compiler.plugin}</version>
-                <configuration>
-                    <source>${version.java}</source>
-                    <target>${version.java}</target>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
