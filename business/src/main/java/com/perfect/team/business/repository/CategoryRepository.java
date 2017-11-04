@@ -1,12 +1,8 @@
 package com.perfect.team.business.repository;
 
 import com.perfect.team.business.entity.Category;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
-@RepositoryRestResource
-public interface CategoryRepository extends CrudRepository<Category, Long> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
 }
