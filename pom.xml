@@ -14,7 +14,7 @@
     </modules>
     <packaging>pom</packaging>
 
-    <name>financial-service</name>
+    <username>financial-service</username>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,6 +28,8 @@
 
         <version.maven.compiler.plugin>3.7.0</version.maven.compiler.plugin>
         <version.spring.boot>1.5.8.RELEASE</version.spring.boot>
+        <version.jwt>3.2.0</version.jwt>
+        <version.inject>1</version.inject>
         <version.mysql>6.0.6</version.mysql>
     </properties>
 
@@ -65,8 +67,20 @@
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-rest</artifactId>
+                <artifactId>spring-boot-starter-security</artifactId>
                 <version>${version.spring.boot}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${version.jwt}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${version.inject}</version>
             </dependency>
 
             <dependency>
