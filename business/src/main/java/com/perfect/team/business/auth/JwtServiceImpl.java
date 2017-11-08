@@ -30,9 +30,9 @@ public class JwtServiceImpl implements JwtService {
                     .withIssuer(issuer)
                     .withSubject(user.getUsername())
                     .sign(algorithm);
-        } catch (UnsupportedEncodingException exception){
+        } catch (UnsupportedEncodingException exception) {
             throw new ProcessingException(exception.getMessage());
-        } catch (JWTCreationException exception){
+        } catch (JWTCreationException exception) {
             throw new ProcessingException(exception.getMessage());
         }
     }
@@ -46,9 +46,9 @@ public class JwtServiceImpl implements JwtService {
                     .build();
             DecodedJWT jwt = verifier.verify(token);
             return jwt.getSubject();
-        } catch (UnsupportedEncodingException exception){
+        } catch (UnsupportedEncodingException exception) {
             throw new ProcessingException(exception.getMessage());
-        } catch (JWTVerificationException exception){
+        } catch (JWTVerificationException exception) {
             throw new ProcessingException(exception.getMessage());
         }
     }

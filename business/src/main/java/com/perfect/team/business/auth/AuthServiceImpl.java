@@ -1,6 +1,7 @@
 package com.perfect.team.business.auth;
 
 import com.perfect.team.business.auth.model.AuthUser;
+import com.perfect.team.business.auth.model.CustomAuthentication;
 import com.perfect.team.business.auth.model.CustomUserDetails;
 import com.perfect.team.business.entity.User;
 import com.perfect.team.business.exception.NotFoundException;
@@ -9,6 +10,7 @@ import com.perfect.team.business.service.UserService;
 import com.perfect.team.business.validator.UserValidator;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -47,9 +49,9 @@ public class AuthServiceImpl implements AuthService {
         if (!userValidator.validate(user)) throw new NotFoundException();
         if (!Objects.equals(user.getPassword(), password)) throw new NotFoundException();
 
-        String token = jwtService.generateToken(user);
-
         authenticate(user);
+
+        String token = jwtService.generateToken(user);
 
         return new AuthUser(user, token);
     }
@@ -64,16 +66,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     private void authenticate(User user) {
-        UserDetails userDetails = new CustomUserDetails(user);
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                new UsernamePasswordAuthenticationToken(
-                        userDetails.getUsername(),
-                        userDetails.getPassword(),
-                        userDetails.getAuthorities()
-                );
-        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-        if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        Authentication authentication = new CustomAuthentication(user);
+        authenticationManager.authenticate(authentication);
+        if (authentication.isAuthenticated()) {
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
     }
 }
