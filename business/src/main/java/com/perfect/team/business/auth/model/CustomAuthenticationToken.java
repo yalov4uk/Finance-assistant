@@ -2,16 +2,16 @@ package com.perfect.team.business.auth.model;
 
 import com.perfect.team.business.auth.AuthService;
 import com.perfect.team.business.auth.JwtService;
-import com.perfect.team.business.entity.User;
 import com.perfect.team.business.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
-public class CustomAuthentication implements Authentication {
+public class CustomAuthenticationToken implements Authentication {
 
     @Inject
     private JwtService jwtService;
@@ -24,8 +24,8 @@ public class CustomAuthentication implements Authentication {
 
     private String jwtToken;
 
-    public CustomAuthentication(User user) {
-        this.jwtToken = jwtService.generateToken(user);
+    public CustomAuthenticationToken(String jwtToken) {
+        this.jwtToken = jwtToken;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CustomAuthentication implements Authentication {
 
     @Override
     public Object getDetails() {
-        return null;
+        return jwtToken;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class CustomAuthentication implements Authentication {
 
     @Override
     public void setAuthenticated(boolean b) throws IllegalArgumentException {
-
+        throw new IllegalArgumentException();
     }
 
     @Override

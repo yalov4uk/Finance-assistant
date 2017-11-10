@@ -28,27 +28,23 @@ public class JwtServiceImpl implements JwtService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer(issuer)
-                    .withSubject(user.getUsername())
+                    .withSubject(user.getId().toString())
                     .sign(algorithm);
-        } catch (UnsupportedEncodingException exception) {
-            throw new ProcessingException(exception.getMessage());
-        } catch (JWTCreationException exception) {
+        } catch (UnsupportedEncodingException | JWTCreationException exception) {
             throw new ProcessingException(exception.getMessage());
         }
     }
 
     @Override
-    public String decodeToken(String token) {
+    public Long decodeToken(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm)
                     .withIssuer(issuer)
                     .build();
             DecodedJWT jwt = verifier.verify(token);
-            return jwt.getSubject();
-        } catch (UnsupportedEncodingException exception) {
-            throw new ProcessingException(exception.getMessage());
-        } catch (JWTVerificationException exception) {
+            return Long.parseLong(jwt.getSubject());
+        } catch (UnsupportedEncodingException | JWTVerificationException exception) {
             throw new ProcessingException(exception.getMessage());
         }
     }

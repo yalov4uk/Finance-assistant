@@ -6,5 +6,5 @@ public interface JwtService {
 
     String generateToken(User user);
 
-    String decodeToken(String token);
+    Long decodeToken(String token);
 }
