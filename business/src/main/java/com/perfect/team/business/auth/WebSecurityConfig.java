@@ -1,11 +1,13 @@
 package com.perfect.team.business.auth;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import javax.inject.Inject;
 
@@ -14,18 +16,26 @@ import javax.inject.Inject;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Inject
-    private UserDetailsService userDetailsService;
+    private AuthenticationManager tokenAuthenticationManager;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return tokenAuthenticationManager;
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/api/v1/auth/*");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/api/v1/*").authenticated()
-                .antMatchers("/api/v1/auth/*").permitAll()
-                .and().csrf().disable();
+        http
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(new JwtTokenAuthenticationFilter(), BasicAuthenticationFilter.class)
+                .authorizeRequests()
+                .antMatchers("/api/v1/**").authenticated()
+                .anyRequest().permitAll();
     }
 }

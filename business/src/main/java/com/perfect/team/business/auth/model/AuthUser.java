@@ -8,9 +8,6 @@ public class AuthUser {
 
     private String token;
 
-    public AuthUser() {
-    }
-
     public AuthUser(User user, String token) {
         this.user = user;
         this.token = token;

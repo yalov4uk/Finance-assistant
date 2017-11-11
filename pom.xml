@@ -14,8 +14,6 @@
     </modules>
     <packaging>pom</packaging>
 
-    <username>financial-service</username>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -30,6 +28,7 @@
         <version.spring.boot>1.5.8.RELEASE</version.spring.boot>
         <version.jwt>3.2.0</version.jwt>
         <version.inject>1</version.inject>
+        <version.model.mapper>1.1.0</version.model.mapper>
         <version.mysql>6.0.6</version.mysql>
     </properties>
 
@@ -81,6 +80,12 @@
                 <groupId>javax.inject</groupId>
                 <artifactId>javax.inject</artifactId>
                 <version>${version.inject}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>${version.model.mapper}</version>
             </dependency>
 
             <dependency>

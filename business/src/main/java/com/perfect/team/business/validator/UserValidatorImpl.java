@@ -8,16 +8,16 @@ public class UserValidatorImpl implements UserValidator {
 
     @Override
     public boolean validate(User entity) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean validateUsername(String username) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean validatePassword(String password) {
-        return false;
+        return true;
     }
 }
