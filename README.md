@@ -21,9 +21,21 @@ add jwt authentication, add authentication with facebook access token
   * POST *api/v1/auth/signup*
 ```json
 {
-    "name": "name",
-    "password": "password",
-    "email": "email"
+	"user": {
+		"name":"name",
+		"password":"password",
+		"email":"email"
+	}
+}
+```
+```json
+{
+    "user": {
+        "id": 1,
+        "name": "name",
+        "email": "email",
+        "password": "password"
+    }
 }
 ```
   * POST *api/v1/auth/signin*
@@ -31,6 +43,17 @@ add jwt authentication, add authentication with facebook access token
 {
   	"email": "email",
     "password": "password"
+}
+```
+```json
+{
+    "user": {
+        "id": 1,
+        "name": "name",
+        "email": "email",
+        "password": "password"
+    },
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoicGVyZmVjdC10ZWFtIn0.wjjPkscxj60DsdxsQY7_CAPWVEISk-oOuQ9MU9ZdUhI"
 }
 ```
   * POST *api/v1/auth/signin/facebook*

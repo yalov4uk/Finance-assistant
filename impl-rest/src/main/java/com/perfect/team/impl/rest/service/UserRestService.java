@@ -1,10 +1,8 @@
 package com.perfect.team.impl.rest.service;
 
-import com.perfect.team.api.rest.response.UserResponse;
-
-import java.util.List;
+import com.perfect.team.api.rest.response.UsersResponse;
 
 public interface UserRestService {
 
-    List<UserResponse> findAll();
+    UsersResponse findAll();
 }

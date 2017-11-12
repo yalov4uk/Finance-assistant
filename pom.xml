@@ -30,6 +30,7 @@
         <version.inject>1</version.inject>
         <version.model.mapper>1.1.0</version.model.mapper>
         <version.facebook>1.47.0</version.facebook>
+        <version.jackson>2.9.2</version.jackson>
         <version.mysql>6.0.6</version.mysql>
     </properties>
 
@@ -93,6 +94,12 @@
                 <groupId>com.restfb</groupId>
                 <artifactId>restfb</artifactId>
                 <version>${version.facebook}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${version.jackson}</version>
             </dependency>
 
             <dependency>
