@@ -1,4 +1,4 @@
-package com.perfect.team.business.auth;
+package com.perfect.team.business.auth.filter;
 
 import com.perfect.team.business.auth.model.TokenAuthentication;
 import org.springframework.security.core.Authentication;

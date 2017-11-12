@@ -45,6 +45,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.restfb</groupId>
+            <artifactId>restfb</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>

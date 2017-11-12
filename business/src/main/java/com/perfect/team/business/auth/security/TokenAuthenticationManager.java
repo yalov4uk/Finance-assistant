@@ -1,7 +1,8 @@
-package com.perfect.team.business.auth;
+package com.perfect.team.business.auth.security;
 
 import com.perfect.team.business.auth.model.CustomUserDetails;
 import com.perfect.team.business.auth.model.TokenAuthentication;
+import com.perfect.team.business.auth.service.JwtService;
 import com.perfect.team.business.entity.User;
 import com.perfect.team.business.service.UserService;
 import com.perfect.team.business.validator.UserValidator;

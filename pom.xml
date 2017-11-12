@@ -29,6 +29,7 @@
         <version.jwt>3.2.0</version.jwt>
         <version.inject>1</version.inject>
         <version.model.mapper>1.1.0</version.model.mapper>
+        <version.facebook>1.47.0</version.facebook>
         <version.mysql>6.0.6</version.mysql>
     </properties>
 
@@ -86,6 +87,12 @@
                 <groupId>org.modelmapper</groupId>
                 <artifactId>modelmapper</artifactId>
                 <version>${version.model.mapper}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.restfb</groupId>
+                <artifactId>restfb</artifactId>
+                <version>${version.facebook}</version>
             </dependency>
 
             <dependency>

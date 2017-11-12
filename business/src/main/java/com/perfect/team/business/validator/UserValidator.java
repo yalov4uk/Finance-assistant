@@ -5,7 +5,7 @@ import com.perfect.team.business.validator.base.Validator;
 
 public interface UserValidator extends Validator<User> {
 
-    boolean validateUsername(String username);
+    boolean validateEmail(String email);
 
     boolean validatePassword(String password);
 }

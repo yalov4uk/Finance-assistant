@@ -1,4 +1,4 @@
-package com.perfect.team.business.auth;
+package com.perfect.team.business.auth.service;
 
 import com.perfect.team.business.entity.User;
 

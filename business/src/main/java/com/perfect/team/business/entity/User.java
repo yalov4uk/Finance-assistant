@@ -7,10 +7,10 @@ import java.util.Set;
 @Entity
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    private String name;
 
     private String email;
 
@@ -18,6 +18,14 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Account> accounts;
+
+    public User() {
+    }
+
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;
@@ -27,12 +35,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -51,7 +59,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public Set<Account> getAccounts() {
         return accounts;
     }

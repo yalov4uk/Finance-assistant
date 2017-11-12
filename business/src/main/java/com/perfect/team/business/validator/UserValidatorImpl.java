@@ -12,7 +12,7 @@ public class UserValidatorImpl implements UserValidator {
     }
 
     @Override
-    public boolean validateUsername(String username) {
+    public boolean validateEmail(String email) {
         return true;
     }
 

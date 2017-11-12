@@ -1,5 +1,6 @@
-package com.perfect.team.business.auth;
+package com.perfect.team.business.auth.security;
 
+import com.perfect.team.business.auth.filter.JwtTokenAuthenticationFilter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/api/v1/auth/*");
+        web.ignoring().antMatchers("/api/v1/auth/**");
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.sql.Date;
 @Entity
 public class Transfer implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer value;
     private String note;
@@ -21,7 +21,6 @@ public class Transfer implements Serializable {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
 
     public Integer getId() {
         return id;

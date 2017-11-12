@@ -7,7 +7,7 @@ import java.sql.Date;
 @Entity
 public class Transaction implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer value;
     private String note;

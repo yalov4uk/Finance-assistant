@@ -1,4 +1,4 @@
-package com.perfect.team.business.service;
+package com.perfect.team.business.auth.service;
 
 import com.perfect.team.business.auth.model.AuthUser;
 import com.perfect.team.business.entity.User;
@@ -7,5 +7,7 @@ public interface AuthService {
 
     User signUp(User user);
 
-    AuthUser signIn(String username, String password);
+    AuthUser signIn(String email, String password);
+
+    AuthUser signInWithFacebook(String accessToken);
 }

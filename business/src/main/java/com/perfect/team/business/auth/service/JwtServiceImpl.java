@@ -1,4 +1,4 @@
-package com.perfect.team.business.auth;
+package com.perfect.team.business.auth.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -9,17 +9,19 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.perfect.team.business.entity.User;
 import com.perfect.team.business.exception.ProcessingException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 
 @Service
+@PropertySource("classpath:auth.properties")
 public class JwtServiceImpl implements JwtService {
 
-    @Value("oauth0.secret")
+    @Value("${oauth0.secret}")
     private String secret;
 
-    @Value("oauth0.issuer")
+    @Value("${oauth0.issuer}")
     private String issuer;
 
     @Override

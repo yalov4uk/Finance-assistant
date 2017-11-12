@@ -1,6 +1,8 @@
 package com.perfect.team.impl.rest.controller;
 
+import com.perfect.team.api.rest.controller.AuthController;
 import com.perfect.team.api.rest.request.SignInRequest;
+import com.perfect.team.api.rest.request.TokenRequest;
 import com.perfect.team.api.rest.request.UserRequest;
 import com.perfect.team.impl.rest.service.AuthRestService;
 import org.springframework.http.HttpEntity;
@@ -18,7 +20,7 @@ import javax.inject.Inject;
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
 )
-public class AuthControllerImpl {
+public class AuthControllerImpl implements AuthController {
 
     @Inject
     private AuthRestService authRestService;
@@ -31,5 +33,10 @@ public class AuthControllerImpl {
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
     public HttpEntity signIn(@RequestBody SignInRequest signInRequest) {
         return new HttpEntity<>(authRestService.signIn(signInRequest));
+    }
+
+    @RequestMapping(value = "/signin/facebook", method = RequestMethod.POST)
+    public HttpEntity signInWithFacebook(@RequestBody TokenRequest tokenRequest) {
+        return new HttpEntity<>(authRestService.signInWithFacebook(tokenRequest));
     }
 }
