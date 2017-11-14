@@ -62,6 +62,8 @@ public class AuthServiceImpl implements AuthService {
                 Version.valueOf(facebookApiVersion));
         com.restfb.types.User facebookUser = facebookClient.fetchObject("me", com.restfb.types.User.class);
 
+        if (facebookUser.getEmail() == null) throw new ValidationException();
+
         User user = userService.findByEmail(facebookUser.getEmail());
         if (user != null) {
             user.setName(facebookUser.getName());
