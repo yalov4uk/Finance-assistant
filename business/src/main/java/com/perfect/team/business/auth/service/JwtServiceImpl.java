@@ -18,10 +18,10 @@ import java.io.UnsupportedEncodingException;
 @PropertySource("classpath:auth.properties")
 public class JwtServiceImpl implements JwtService {
 
-    @Value("${oauth0.secret}")
+    @Value("${auth0.secret}")
     private String secret;
 
-    @Value("${oauth0.issuer}")
+    @Value("${auth0.issuer}")
     private String issuer;
 
     @Override

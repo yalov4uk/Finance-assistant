@@ -1,32 +1,51 @@
 package com.perfect.team.business.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+import java.util.Objects;
 
 @Entity
+@Table(name = "transfer")
 public class Transfer implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
+
     private Integer value;
+
     private String note;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "from_account_id")
     private Account fromAccount;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "to_account_id")
     private Account toAccount;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,5 +95,30 @@ public class Transfer implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Transfer)) return false;
+        Transfer transfer = (Transfer) o;
+        return Objects.equals(value, transfer.value) &&
+                Objects.equals(note, transfer.note) &&
+                Objects.equals(date, transfer.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, note, date);
+    }
+
+    @Override
+    public String toString() {
+        return "Transfer{" +
+                "id=" + id +
+                ", value=" + value +
+                ", note='" + note + '\'' +
+                ", date=" + date +
+                '}';
     }
 }

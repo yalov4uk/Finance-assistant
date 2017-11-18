@@ -1,27 +1,45 @@
 package com.perfect.team.business.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
+
     private String name;
+
     private String icon;
-    private long initialBalance;
+
+    @Column(name = "initial_balance")
+    private Long initialBalance;
+
+    @Column(name = "initial_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date initialDate;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -41,11 +59,11 @@ public class Account implements Serializable {
         this.icon = icon;
     }
 
-    public long getInitialBalance() {
+    public Long getInitialBalance() {
         return initialBalance;
     }
 
-    public void setInitialBalance(long initialBalance) {
+    public void setInitialBalance(Long initialBalance) {
         this.initialBalance = initialBalance;
     }
 
@@ -57,13 +75,38 @@ public class Account implements Serializable {
         this.initialDate = initialDate;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Account)) return false;
+        Account account = (Account) o;
+        return Objects.equals(name, account.name) &&
+                Objects.equals(icon, account.icon) &&
+                Objects.equals(initialBalance, account.initialBalance) &&
+                Objects.equals(initialDate, account.initialDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, icon, initialBalance, initialDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", initialBalance=" + initialBalance +
+                ", initialDate=" + initialDate +
+                '}';
     }
 }
