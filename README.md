@@ -62,3 +62,14 @@ add jwt authentication, add authentication with facebook access token
 	"token": "token"
 }
 ```
+
+###21.11.2017
+add docker
+###Quick start
+environment:
+* Docker-engine > v17.06
+* Docker-compose > 1.17.0
+```
+sudo docker-compose build
+sudo docker-compose up
+```

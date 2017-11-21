@@ -1,3 +1,14 @@
+CREATE TABLE `user` (
+  `id`       BIGINT(20)   NOT NULL AUTO_INCREMENT,
+  `email`    VARCHAR(255) NOT NULL,
+  `name`     VARCHAR(255)          DEFAULT NULL,
+  `password` VARCHAR(255)          DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 CREATE TABLE `account` (
   `id`              BIGINT(20) NOT NULL AUTO_INCREMENT,
   `icon`            VARCHAR(255)        DEFAULT NULL,
@@ -59,17 +70,6 @@ CREATE TABLE `transfer` (
   CONSTRAINT `FKddbjk8kle2s7siw04lua30sjl` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FKfbrtpigqywdcc6e64ichki73j` FOREIGN KEY (`from_account_id`) REFERENCES `account` (`id`),
   CONSTRAINT `FKrppn0djf9uip7gj308swxq54j` FOREIGN KEY (`to_account_id`) REFERENCES `account` (`id`)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
-CREATE TABLE `user` (
-  `id`       BIGINT(20)   NOT NULL AUTO_INCREMENT,
-  `email`    VARCHAR(255) NOT NULL,
-  `name`     VARCHAR(255)          DEFAULT NULL,
-  `password` VARCHAR(255)          DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

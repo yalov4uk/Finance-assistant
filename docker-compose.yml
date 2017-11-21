@@ -1,20 +1,22 @@
-version: "3"
+version: "3.4"
 
 services:
 
   backend:
     build: backend
+    container_name: finance-backend
     depends_on:
       - db
     ports:
-      - "8081:8090"
+      - 8091:8090
 
   db:
-    image: mysql
+    image: mysql:5.7.20
+    container_name: finance-db
     ports:
-      - "3307:3306"
+      - 3307:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: db_finance
     volumes:
-      - ./db/dump.sql:docker-entrypoint-initdb.d/dump.sql
+      - ./db/dump.sql:/docker-entrypoint-initdb.d/dump.sql
