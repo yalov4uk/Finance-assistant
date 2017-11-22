@@ -67,8 +67,8 @@ add jwt authentication, add authentication with facebook access token
 add docker
 ###Quick start
 environment:
-* Docker-engine > v17.06
-* Docker-compose > 1.17.0
+  * Docker-engine > v17.06
+  * Docker-compose > 1.17.0
 ```
 sudo docker-compose build
 sudo docker-compose up
