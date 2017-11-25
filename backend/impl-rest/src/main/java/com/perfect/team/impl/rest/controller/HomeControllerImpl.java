@@ -23,19 +23,19 @@ public class HomeControllerImpl implements HomeController {
     @RequestMapping("/test")
     public String home() {
 
-        User user = new User("name", "email");
-        userMapper.create(user);
+        User user = new User("name", "email4");
+        Integer insertedRows = userMapper.insert(user);
 
-        user = userMapper.get(user.getId());
+        user = userMapper.select(user.getId());
 
         user.setName("name1");
-        userMapper.update(user);
+        Integer updatedRows = userMapper.update(user);
 
-        List<User> users = userMapper.getAll();
+        List<User> users = userMapper.selectAll();
 
-        userMapper.delete(user.getId());
+        Integer deletedRows = userMapper.delete(user.getId());
 
-        user = userMapper.get(user.getId());
+        user = userMapper.select(user.getId());
 
         return "Hello World! There are " + userService.findAll().size() + " registered users.";
     }
