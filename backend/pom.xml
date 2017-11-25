@@ -114,6 +114,13 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${version.mybatis}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${version.spring.boot}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
