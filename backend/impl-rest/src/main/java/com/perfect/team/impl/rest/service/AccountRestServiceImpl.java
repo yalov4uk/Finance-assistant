@@ -35,6 +35,14 @@ public class AccountRestServiceImpl extends CrudRestServiceImpl implements Accou
     }
 
     @Override
+    public AccountResponse findById(Long id) {
+        Account account = accountService.findById(id);
+        AccountResponse accountResponse = new AccountResponse();
+        accountResponse.setAccountDto(modelMapper.map(account, AccountDto.class));
+        return accountResponse;
+    }
+
+    @Override
     public AccountResponse save(AccountRequest accountRequest) {
         Account account = modelMapper.map(accountRequest.getAccountDto(), Account.class);
         account = accountService.save(account);
@@ -43,4 +51,9 @@ public class AccountRestServiceImpl extends CrudRestServiceImpl implements Accou
         return accountResponse;
     }
 
+    @Override
+    public void delete(AccountRequest accountRequest){
+        Account account = modelMapper.map(accountRequest.getAccountDto(), Account.class);
+        accountService.delete(account.getId());
+    }
 }

@@ -19,10 +19,10 @@ public class TransferDto {
     private Date date;
 
     @JsonProperty(value = "source_account_id")
-    private Long sourceAccountId;
+    private Long fromAccountId;
 
     @JsonProperty(value = "destination_account_id")
-    private Long destinationAccountId;
+    private Long toAccountId;
 
     @JsonProperty(value = "user")
     private Long userId;
@@ -59,20 +59,20 @@ public class TransferDto {
         this.date = date;
     }
 
-    public Long getSourceAccountId() {
-        return sourceAccountId;
+    public Long getFromAccountId() {
+        return fromAccountId;
     }
 
-    public void setSourceAccountId(Long sourceAccountId) {
-        this.sourceAccountId = sourceAccountId;
+    public void setFromAccountId(Long fromAccountId) {
+        this.fromAccountId = fromAccountId;
     }
 
-    public Long getDestinationAccountId() {
-        return destinationAccountId;
+    public Long getToAccountId() {
+        return toAccountId;
     }
 
-    public void setDestinationAccountId(Long destinationAccountId) {
-        this.destinationAccountId = destinationAccountId;
+    public void setToAccountId(Long toAccountId) {
+        this.toAccountId = toAccountId;
     }
 
     public Long getUserId() {

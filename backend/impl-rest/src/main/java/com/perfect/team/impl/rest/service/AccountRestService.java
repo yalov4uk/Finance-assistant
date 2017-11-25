@@ -11,5 +11,7 @@ import com.perfect.team.api.rest.response.AccountsResponse;
  */
 public interface AccountRestService {
     AccountsResponse findByUserId(Long id);
+    AccountResponse findById(Long id);
     AccountResponse save(AccountRequest accountRequest);
+    void delete(AccountRequest accountRequest);
 }

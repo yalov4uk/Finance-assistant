@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Created by Denis on 25.11.2017.
+ *
  */
 public interface AccountService {
     Account save(Account account);
@@ -15,4 +16,5 @@ public interface AccountService {
     Account findById(Long accountId);
 
     List<Account> findAll();
+    void delete(Long id);
 }

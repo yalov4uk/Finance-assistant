@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by Denis on 25.11.2017.
+ *
  */
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -34,4 +35,10 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> findAll() {
         return accountRepository.findAll();
     }
+
+    @Override
+    public void delete(Long id) {
+        accountRepository.delete(id);
+    }
+
 }
