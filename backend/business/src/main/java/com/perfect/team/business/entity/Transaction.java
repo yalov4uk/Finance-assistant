@@ -103,13 +103,12 @@ public class Transaction implements Serializable {
         if (!(o instanceof Transaction)) return false;
         Transaction that = (Transaction) o;
         return Objects.equals(value, that.value) &&
-                Objects.equals(note, that.note) &&
-                Objects.equals(date, that.date);
+                Objects.equals(note, that.note);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, note, date);
+        return Objects.hash(value, note);
     }
 
     @Override

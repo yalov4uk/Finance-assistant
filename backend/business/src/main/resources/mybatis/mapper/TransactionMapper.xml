@@ -43,7 +43,7 @@
         <set>
             <if test="value != null">value = #{value},</if>
             <if test="note != null">note = #{note},</if>
-            <if test="date != null">date = #{date}</if>
+            <if test="date != null">date = #{date},</if>
             <if test="user != null and user.id != null">user_id = #{user.id},</if>
             <if test="category != null and category.id != null">category_id = #{category.id},</if>
             <if test="account != null and account.id != null">account_id = #{account.id}</if>
@@ -64,9 +64,9 @@
     <select id="selectWithFull" resultMap="transactionFullResultMap">
         SELECT *
         FROM transaction
-            LEFT JOIN account ON transaction.account_id = account.id
-            LEFT JOIN category ON transaction.category_id = category.id
-            LEFT JOIN user ON transaction.user_id = user.id
+        LEFT JOIN account ON transaction.account_id = account.id
+        LEFT JOIN category ON transaction.category_id = category.id
+        LEFT JOIN user ON transaction.user_id = user.id
         WHERE account.id = #{id}
     </select>
 </mapper>

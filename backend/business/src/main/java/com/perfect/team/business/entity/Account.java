@@ -90,13 +90,12 @@ public class Account implements Serializable {
         Account account = (Account) o;
         return Objects.equals(name, account.name) &&
                 Objects.equals(icon, account.icon) &&
-                Objects.equals(initialBalance, account.initialBalance) &&
-                Objects.equals(initialDate, account.initialDate);
+                Objects.equals(initialBalance, account.initialBalance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, icon, initialBalance, initialDate);
+        return Objects.hash(name, icon, initialBalance);
     }
 
     @Override

@@ -103,13 +103,12 @@ public class Transfer implements Serializable {
         if (!(o instanceof Transfer)) return false;
         Transfer transfer = (Transfer) o;
         return Objects.equals(value, transfer.value) &&
-                Objects.equals(note, transfer.note) &&
-                Objects.equals(date, transfer.date);
+                Objects.equals(note, transfer.note);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, note, date);
+        return Objects.hash(value, note);
     }
 
     @Override

@@ -59,7 +59,7 @@
     <select id="selectWithUser" resultMap="accountWithUserResultMap">
         SELECT *
         FROM account
-            LEFT JOIN user ON account.user_id = user.id
+        LEFT JOIN user ON account.user_id = user.id
         WHERE account.id = #{id}
     </select>
 </mapper>
