@@ -85,7 +85,7 @@ transaction
 transfer
 
 All this entities have methods:
-POST /api/v1/transfers/ - create new record
+  * POST /api/v1/transfers/ - create new record
 ```json
  {
     "transfer":{
@@ -98,9 +98,9 @@ POST /api/v1/transfers/ - create new record
             "user": 1
         }
  }
- ```
- PUT /api/v1/transfers/ - update existing record
- ```json
+```
+  * PUT /api/v1/transfers/ - update existing record
+```json
   {
     "transfer":{
             "id": 1,
@@ -112,18 +112,18 @@ POST /api/v1/transfers/ - create new record
             "user": 1
         }
  }
- ```
- DELETE /api/v1/transfers/ - delete exist
-  ```json
+```
+  * DELETE /api/v1/transfers/ - delete exist
+```json
     {
     "transfer":{
             "id": 1
         }
     }
-   ```
+```
    
- GET /api/v1/transfers/ - Get all entity records whitch were post by logined user.
-  ```json
+  * GET /api/v1/transfers/ - Get all entity records whitch were post by logined user.
+```json
  {
     "transfers": [
         {
@@ -146,9 +146,9 @@ POST /api/v1/transfers/ - create new record
         }
     ]
 }
- ```
- GET /api/v1/transfers/1/ - Get transfer with id=1.
-   ```json
+```
+  * GET /api/v1/transfers/1/ - Get transfer with id=1.
+```json
  {
     "transfer": {
         "id": 1,
@@ -160,12 +160,12 @@ POST /api/v1/transfers/ - create new record
         "user": 1
     }
 }
-  ```
+```
   
   Don't forget to add "token":"your token" in request headers.
   
   Entities examples:
-  ```json
+```json
  /api/v1/categories/1/
   {
     "category": {
