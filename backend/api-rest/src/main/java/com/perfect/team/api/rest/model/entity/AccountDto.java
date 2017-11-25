@@ -21,8 +21,8 @@ public class AccountDto {
     @JsonProperty(value = "initial_date")
     private Date initialDate;
 
-    @JsonProperty(value = "userDto")
-    private UserDto userDto;
+    @JsonProperty(value = "user_id")
+    private Long userId;
 
     public Integer getId() {
         return id;
@@ -64,11 +64,11 @@ public class AccountDto {
         this.initialDate = initialDate;
     }
 
-    public UserDto getUserDto() {
-        return userDto;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserDto(UserDto userDto) {
-        this.userDto = userDto;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

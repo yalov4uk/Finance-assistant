@@ -16,8 +16,8 @@ public class CategoryDto {
     @JsonProperty(value = "category_type")
     private Integer categoryType;
 
-    @JsonProperty(value = "user")
-    private UserDto userDto;
+    @JsonProperty(value = "user_id")
+    private Long userId;
 
     public Integer getId() {
         return id;
@@ -51,11 +51,11 @@ public class CategoryDto {
         this.categoryType = categoryType;
     }
 
-    public UserDto getUserDto() {
-        return userDto;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserDto(UserDto userDto) {
-        this.userDto = userDto;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

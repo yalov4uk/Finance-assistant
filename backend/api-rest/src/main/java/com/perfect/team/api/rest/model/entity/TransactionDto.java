@@ -18,14 +18,14 @@ public class TransactionDto {
     @JsonProperty(value = "date")
     private Date date;
 
-    @JsonProperty(value = "user")
-    private UserDto userDto;
+    @JsonProperty(value = "user_id")
+    private Long userId;
 
-    @JsonProperty(value = "category")
-    private CategoryDto categoryDto;
+    @JsonProperty(value = "category_id")
+    private Long categoryId;
 
-    @JsonProperty(value = "account")
-    private AccountDto accountDto;
+    @JsonProperty(value = "account_id")
+    private Long accountId;
 
     public Integer getId() {
         return id;
@@ -59,27 +59,27 @@ public class TransactionDto {
         this.date = date;
     }
 
-    public UserDto getUserDto() {
-        return userDto;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserDto(UserDto userDto) {
-        this.userDto = userDto;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public CategoryDto getCategoryDto() {
-        return categoryDto;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryDto(CategoryDto categoryDto) {
-        this.categoryDto = categoryDto;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public AccountDto getAccountDto() {
-        return accountDto;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setAccountDto(AccountDto accountDto) {
-        this.accountDto = accountDto;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }

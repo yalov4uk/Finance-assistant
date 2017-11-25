@@ -18,14 +18,14 @@ public class TransferDto {
     @JsonProperty(value = "date")
     private Date date;
 
-    @JsonProperty(value = "source_account")
-    private AccountDto sourceAccountDto;
+    @JsonProperty(value = "source_account_id")
+    private Long sourceAccountId;
 
-    @JsonProperty(value = "destination_account")
-    private AccountDto destinationAccountDto;
+    @JsonProperty(value = "destination_account_id")
+    private Long destinationAccountId;
 
     @JsonProperty(value = "user")
-    private UserDto userDto;
+    private Long userId;
 
     public Integer getId() {
         return id;
@@ -59,27 +59,27 @@ public class TransferDto {
         this.date = date;
     }
 
-    public AccountDto getSourceAccountDto() {
-        return sourceAccountDto;
+    public Long getSourceAccountId() {
+        return sourceAccountId;
     }
 
-    public void setSourceAccountDto(AccountDto sourceAccountDto) {
-        this.sourceAccountDto = sourceAccountDto;
+    public void setSourceAccountId(Long sourceAccountId) {
+        this.sourceAccountId = sourceAccountId;
     }
 
-    public AccountDto getDestinationAccountDto() {
-        return destinationAccountDto;
+    public Long getDestinationAccountId() {
+        return destinationAccountId;
     }
 
-    public void setDestinationAccountDto(AccountDto destinationAccountDto) {
-        this.destinationAccountDto = destinationAccountDto;
+    public void setDestinationAccountId(Long destinationAccountId) {
+        this.destinationAccountId = destinationAccountId;
     }
 
-    public UserDto getUserDto() {
-        return userDto;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserDto(UserDto userDto) {
-        this.userDto = userDto;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
