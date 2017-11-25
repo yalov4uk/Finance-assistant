@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.perfect.team.business.repository.mybatis.mapper.TransactionMapper">
+
+    <resultMap id="transactionResultMap" type="Transaction">
+        <id property="id" column="id"/>
+        <result property="value" column="value"/>
+        <result property="note" column="note"/>
+        <result property="date" column="date"/>
+    </resultMap>
+
+    <resultMap id="transactionFullResultMap" type="Transaction">
+        <id property="id" column="id"/>
+        <result property="value" column="value"/>
+        <result property="note" column="note"/>
+        <result property="date" column="date"/>
+        <association property="account"
+                     resultMap="com.perfect.team.business.repository.mybatis.mapper.AccountMapper.accountResultMap"
+                     column="account_id" foreignColumn="id"/>
+        <association property="category"
+                     resultMap="com.perfect.team.business.repository.mybatis.mapper.CategoryMapper.categoryResultMap"
+                     column="category_id" foreignColumn="id"/>
+        <association property="user"
+                     resultMap="com.perfect.team.business.repository.mybatis.mapper.UserMapper.userResultMap"
+                     column="user_id" foreignColumn="id"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO transaction (date, note, value, account_id, category_id, user_id)
+        VALUES (#{date}, #{note}, #{value}, #{account.id}, #{category.id}, #{user.id})
+    </insert>
+
+    <select id="select" resultMap="transactionResultMap">
+        SELECT *
+        FROM transaction
+        WHERE id = #{id}
+    </select>
+
+    <update id="update" useGeneratedKeys="true" keyProperty="id">
+        UPDATE transaction
+        <set>
+            <if test="value != null">value = #{value},</if>
+            <if test="note != null">note = #{note},</if>
+            <if test="date != null">date = #{date}</if>
+            <if test="user != null and user.id != null">user_id = #{user.id},</if>
+            <if test="category != null and category.id != null">category_id = #{category.id},</if>
+            <if test="account != null and account.id != null">account_id = #{account.id}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM transaction
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectAll" resultMap="transactionResultMap">
+        SELECT *
+        FROM transaction
+    </select>
+
+    <select id="selectWithFull" resultMap="transactionFullResultMap">
+        SELECT *
+        FROM transaction
+            LEFT JOIN account ON transaction.account_id = account.id
+            LEFT JOIN category ON transaction.category_id = category.id
+            LEFT JOIN user ON transaction.user_id = user.id
+        WHERE account.id = #{id}
+    </select>
+</mapper>

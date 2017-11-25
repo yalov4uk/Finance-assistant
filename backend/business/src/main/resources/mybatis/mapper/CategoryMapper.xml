@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.perfect.team.business.repository.mybatis.mapper.CategoryMapper">
+
+    <resultMap id="categoryResultMap" type="Category">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="icon" column="icon"/>
+        <result property="categoryType" column="category_type"/>
+    </resultMap>
+
+    <resultMap id="categoryWithUserResultMap" type="Category">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="icon" column="icon"/>
+        <result property="categoryType" column="category_type"/>
+        <association property="user"
+                     resultMap="com.perfect.team.business.repository.mybatis.mapper.UserMapper.userResultMap"
+                     column="user_id" foreignColumn="id"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO category (category_type, icon, name, user_id)
+        VALUES (#{categoryType}, #{icon}, #{name}, #{user.id})
+    </insert>
+
+    <select id="select" resultMap="categoryResultMap">
+        SELECT *
+        FROM category
+        WHERE id = #{id}
+    </select>
+
+    <update id="update" useGeneratedKeys="true" keyProperty="id">
+        UPDATE category
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="icon != null">icon = #{icon},</if>
+            <if test="categoryType != null">category_type = #{categoryType},</if>
+            <if test="user != null and user.id != null">user_id = #{user.id}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM category
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectAll" resultMap="categoryResultMap">
+        SELECT *
+        FROM category
+    </select>
+
+    <select id="selectWithUser" resultMap="categoryWithUserResultMap">
+        SELECT *
+        FROM category
+            LEFT JOIN user ON category.user_id = user.id
+        WHERE account.id = #{id}
+    </select>
+</mapper>

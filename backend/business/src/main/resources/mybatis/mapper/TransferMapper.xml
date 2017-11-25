@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.perfect.team.business.repository.mybatis.mapper.TransferMapper">
+
+    <resultMap id="transferResultMap" type="Transfer">
+        <id property="id" column="id"/>
+        <result property="value" column="value"/>
+        <result property="note" column="note"/>
+        <result property="date" column="date"/>
+    </resultMap>
+
+    <resultMap id="transferFullResultMap" type="Transfer">
+        <id property="id" column="id"/>
+        <result property="value" column="value"/>
+        <result property="note" column="note"/>
+        <result property="date" column="date"/>
+        <association property="fromAccount"
+                     resultMap="com.perfect.team.business.repository.mybatis.mapper.AccountMapper.accountResultMap"
+                     column="from_account_id" foreignColumn="id"/>
+        <association property="toAccount"
+                     resultMap="com.perfect.team.business.repository.mybatis.mapper.AccountMapper.accountResultMap"
+                     column="to_account_id" foreignColumn="id"/>
+        <association property="user"
+                     resultMap="com.perfect.team.business.repository.mybatis.mapper.UserMapper.userResultMap"
+                     column="user_id" foreignColumn="id"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO transfer (date, note, value, from_account_id, to_account_id, user_id)
+        VALUES (#{date}, #{note}, #{value}, #{fromAccount.id}, #{toAccount.id}, #{user.id})
+    </insert>
+
+    <select id="select" resultMap="transferResultMap">
+        SELECT *
+        FROM transfer
+        WHERE id = #{id}
+    </select>
+
+    <update id="update" useGeneratedKeys="true" keyProperty="id">
+        UPDATE user
+        <set>
+            <if test="value != null">value = #{value},</if>
+            <if test="note != null">note = #{note},</if>
+            <if test="date != null">date = #{date}</if>
+            <if test="fromAccount != null and fromAccount.id != null">from_account_id = #{fromAccount.id},</if>
+            <if test="toAccount != null and toAccount.id != null">to_account_id = #{toAccount.id},</if>
+            <if test="user != null and user.id != null">user_id = #{user.id}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM transfer
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectAll" resultMap="transferResultMap">
+        SELECT *
+        FROM transfer
+    </select>
+
+    <select id="selectWithUser" resultMap="transferFullResultMap">
+        SELECT *
+        FROM transfer
+            LEFT JOIN account ON transfer.from_account_id = account.id
+            LEFT JOIN account ON transfer.to_account_id = account.id
+            LEFT JOIN user ON transaction.user_id = user.id
+        WHERE account.id = #{id}
+    </select>
+</mapper>
