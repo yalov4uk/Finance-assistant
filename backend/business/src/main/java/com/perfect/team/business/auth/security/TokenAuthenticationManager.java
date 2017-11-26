@@ -5,7 +5,6 @@ import com.perfect.team.business.auth.model.TokenAuthentication;
 import com.perfect.team.business.auth.service.JwtService;
 import com.perfect.team.business.entity.User;
 import com.perfect.team.business.service.UserService;
-import com.perfect.team.business.validator.UserValidator;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -23,9 +22,6 @@ public class TokenAuthenticationManager implements AuthenticationManager {
     @Inject
     private UserService userService;
 
-    @Inject
-    private UserValidator userValidator;
-
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         if (authentication instanceof TokenAuthentication) {
@@ -38,7 +34,7 @@ public class TokenAuthenticationManager implements AuthenticationManager {
         if (authentication.getToken() != null) {
             Long userId = jwtService.decodeToken(authentication.getToken());
             User user = userService.read(userId);
-            if (userValidator.validate(user)) {
+            if (user != null) {
                 UserDetails userDetails = new CustomUserDetails(user);
                 authentication = new TokenAuthentication(authentication.getToken(), userDetails);
                 authentication.setAuthenticated(true);
