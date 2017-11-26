@@ -1,12 +1,11 @@
 package com.perfect.team.impl.rest.service.base;
 
 import com.perfect.team.business.service.base.CrudService;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
-public abstract class AuthCrudRestServiceImpl<Request, Entity, Response, ListResponse> extends RestServiceImpl
-        implements AuthCrudRestService<Request, Response, ListResponse> {
+public abstract class CrudRestServiceImpl<Request, Entity, Response, ListResponse> extends RestServiceImpl
+        implements CrudRestService<Request, Response, ListResponse> {
 
     protected abstract CrudService<Entity> getCrudService();
 
@@ -17,32 +16,32 @@ public abstract class AuthCrudRestServiceImpl<Request, Entity, Response, ListRes
     protected abstract ListResponse mapEntitiesToListResponse(List<Entity> entities);
 
     @Override
-    public Response create(Request request, UserDetails userDetails) {
+    public Response create(Request request) {
         Entity entity = mapRequestToEntity(request);
         entity = getCrudService().create(entity);
         return mapEntityToResponse(entity);
     }
 
     @Override
-    public Response read(Long id, UserDetails userDetails) {
+    public Response read(Long id) {
         Entity entity = getCrudService().read(id);
         return mapEntityToResponse(entity);
     }
 
     @Override
-    public Response update(Request request, UserDetails userDetails) {
+    public Response update(Long id, Request request) {
         Entity entity = mapRequestToEntity(request);
-        entity = getCrudService().update(entity);
+        entity = getCrudService().update(id, entity);
         return mapEntityToResponse(entity);
     }
 
     @Override
-    public void delete(Long id, UserDetails userDetails) {
+    public void delete(Long id) {
         getCrudService().delete(id);
     }
 
     @Override
-    public ListResponse readAll(UserDetails userDetails) {
+    public ListResponse readAll() {
         List<Entity> entities = getCrudService().readAll();
         return mapEntitiesToListResponse(entities);
     }

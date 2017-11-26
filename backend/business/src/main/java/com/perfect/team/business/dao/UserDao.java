@@ -1,7 +1,7 @@
-package com.perfect.team.business.repository.mybatis.dao;
+package com.perfect.team.business.dao;
 
+import com.perfect.team.business.dao.base.CrudDao;
 import com.perfect.team.business.entity.User;
-import com.perfect.team.business.repository.mybatis.dao.base.CrudDao;
 
 public interface UserDao extends CrudDao<User> {
 

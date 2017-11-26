@@ -1,7 +1,9 @@
 package com.perfect.team.business.service;
 
+import com.perfect.team.business.dao.TransactionDao;
+import com.perfect.team.business.dao.base.CrudDao;
 import com.perfect.team.business.entity.Transaction;
-import com.perfect.team.business.repository.TransactionRepository;
+import com.perfect.team.business.service.base.CrudServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -9,36 +11,20 @@ import java.util.List;
 
 /**
  * Created by Denis on 25.11.2017.
- *
  */
 @Service
-public class TransactionServiceImpl implements TransactionService {
+public class TransactionServiceImpl extends CrudServiceImpl<Transaction> implements TransactionService {
+
     @Inject
-    private TransactionRepository transactionRepository;
+    private TransactionDao transactionDao;
 
     @Override
-    public Transaction save(Transaction transaction) {
-        return transactionRepository.save(transaction);
+    protected CrudDao<Transaction> getDao() {
+        return transactionDao;
     }
 
     @Override
-    public List<Transaction> findByUserId(Long userId) {
-        return transactionRepository.findByUserId(userId);
+    public List<Transaction> readByUserId(Long userId) {
+        return transactionDao.readByUserId(userId);
     }
-
-    @Override
-    public Transaction findById(Long transactionId) {
-        return transactionRepository.findOne(transactionId);
-    }
-
-    @Override
-    public List<Transaction> findAll() {
-        return transactionRepository.findAll();
-    }
-
-    @Override
-    public void delete(Long id) {
-        transactionRepository.delete(id);
-    }
-
 }

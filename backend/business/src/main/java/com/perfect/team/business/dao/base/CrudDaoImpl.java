@@ -1,6 +1,6 @@
-package com.perfect.team.business.repository.mybatis.dao.base;
+package com.perfect.team.business.dao.base;
 
-import com.perfect.team.business.repository.mybatis.mapper.base.CrudMapper;
+import com.perfect.team.business.mapper.base.CrudMapper;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ public abstract class CrudDaoImpl<T> implements CrudDao<T> {
     }
 
     @Override
-    public T update(T bean) {
-        getMapper().update(bean);
-        return bean;
+    public T update(Long id, T bean) {
+        getMapper().update(id, bean);
+        return getMapper().select(id);
     }
 
     @Override

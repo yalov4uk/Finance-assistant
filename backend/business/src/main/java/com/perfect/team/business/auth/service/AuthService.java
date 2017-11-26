@@ -5,7 +5,7 @@ import com.perfect.team.business.entity.User;
 
 public interface AuthService {
 
-    User signUp(User user);
+    AuthUser signUp(User user, String confirmPassword);
 
     AuthUser signIn(String email, String password);
 

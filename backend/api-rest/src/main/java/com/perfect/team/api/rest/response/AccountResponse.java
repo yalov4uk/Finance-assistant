@@ -1,13 +1,13 @@
 package com.perfect.team.api.rest.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.perfect.team.api.rest.model.entity.AccountDto;
+import com.perfect.team.api.rest.dto.entity.AccountDto;
 
 /**
  * Created by Denis on 25.11.2017.
- *
  */
 public class AccountResponse {
+
     @JsonProperty(value = "account")
     private AccountDto accountDto;
 

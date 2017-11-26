@@ -1,4 +1,35 @@
 package com.perfect.team.business.service.base;
 
-public class CrudServiceImpl {
+import com.perfect.team.business.dao.base.CrudDao;
+
+import java.util.List;
+
+public abstract class CrudServiceImpl<T> implements CrudService<T> {
+
+    protected abstract CrudDao<T> getDao();
+
+    @Override
+    public T create(T bean) {
+        return getDao().create(bean);
+    }
+
+    @Override
+    public T read(Long id) {
+        return getDao().read(id);
+    }
+
+    @Override
+    public T update(Long id, T bean) {
+        return getDao().update(id, bean);
+    }
+
+    @Override
+    public Long delete(Long id) {
+        return getDao().delete(id);
+    }
+
+    @Override
+    public List<T> readAll() {
+        return getDao().readAll();
+    }
 }

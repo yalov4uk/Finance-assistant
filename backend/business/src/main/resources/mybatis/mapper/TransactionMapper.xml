@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.perfect.team.business.repository.mybatis.mapper.TransactionMapper">
+<mapper namespace="com.perfect.team.business.mapper.TransactionMapper">
 
     <resultMap id="transactionResultMap" type="Transaction">
         <id property="id" column="id"/>
@@ -17,13 +17,13 @@
         <result property="note" column="note"/>
         <result property="date" column="date"/>
         <association property="account"
-                     resultMap="com.perfect.team.business.repository.mybatis.mapper.AccountMapper.accountResultMap"
+                     resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"
                      column="account_id" foreignColumn="id"/>
         <association property="category"
-                     resultMap="com.perfect.team.business.repository.mybatis.mapper.CategoryMapper.categoryResultMap"
+                     resultMap="com.perfect.team.business.mapper.CategoryMapper.categoryResultMap"
                      column="category_id" foreignColumn="id"/>
         <association property="user"
-                     resultMap="com.perfect.team.business.repository.mybatis.mapper.UserMapper.userResultMap"
+                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"
                      column="user_id" foreignColumn="id"/>
     </resultMap>
 
@@ -41,12 +41,12 @@
     <update id="update" useGeneratedKeys="true" keyProperty="id">
         UPDATE transaction
         <set>
-            <if test="value != null">value = #{value},</if>
-            <if test="note != null">note = #{note},</if>
-            <if test="date != null">date = #{date},</if>
-            <if test="user != null and user.id != null">user_id = #{user.id},</if>
-            <if test="category != null and category.id != null">category_id = #{category.id},</if>
-            <if test="account != null and account.id != null">account_id = #{account.id}</if>
+            <if test="bean.value != null">value = #{bean.value},</if>
+            <if test="bean.note != null">note = #{bean.note},</if>
+            <if test="bean.date != null">date = #{bean.date},</if>
+            <if test="bean.user != null and bean.user.id != null">user_id = #{bean.user.id},</if>
+            <if test="bean.category != null and bean.category.id != null">category_id = #{bean.category.id},</if>
+            <if test="bean.account != null and bean.account.id != null">account_id = #{bean.account.id}</if>
         </set>
         WHERE id = #{id}
     </update>
@@ -64,9 +64,15 @@
     <select id="selectWithFull" resultMap="transactionFullResultMap">
         SELECT *
         FROM transaction
-        LEFT JOIN account ON transaction.account_id = account.id
-        LEFT JOIN category ON transaction.category_id = category.id
-        LEFT JOIN user ON transaction.user_id = user.id
+            LEFT JOIN account ON transaction.account_id = account.id
+            LEFT JOIN category ON transaction.category_id = category.id
+            LEFT JOIN user ON transaction.user_id = user.id
         WHERE account.id = #{id}
+    </select>
+
+    <select id="selectByUserId" resultMap="transactionResultMap">
+        SELECT *
+        FROM transaction
+        WHERE user_id = #{userId}
     </select>
 </mapper>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.perfect.team.business.repository.mybatis.mapper.AccountMapper">
+<mapper namespace="com.perfect.team.business.mapper.AccountMapper">
 
     <resultMap id="accountResultMap" type="Account">
         <id property="id" column="id"/>
@@ -19,7 +19,7 @@
         <result property="initialBalance" column="initial_balance"/>
         <result property="initialDate" column="initial_date"/>
         <association property="user"
-                     resultMap="com.perfect.team.business.repository.mybatis.mapper.UserMapper.userResultMap"
+                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"
                      column="user_id" foreignColumn="id"/>
     </resultMap>
 
@@ -37,11 +37,11 @@
     <update id="update" useGeneratedKeys="true" keyProperty="id">
         UPDATE account
         <set>
-            <if test="name != null">name = #{name},</if>
-            <if test="icon != null">icon = #{icon},</if>
-            <if test="initialBalance != null">initial_balance = #{initialBalance},</if>
-            <if test="initialDate != null">initial_date = #{initialDate},</if>
-            <if test="user != null and user.id != null">user_id = #{user.id}</if>
+            <if test="bean.name != null">name = #{bean.name},</if>
+            <if test="bean.icon != null">icon = #{bean.icon},</if>
+            <if test="bean.initialBalance != null">initial_balance = #{bean.initialBalance},</if>
+            <if test="bean.initialDate != null">initial_date = #{bean.initialDate},</if>
+            <if test="bean.user != null and bean.user.id != null">user_id = #{bean.user.id}</if>
         </set>
         WHERE id = #{id}
     </update>
@@ -59,7 +59,13 @@
     <select id="selectWithUser" resultMap="accountWithUserResultMap">
         SELECT *
         FROM account
-        LEFT JOIN user ON account.user_id = user.id
+            LEFT JOIN user ON account.user_id = user.id
         WHERE account.id = #{id}
+    </select>
+
+    <select id="selectByUserId" resultMap="accountResultMap">
+        SELECT *
+        FROM account
+        WHERE user_id = #{userId}
     </select>
 </mapper>

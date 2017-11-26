@@ -1,9 +1,13 @@
-package com.perfect.team.business.repository.mybatis.dao;
+package com.perfect.team.business.dao;
 
+import com.perfect.team.business.dao.base.CrudDao;
 import com.perfect.team.business.entity.Category;
-import com.perfect.team.business.repository.mybatis.dao.base.CrudDao;
+
+import java.util.List;
 
 public interface CategoryDao extends CrudDao<Category> {
 
     Category readWithUser(Long id);
+
+    List<Category> readByUserId(Long userId);
 }

@@ -1,13 +1,12 @@
 package com.perfect.team.impl.rest.service;
 
-import com.perfect.team.api.rest.model.entity.TransferDto;
-import com.perfect.team.api.rest.model.entity.UserDto;
+import com.perfect.team.api.rest.dto.entity.TransferDto;
 import com.perfect.team.api.rest.request.TransferRequest;
 import com.perfect.team.api.rest.response.TransferResponse;
 import com.perfect.team.api.rest.response.TransfersResponse;
-import com.perfect.team.api.rest.response.UserResponse;
 import com.perfect.team.business.entity.Transfer;
 import com.perfect.team.business.service.TransferService;
+import com.perfect.team.business.service.base.CrudService;
 import com.perfect.team.impl.rest.service.base.CrudRestServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -19,41 +18,43 @@ import java.util.stream.Collectors;
  * Created by Denis on 25.11.2017.
  */
 @Service
-public class TransferRestServiceImpl extends CrudRestServiceImpl implements TransferRestService {
+public class TransferRestServiceImpl
+        extends CrudRestServiceImpl<TransferRequest, Transfer, TransferResponse, TransfersResponse>
+        implements TransferRestService {
+
     @Inject
     private TransferService transferService;
 
     @Override
-    public TransfersResponse findByUserId(Long id) {
-        List<Transfer> transfers = transferService.findByUserId(id);
-        TransfersResponse transferResponse = new TransfersResponse();
-        transferResponse.setTransferDtos(transfers
+    public TransfersResponse readByUserId(Long userId) {
+        List<Transfer> transfers = transferService.readByUserId(userId);
+        return mapEntitiesToListResponse(transfers);
+    }
+
+    @Override
+    protected CrudService<Transfer> getCrudService() {
+        return transferService;
+    }
+
+    @Override
+    protected Transfer mapRequestToEntity(TransferRequest transferRequest) {
+        return modelMapper.map(transferRequest.getTransferDto(), Transfer.class);
+    }
+
+    @Override
+    protected TransferResponse mapEntityToResponse(Transfer transfer) {
+        TransferResponse transferResponse = new TransferResponse();
+        transferResponse.setTransferDto(modelMapper.map(transfer, TransferDto.class));
+        return transferResponse;
+    }
+
+    @Override
+    protected TransfersResponse mapEntitiesToListResponse(List<Transfer> transfers) {
+        TransfersResponse transfersResponse = new TransfersResponse();
+        transfersResponse.setTransferDtos(transfers
                 .stream()
                 .map(transfer -> modelMapper.map(transfer, TransferDto.class))
                 .collect(Collectors.toList()));
-        return transferResponse;
-    }
-
-    @Override
-    public TransferResponse findById(Long id) {
-        Transfer transfer = transferService.findById(id);
-        TransferResponse transferResponse = new TransferResponse();
-        transferResponse.setTransferDto(modelMapper.map(transfer, TransferDto.class));
-        return transferResponse;
-    }
-
-    @Override
-    public TransferResponse save(TransferRequest transferRequest) {
-        Transfer transfer = modelMapper.map(transferRequest.getTransferDto(), Transfer.class);
-        transfer = transferService.save(transfer);
-        TransferResponse transferResponse = new TransferResponse();
-        transferResponse.setTransferDto(modelMapper.map(transfer, TransferDto.class));
-        return transferResponse;
-    }
-
-    @Override
-    public void delete(TransferRequest transferRequest){
-        Transfer transfer = modelMapper.map(transferRequest.getTransferDto(), Transfer.class);
-        transferService.delete(transfer.getId());
+        return transfersResponse;
     }
 }

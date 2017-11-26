@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 
 import javax.inject.Inject;
 
-public class RestServiceImpl implements RestService {
+public abstract class RestServiceImpl implements RestService {
 
     @Inject
     protected ModelMapper modelMapper;

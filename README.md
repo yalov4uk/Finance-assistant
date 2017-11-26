@@ -213,3 +213,9 @@ All this entities have methods:
 }
 
 ```
+###26.11.2017
+refactor rest, add swagger-ui
+
+Swagger-ui request:
+  * GET *swagger-ui.html*
+  * GET *v2/api-docs*

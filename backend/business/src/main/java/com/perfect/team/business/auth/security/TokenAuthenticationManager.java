@@ -37,7 +37,7 @@ public class TokenAuthenticationManager implements AuthenticationManager {
     private Authentication grantTokenAuthentication(TokenAuthentication authentication) {
         if (authentication.getToken() != null) {
             Long userId = jwtService.decodeToken(authentication.getToken());
-            User user = userService.findById(userId);
+            User user = userService.read(userId);
             if (userValidator.validate(user)) {
                 UserDetails userDetails = new CustomUserDetails(user);
                 authentication = new TokenAuthentication(authentication.getToken(), userDetails);

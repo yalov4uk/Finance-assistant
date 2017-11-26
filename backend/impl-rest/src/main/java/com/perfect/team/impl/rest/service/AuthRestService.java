@@ -1,16 +1,15 @@
 package com.perfect.team.impl.rest.service;
 
 import com.perfect.team.api.rest.request.SignInRequest;
+import com.perfect.team.api.rest.request.SignUpRequest;
 import com.perfect.team.api.rest.request.TokenRequest;
-import com.perfect.team.api.rest.request.UserRequest;
-import com.perfect.team.api.rest.response.SignInResponse;
-import com.perfect.team.api.rest.response.UserResponse;
+import com.perfect.team.api.rest.response.AuthResponse;
 
 public interface AuthRestService {
 
-    UserResponse signUp(UserRequest userRequest);
+    AuthResponse signUp(SignUpRequest signUpRequest);
 
-    SignInResponse signIn(SignInRequest signInRequest);
+    AuthResponse signIn(SignInRequest signInRequest);
 
-    SignInResponse signInWithFacebook(TokenRequest tokenRequest);
+    AuthResponse signInWithFacebook(TokenRequest tokenRequest);
 }

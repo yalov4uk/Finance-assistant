@@ -3,11 +3,11 @@ package com.perfect.team.impl.rest.controller;
 import com.perfect.team.api.rest.controller.HomeController;
 import com.perfect.team.business.entity.Account;
 import com.perfect.team.business.entity.User;
-import com.perfect.team.business.repository.mybatis.mapper.AccountMapper;
-import com.perfect.team.business.repository.mybatis.mapper.CategoryMapper;
-import com.perfect.team.business.repository.mybatis.mapper.TransactionMapper;
-import com.perfect.team.business.repository.mybatis.mapper.TransferMapper;
-import com.perfect.team.business.repository.mybatis.mapper.UserMapper;
+import com.perfect.team.business.mapper.AccountMapper;
+import com.perfect.team.business.mapper.CategoryMapper;
+import com.perfect.team.business.mapper.TransactionMapper;
+import com.perfect.team.business.mapper.TransferMapper;
+import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,8 +43,8 @@ public class HomeControllerImpl implements HomeController {
         User user = new User("1", "1");
         user.setId(1L);
         account2.setUser(user);
-        int updatedRows = accountMapper.update(account2);
+        int updatedRows = accountMapper.update(account2.getId(), account2);
 
-        return "Hello World! There are " + userService.findAll().size() + " registered users.";
+        return "Hello World! There are " + userService.readAll().size() + " registered users.";
     }
 }

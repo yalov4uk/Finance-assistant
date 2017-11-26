@@ -16,6 +16,7 @@ import java.util.Objects;
 
 @Entity
 public class Account implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

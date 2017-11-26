@@ -1,14 +1,12 @@
 package com.perfect.team.api.rest.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.perfect.team.api.rest.model.entity.TransactionDto;
-import com.perfect.team.api.rest.model.entity.UserDto;
+import com.perfect.team.api.rest.dto.entity.TransactionDto;
 
 import java.util.List;
 
 /**
  * Created by Denis on 25.11.2017.
- *
  */
 public class TransactionsResponse {
 
@@ -22,5 +20,4 @@ public class TransactionsResponse {
     public void setTransactionDtos(List<TransactionDto> transactionDtos) {
         this.transactionDtos = transactionDtos;
     }
-
 }

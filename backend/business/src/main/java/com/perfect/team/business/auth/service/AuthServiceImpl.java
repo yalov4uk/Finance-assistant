@@ -5,7 +5,6 @@ import com.perfect.team.business.entity.User;
 import com.perfect.team.business.exception.NotFoundException;
 import com.perfect.team.business.exception.ValidationException;
 import com.perfect.team.business.service.UserService;
-import com.perfect.team.business.validator.UserValidator;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Version;
@@ -30,27 +29,21 @@ public class AuthServiceImpl implements AuthService {
     private String facebookAppSecret;
 
     @Inject
-    private UserValidator userValidator;
-
-    @Inject
     private UserService userService;
 
     @Inject
     private JwtService jwtService;
 
     @Override
-    public User signUp(User user) {
-        if (!userValidator.validate(user)) throw new ValidationException();
+    public AuthUser signUp(User user, String confirmPassword) {
+        if (!Objects.equals(user.getPassword(), confirmPassword)) throw new ValidationException("Passwords mismatch");
 
-        return userService.save(user);
+        return new AuthUser(userService.create(user), jwtService.generateToken(user));
     }
 
     @Override
     public AuthUser signIn(String email, String password) {
-        if (!userValidator.validateEmail(email) || !userValidator.validatePassword(password))
-            throw new ValidationException();
-
-        User user = userService.findByEmail(email);
+        User user = userService.readByEmail(email);
         if (user == null || !Objects.equals(user.getPassword(), password)) throw new NotFoundException();
 
         return new AuthUser(user, jwtService.generateToken(user));
@@ -64,12 +57,13 @@ public class AuthServiceImpl implements AuthService {
 
         if (facebookUser.getEmail() == null) throw new ValidationException();
 
-        User user = userService.findByEmail(facebookUser.getEmail());
+        User user = userService.readByEmail(facebookUser.getEmail());
         if (user != null) {
             user.setName(facebookUser.getName());
+            userService.update(user.getId(), user);
         } else {
             user = new User(facebookUser.getName(), facebookUser.getEmail());
-            userService.save(user);
+            userService.create(user);
         }
         return new AuthUser(user, jwtService.generateToken(user));
     }

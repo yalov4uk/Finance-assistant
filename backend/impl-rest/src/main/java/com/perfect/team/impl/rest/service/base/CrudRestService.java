@@ -1,16 +1,14 @@
 package com.perfect.team.impl.rest.service.base;
 
-import org.springframework.security.core.userdetails.UserDetails;
+public interface CrudRestService<Request, Response, ListResponse> extends RestService {
 
-public interface AuthCrudRestService<Request, Response, ListResponse> extends RestService {
+    Response create(Request request);
 
-    Response create(Request request, UserDetails userDetails);
+    Response read(Long id);
 
-    Response read(Long id, UserDetails userDetails);
+    Response update(Long id, Request request);
 
-    Response update(Request request, UserDetails userDetails);
+    void delete(Long id);
 
-    void delete(Long id, UserDetails userDetails);
-
-    ListResponse readAll(UserDetails userDetails);
+    ListResponse readAll();
 }

@@ -4,10 +4,6 @@ import com.perfect.team.business.entity.Account;
 import com.perfect.team.business.entity.Category;
 import com.perfect.team.business.entity.Transaction;
 import com.perfect.team.business.entity.User;
-import com.perfect.team.business.repository.mybatis.mapper.AccountMapper;
-import com.perfect.team.business.repository.mybatis.mapper.CategoryMapper;
-import com.perfect.team.business.repository.mybatis.mapper.TransactionMapper;
-import com.perfect.team.business.repository.mybatis.mapper.UserMapper;
 import com.perfect.team.core.Main;
 import org.junit.Assert;
 import org.junit.Test;
@@ -52,7 +48,7 @@ public class TransactionMapperTest {
     public void update() throws Exception {
         Transaction transaction = createTransaction();
         transaction.setValue(1);
-        Assert.assertTrue(transactionMapper.update(transaction) == 1);
+        Assert.assertTrue(transactionMapper.update(transaction.getId(), transaction) == 1);
         Assert.assertEquals(1, (int) transaction.getValue());
     }
 

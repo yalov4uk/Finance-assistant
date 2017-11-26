@@ -1,12 +1,13 @@
-package com.perfect.team.business.repository.mybatis.dao;
+package com.perfect.team.business.dao;
 
+import com.perfect.team.business.dao.base.CrudDaoImpl;
 import com.perfect.team.business.entity.Transfer;
-import com.perfect.team.business.repository.mybatis.dao.base.CrudDaoImpl;
-import com.perfect.team.business.repository.mybatis.mapper.TransferMapper;
-import com.perfect.team.business.repository.mybatis.mapper.base.CrudMapper;
+import com.perfect.team.business.mapper.TransferMapper;
+import com.perfect.team.business.mapper.base.CrudMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Repository
 public class TransferDaoImpl extends CrudDaoImpl<Transfer> implements TransferDao {
@@ -22,5 +23,10 @@ public class TransferDaoImpl extends CrudDaoImpl<Transfer> implements TransferDa
     @Override
     public Transfer readWithFull(Long id) {
         return transferMapper.selectWithFull(id);
+    }
+
+    @Override
+    public List<Transfer> readByUserId(Long userId) {
+        return transferMapper.selectByUserId(userId);
     }
 }

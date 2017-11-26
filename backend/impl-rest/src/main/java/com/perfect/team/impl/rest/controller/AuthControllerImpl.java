@@ -2,11 +2,12 @@ package com.perfect.team.impl.rest.controller;
 
 import com.perfect.team.api.rest.controller.AuthController;
 import com.perfect.team.api.rest.request.SignInRequest;
+import com.perfect.team.api.rest.request.SignUpRequest;
 import com.perfect.team.api.rest.request.TokenRequest;
-import com.perfect.team.api.rest.request.UserRequest;
 import com.perfect.team.impl.rest.service.AuthRestService;
-import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,17 +27,17 @@ public class AuthControllerImpl implements AuthController {
     private AuthRestService authRestService;
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public HttpEntity signUp(@RequestBody UserRequest userRequest) {
-        return new HttpEntity<>(authRestService.signUp(userRequest));
+    public ResponseEntity signUp(@RequestBody SignUpRequest signUpRequest) {
+        return new ResponseEntity<>(authRestService.signUp(signUpRequest), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
-    public HttpEntity signIn(@RequestBody SignInRequest signInRequest) {
-        return new HttpEntity<>(authRestService.signIn(signInRequest));
+    public ResponseEntity signIn(@RequestBody SignInRequest signInRequest) {
+        return new ResponseEntity<>(authRestService.signIn(signInRequest), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/signin/facebook", method = RequestMethod.POST)
-    public HttpEntity signInWithFacebook(@RequestBody TokenRequest tokenRequest) {
-        return new HttpEntity<>(authRestService.signInWithFacebook(tokenRequest));
+    public ResponseEntity signInWithFacebook(@RequestBody TokenRequest tokenRequest) {
+        return new ResponseEntity<>(authRestService.signInWithFacebook(tokenRequest), HttpStatus.OK);
     }
 }

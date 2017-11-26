@@ -29,10 +29,11 @@
         <version.jwt>3.2.0</version.jwt>
         <version.inject>1</version.inject>
         <version.model.mapper>1.1.0</version.model.mapper>
-        <version.facebook>1.47.0</version.facebook>
+        <version.facebook>1.48.0</version.facebook>
         <version.jackson>2.9.2</version.jackson>
         <version.mysql>6.0.6</version.mysql>
         <version.mybatis>1.3.1</version.mybatis>
+        <version.swagger>2.7.0</version.swagger>
     </properties>
 
     <dependencyManagement>
@@ -120,6 +121,18 @@
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${version.spring.boot}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${version.swagger}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${version.swagger}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

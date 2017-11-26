@@ -1,4 +1,7 @@
-package com.perfect.team.api.rest.controller.base;
+package com.perfect.team.api.rest.controller;
 
-public interface UserController {
+import com.perfect.team.api.rest.controller.base.CrudController;
+import com.perfect.team.api.rest.request.UserRequest;
+
+public interface UserController extends CrudController<UserRequest> {
 }

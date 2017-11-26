@@ -2,8 +2,6 @@ package com.perfect.team.business.mapper;
 
 import com.perfect.team.business.entity.Category;
 import com.perfect.team.business.entity.User;
-import com.perfect.team.business.repository.mybatis.mapper.CategoryMapper;
-import com.perfect.team.business.repository.mybatis.mapper.UserMapper;
 import com.perfect.team.core.Main;
 import org.junit.Assert;
 import org.junit.Test;
@@ -41,7 +39,7 @@ public class CategoryMapperTest {
     public void update() throws Exception {
         Category category = createCategory();
         category.setName("test");
-        Assert.assertTrue(categoryMapper.update(category) == 1);
+        Assert.assertTrue(categoryMapper.update(category.getId(), category) == 1);
         Assert.assertEquals("test", category.getName());
     }
 

@@ -2,8 +2,6 @@ package com.perfect.team.business.mapper;
 
 import com.perfect.team.business.entity.Account;
 import com.perfect.team.business.entity.User;
-import com.perfect.team.business.repository.mybatis.mapper.AccountMapper;
-import com.perfect.team.business.repository.mybatis.mapper.UserMapper;
 import com.perfect.team.core.Main;
 import org.junit.Assert;
 import org.junit.Test;
@@ -42,7 +40,7 @@ public class AccountMapperTest {
     public void update() throws Exception {
         Account account = createAccount();
         account.setName("test");
-        Assert.assertTrue(accountMapper.update(account) == 1);
+        Assert.assertTrue(accountMapper.update(account.getId(), account) == 1);
         Assert.assertEquals("test", account.getName());
     }
 

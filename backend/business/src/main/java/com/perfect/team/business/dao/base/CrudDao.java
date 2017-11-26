@@ -1,4 +1,4 @@
-package com.perfect.team.business.repository.mybatis.dao.base;
+package com.perfect.team.business.dao.base;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public interface CrudDao<T> {
 
     T read(Long id);
 
-    T update(T bean);
+    T update(Long id, T bean);
 
     Long delete(Long id);
 

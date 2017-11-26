@@ -1,7 +1,9 @@
 package com.perfect.team.business.service;
 
+import com.perfect.team.business.dao.AccountDao;
+import com.perfect.team.business.dao.base.CrudDao;
 import com.perfect.team.business.entity.Account;
-import com.perfect.team.business.repository.AccountRepository;
+import com.perfect.team.business.service.base.CrudServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -9,36 +11,20 @@ import java.util.List;
 
 /**
  * Created by Denis on 25.11.2017.
- *
  */
 @Service
-public class AccountServiceImpl implements AccountService {
+public class AccountServiceImpl extends CrudServiceImpl<Account> implements AccountService {
+
     @Inject
-    private AccountRepository accountRepository;
+    private AccountDao accountDao;
 
     @Override
-    public Account save(Account account) {
-        return accountRepository.save(account);
+    protected CrudDao<Account> getDao() {
+        return accountDao;
     }
 
     @Override
-    public List<Account> findByUserId(Long userId) {
-        return accountRepository.findByUserId(userId);
+    public List<Account> readByUserId(Long userId) {
+        return accountDao.readByUserId(userId);
     }
-
-    @Override
-    public Account findById(Long accountId) {
-        return accountRepository.findOne(accountId);
-    }
-
-    @Override
-    public List<Account> findAll() {
-        return accountRepository.findAll();
-    }
-
-    @Override
-    public void delete(Long id) {
-        accountRepository.delete(id);
-    }
-
 }

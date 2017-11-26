@@ -1,17 +1,16 @@
 package com.perfect.team.api.rest.controller.base;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.http.ResponseEntity;
 
-public interface AuthCrudController<Request> {
+public interface CrudController<Request> {
 
-    HttpEntity create(Request request, UserDetails userDetails);
+    ResponseEntity create(Request request);
 
-    HttpEntity read(Long id, UserDetails userDetails);
+    ResponseEntity read(Long id);
 
-    HttpEntity update(Long id, Request bean, UserDetails userDetails);
+    ResponseEntity update(Long id, Request bean);
 
-    HttpEntity delete(Long id, UserDetails userDetails);
+    ResponseEntity delete(Long id);
 
-    HttpEntity readAll(UserDetails userDetails);
+    ResponseEntity readAll();
 }

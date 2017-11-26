@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.perfect.team.business.repository.mybatis.mapper.TransferMapper">
+<mapper namespace="com.perfect.team.business.mapper.TransferMapper">
 
     <resultMap id="transferResultMap" type="Transfer">
         <id property="id" column="id"/>
@@ -17,13 +17,13 @@
         <result property="note" column="note"/>
         <result property="date" column="date"/>
         <association property="fromAccount"
-                     resultMap="com.perfect.team.business.repository.mybatis.mapper.AccountMapper.accountResultMap"
+                     resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"
                      column="from_account_id" foreignColumn="id"/>
         <association property="toAccount"
-                     resultMap="com.perfect.team.business.repository.mybatis.mapper.AccountMapper.accountResultMap"
+                     resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"
                      column="to_account_id" foreignColumn="id"/>
         <association property="user"
-                     resultMap="com.perfect.team.business.repository.mybatis.mapper.UserMapper.userResultMap"
+                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"
                      column="user_id" foreignColumn="id"/>
     </resultMap>
 
@@ -41,12 +41,14 @@
     <update id="update" useGeneratedKeys="true" keyProperty="id">
         UPDATE transfer
         <set>
-            <if test="value != null">value = #{value},</if>
-            <if test="note != null">note = #{note},</if>
-            <if test="date != null">date = #{date},</if>
-            <if test="fromAccount != null and fromAccount.id != null">from_account_id = #{fromAccount.id},</if>
-            <if test="toAccount != null and toAccount.id != null">to_account_id = #{toAccount.id},</if>
-            <if test="user != null and user.id != null">user_id = #{user.id}</if>
+            <if test="bean.value != null">value = #{bean.value},</if>
+            <if test="bean.note != null">note = #{bean.note},</if>
+            <if test="bean.date != null">date = #{bean.date},</if>
+            <if test="bean.fromAccount != null and bean.fromAccount.id != null">from_account_id =
+                #{bean.fromAccount.id},
+            </if>
+            <if test="bean.toAccount != null and bean.toAccount.id != null">to_account_id = #{bean.toAccount.id},</if>
+            <if test="bean.user != null and bean.user.id != null">user_id = #{bean.user.id}</if>
         </set>
         WHERE id = #{id}
     </update>
@@ -64,9 +66,15 @@
     <select id="selectWithUser" resultMap="transferFullResultMap">
         SELECT *
         FROM transfer
-        LEFT JOIN account ON transfer.from_account_id = account.id
-        LEFT JOIN account ON transfer.to_account_id = account.id
-        LEFT JOIN user ON transaction.user_id = user.id
+            LEFT JOIN account ON transfer.from_account_id = account.id
+            LEFT JOIN account ON transfer.to_account_id = account.id
+            LEFT JOIN user ON transaction.user_id = user.id
         WHERE account.id = #{id}
+    </select>
+
+    <select id="selectByUserId" resultMap="transferResultMap">
+        SELECT *
+        FROM transfer
+        WHERE user_id = #{userId}
     </select>
 </mapper>

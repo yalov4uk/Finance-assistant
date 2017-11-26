@@ -1,7 +1,9 @@
 package com.perfect.team.business.service;
 
+import com.perfect.team.business.dao.TransferDao;
+import com.perfect.team.business.dao.base.CrudDao;
 import com.perfect.team.business.entity.Transfer;
-import com.perfect.team.business.repository.TransferRepository;
+import com.perfect.team.business.service.base.CrudServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -9,36 +11,20 @@ import java.util.List;
 
 /**
  * Created by Denis on 25.11.2017.
- *
  */
 @Service
-public class TransferServiceImpl implements TransferService {
+public class TransferServiceImpl extends CrudServiceImpl<Transfer> implements TransferService {
+
     @Inject
-    private TransferRepository transferRepository;
+    private TransferDao transferDao;
 
     @Override
-    public Transfer save(Transfer transfer) {
-        return transferRepository.save(transfer);
+    protected CrudDao<Transfer> getDao() {
+        return transferDao;
     }
 
     @Override
-    public List<Transfer> findByUserId(Long userId) {
-        return transferRepository.findByUserId(userId);
+    public List<Transfer> readByUserId(Long userId) {
+        return transferDao.readByUserId(userId);
     }
-
-    @Override
-    public Transfer findById(Long transferId) {
-        return transferRepository.findOne(transferId);
-    }
-
-    @Override
-    public List<Transfer> findAll() {
-        return transferRepository.findAll();
-    }
-
-    @Override
-    public void delete(Long id) {
-        transferRepository.delete(id);
-    }
-
 }

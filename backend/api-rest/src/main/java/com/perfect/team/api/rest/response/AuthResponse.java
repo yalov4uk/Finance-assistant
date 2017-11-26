@@ -1,9 +1,9 @@
 package com.perfect.team.api.rest.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.perfect.team.api.rest.dto.UserDto;
+import com.perfect.team.api.rest.dto.entity.UserDto;
 
-public class SignInResponse {
+public class AuthResponse {
 
     @JsonProperty(value = "user")
     private UserDto userDto;

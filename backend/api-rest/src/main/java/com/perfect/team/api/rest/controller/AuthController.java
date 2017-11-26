@@ -1,15 +1,15 @@
 package com.perfect.team.api.rest.controller;
 
 import com.perfect.team.api.rest.request.SignInRequest;
+import com.perfect.team.api.rest.request.SignUpRequest;
 import com.perfect.team.api.rest.request.TokenRequest;
-import com.perfect.team.api.rest.request.UserRequest;
-import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 
 public interface AuthController {
 
-    HttpEntity signUp(UserRequest userRequest);
+    ResponseEntity signUp(SignUpRequest signUpRequest);
 
-    HttpEntity signIn(SignInRequest signInRequest);
+    ResponseEntity signIn(SignInRequest signInRequest);
 
-    HttpEntity signInWithFacebook(TokenRequest tokenRequest);
+    ResponseEntity signInWithFacebook(TokenRequest tokenRequest);
 }

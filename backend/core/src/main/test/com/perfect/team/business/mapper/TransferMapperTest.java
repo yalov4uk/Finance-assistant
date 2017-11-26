@@ -3,9 +3,6 @@ package com.perfect.team.business.mapper;
 import com.perfect.team.business.entity.Account;
 import com.perfect.team.business.entity.Transfer;
 import com.perfect.team.business.entity.User;
-import com.perfect.team.business.repository.mybatis.mapper.AccountMapper;
-import com.perfect.team.business.repository.mybatis.mapper.TransferMapper;
-import com.perfect.team.business.repository.mybatis.mapper.UserMapper;
 import com.perfect.team.core.Main;
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,7 +44,7 @@ public class TransferMapperTest {
     public void update() throws Exception {
         Transfer transfer = createTransfer();
         transfer.setValue(1);
-        Assert.assertTrue(transferMapper.update(transfer) == 1);
+        Assert.assertTrue(transferMapper.update(transfer.getId(), transfer) == 1);
         Assert.assertEquals(1, (int) transfer.getValue());
     }
 

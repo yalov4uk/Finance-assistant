@@ -1,12 +1,13 @@
-package com.perfect.team.business.repository.mybatis.dao;
+package com.perfect.team.business.dao;
 
+import com.perfect.team.business.dao.base.CrudDaoImpl;
 import com.perfect.team.business.entity.Account;
-import com.perfect.team.business.repository.mybatis.dao.base.CrudDaoImpl;
-import com.perfect.team.business.repository.mybatis.mapper.AccountMapper;
-import com.perfect.team.business.repository.mybatis.mapper.base.CrudMapper;
+import com.perfect.team.business.mapper.AccountMapper;
+import com.perfect.team.business.mapper.base.CrudMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Repository
 public class AccountDaoImpl extends CrudDaoImpl<Account> implements AccountDao {
@@ -22,5 +23,10 @@ public class AccountDaoImpl extends CrudDaoImpl<Account> implements AccountDao {
     @Override
     public Account readWithUser(Long id) {
         return accountMapper.selectWithUser(id);
+    }
+
+    @Override
+    public List<Account> readByUserId(Long userId) {
+        return accountMapper.selectByUserId(userId);
     }
 }

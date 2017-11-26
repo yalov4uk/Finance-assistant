@@ -1,7 +1,6 @@
 package com.perfect.team.business.mapper;
 
 import com.perfect.team.business.entity.User;
-import com.perfect.team.business.repository.mybatis.mapper.UserMapper;
 import com.perfect.team.core.Main;
 import org.junit.Assert;
 import org.junit.Test;
@@ -36,7 +35,7 @@ public class UserMapperTest {
     public void update() throws Exception {
         User user = createUser();
         user.setName("test");
-        Assert.assertTrue(userMapper.update(user) == 1);
+        Assert.assertTrue(userMapper.update(user.getId(), user) == 1);
         Assert.assertEquals("test", user.getName());
     }
 
