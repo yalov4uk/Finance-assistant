@@ -1,8 +1,9 @@
 package com.perfect.team.business.service.base;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface CrudService<T> {
+public interface CrudService<T  extends Serializable> {
 
     T create(T bean);
 

@@ -1,6 +1,6 @@
 package com.perfect.team.business.dao;
 
-import com.perfect.team.business.dao.base.CrudDaoImpl;
+import com.perfect.team.business.dao.base.CrudDaoBase;
 import com.perfect.team.business.entity.Transfer;
 import com.perfect.team.business.mapper.TransferMapper;
 import com.perfect.team.business.mapper.base.CrudMapper;
@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Repository
-public class TransferDaoImpl extends CrudDaoImpl<Transfer> implements TransferDao {
+public class TransferDaoImpl extends CrudDaoBase<Transfer> implements TransferDao {
 
     @Inject
     private TransferMapper transferMapper;

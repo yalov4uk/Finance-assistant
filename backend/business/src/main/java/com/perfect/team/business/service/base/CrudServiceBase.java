@@ -2,9 +2,10 @@ package com.perfect.team.business.service.base;
 
 import com.perfect.team.business.dao.base.CrudDao;
 
+import java.io.Serializable;
 import java.util.List;
 
-public abstract class CrudServiceImpl<T> implements CrudService<T> {
+public abstract class CrudServiceBase<T extends Serializable> implements CrudService<T> {
 
     protected abstract CrudDao<T> getDao();
 

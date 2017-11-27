@@ -4,7 +4,7 @@ import com.perfect.team.api.rest.controller.UserController;
 import com.perfect.team.api.rest.request.entity.UserRequest;
 import com.perfect.team.api.rest.response.entity.UserResponse;
 import com.perfect.team.api.rest.response.entity.UsersResponse;
-import com.perfect.team.impl.rest.controller.base.CrudControllerImpl;
+import com.perfect.team.impl.rest.controller.base.CrudControllerBase;
 import com.perfect.team.impl.rest.service.UserRestService;
 import com.perfect.team.impl.rest.service.base.CrudRestService;
 import org.springframework.http.MediaType;
@@ -20,7 +20,7 @@ import javax.inject.Inject;
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
 )
-public class UserControllerImpl extends CrudControllerImpl<UserRequest, UserResponse, UsersResponse>
+public class UserControllerImpl extends CrudControllerBase<UserRequest, UserResponse, UsersResponse>
         implements UserController {
 
     @Inject

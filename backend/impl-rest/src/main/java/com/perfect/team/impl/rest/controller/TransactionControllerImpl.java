@@ -4,7 +4,7 @@ import com.perfect.team.api.rest.controller.TransactionController;
 import com.perfect.team.api.rest.request.entity.TransactionRequest;
 import com.perfect.team.api.rest.response.entity.TransactionResponse;
 import com.perfect.team.api.rest.response.entity.TransactionsResponse;
-import com.perfect.team.impl.rest.controller.base.CrudControllerImpl;
+import com.perfect.team.impl.rest.controller.base.CrudControllerBase;
 import com.perfect.team.impl.rest.service.TransactionRestService;
 import com.perfect.team.impl.rest.service.base.CrudRestService;
 import org.springframework.http.MediaType;
@@ -23,7 +23,7 @@ import javax.inject.Inject;
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class TransactionControllerImpl
-        extends CrudControllerImpl<TransactionRequest, TransactionResponse, TransactionsResponse>
+        extends CrudControllerBase<TransactionRequest, TransactionResponse, TransactionsResponse>
         implements TransactionController {
 
     @Inject

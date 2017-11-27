@@ -7,7 +7,7 @@ import com.perfect.team.api.rest.response.entity.CategoryResponse;
 import com.perfect.team.business.entity.Category;
 import com.perfect.team.business.service.CategoryService;
 import com.perfect.team.business.service.base.CrudService;
-import com.perfect.team.impl.rest.service.base.CrudRestServiceImpl;
+import com.perfect.team.impl.rest.service.base.CrudRestServiceBase;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class CategoryRestServiceImpl
-        extends CrudRestServiceImpl<CategoryRequest, Category, CategoryResponse, CategoriesResponse>
+public class RestServiceBase
+        extends CrudRestServiceBase<CategoryRequest, Category, CategoryResponse, CategoriesResponse>
         implements CategoryRestService {
 
     @Inject

@@ -1,6 +1,6 @@
 package com.perfect.team.business.dao;
 
-import com.perfect.team.business.dao.base.CrudDaoImpl;
+import com.perfect.team.business.dao.base.CrudDaoBase;
 import com.perfect.team.business.entity.Category;
 import com.perfect.team.business.mapper.CategoryMapper;
 import com.perfect.team.business.mapper.base.CrudMapper;
@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Repository
-public class CategoryDaoImpl extends CrudDaoImpl<Category> implements CategoryDao {
+public class CategoryDaoImpl extends CrudDaoBase<Category> implements CategoryDao {
 
     @Inject
     private CategoryMapper categoryMapper;

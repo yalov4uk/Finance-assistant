@@ -4,7 +4,7 @@ import com.perfect.team.api.rest.controller.TransferController;
 import com.perfect.team.api.rest.request.entity.TransferRequest;
 import com.perfect.team.api.rest.response.entity.TransferResponse;
 import com.perfect.team.api.rest.response.entity.TransfersResponse;
-import com.perfect.team.impl.rest.controller.base.CrudControllerImpl;
+import com.perfect.team.impl.rest.controller.base.CrudControllerBase;
 import com.perfect.team.impl.rest.service.TransferRestService;
 import com.perfect.team.impl.rest.service.base.CrudRestService;
 import org.springframework.http.MediaType;
@@ -22,7 +22,7 @@ import javax.inject.Inject;
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
 )
-public class TransferControllerImpl extends CrudControllerImpl<TransferRequest, TransferResponse, TransfersResponse>
+public class TransferControllerImpl extends CrudControllerBase<TransferRequest, TransferResponse, TransfersResponse>
         implements TransferController {
 
     @Inject

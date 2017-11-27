@@ -2,9 +2,10 @@ package com.perfect.team.business.dao.base;
 
 import com.perfect.team.business.mapper.base.CrudMapper;
 
+import java.io.Serializable;
 import java.util.List;
 
-public abstract class CrudDaoImpl<T> implements CrudDao<T> {
+public abstract class CrudDaoBase<T  extends Serializable> implements CrudDao<T> {
 
     protected abstract CrudMapper<T> getMapper();
 

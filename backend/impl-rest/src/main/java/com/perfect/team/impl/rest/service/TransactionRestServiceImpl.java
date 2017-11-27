@@ -7,7 +7,7 @@ import com.perfect.team.api.rest.response.entity.TransactionsResponse;
 import com.perfect.team.business.entity.Transaction;
 import com.perfect.team.business.service.TransactionService;
 import com.perfect.team.business.service.base.CrudService;
-import com.perfect.team.impl.rest.service.base.CrudRestServiceImpl;
+import com.perfect.team.impl.rest.service.base.CrudRestServiceBase;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class TransactionRestServiceImpl
-        extends CrudRestServiceImpl<TransactionRequest, Transaction, TransactionResponse, TransactionsResponse>
+        extends CrudRestServiceBase<TransactionRequest, Transaction, TransactionResponse, TransactionsResponse>
         implements TransactionRestService {
 
     @Inject

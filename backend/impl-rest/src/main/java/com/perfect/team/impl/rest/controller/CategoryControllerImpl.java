@@ -4,7 +4,7 @@ import com.perfect.team.api.rest.controller.CategoryController;
 import com.perfect.team.api.rest.request.entity.CategoryRequest;
 import com.perfect.team.api.rest.response.entity.CategoriesResponse;
 import com.perfect.team.api.rest.response.entity.CategoryResponse;
-import com.perfect.team.impl.rest.controller.base.CrudControllerImpl;
+import com.perfect.team.impl.rest.controller.base.CrudControllerBase;
 import com.perfect.team.impl.rest.service.CategoryRestService;
 import com.perfect.team.impl.rest.service.base.CrudRestService;
 import org.springframework.http.MediaType;
@@ -22,7 +22,7 @@ import javax.inject.Inject;
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
 )
-public class CategoryControllerImpl extends CrudControllerImpl<CategoryRequest, CategoryResponse, CategoriesResponse>
+public class CategoryControllerImpl extends CrudControllerBase<CategoryRequest, CategoryResponse, CategoriesResponse>
         implements CategoryController {
 
     @Inject

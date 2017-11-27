@@ -1,6 +1,6 @@
 package com.perfect.team.business.dao;
 
-import com.perfect.team.business.dao.base.CrudDaoImpl;
+import com.perfect.team.business.dao.base.CrudDaoBase;
 import com.perfect.team.business.entity.Account;
 import com.perfect.team.business.mapper.AccountMapper;
 import com.perfect.team.business.mapper.base.CrudMapper;
@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Repository
-public class AccountDaoImpl extends CrudDaoImpl<Account> implements AccountDao {
+public class AccountDaoImpl extends CrudDaoBase<Account> implements AccountDao {
 
     @Inject
     private AccountMapper accountMapper;

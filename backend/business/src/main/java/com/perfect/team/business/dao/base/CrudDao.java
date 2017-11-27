@@ -1,8 +1,9 @@
 package com.perfect.team.business.dao.base;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface CrudDao<T> {
+public interface CrudDao<T  extends Serializable> {
 
     T create(T bean);
 

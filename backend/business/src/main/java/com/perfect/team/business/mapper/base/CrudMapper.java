@@ -2,9 +2,10 @@ package com.perfect.team.business.mapper.base;
 
 import org.apache.ibatis.annotations.Param;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface CrudMapper<T> {
+public interface CrudMapper<T extends Serializable> {
 
     int insert(T bean);
 
