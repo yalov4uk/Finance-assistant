@@ -1,9 +1,9 @@
 package com.perfect.team.impl.rest.controller;
 
 import com.perfect.team.api.rest.controller.CategoryController;
-import com.perfect.team.api.rest.request.CategoryRequest;
-import com.perfect.team.api.rest.response.CategoriesResponse;
-import com.perfect.team.api.rest.response.CategoryResponse;
+import com.perfect.team.api.rest.request.entity.CategoryRequest;
+import com.perfect.team.api.rest.response.entity.CategoriesResponse;
+import com.perfect.team.api.rest.response.entity.CategoryResponse;
 import com.perfect.team.impl.rest.controller.base.CrudControllerImpl;
 import com.perfect.team.impl.rest.service.CategoryRestService;
 import com.perfect.team.impl.rest.service.base.CrudRestService;

@@ -1,4 +1,4 @@
-package com.perfect.team.api.rest.request;
+package com.perfect.team.api.rest.request.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.perfect.team.api.rest.dto.entity.TransferDto;

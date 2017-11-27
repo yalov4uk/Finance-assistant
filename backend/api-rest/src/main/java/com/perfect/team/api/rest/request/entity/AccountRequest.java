@@ -1,4 +1,4 @@
-package com.perfect.team.api.rest.response;
+package com.perfect.team.api.rest.request.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.perfect.team.api.rest.dto.entity.AccountDto;
@@ -6,7 +6,7 @@ import com.perfect.team.api.rest.dto.entity.AccountDto;
 /**
  * Created by Denis on 25.11.2017.
  */
-public class AccountResponse {
+public class AccountRequest {
 
     @JsonProperty(value = "account")
     private AccountDto accountDto;

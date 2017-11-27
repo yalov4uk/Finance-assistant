@@ -1,8 +1,8 @@
 package com.perfect.team.impl.rest.service;
 
-import com.perfect.team.api.rest.request.TransactionRequest;
-import com.perfect.team.api.rest.response.TransactionResponse;
-import com.perfect.team.api.rest.response.TransactionsResponse;
+import com.perfect.team.api.rest.request.entity.TransactionRequest;
+import com.perfect.team.api.rest.response.entity.TransactionResponse;
+import com.perfect.team.api.rest.response.entity.TransactionsResponse;
 import com.perfect.team.impl.rest.service.base.CrudRestService;
 
 

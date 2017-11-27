@@ -1,20 +1,22 @@
 package com.perfect.team.impl.rest.service;
 
 import com.perfect.team.api.rest.dto.entity.UserDto;
-import com.perfect.team.api.rest.request.UserRequest;
-import com.perfect.team.api.rest.response.UserResponse;
-import com.perfect.team.api.rest.response.UsersResponse;
+import com.perfect.team.api.rest.request.entity.UserRequest;
+import com.perfect.team.api.rest.response.entity.UserResponse;
+import com.perfect.team.api.rest.response.entity.UsersResponse;
 import com.perfect.team.business.entity.User;
 import com.perfect.team.business.service.UserService;
 import com.perfect.team.business.service.base.CrudService;
 import com.perfect.team.impl.rest.service.base.CrudRestServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class UserRestServiceImpl
         extends CrudRestServiceImpl<UserRequest, User, UserResponse, UsersResponse>
         implements UserRestService {

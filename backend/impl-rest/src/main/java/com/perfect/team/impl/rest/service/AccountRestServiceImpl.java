@@ -1,14 +1,15 @@
 package com.perfect.team.impl.rest.service;
 
 import com.perfect.team.api.rest.dto.entity.AccountDto;
-import com.perfect.team.api.rest.request.AccountRequest;
-import com.perfect.team.api.rest.response.AccountResponse;
-import com.perfect.team.api.rest.response.AccountsResponse;
+import com.perfect.team.api.rest.request.entity.AccountRequest;
+import com.perfect.team.api.rest.response.entity.AccountResponse;
+import com.perfect.team.api.rest.response.entity.AccountsResponse;
 import com.perfect.team.business.entity.Account;
 import com.perfect.team.business.service.AccountService;
 import com.perfect.team.business.service.base.CrudService;
 import com.perfect.team.impl.rest.service.base.CrudRestServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
  * Created by Denis on 25.11.2017.
  */
 @Service
+@Transactional
 public class AccountRestServiceImpl
         extends CrudRestServiceImpl<AccountRequest, Account, AccountResponse, AccountsResponse>
         implements AccountRestService {

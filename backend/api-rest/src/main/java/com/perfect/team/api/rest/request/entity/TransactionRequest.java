@@ -1,4 +1,4 @@
-package com.perfect.team.api.rest.response;
+package com.perfect.team.api.rest.request.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.perfect.team.api.rest.dto.entity.TransactionDto;
@@ -6,7 +6,7 @@ import com.perfect.team.api.rest.dto.entity.TransactionDto;
 /**
  * Created by Denis on 25.11.2017.
  */
-public class TransactionResponse {
+public class TransactionRequest {
 
     @JsonProperty(value = "transaction")
     private TransactionDto transactionDto;

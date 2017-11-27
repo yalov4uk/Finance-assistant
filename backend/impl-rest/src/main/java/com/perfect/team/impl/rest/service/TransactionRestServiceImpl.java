@@ -1,14 +1,15 @@
 package com.perfect.team.impl.rest.service;
 
 import com.perfect.team.api.rest.dto.entity.TransactionDto;
-import com.perfect.team.api.rest.request.TransactionRequest;
-import com.perfect.team.api.rest.response.TransactionResponse;
-import com.perfect.team.api.rest.response.TransactionsResponse;
+import com.perfect.team.api.rest.request.entity.TransactionRequest;
+import com.perfect.team.api.rest.response.entity.TransactionResponse;
+import com.perfect.team.api.rest.response.entity.TransactionsResponse;
 import com.perfect.team.business.entity.Transaction;
 import com.perfect.team.business.service.TransactionService;
 import com.perfect.team.business.service.base.CrudService;
 import com.perfect.team.impl.rest.service.base.CrudRestServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
  * Created by Denis on 25.11.2017.
  */
 @Service
+@Transactional
 public class TransactionRestServiceImpl
         extends CrudRestServiceImpl<TransactionRequest, Transaction, TransactionResponse, TransactionsResponse>
         implements TransactionRestService {

@@ -1,9 +1,9 @@
 package com.perfect.team.impl.rest.controller;
 
 import com.perfect.team.api.rest.controller.AccountController;
-import com.perfect.team.api.rest.request.AccountRequest;
-import com.perfect.team.api.rest.response.AccountResponse;
-import com.perfect.team.api.rest.response.AccountsResponse;
+import com.perfect.team.api.rest.request.entity.AccountRequest;
+import com.perfect.team.api.rest.response.entity.AccountResponse;
+import com.perfect.team.api.rest.response.entity.AccountsResponse;
 import com.perfect.team.impl.rest.controller.base.CrudControllerImpl;
 import com.perfect.team.impl.rest.service.AccountRestService;
 import com.perfect.team.impl.rest.service.base.CrudRestService;

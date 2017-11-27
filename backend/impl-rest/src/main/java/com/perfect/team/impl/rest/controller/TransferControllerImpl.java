@@ -1,9 +1,9 @@
 package com.perfect.team.impl.rest.controller;
 
 import com.perfect.team.api.rest.controller.TransferController;
-import com.perfect.team.api.rest.request.TransferRequest;
-import com.perfect.team.api.rest.response.TransferResponse;
-import com.perfect.team.api.rest.response.TransfersResponse;
+import com.perfect.team.api.rest.request.entity.TransferRequest;
+import com.perfect.team.api.rest.response.entity.TransferResponse;
+import com.perfect.team.api.rest.response.entity.TransfersResponse;
 import com.perfect.team.impl.rest.controller.base.CrudControllerImpl;
 import com.perfect.team.impl.rest.service.TransferRestService;
 import com.perfect.team.impl.rest.service.base.CrudRestService;

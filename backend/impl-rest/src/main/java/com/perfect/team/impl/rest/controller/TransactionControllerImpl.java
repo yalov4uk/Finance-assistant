@@ -1,9 +1,9 @@
 package com.perfect.team.impl.rest.controller;
 
 import com.perfect.team.api.rest.controller.TransactionController;
-import com.perfect.team.api.rest.request.TransactionRequest;
-import com.perfect.team.api.rest.response.TransactionResponse;
-import com.perfect.team.api.rest.response.TransactionsResponse;
+import com.perfect.team.api.rest.request.entity.TransactionRequest;
+import com.perfect.team.api.rest.response.entity.TransactionResponse;
+import com.perfect.team.api.rest.response.entity.TransactionsResponse;
 import com.perfect.team.impl.rest.controller.base.CrudControllerImpl;
 import com.perfect.team.impl.rest.service.TransactionRestService;
 import com.perfect.team.impl.rest.service.base.CrudRestService;

@@ -1,4 +1,4 @@
-package com.perfect.team.api.rest.response;
+package com.perfect.team.api.rest.request.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.perfect.team.api.rest.dto.entity.CategoryDto;
@@ -6,7 +6,7 @@ import com.perfect.team.api.rest.dto.entity.CategoryDto;
 /**
  * Created by Denis on 25.11.2017.
  */
-public class CategoryResponse {
+public class CategoryRequest {
 
     @JsonProperty(value = "category")
     private CategoryDto categoryDto;
