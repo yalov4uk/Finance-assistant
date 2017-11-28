@@ -18,13 +18,13 @@ public class TransactionDto {
     @JsonProperty(value = "date")
     private Date date;
 
-    @JsonProperty(value = "user_id")
+    @JsonProperty(value = "userId")
     private Long userId;
 
-    @JsonProperty(value = "category_id")
+    @JsonProperty(value = "categoryId")
     private Long categoryId;
 
-    @JsonProperty(value = "account_id")
+    @JsonProperty(value = "accountId")
     private Long accountId;
 
     public Long getId() {

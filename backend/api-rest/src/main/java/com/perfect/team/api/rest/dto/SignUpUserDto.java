@@ -16,8 +16,8 @@ public class SignUpUserDto {
     @JsonProperty(value = "password")
     private String password;
 
-    @JsonProperty(value = "confirm_password")
-    private String confirmPassword;
+    @JsonProperty(value = "passwordConfirmation")
+    private String passwordConfirmation;
 
     public Long getId() {
         return id;
@@ -51,11 +51,11 @@ public class SignUpUserDto {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+    public void setPasswordConfirmation(String passwordConfirmation) {
+        this.passwordConfirmation = passwordConfirmation;
     }
 }

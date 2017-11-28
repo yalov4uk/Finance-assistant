@@ -13,10 +13,10 @@ public class CategoryDto {
     @JsonProperty(value = "icon")
     private String icon;
 
-    @JsonProperty(value = "category_type")
+    @JsonProperty(value = "categoryType")
     private Integer categoryType;
 
-    @JsonProperty(value = "user_id")
+    @JsonProperty(value = "userId")
     private Long userId;
 
     public Long getId() {

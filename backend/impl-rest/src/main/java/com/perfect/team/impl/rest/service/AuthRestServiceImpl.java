@@ -24,7 +24,7 @@ public class AuthRestServiceImpl extends RestServiceBase implements AuthRestServ
     @Override
     public AuthResponse signUp(SignUpRequest signUpRequest) {
         User user = modelMapper.map(signUpRequest.getSignUpUserDto(), User.class);
-        AuthUser authUser = authService.signUp(user, signUpRequest.getSignUpUserDto().getConfirmPassword());
+        AuthUser authUser = authService.signUp(user, signUpRequest.getSignUpUserDto().getPasswordConfirmation());
         return mapEntityToResponse(authUser);
     }
 

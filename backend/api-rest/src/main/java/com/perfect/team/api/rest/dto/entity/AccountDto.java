@@ -15,13 +15,13 @@ public class AccountDto {
     @JsonProperty(value = "icon")
     private String icon;
 
-    @JsonProperty(value = "initial_balance")
+    @JsonProperty(value = "initialBalance")
     private long initialBalance;
 
-    @JsonProperty(value = "initial_date")
+    @JsonProperty(value = "initialDate")
     private Date initialDate;
 
-    @JsonProperty(value = "user_id")
+    @JsonProperty(value = "userId")
     private Long userId;
 
     public Long getId() {

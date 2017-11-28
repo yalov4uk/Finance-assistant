@@ -18,13 +18,13 @@ public class TransferDto {
     @JsonProperty(value = "date")
     private Date date;
 
-    @JsonProperty(value = "from_account_id")
+    @JsonProperty(value = "fromAccountId")
     private Long fromAccountId;
 
-    @JsonProperty(value = "to_account_id")
+    @JsonProperty(value = "toAccountId")
     private Long toAccountId;
 
-    @JsonProperty(value = "user_id")
+    @JsonProperty(value = "userId")
     private Long userId;
 
     public Long getId() {
