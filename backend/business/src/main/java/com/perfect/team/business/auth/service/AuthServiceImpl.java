@@ -45,7 +45,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthUser signIn(String email, String password) {
         User user = userService.readByEmail(email);
-        if (user == null || !Objects.equals(user.getPassword(), password)) throw new NotFoundException();
+        if (user == null || !Objects.equals(user.getPassword(), password)) throw new NotFoundException("User not found");
 
         return new AuthUser(user, jwtService.generateToken(user));
     }
@@ -56,7 +56,7 @@ public class AuthServiceImpl implements AuthService {
                 Version.valueOf(facebookApiVersion));
         com.restfb.types.User facebookUser = facebookClient.fetchObject("me", com.restfb.types.User.class);
 
-        if (facebookUser.getEmail() == null) throw new ValidationException();
+        if (facebookUser.getEmail() == null) throw new ValidationException("Facebook email is null");
 
         User user = userService.readByEmail(facebookUser.getEmail());
         if (user != null) {
