@@ -26,7 +26,7 @@
         VALUES (#{categoryType}, #{icon}, #{name}, #{user.id})
     </insert>
 
-    <select id="select" resultMap="categoryResultMap">
+    <select id="select" resultMap="categoryWithUserResultMap">
         SELECT *
         FROM category
         WHERE id = #{id}
@@ -48,7 +48,7 @@
         WHERE id = #{id}
     </delete>
 
-    <select id="selectAll" resultMap="categoryResultMap">
+    <select id="selectAll" resultMap="categoryWithUserResultMap">
         SELECT *
         FROM category
     </select>
@@ -60,7 +60,7 @@
         WHERE account.id = #{id}
     </select>
 
-    <select id="selectByUserId" resultMap="categoryResultMap">
+    <select id="selectAllByUserId" resultMap="categoryWithUserResultMap">
         SELECT *
         FROM category
         WHERE user_id = #{userId}

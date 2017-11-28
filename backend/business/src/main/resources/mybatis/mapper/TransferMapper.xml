@@ -32,7 +32,7 @@
         VALUES (#{date}, #{note}, #{value}, #{fromAccount.id}, #{toAccount.id}, #{user.id})
     </insert>
 
-    <select id="select" resultMap="transferResultMap">
+    <select id="select" resultMap="transferFullResultMap">
         SELECT *
         FROM transfer
         WHERE id = #{id}
@@ -58,7 +58,7 @@
         WHERE id = #{id}
     </delete>
 
-    <select id="selectAll" resultMap="transferResultMap">
+    <select id="selectAll" resultMap="transferFullResultMap">
         SELECT *
         FROM transfer
     </select>
@@ -72,7 +72,7 @@
         WHERE account.id = #{id}
     </select>
 
-    <select id="selectByUserId" resultMap="transferResultMap">
+    <select id="selectAllByUserId" resultMap="transferFullResultMap">
         SELECT *
         FROM transfer
         WHERE user_id = #{userId}

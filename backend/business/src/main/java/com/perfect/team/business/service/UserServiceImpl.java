@@ -1,8 +1,8 @@
 package com.perfect.team.business.service;
 
-import com.perfect.team.business.dao.UserDao;
-import com.perfect.team.business.dao.base.CrudDao;
 import com.perfect.team.business.entity.User;
+import com.perfect.team.business.mapper.UserMapper;
+import com.perfect.team.business.mapper.base.CrudMapper;
 import com.perfect.team.business.service.base.CrudServiceBase;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +12,15 @@ import javax.inject.Inject;
 public class UserServiceImpl extends CrudServiceBase<User> implements UserService {
 
     @Inject
-    private UserDao userDao;
+    private UserMapper userMapper;
 
     @Override
-    protected CrudDao<User> getDao() {
-        return userDao;
+    protected CrudMapper<User> getMapper() {
+        return userMapper;
     }
 
     @Override
     public User readByEmail(String email) {
-        return userDao.readByEmail(email);
+        return userMapper.selectByEmail(email);
     }
 }

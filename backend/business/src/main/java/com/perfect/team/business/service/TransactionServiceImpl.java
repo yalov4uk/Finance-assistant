@@ -1,30 +1,24 @@
 package com.perfect.team.business.service;
 
-import com.perfect.team.business.dao.TransactionDao;
-import com.perfect.team.business.dao.base.CrudDao;
 import com.perfect.team.business.entity.Transaction;
-import com.perfect.team.business.service.base.CrudServiceBase;
+import com.perfect.team.business.mapper.TransactionMapper;
+import com.perfect.team.business.mapper.base.AuthCrudMapper;
+import com.perfect.team.business.service.base.AuthCrudServiceBase;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.List;
 
 /**
  * Created by Denis on 25.11.2017.
  */
 @Service
-public class TransactionServiceImpl extends CrudServiceBase<Transaction> implements TransactionService {
+public class TransactionServiceImpl extends AuthCrudServiceBase<Transaction> implements TransactionService {
 
     @Inject
-    private TransactionDao transactionDao;
+    private TransactionMapper transactionMapper;
 
     @Override
-    protected CrudDao<Transaction> getDao() {
-        return transactionDao;
-    }
-
-    @Override
-    public List<Transaction> readByUserId(Long userId) {
-        return transactionDao.readByUserId(userId);
+    protected AuthCrudMapper<Transaction> getMapper() {
+        return transactionMapper;
     }
 }

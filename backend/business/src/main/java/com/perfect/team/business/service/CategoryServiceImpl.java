@@ -1,30 +1,24 @@
 package com.perfect.team.business.service;
 
-import com.perfect.team.business.dao.CategoryDao;
-import com.perfect.team.business.dao.base.CrudDao;
 import com.perfect.team.business.entity.Category;
-import com.perfect.team.business.service.base.CrudServiceBase;
+import com.perfect.team.business.mapper.CategoryMapper;
+import com.perfect.team.business.mapper.base.AuthCrudMapper;
+import com.perfect.team.business.service.base.AuthCrudServiceBase;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.List;
 
 /**
  * Created by Denis on 25.11.2017.
  */
 @Service
-public class CategoryServiceImpl extends CrudServiceBase<Category> implements CategoryService {
+public class CategoryServiceImpl extends AuthCrudServiceBase<Category> implements CategoryService {
 
     @Inject
-    private CategoryDao categoryDao;
+    private CategoryMapper categoryMapper;
 
     @Override
-    protected CrudDao<Category> getDao() {
-        return categoryDao;
-    }
-
-    @Override
-    public List<Category> readByUserId(Long userId) {
-        return categoryDao.readByUserId(userId);
+    protected AuthCrudMapper<Category> getMapper() {
+        return categoryMapper;
     }
 }

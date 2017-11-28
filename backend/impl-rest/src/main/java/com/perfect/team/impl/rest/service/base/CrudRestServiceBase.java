@@ -5,8 +5,8 @@ import com.perfect.team.business.service.base.CrudService;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class CrudRestServiceBase<Request, Entity
-        extends Serializable, Response, ListResponse> extends RestServiceBase
+public abstract class CrudRestServiceBase<Request, Entity extends Serializable, Response, ListResponse>
+        extends RestServiceBase
         implements CrudRestService<Request, Response, ListResponse> {
 
     protected abstract CrudService<Entity> getCrudService();

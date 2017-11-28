@@ -6,7 +6,9 @@ import com.perfect.team.api.rest.response.entity.TransactionResponse;
 import com.perfect.team.api.rest.response.entity.TransactionsResponse;
 import com.perfect.team.business.entity.Transaction;
 import com.perfect.team.business.service.TransactionService;
+import com.perfect.team.business.service.base.AuthCrudService;
 import com.perfect.team.business.service.base.CrudService;
+import com.perfect.team.impl.rest.service.base.AuthCrudRestServiceBase;
 import com.perfect.team.impl.rest.service.base.CrudRestServiceBase;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,20 +23,14 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class TransactionRestServiceImpl
-        extends CrudRestServiceBase<TransactionRequest, Transaction, TransactionResponse, TransactionsResponse>
+        extends AuthCrudRestServiceBase<TransactionRequest, Transaction, TransactionResponse, TransactionsResponse>
         implements TransactionRestService {
 
     @Inject
     private TransactionService transactionService;
 
     @Override
-    public TransactionsResponse readByUserId(Long userId) {
-        List<Transaction> transactions = transactionService.readByUserId(userId);
-        return mapEntitiesToListResponse(transactions);
-    }
-
-    @Override
-    protected CrudService<Transaction> getCrudService() {
+    protected AuthCrudService<Transaction> getCrudService() {
         return transactionService;
     }
 

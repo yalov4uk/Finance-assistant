@@ -28,7 +28,7 @@
         VALUES (#{icon}, #{initialBalance}, #{initialDate}, #{name}, #{user.id})
     </insert>
 
-    <select id="select" resultMap="accountResultMap">
+    <select id="select" resultMap="accountWithUserResultMap">
         SELECT *
         FROM account
         WHERE id = #{id}
@@ -51,7 +51,7 @@
         WHERE id = #{id}
     </delete>
 
-    <select id="selectAll" resultMap="accountResultMap">
+    <select id="selectAll" resultMap="accountWithUserResultMap">
         SELECT *
         FROM account
     </select>
@@ -63,7 +63,7 @@
         WHERE account.id = #{id}
     </select>
 
-    <select id="selectByUserId" resultMap="accountResultMap">
+    <select id="selectAllByUserId" resultMap="accountResultMap">
         SELECT *
         FROM account
         WHERE user_id = #{userId}

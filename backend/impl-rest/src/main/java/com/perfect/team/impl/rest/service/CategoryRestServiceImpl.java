@@ -6,7 +6,9 @@ import com.perfect.team.api.rest.response.entity.CategoriesResponse;
 import com.perfect.team.api.rest.response.entity.CategoryResponse;
 import com.perfect.team.business.entity.Category;
 import com.perfect.team.business.service.CategoryService;
+import com.perfect.team.business.service.base.AuthCrudService;
 import com.perfect.team.business.service.base.CrudService;
+import com.perfect.team.impl.rest.service.base.AuthCrudRestServiceBase;
 import com.perfect.team.impl.rest.service.base.CrudRestServiceBase;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,21 +22,15 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class RestServiceBase
-        extends CrudRestServiceBase<CategoryRequest, Category, CategoryResponse, CategoriesResponse>
+public class CategoryRestServiceImpl
+        extends AuthCrudRestServiceBase<CategoryRequest, Category, CategoryResponse, CategoriesResponse>
         implements CategoryRestService {
 
     @Inject
     private CategoryService categoryService;
 
     @Override
-    public CategoriesResponse readByUserId(Long userId) {
-        List<Category> categories = categoryService.readByUserId(userId);
-        return mapEntitiesToListResponse(categories);
-    }
-
-    @Override
-    protected CrudService<Category> getCrudService() {
+    protected AuthCrudService<Category> getCrudService() {
         return categoryService;
     }
 

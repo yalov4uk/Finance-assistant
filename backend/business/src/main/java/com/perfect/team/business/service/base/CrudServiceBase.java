@@ -1,36 +1,38 @@
 package com.perfect.team.business.service.base;
 
-import com.perfect.team.business.dao.base.CrudDao;
+import com.perfect.team.business.mapper.base.CrudMapper;
 
 import java.io.Serializable;
 import java.util.List;
 
 public abstract class CrudServiceBase<T extends Serializable> implements CrudService<T> {
 
-    protected abstract CrudDao<T> getDao();
+    protected abstract CrudMapper<T> getMapper();
 
     @Override
     public T create(T bean) {
-        return getDao().create(bean);
+        int insertedCount = getMapper().insert(bean);
+        return bean;
     }
 
     @Override
     public T read(Long id) {
-        return getDao().read(id);
+        return getMapper().select(id);
     }
 
     @Override
     public T update(Long id, T bean) {
-        return getDao().update(id, bean);
+        int updatedCount =  getMapper().update(id, bean);
+        return read(id);
     }
 
     @Override
-    public Long delete(Long id) {
-        return getDao().delete(id);
+    public int delete(Long id) {
+        return getMapper().delete(id);
     }
 
     @Override
     public List<T> readAll() {
-        return getDao().readAll();
+        return getMapper().selectAll();
     }
 }

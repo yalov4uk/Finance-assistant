@@ -11,7 +11,7 @@ public interface CrudService<T  extends Serializable> {
 
     T update(Long id, T bean);
 
-    Long delete(Long id);
+    int delete(Long id);
 
     List<T> readAll();
 }
