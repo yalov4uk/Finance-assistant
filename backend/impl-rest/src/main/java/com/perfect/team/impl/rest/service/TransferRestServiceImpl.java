@@ -7,9 +7,7 @@ import com.perfect.team.api.rest.response.entity.TransfersResponse;
 import com.perfect.team.business.entity.Transfer;
 import com.perfect.team.business.service.TransferService;
 import com.perfect.team.business.service.base.AuthCrudService;
-import com.perfect.team.business.service.base.CrudService;
 import com.perfect.team.impl.rest.service.base.AuthCrudRestServiceBase;
-import com.perfect.team.impl.rest.service.base.CrudRestServiceBase;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

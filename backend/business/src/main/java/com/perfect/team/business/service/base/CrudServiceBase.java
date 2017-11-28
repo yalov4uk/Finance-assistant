@@ -22,7 +22,7 @@ public abstract class CrudServiceBase<T extends Serializable> implements CrudSer
 
     @Override
     public T update(Long id, T bean) {
-        int updatedCount =  getMapper().update(id, bean);
+        int updatedCount = getMapper().update(id, bean);
         return read(id);
     }
 

@@ -4,9 +4,9 @@ import com.perfect.team.api.rest.controller.TransferController;
 import com.perfect.team.api.rest.request.entity.TransferRequest;
 import com.perfect.team.api.rest.response.entity.TransferResponse;
 import com.perfect.team.api.rest.response.entity.TransfersResponse;
-import com.perfect.team.impl.rest.controller.base.CrudControllerBase;
+import com.perfect.team.impl.rest.controller.base.AuthCrudControllerBase;
 import com.perfect.team.impl.rest.service.TransferRestService;
-import com.perfect.team.impl.rest.service.base.CrudRestService;
+import com.perfect.team.impl.rest.service.base.AuthCrudRestService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,14 +22,14 @@ import javax.inject.Inject;
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
 )
-public class TransferControllerImpl extends CrudControllerBase<TransferRequest, TransferResponse, TransfersResponse>
+public class TransferControllerImpl extends AuthCrudControllerBase<TransferRequest, TransferResponse, TransfersResponse>
         implements TransferController {
 
     @Inject
     private TransferRestService transferRestService;
 
     @Override
-    protected CrudRestService<TransferRequest, TransferResponse, TransfersResponse> getCrudRestService() {
+    protected AuthCrudRestService<TransferRequest, TransferResponse, TransfersResponse> getCrudRestService() {
         return transferRestService;
     }
 }

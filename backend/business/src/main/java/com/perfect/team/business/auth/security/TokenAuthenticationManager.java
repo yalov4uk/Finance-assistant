@@ -38,8 +38,9 @@ public class TokenAuthenticationManager implements AuthenticationManager {
                 UserDetails userDetails = new CustomUserDetails(user);
                 authentication = new TokenAuthentication(authentication.getToken(), userDetails);
                 authentication.setAuthenticated(true);
+                return authentication;
             }
         }
-        return authentication;
+        return null;
     }
 }

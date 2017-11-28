@@ -11,6 +11,4 @@ public interface CrudController<Request> {
     ResponseEntity update(Long id, Request bean);
 
     ResponseEntity delete(Long id);
-
-    ResponseEntity readAll();
 }

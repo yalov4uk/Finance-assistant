@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface AuthCrudService<T extends Serializable> extends CrudService<T> {
 
-    List<T> readAllByUserId(Long userId);
+    List<T> readAllByUserId();
 }

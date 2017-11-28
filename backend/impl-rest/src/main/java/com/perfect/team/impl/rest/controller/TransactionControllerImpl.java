@@ -4,9 +4,9 @@ import com.perfect.team.api.rest.controller.TransactionController;
 import com.perfect.team.api.rest.request.entity.TransactionRequest;
 import com.perfect.team.api.rest.response.entity.TransactionResponse;
 import com.perfect.team.api.rest.response.entity.TransactionsResponse;
-import com.perfect.team.impl.rest.controller.base.CrudControllerBase;
+import com.perfect.team.impl.rest.controller.base.AuthCrudControllerBase;
 import com.perfect.team.impl.rest.service.TransactionRestService;
-import com.perfect.team.impl.rest.service.base.CrudRestService;
+import com.perfect.team.impl.rest.service.base.AuthCrudRestService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,14 +23,14 @@ import javax.inject.Inject;
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class TransactionControllerImpl
-        extends CrudControllerBase<TransactionRequest, TransactionResponse, TransactionsResponse>
+        extends AuthCrudControllerBase<TransactionRequest, TransactionResponse, TransactionsResponse>
         implements TransactionController {
 
     @Inject
     private TransactionRestService transactionRestService;
 
     @Override
-    protected CrudRestService<TransactionRequest, TransactionResponse, TransactionsResponse> getCrudRestService() {
+    protected AuthCrudRestService<TransactionRequest, TransactionResponse, TransactionsResponse> getCrudRestService() {
         return transactionRestService;
     }
 }

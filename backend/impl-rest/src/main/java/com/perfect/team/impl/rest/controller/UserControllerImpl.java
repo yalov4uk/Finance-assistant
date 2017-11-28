@@ -8,7 +8,9 @@ import com.perfect.team.impl.rest.controller.base.CrudControllerBase;
 import com.perfect.team.impl.rest.service.UserRestService;
 import com.perfect.team.impl.rest.service.base.CrudRestService;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
@@ -29,5 +31,11 @@ public class UserControllerImpl extends CrudControllerBase<UserRequest, UserResp
     @Override
     protected CrudRestService<UserRequest, UserResponse, UsersResponse> getCrudRestService() {
         return userRestService;
+    }
+
+    @Override
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity readAll() {
+        return ResponseEntity.ok(getCrudRestService().readAll());
     }
 }

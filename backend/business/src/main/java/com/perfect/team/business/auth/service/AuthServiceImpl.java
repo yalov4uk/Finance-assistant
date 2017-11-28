@@ -38,7 +38,8 @@ public class AuthServiceImpl implements AuthService {
     public AuthUser signUp(User user, String confirmPassword) {
         if (!Objects.equals(user.getPassword(), confirmPassword)) throw new ValidationException("Passwords mismatch");
 
-        return new AuthUser(userService.create(user), jwtService.generateToken(user));
+        user = userService.create(user);
+        return new AuthUser(user, jwtService.generateToken(user));
     }
 
     @Override

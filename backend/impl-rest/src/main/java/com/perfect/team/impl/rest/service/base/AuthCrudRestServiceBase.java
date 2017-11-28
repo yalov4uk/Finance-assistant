@@ -12,8 +12,8 @@ public abstract class AuthCrudRestServiceBase<Request, Entity extends Serializab
     protected abstract AuthCrudService<Entity> getCrudService();
 
     @Override
-    public ListResponse readAllByUserId(Long userId) {
-        List<Entity> entities = getCrudService().readAllByUserId(userId);
+    public ListResponse readAllByUserId() {
+        List<Entity> entities = getCrudService().readAllByUserId();
         return mapEntitiesToListResponse(entities);
     }
 }

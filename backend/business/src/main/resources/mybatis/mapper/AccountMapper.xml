@@ -18,9 +18,7 @@
         <result property="icon" column="icon"/>
         <result property="initialBalance" column="initial_balance"/>
         <result property="initialDate" column="initial_date"/>
-        <association property="user"
-                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"
-                     column="user_id" foreignColumn="id"/>
+        <result property="user.id" column="user_id"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -63,7 +61,7 @@
         WHERE account.id = #{id}
     </select>
 
-    <select id="selectAllByUserId" resultMap="accountResultMap">
+    <select id="selectAllByUserId" resultMap="accountWithUserResultMap">
         SELECT *
         FROM account
         WHERE user_id = #{userId}

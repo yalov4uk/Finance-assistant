@@ -16,15 +16,9 @@
         <result property="value" column="value"/>
         <result property="note" column="note"/>
         <result property="date" column="date"/>
-        <association property="account"
-                     resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"
-                     column="account_id" foreignColumn="id"/>
-        <association property="category"
-                     resultMap="com.perfect.team.business.mapper.CategoryMapper.categoryResultMap"
-                     column="category_id" foreignColumn="id"/>
-        <association property="user"
-                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"
-                     column="user_id" foreignColumn="id"/>
+        <result property="account.id" column="account_id"/>
+        <result property="category.id" column="category_id"/>
+        <result property="user.id" column="user_id"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">

@@ -16,9 +16,7 @@
         <result property="name" column="name"/>
         <result property="icon" column="icon"/>
         <result property="categoryType" column="category_type"/>
-        <association property="user"
-                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"
-                     column="user_id" foreignColumn="id"/>
+        <result property="user.id" column="user_id"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">

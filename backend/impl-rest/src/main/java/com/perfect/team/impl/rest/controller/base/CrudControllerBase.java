@@ -36,10 +36,4 @@ public abstract class CrudControllerBase<Request, Response, ListResponse> implem
         getCrudRestService().delete(id);
         return ResponseEntity.noContent().build();
     }
-
-    @Override
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity readAll() {
-        return ResponseEntity.ok(getCrudRestService().readAll());
-    }
 }
