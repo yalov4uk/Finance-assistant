@@ -7,6 +7,7 @@ import com.perfect.team.business.exception.ValidationException;
 import com.perfect.team.business.service.UserService;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Parameter;
 import com.restfb.Version;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -54,7 +55,8 @@ public class AuthServiceImpl implements AuthService {
     public AuthUser signInWithFacebook(String accessToken) {
         FacebookClient facebookClient = new DefaultFacebookClient(accessToken, facebookAppSecret,
                 Version.valueOf(facebookApiVersion));
-        com.restfb.types.User facebookUser = facebookClient.fetchObject("me", com.restfb.types.User.class);
+        com.restfb.types.User facebookUser = facebookClient.fetchObject("me", com.restfb.types.User.class,
+                Parameter.with("fields", "email, name"));
 
         if (facebookUser.getEmail() == null) throw new ValidationException("Facebook email is null");
 
