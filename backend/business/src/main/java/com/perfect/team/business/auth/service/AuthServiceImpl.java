@@ -11,6 +11,7 @@ import com.restfb.Parameter;
 import com.restfb.Version;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -35,10 +36,14 @@ public class AuthServiceImpl implements AuthService {
     @Inject
     private JwtService jwtService;
 
+    @Inject
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public AuthUser signUp(User user, String confirmPassword) {
         if (!Objects.equals(user.getPassword(), confirmPassword)) throw new ValidationException("Passwords mismatch");
 
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user = userService.create(user);
         return new AuthUser(user, jwtService.generateToken(user));
     }
@@ -46,7 +51,8 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthUser signIn(String email, String password) {
         User user = userService.readByEmail(email);
-        if (user == null || !Objects.equals(user.getPassword(), password)) throw new NotFoundException("User not found");
+        if (user == null || !passwordEncoder.matches(password, user.getPassword()))
+            throw new NotFoundException("User not found");
 
         return new AuthUser(user, jwtService.generateToken(user));
     }
