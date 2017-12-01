@@ -10,10 +10,10 @@ import com.perfect.team.impl.rest.service.base.CrudRestService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import javax.ws.rs.core.Response;
 
 
 @RestController
@@ -34,8 +34,8 @@ public class UserControllerImpl extends CrudControllerBase<UserRequest, UserResp
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<UsersResponse> readAll() {
-        return ResponseEntity.ok(getCrudRestService().readAll());
+    //@RequestMapping(method = RequestMethod.GET)
+    public Response readAll() {
+        return Response.ok(getCrudRestService().readAll()).build();
     }
 }
