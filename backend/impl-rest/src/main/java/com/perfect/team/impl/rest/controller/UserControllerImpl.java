@@ -35,7 +35,7 @@ public class UserControllerImpl extends CrudControllerBase<UserRequest, UserResp
 
     @Override
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity readAll() {
+    public ResponseEntity<UsersResponse> readAll() {
         return ResponseEntity.ok(getCrudRestService().readAll());
     }
 }

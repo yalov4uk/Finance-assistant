@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public abstract class AuthCrudControllerBase<Request, Response, ListResponse>
         extends CrudControllerBase<Request, Response, ListResponse>
-        implements AuthCrudController<Request> {
+        implements AuthCrudController<Request, Response, ListResponse> {
 
     protected abstract AuthCrudRestService<Request, Response, ListResponse> getCrudRestService();
 
     @Override
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity readAllByUserId() {
+    public ResponseEntity<ListResponse> readAllByUserId() {
         return ResponseEntity.ok(getCrudRestService().readAllByUserId());
     }
 }

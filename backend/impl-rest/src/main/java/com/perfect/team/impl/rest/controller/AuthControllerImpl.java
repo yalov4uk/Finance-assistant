@@ -4,6 +4,7 @@ import com.perfect.team.api.rest.controller.AuthController;
 import com.perfect.team.api.rest.request.SignInRequest;
 import com.perfect.team.api.rest.request.SignUpRequest;
 import com.perfect.team.api.rest.request.TokenRequest;
+import com.perfect.team.api.rest.response.AuthResponse;
 import com.perfect.team.impl.rest.service.AuthRestService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,17 +28,17 @@ public class AuthControllerImpl implements AuthController {
     private AuthRestService authRestService;
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ResponseEntity signUp(@RequestBody SignUpRequest signUpRequest) {
+    public ResponseEntity<AuthResponse>  signUp(@RequestBody SignUpRequest signUpRequest) {
         return new ResponseEntity<>(authRestService.signUp(signUpRequest), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
-    public ResponseEntity signIn(@RequestBody SignInRequest signInRequest) {
+    public ResponseEntity<AuthResponse>  signIn(@RequestBody SignInRequest signInRequest) {
         return new ResponseEntity<>(authRestService.signIn(signInRequest), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/signin/facebook", method = RequestMethod.POST)
-    public ResponseEntity signInWithFacebook(@RequestBody TokenRequest tokenRequest) {
+    public ResponseEntity<AuthResponse>  signInWithFacebook(@RequestBody TokenRequest tokenRequest) {
         return new ResponseEntity<>(authRestService.signInWithFacebook(tokenRequest), HttpStatus.OK);
     }
 }

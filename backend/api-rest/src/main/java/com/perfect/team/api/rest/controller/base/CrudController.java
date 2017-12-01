@@ -2,13 +2,13 @@ package com.perfect.team.api.rest.controller.base;
 
 import org.springframework.http.ResponseEntity;
 
-public interface CrudController<Request> {
+public interface CrudController<Request, Response> {
 
-    ResponseEntity create(Request request);
+    ResponseEntity<Response> create(Request request);
 
-    ResponseEntity read(Long id);
+    ResponseEntity<Response> read(Long id);
 
-    ResponseEntity update(Long id, Request bean);
+    ResponseEntity<Response> update(Long id, Request bean);
 
     ResponseEntity delete(Long id);
 }

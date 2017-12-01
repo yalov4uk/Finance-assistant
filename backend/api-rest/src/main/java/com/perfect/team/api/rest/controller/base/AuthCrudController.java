@@ -2,7 +2,7 @@ package com.perfect.team.api.rest.controller.base;
 
 import org.springframework.http.ResponseEntity;
 
-public interface AuthCrudController<Request> extends CrudController<Request> {
+public interface AuthCrudController<Request, Response, ListResponse> extends CrudController<Request, Response> {
 
-    ResponseEntity readAllByUserId();
+    ResponseEntity<ListResponse> readAllByUserId();
 }
