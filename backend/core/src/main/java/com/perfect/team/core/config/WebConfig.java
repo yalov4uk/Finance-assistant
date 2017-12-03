@@ -11,6 +11,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/swagger-ui/**").addResourceLocations("classpath:/swagger/dist/");
+        registry.addResourceHandler("/swagger-ui/**").addResourceLocations("classpath:/swagger/");
     }
 }
