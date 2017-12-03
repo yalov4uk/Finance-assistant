@@ -44,7 +44,7 @@ public class TransferMapperTest {
     public void update() throws Exception {
         Transfer transfer = createTransfer();
         transfer.setValue(1);
-        Assert.assertTrue(transferMapper.update(transfer.getId(), transfer) == 1);
+        Assert.assertTrue(transferMapper.update(transfer) == 1);
         Assert.assertEquals(1, (int) transfer.getValue());
     }
 

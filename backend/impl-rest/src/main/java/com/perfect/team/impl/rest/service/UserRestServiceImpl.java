@@ -5,8 +5,8 @@ import com.perfect.team.api.rest.request.entity.UserRequest;
 import com.perfect.team.api.rest.response.entity.UserResponse;
 import com.perfect.team.api.rest.response.entity.UsersResponse;
 import com.perfect.team.business.entity.User;
-import com.perfect.team.business.service.UserService;
-import com.perfect.team.business.service.base.CrudService;
+import com.perfect.team.business.service.auth.UserAuthService;
+import com.perfect.team.business.service.custom.base.CrudService;
 import com.perfect.team.impl.rest.service.base.CrudRestServiceBase;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,16 +22,16 @@ public class UserRestServiceImpl
         implements UserRestService {
 
     @Inject
-    private UserService userService;
+    private UserAuthService userService;
 
     @Override
-    protected CrudService<User> getCrudService() {
+    protected CrudService<User> getService() {
         return userService;
     }
 
     @Override
-    protected User mapRequestToEntity(UserRequest userRequest) {
-        return modelMapper.map(userRequest.getUserDto(), User.class);
+    protected User mapRequestToEntity(UserRequest request) {
+        return modelMapper.map(request.getUserDto(), User.class);
     }
 
     @Override

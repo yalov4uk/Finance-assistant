@@ -24,9 +24,9 @@
     <update id="update" useGeneratedKeys="true" keyProperty="id">
         UPDATE user
         <set>
-            <if test="bean.email != null">email = #{bean.email},</if>
-            <if test="bean.name != null">name = #{bean.name},</if>
-            <if test="bean.password != null">password = #{bean.password}</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="password != null">password = #{password}</if>
         </set>
         WHERE id = #{id}
     </update>

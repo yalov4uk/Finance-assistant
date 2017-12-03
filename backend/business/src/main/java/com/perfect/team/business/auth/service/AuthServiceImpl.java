@@ -4,7 +4,7 @@ import com.perfect.team.business.auth.model.AuthUser;
 import com.perfect.team.business.entity.User;
 import com.perfect.team.business.exception.NotFoundException;
 import com.perfect.team.business.exception.ValidationException;
-import com.perfect.team.business.service.UserService;
+import com.perfect.team.business.service.custom.UserService;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
@@ -44,7 +44,8 @@ public class AuthServiceImpl implements AuthService {
         if (!Objects.equals(user.getPassword(), confirmPassword)) throw new ValidationException("Passwords mismatch");
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user = userService.create(user);
+        Long userId = userService.create(user);
+        user.setId(userId);
         return new AuthUser(user, jwtService.generateToken(user));
     }
 
@@ -69,10 +70,11 @@ public class AuthServiceImpl implements AuthService {
         User user = userService.readByEmail(facebookUser.getEmail());
         if (user != null) {
             user.setName(facebookUser.getName());
-            userService.update(user.getId(), user);
+            user = userService.update(user.getId(), user);
         } else {
             user = new User(facebookUser.getName(), facebookUser.getEmail());
-            userService.create(user);
+            Long userId = userService.create(user);
+            user.setId(userId);
         }
         return new AuthUser(user, jwtService.generateToken(user));
     }

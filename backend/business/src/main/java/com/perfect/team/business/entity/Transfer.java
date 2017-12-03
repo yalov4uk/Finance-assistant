@@ -1,12 +1,10 @@
 package com.perfect.team.business.entity;
 
-import com.perfect.team.business.auth.model.BeanWithUser;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Transfer implements Serializable, BeanWithUser {
+public class Transfer implements Serializable {
 
     private Long id;
 

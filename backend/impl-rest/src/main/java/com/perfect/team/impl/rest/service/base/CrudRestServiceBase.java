@@ -1,15 +1,22 @@
 package com.perfect.team.impl.rest.service.base;
 
-import com.perfect.team.business.service.base.CrudService;
+import com.perfect.team.business.service.custom.base.CrudService;
+import org.modelmapper.ModelMapper;
 
+import javax.inject.Inject;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 import java.io.Serializable;
+import java.net.URI;
 import java.util.List;
 
 public abstract class CrudRestServiceBase<Request, Entity extends Serializable, Response, ListResponse>
-        extends RestServiceBase
         implements CrudRestService<Request, Response, ListResponse> {
 
-    protected abstract CrudService<Entity> getCrudService();
+    @Inject
+    protected ModelMapper modelMapper;
+
+    protected abstract CrudService<Entity> getService();
 
     protected abstract Entity mapRequestToEntity(Request request);
 
@@ -18,33 +25,35 @@ public abstract class CrudRestServiceBase<Request, Entity extends Serializable, 
     protected abstract ListResponse mapEntitiesToListResponse(List<Entity> entities);
 
     @Override
-    public Response create(Request request) {
+    public URI create(Request request, UriInfo uriInfo) {
         Entity entity = mapRequestToEntity(request);
-        entity = getCrudService().create(entity);
-        return mapEntityToResponse(entity);
+        Long entityId = getService().create(entity);
+        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
+        uriBuilder.path(String.valueOf(entityId));
+        return uriBuilder.build();
     }
 
     @Override
     public Response read(Long id) {
-        Entity entity = getCrudService().read(id);
+        Entity entity = getService().read(id);
         return mapEntityToResponse(entity);
     }
 
     @Override
     public Response update(Long id, Request request) {
         Entity entity = mapRequestToEntity(request);
-        entity = getCrudService().update(id, entity);
+        entity = getService().update(id, entity);
         return mapEntityToResponse(entity);
     }
 
     @Override
     public void delete(Long id) {
-        getCrudService().delete(id);
+        getService().delete(id);
     }
 
     @Override
     public ListResponse readAll() {
-        List<Entity> entities = getCrudService().readAll();
+        List<Entity> entities = getService().readAll();
         return mapEntitiesToListResponse(entities);
     }
 }

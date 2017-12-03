@@ -35,7 +35,7 @@ public class UserMapperTest {
     public void update() throws Exception {
         User user = createUser();
         user.setName("test");
-        Assert.assertTrue(userMapper.update(user.getId(), user) == 1);
+        Assert.assertTrue(userMapper.update(user) == 1);
         Assert.assertEquals("test", user.getName());
     }
 

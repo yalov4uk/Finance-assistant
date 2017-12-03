@@ -5,9 +5,9 @@ import com.perfect.team.api.rest.request.entity.AccountRequest;
 import com.perfect.team.api.rest.response.entity.AccountResponse;
 import com.perfect.team.api.rest.response.entity.AccountsResponse;
 import com.perfect.team.business.entity.Account;
-import com.perfect.team.business.service.AccountService;
-import com.perfect.team.business.service.base.AuthCrudService;
-import com.perfect.team.impl.rest.service.base.AuthCrudRestServiceBase;
+import com.perfect.team.business.service.auth.AccountAuthService;
+import com.perfect.team.business.service.custom.base.CrudService;
+import com.perfect.team.impl.rest.service.base.CrudRestServiceBase;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,20 +15,17 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by Denis on 25.11.2017.
- */
 @Service
 @Transactional
 public class AccountRestServiceImpl
-        extends AuthCrudRestServiceBase<AccountRequest, Account, AccountResponse, AccountsResponse>
+        extends CrudRestServiceBase<AccountRequest, Account, AccountResponse, AccountsResponse>
         implements AccountRestService {
 
     @Inject
-    private AccountService accountService;
+    private AccountAuthService accountService;
 
     @Override
-    protected AuthCrudService<Account> getCrudService() {
+    protected CrudService<Account> getService() {
         return accountService;
     }
 

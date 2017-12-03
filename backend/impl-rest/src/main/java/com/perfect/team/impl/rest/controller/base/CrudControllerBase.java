@@ -2,37 +2,37 @@ package com.perfect.team.impl.rest.controller.base;
 
 import com.perfect.team.api.rest.controller.base.CrudController;
 import com.perfect.team.impl.rest.service.base.CrudRestService;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import org.springframework.http.ResponseEntity;
 
-public abstract class CrudControllerBase<Request, Response, ListResponse> implements CrudController<Request, Response> {
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
-    protected abstract CrudRestService<Request, Response, ListResponse> getCrudRestService();
+public abstract class CrudControllerBase<Request> implements CrudController<Request> {
+
+    protected abstract CrudRestService getService();
 
     @Override
-    //@RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Response> create(Request request) {
-        return ResponseEntity.ok(getCrudRestService().create(request));
+    public Response create(Request request, UriInfo uriInfo) {
+        return Response.created(getService().create(request, uriInfo)).build();
     }
 
     @Override
-    //@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Response> read(Long id) {
-        return ResponseEntity.ok(getCrudRestService().read(id));
+    public Response read(Long id) {
+        return Response.ok(getService().read(id)).build();
     }
 
     @Override
-    //@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Response> update(Long id, Request bean) {
-        return ResponseEntity.ok(getCrudRestService().update(id, bean));
+    public Response update(Long id, Request request) {
+        return Response.ok(getService().update(id, request)).build();
     }
 
     @Override
-    //@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ApiResponses(@ApiResponse(message = "hello", code = 204))
-    public ResponseEntity delete(Long id) {
-        getCrudRestService().delete(id);
-        return ResponseEntity.noContent().build();
+    public Response delete(Long id) {
+        getService().delete(id);
+        return Response.noContent().build();
+    }
+
+    @Override
+    public Response readAll() {
+        return Response.ok(getService().readAll()).build();
     }
 }

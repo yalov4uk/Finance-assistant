@@ -1,26 +1,32 @@
 package com.perfect.team.api.rest.controller.base;
 
-import org.springframework.http.ResponseEntity;
-
-import javax.ws.rs.BeanParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
-public interface CrudController<Request, Response> {
+public interface CrudController<Request> {
 
     @POST
-    ResponseEntity<Response> create(@BeanParam Request request);
+    Response create(Request request, @Context UriInfo uriInfo);
 
-    @GET @Path("/{id}")
-    ResponseEntity<Response> read(@PathParam("id") Long id);
+    @GET
+    @Path("/{id}")
+    Response read(@PathParam("id") Long id);
 
-    @PUT @Path("/{id}")
-    ResponseEntity<Response> update(@PathParam("id") Long id, Request bean);
+    @PUT
+    @Path("/{id}")
+    Response update(@PathParam("id") Long id, Request request);
 
-    @DELETE @Path("/{id}")
-    ResponseEntity delete(@PathParam("id") Long id);
+    @DELETE
+    @Path("/{id}")
+    Response delete(@PathParam("id") Long id);
+
+    @GET
+    Response readAll();
 }

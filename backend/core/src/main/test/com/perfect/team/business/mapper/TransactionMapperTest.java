@@ -48,7 +48,7 @@ public class TransactionMapperTest {
     public void update() throws Exception {
         Transaction transaction = createTransaction();
         transaction.setValue(1);
-        Assert.assertTrue(transactionMapper.update(transaction.getId(), transaction) == 1);
+        Assert.assertTrue(transactionMapper.update(transaction) == 1);
         Assert.assertEquals(1, (int) transaction.getValue());
     }
 

@@ -8,7 +8,7 @@ import com.perfect.team.api.rest.response.AuthResponse;
 import com.perfect.team.business.auth.model.AuthUser;
 import com.perfect.team.business.auth.service.AuthService;
 import com.perfect.team.business.entity.User;
-import com.perfect.team.impl.rest.service.base.RestServiceBase;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +16,10 @@ import javax.inject.Inject;
 
 @Service
 @Transactional
-public class AuthRestServiceImpl extends RestServiceBase implements AuthRestService {
+public class AuthRestServiceImpl implements AuthRestService {
+
+    @Inject
+    private ModelMapper modelMapper;
 
     @Inject
     private AuthService authService;
@@ -25,22 +28,22 @@ public class AuthRestServiceImpl extends RestServiceBase implements AuthRestServ
     public AuthResponse signUp(SignUpRequest signUpRequest) {
         User user = modelMapper.map(signUpRequest.getSignUpUserDto(), User.class);
         AuthUser authUser = authService.signUp(user, signUpRequest.getSignUpUserDto().getPasswordConfirmation());
-        return mapEntityToResponse(authUser);
+        return mapAuthUserToAuthResponse(authUser);
     }
 
     @Override
     public AuthResponse signIn(SignInRequest signInRequest) {
         AuthUser authUser = authService.signIn(signInRequest.getEmail(), signInRequest.getPassword());
-        return mapEntityToResponse(authUser);
+        return mapAuthUserToAuthResponse(authUser);
     }
 
     @Override
     public AuthResponse signInWithFacebook(TokenRequest tokenRequest) {
         AuthUser authUser = authService.signInWithFacebook(tokenRequest.getToken());
-        return mapEntityToResponse(authUser);
+        return mapAuthUserToAuthResponse(authUser);
     }
 
-    private AuthResponse mapEntityToResponse(AuthUser authUser) {
+    private AuthResponse mapAuthUserToAuthResponse(AuthUser authUser) {
         AuthResponse authResponse = modelMapper.map(authUser, AuthResponse.class);
         authResponse.setUserDto(modelMapper.map(authUser.getUser(), UserDto.class));
         return authResponse;

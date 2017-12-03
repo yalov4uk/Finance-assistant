@@ -1,12 +1,14 @@
 package com.perfect.team.api.rest.controller;
 
-import com.perfect.team.api.rest.controller.base.AuthCrudController;
+import com.perfect.team.api.rest.controller.base.CrudController;
 import com.perfect.team.api.rest.request.entity.TransactionRequest;
-import com.perfect.team.api.rest.response.entity.TransactionResponse;
-import com.perfect.team.api.rest.response.entity.TransactionsResponse;
 
-/**
- * Created by Denis on 26.11.2017.
- */
-public interface TransactionController extends AuthCrudController<TransactionRequest, TransactionResponse, TransactionsResponse> {
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+@Path("/transactions")
+@Produces("application/json")
+@Consumes("application/json")
+public interface TransactionController extends CrudController<TransactionRequest> {
 }

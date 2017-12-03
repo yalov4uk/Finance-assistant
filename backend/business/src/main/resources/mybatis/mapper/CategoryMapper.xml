@@ -33,10 +33,10 @@
     <update id="update" useGeneratedKeys="true" keyProperty="id">
         UPDATE category
         <set>
-            <if test="bean.name != null">name = #{bean.name},</if>
-            <if test="bean.icon != null">icon = #{bean.icon},</if>
-            <if test="bean.categoryType != null">category_type = #{bean.categoryType},</if>
-            <if test="bean.user != null and bean.user.id != null">user_id = #{bean.user.id}</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="icon != null">icon = #{icon},</if>
+            <if test="categoryType != null">category_type = #{categoryType},</if>
+            <if test="user != null and user.id != null">user_id = #{user.id}</if>
         </set>
         WHERE id = #{id}
     </update>
@@ -54,7 +54,7 @@
     <select id="selectWithUser" resultMap="categoryWithUserResultMap">
         SELECT *
         FROM category
-            LEFT JOIN user ON category.user_id = user.id
+        LEFT JOIN user ON category.user_id = user.id
         WHERE account.id = #{id}
     </select>
 

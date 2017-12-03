@@ -3,14 +3,27 @@ package com.perfect.team.api.rest.controller;
 import com.perfect.team.api.rest.request.SignInRequest;
 import com.perfect.team.api.rest.request.SignUpRequest;
 import com.perfect.team.api.rest.request.TokenRequest;
-import com.perfect.team.api.rest.response.AuthResponse;
-import org.springframework.http.ResponseEntity;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+
+@Path("/auth")
+@Produces("application/json")
+@Consumes("application/json")
 public interface AuthController {
 
-    ResponseEntity<AuthResponse> signUp(SignUpRequest signUpRequest);
+    @POST
+    @Path("/signup")
+    Response signUp(SignUpRequest request);
 
-    ResponseEntity<AuthResponse>  signIn(SignInRequest signInRequest);
+    @POST
+    @Path("/signin")
+    Response signIn(SignInRequest request);
 
-    ResponseEntity<AuthResponse>  signInWithFacebook(TokenRequest tokenRequest);
+    @POST
+    @Path("/signin/facebook")
+    Response signInWithFacebook(TokenRequest request);
 }

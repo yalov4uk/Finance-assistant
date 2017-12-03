@@ -1,4 +1,4 @@
-package com.perfect.team.business.service.base;
+package com.perfect.team.business.service.custom.base;
 
 import com.perfect.team.business.mapper.base.CrudMapper;
 
@@ -9,10 +9,14 @@ public abstract class CrudServiceBase<T extends Serializable> implements CrudSer
 
     protected abstract CrudMapper<T> getMapper();
 
+    protected abstract Long getBeanId(T bean);
+
+    protected abstract void setBeanId(Long id, T bean);
+
     @Override
-    public T create(T bean) {
+    public Long create(T bean) {
         int insertedCount = getMapper().insert(bean);
-        return bean;
+        return getBeanId(bean);
     }
 
     @Override
@@ -22,13 +26,14 @@ public abstract class CrudServiceBase<T extends Serializable> implements CrudSer
 
     @Override
     public T update(Long id, T bean) {
-        int updatedCount = getMapper().update(id, bean);
+        setBeanId(id, bean);
+        int updatedCount = getMapper().update(bean);
         return read(id);
     }
 
     @Override
-    public int delete(Long id) {
-        return getMapper().delete(id);
+    public void delete(Long id) {
+        int deletedRows = getMapper().delete(id);
     }
 
     @Override

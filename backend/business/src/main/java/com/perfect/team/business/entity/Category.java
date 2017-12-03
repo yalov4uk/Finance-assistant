@@ -1,11 +1,9 @@
 package com.perfect.team.business.entity;
 
-import com.perfect.team.business.auth.model.BeanWithUser;
-
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Category implements Serializable, BeanWithUser {
+public class Category implements Serializable {
 
     private Long id;
 

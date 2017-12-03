@@ -39,7 +39,7 @@ public class CategoryMapperTest {
     public void update() throws Exception {
         Category category = createCategory();
         category.setName("test");
-        Assert.assertTrue(categoryMapper.update(category.getId(), category) == 1);
+        Assert.assertTrue(categoryMapper.update(category) == 1);
         Assert.assertEquals("test", category.getName());
     }
 

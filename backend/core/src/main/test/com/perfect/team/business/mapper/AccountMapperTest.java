@@ -40,7 +40,7 @@ public class AccountMapperTest {
     public void update() throws Exception {
         Account account = createAccount();
         account.setName("test");
-        Assert.assertTrue(accountMapper.update(account.getId(), account) == 1);
+        Assert.assertTrue(accountMapper.update(account) == 1);
         Assert.assertEquals("test", account.getName());
     }
 

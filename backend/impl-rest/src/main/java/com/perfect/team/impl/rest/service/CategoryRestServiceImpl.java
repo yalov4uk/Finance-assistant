@@ -5,9 +5,9 @@ import com.perfect.team.api.rest.request.entity.CategoryRequest;
 import com.perfect.team.api.rest.response.entity.CategoriesResponse;
 import com.perfect.team.api.rest.response.entity.CategoryResponse;
 import com.perfect.team.business.entity.Category;
-import com.perfect.team.business.service.CategoryService;
-import com.perfect.team.business.service.base.AuthCrudService;
-import com.perfect.team.impl.rest.service.base.AuthCrudRestServiceBase;
+import com.perfect.team.business.service.auth.CategoryAuthService;
+import com.perfect.team.business.service.custom.base.CrudService;
+import com.perfect.team.impl.rest.service.base.CrudRestServiceBase;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,20 +15,17 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by Denis on 25.11.2017.
- */
 @Service
 @Transactional
 public class CategoryRestServiceImpl
-        extends AuthCrudRestServiceBase<CategoryRequest, Category, CategoryResponse, CategoriesResponse>
+        extends CrudRestServiceBase<CategoryRequest, Category, CategoryResponse, CategoriesResponse>
         implements CategoryRestService {
 
     @Inject
-    private CategoryService categoryService;
+    private CategoryAuthService categoryService;
 
     @Override
-    protected AuthCrudService<Category> getCrudService() {
+    protected CrudService<Category> getService() {
         return categoryService;
     }
 

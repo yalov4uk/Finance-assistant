@@ -35,11 +35,11 @@
     <update id="update" useGeneratedKeys="true" keyProperty="id">
         UPDATE account
         <set>
-            <if test="bean.name != null">name = #{bean.name},</if>
-            <if test="bean.icon != null">icon = #{bean.icon},</if>
-            <if test="bean.initialBalance != null">initial_balance = #{bean.initialBalance},</if>
-            <if test="bean.initialDate != null">initial_date = #{bean.initialDate},</if>
-            <if test="bean.user != null and bean.user.id != null">user_id = #{bean.user.id}</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="icon != null">icon = #{icon},</if>
+            <if test="initialBalance != null">initial_balance = #{initialBalance},</if>
+            <if test="initialDate != null">initial_date = #{initialDate},</if>
+            <if test="user != null and user.id != null">user_id = #{user.id}</if>
         </set>
         WHERE id = #{id}
     </update>
@@ -57,7 +57,7 @@
     <select id="selectWithUser" resultMap="accountWithUserResultMap">
         SELECT *
         FROM account
-            LEFT JOIN user ON account.user_id = user.id
+        LEFT JOIN user ON account.user_id = user.id
         WHERE account.id = #{id}
     </select>
 

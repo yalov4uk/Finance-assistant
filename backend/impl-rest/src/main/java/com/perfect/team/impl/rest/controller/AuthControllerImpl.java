@@ -6,39 +6,32 @@ import com.perfect.team.api.rest.request.SignUpRequest;
 import com.perfect.team.api.rest.request.TokenRequest;
 import com.perfect.team.api.rest.response.AuthResponse;
 import com.perfect.team.impl.rest.service.AuthRestService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
 import javax.inject.Inject;
+import javax.ws.rs.core.Response;
 
-@RestController
-@RequestMapping(
-        value = "api/v1/auth",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE
-)
+@Controller
 public class AuthControllerImpl implements AuthController {
 
     @Inject
     private AuthRestService authRestService;
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ResponseEntity<AuthResponse>  signUp(@RequestBody SignUpRequest signUpRequest) {
-        return new ResponseEntity<>(authRestService.signUp(signUpRequest), HttpStatus.OK);
+    @Override
+    public Response signUp(SignUpRequest request) {
+        AuthResponse authResponse = authRestService.signUp(request);
+        return Response.ok(authResponse).build();
     }
 
-    @RequestMapping(value = "/signin", method = RequestMethod.POST)
-    public ResponseEntity<AuthResponse>  signIn(@RequestBody SignInRequest signInRequest) {
-        return new ResponseEntity<>(authRestService.signIn(signInRequest), HttpStatus.OK);
+    @Override
+    public Response signIn(SignInRequest request) {
+        AuthResponse authResponse = authRestService.signIn(request);
+        return Response.ok(authResponse).build();
     }
 
-    @RequestMapping(value = "/signin/facebook", method = RequestMethod.POST)
-    public ResponseEntity<AuthResponse>  signInWithFacebook(@RequestBody TokenRequest tokenRequest) {
-        return new ResponseEntity<>(authRestService.signInWithFacebook(tokenRequest), HttpStatus.OK);
+    @Override
+    public Response signInWithFacebook(TokenRequest request) {
+        AuthResponse authResponse = authRestService.signInWithFacebook(request);
+        return Response.ok(authResponse).build();
     }
 }
