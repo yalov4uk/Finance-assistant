@@ -50,4 +50,9 @@ public class TransactionRestServiceImpl
                 .collect(Collectors.toList()));
         return transactionsResponse;
     }
+
+    @Override
+    protected String getEntityPath() {
+        return "transactions/";
+    }
 }

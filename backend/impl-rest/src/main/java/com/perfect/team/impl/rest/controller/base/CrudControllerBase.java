@@ -4,15 +4,14 @@ import com.perfect.team.api.rest.controller.base.CrudController;
 import com.perfect.team.impl.rest.service.base.CrudRestService;
 
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 
 public abstract class CrudControllerBase<Request> implements CrudController<Request> {
 
     protected abstract CrudRestService getService();
 
     @Override
-    public Response create(Request request, UriInfo uriInfo) {
-        return Response.created(getService().create(request, uriInfo)).build();
+    public Response create(Request request) {
+        return Response.created(getService().create(request)).build();
     }
 
     @Override

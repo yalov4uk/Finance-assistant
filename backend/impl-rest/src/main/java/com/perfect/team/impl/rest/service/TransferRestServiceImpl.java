@@ -50,4 +50,9 @@ public class TransferRestServiceImpl
                 .collect(Collectors.toList()));
         return transfersResponse;
     }
+
+    @Override
+    protected String getEntityPath() {
+        return "transfers/";
+    }
 }

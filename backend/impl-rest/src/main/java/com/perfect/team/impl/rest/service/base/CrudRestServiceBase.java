@@ -5,7 +5,6 @@ import org.modelmapper.ModelMapper;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.UriBuilder;
-import javax.ws.rs.core.UriInfo;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.List;
@@ -24,13 +23,13 @@ public abstract class CrudRestServiceBase<Request, Entity extends Serializable, 
 
     protected abstract ListResponse mapEntitiesToListResponse(List<Entity> entities);
 
+    protected abstract String getEntityPath();
+
     @Override
-    public URI create(Request request, UriInfo uriInfo) {
+    public URI create(Request request) {
         Entity entity = mapRequestToEntity(request);
         Long entityId = getService().create(entity);
-        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
-        uriBuilder.path(String.valueOf(entityId));
-        return uriBuilder.build();
+        return UriBuilder.fromPath(getEntityPath() + String.valueOf(entityId)).build();
     }
 
     @Override

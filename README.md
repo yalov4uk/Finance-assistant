@@ -36,5 +36,6 @@ http://dzianis.mooo.com/api/v1/users
 refactor rest, add swagger-ui
 
 Swagger-ui request:
-* GET *swagger-ui.html*
-* GET *v2/api-docs*
+  * GET *swagger-ui/index.html*
+  * GET *api/v1/swagger.json*
+  * GET *api/v1/swagger.yaml*

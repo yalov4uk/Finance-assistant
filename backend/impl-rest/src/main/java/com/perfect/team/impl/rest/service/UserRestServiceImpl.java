@@ -50,4 +50,9 @@ public class UserRestServiceImpl
                 .collect(Collectors.toList()));
         return usersResponse;
     }
+
+    @Override
+    protected String getEntityPath() {
+        return "users/";
+    }
 }

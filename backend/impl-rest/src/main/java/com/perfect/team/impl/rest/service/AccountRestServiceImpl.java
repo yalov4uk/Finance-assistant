@@ -50,4 +50,9 @@ public class AccountRestServiceImpl
                 .collect(Collectors.toList()));
         return accountsResponse;
     }
+
+    @Override
+    protected String getEntityPath() {
+        return "accounts/";
+    }
 }

@@ -1,11 +1,10 @@
 package com.perfect.team.impl.rest.service.base;
 
-import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 
 public interface CrudRestService<Request, Response, ListResponse> {
 
-    URI create(Request request, UriInfo uriInfo);
+    URI create(Request request);
 
     Response read(Long id);
 

@@ -50,4 +50,9 @@ public class CategoryRestServiceImpl
                 .collect(Collectors.toList()));
         return categoriesResponse;
     }
+
+    @Override
+    protected String getEntityPath() {
+        return "categories/";
+    }
 }

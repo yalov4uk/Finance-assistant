@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/api/v1/auth/**", "/api/v1/users");
+        web.ignoring().antMatchers("/api/v1/auth/**", "/api/v1/swagger.*", "/api/v1/users");
     }
 
     @Override
