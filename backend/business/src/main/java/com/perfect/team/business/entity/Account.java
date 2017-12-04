@@ -12,7 +12,7 @@ public class Account implements Serializable {
 
     private String icon;
 
-    private Long initialBalance;
+    private Long balance;
 
     private Date initialDate;
 
@@ -42,12 +42,12 @@ public class Account implements Serializable {
         this.icon = icon;
     }
 
-    public Long getInitialBalance() {
-        return initialBalance;
+    public Long getBalance() {
+        return balance;
     }
 
-    public void setInitialBalance(Long initialBalance) {
-        this.initialBalance = initialBalance;
+    public void setBalance(Long balance) {
+        this.balance = balance;
     }
 
     public Date getInitialDate() {
@@ -73,12 +73,12 @@ public class Account implements Serializable {
         Account account = (Account) o;
         return Objects.equals(name, account.name) &&
                 Objects.equals(icon, account.icon) &&
-                Objects.equals(initialBalance, account.initialBalance);
+                Objects.equals(balance, account.balance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, icon, initialBalance);
+        return Objects.hash(name, icon, balance);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Account implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", icon='" + icon + '\'' +
-                ", initialBalance=" + initialBalance +
+                ", balance=" + balance +
                 ", initialDate=" + initialDate +
                 '}';
     }

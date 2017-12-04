@@ -2,8 +2,6 @@ package com.perfect.team.api.rest.dto.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.sql.Date;
-
 public class AccountDto {
 
     @JsonProperty(value = "id")
@@ -15,11 +13,11 @@ public class AccountDto {
     @JsonProperty(value = "icon")
     private String icon;
 
-    @JsonProperty(value = "initialBalance")
-    private long initialBalance;
+    @JsonProperty(value = "balance")
+    private long balance;
 
     @JsonProperty(value = "initialDate")
-    private Date initialDate;
+    private Long initialDate;
 
     @JsonProperty(value = "userId")
     private Long userId;
@@ -48,19 +46,19 @@ public class AccountDto {
         this.icon = icon;
     }
 
-    public long getInitialBalance() {
-        return initialBalance;
+    public long getBalance() {
+        return balance;
     }
 
-    public void setInitialBalance(long initialBalance) {
-        this.initialBalance = initialBalance;
+    public void setBalance(long balance) {
+        this.balance = balance;
     }
 
-    public Date getInitialDate() {
+    public Long getInitialDate() {
         return initialDate;
     }
 
-    public void setInitialDate(Date initialDate) {
+    public void setInitialDate(Long initialDate) {
         this.initialDate = initialDate;
     }
 

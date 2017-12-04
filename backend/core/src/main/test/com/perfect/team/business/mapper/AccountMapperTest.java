@@ -78,7 +78,7 @@ public class AccountMapperTest {
         account.setName(UUID.randomUUID().toString());
         account.setInitialDate(new Date());
         account.setIcon(UUID.randomUUID().toString());
-        account.setInitialBalance((long) UUID.randomUUID().hashCode());
+        account.setBalance((long) UUID.randomUUID().hashCode());
         accountMapper.insert(account);
         return account;
     }

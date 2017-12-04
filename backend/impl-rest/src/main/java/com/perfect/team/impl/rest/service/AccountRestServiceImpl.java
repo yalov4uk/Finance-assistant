@@ -38,6 +38,9 @@ public class AccountRestServiceImpl
     protected AccountResponse mapEntityToResponse(Account account) {
         AccountResponse accountResponse = new AccountResponse();
         accountResponse.setAccountDto(modelMapper.map(account, AccountDto.class));
+        if (account.getInitialDate() != null) {
+            accountResponse.getAccountDto().setInitialDate(account.getInitialDate().getTime());
+        }
         return accountResponse;
     }
 
@@ -46,7 +49,13 @@ public class AccountRestServiceImpl
         AccountsResponse accountsResponse = new AccountsResponse();
         accountsResponse.setAccountDtos(accounts
                 .stream()
-                .map(account -> modelMapper.map(account, AccountDto.class))
+                .map(account -> {
+                    AccountDto accountDto = modelMapper.map(account, AccountDto.class);
+                    if (account.getInitialDate() != null) {
+                        accountDto.setInitialDate(account.getInitialDate().getTime());
+                    }
+                    return accountDto;
+                })
                 .collect(Collectors.toList()));
         return accountsResponse;
     }

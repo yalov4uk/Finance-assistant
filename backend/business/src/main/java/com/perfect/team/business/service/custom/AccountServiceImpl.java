@@ -7,6 +7,7 @@ import com.perfect.team.business.service.custom.base.CrudServiceBase;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,6 +29,12 @@ public class AccountServiceImpl extends CrudServiceBase<Account> implements Acco
     @Override
     protected void setBeanId(Long id, Account bean) {
         bean.setId(id);
+    }
+
+    @Override
+    public Long create(Account bean) {
+        bean.setInitialDate(new Date());
+        return super.create(bean);
     }
 
     @Override
