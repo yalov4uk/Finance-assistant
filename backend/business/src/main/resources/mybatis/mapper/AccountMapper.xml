@@ -9,6 +9,7 @@
         <result property="name" column="name"/>
         <result property="icon" column="icon"/>
         <result property="balance" column="initial_balance"/>
+        <result property="currency" column="currency"/>
         <result property="initialDate" column="initial_date"/>
     </resultMap>
 
@@ -18,12 +19,13 @@
         <result property="icon" column="icon"/>
         <result property="balance" column="initial_balance"/>
         <result property="initialDate" column="initial_date"/>
+        <result property="currency" column="currency"/>
         <result property="user.id" column="user_id"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO account (icon, balance, initial_date, name, user_id)
-        VALUES (#{icon}, #{balance}, #{initialDate}, #{name}, #{user.id})
+        INSERT INTO account (icon, balance, initial_date, name, currency, user_id)
+        VALUES (#{icon}, #{balance}, #{initialDate}, #{name}, #{currency}, #{user.id})
     </insert>
 
     <select id="select" resultMap="accountWithUserResultMap">
@@ -39,6 +41,7 @@
             <if test="icon != null">icon = #{icon},</if>
             <if test="balance != null">initial_balance = #{balance},</if>
             <if test="initialDate != null">initial_date = #{initialDate},</if>
+            <if test="currency != null">currency = #{currency},</if>
             <if test="user != null and user.id != null">user_id = #{user.id}</if>
         </set>
         WHERE id = #{id}

@@ -16,6 +16,8 @@ public class Account implements Serializable {
 
     private Date initialDate;
 
+    private Currency currency;
+
     private User user;
 
     public Long getId() {
@@ -58,6 +60,14 @@ public class Account implements Serializable {
         this.initialDate = initialDate;
     }
 
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
     public User getUser() {
         return user;
     }
@@ -73,12 +83,13 @@ public class Account implements Serializable {
         Account account = (Account) o;
         return Objects.equals(name, account.name) &&
                 Objects.equals(icon, account.icon) &&
-                Objects.equals(balance, account.balance);
+                Objects.equals(balance, account.balance) &&
+                Objects.equals(currency, account.currency);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, icon, balance);
+        return Objects.hash(name, icon, balance, currency);
     }
 
     @Override
@@ -89,6 +100,11 @@ public class Account implements Serializable {
                 ", icon='" + icon + '\'' +
                 ", balance=" + balance +
                 ", initialDate=" + initialDate +
+                ", currency='" + currency + '\'' +
                 '}';
+    }
+
+    public enum Currency {
+        BYN,
     }
 }
