@@ -31,6 +31,12 @@ public class AccountServiceImpl extends CrudServiceBase<Account> implements Acco
     }
 
     @Override
+    public Long create(Account bean) {
+        bean.setCurrency(Account.Currency.BYN);
+        return super.create(bean);
+    }
+
+    @Override
     public List<Account> readAllByUserId(Long userId) {
         return accountMapper.selectAllByUserId(userId);
     }

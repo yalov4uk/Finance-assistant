@@ -19,6 +19,9 @@ public class AccountDto {
     @JsonProperty(value = "initialDate")
     private Long initialDate;
 
+    @JsonProperty(value = "currency")
+    private String currency;
+
     @JsonProperty(value = "userId")
     private Long userId;
 
@@ -60,6 +63,14 @@ public class AccountDto {
 
     public void setInitialDate(Long initialDate) {
         this.initialDate = initialDate;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public Long getUserId() {
