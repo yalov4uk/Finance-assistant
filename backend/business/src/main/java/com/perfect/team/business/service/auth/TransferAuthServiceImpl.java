@@ -1,14 +1,15 @@
 package com.perfect.team.business.service.auth;
 
 import com.perfect.team.business.entity.Transfer;
-import com.perfect.team.business.exception.ForbiddenException;
+import com.perfect.team.business.entity.User;
+import com.perfect.team.business.exception.ValidationException;
 import com.perfect.team.business.service.auth.base.AuthCrudServiceBase;
 import com.perfect.team.business.service.custom.TransferService;
+import com.perfect.team.business.service.custom.base.CrudService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class TransferAuthServiceImpl extends AuthCrudServiceBase<Transfer> implements TransferAuthService {
@@ -16,40 +17,33 @@ public class TransferAuthServiceImpl extends AuthCrudServiceBase<Transfer> imple
     @Inject
     private TransferService transferService;
 
+    @Inject
+    private AccountAuthService accountAuthService;
+
+    @Override
+    protected CrudService<Transfer> getService() {
+        return transferService;
+    }
+
+    @Override
+    protected Long getUserId(Transfer bean) {
+        if (bean.getUser() == null) bean.setUser(new User());
+        return bean.getUser().getId();
+    }
+
+    @Override
+    protected void setUserId(Transfer bean, Long userId) {
+        if (bean.getUser() == null) bean.setUser(new User());
+        bean.getUser().setId(userId);
+    }
+
     @Override
     public Long create(Transfer bean) {
-        if (Objects.equals(getCurrentUser().getId(), bean.getUser().getId())) {
-            return transferService.create(bean);
-        }
-        throw new ForbiddenException("Create transfer to other user not allowed");
-    }
+        if (bean.getFromAccount() == null) throw new ValidationException("From account is null");
+        if (bean.getToAccount() == null) throw new ValidationException("To account is null");
+        accountAuthService.read(bean.getFromAccount().getId());
 
-    @Override
-    public Transfer read(Long id) {
-        Transfer transfer = transferService.read(id);
-        if (Objects.equals(getCurrentUser().getId(), transfer.getUser().getId())) {
-            return transfer;
-        }
-        throw new ForbiddenException("Read transfer to other user not allowed");
-    }
-
-    @Override
-    public Transfer update(Long id, Transfer bean) {
-        Transfer transfer = transferService.read(id);
-        if (Objects.equals(getCurrentUser().getId(), transfer.getUser().getId())
-                && Objects.equals(getCurrentUser().getId(), bean.getUser().getId())) {
-            return transferService.update(id, bean);
-        }
-        throw new ForbiddenException("Update transfer of other user not allowed");
-    }
-
-    @Override
-    public void delete(Long id) {
-        Transfer transfer = transferService.read(id);
-        if (Objects.equals(getCurrentUser().getId(), transfer.getUser().getId())) {
-            transferService.delete(id);
-        }
-        throw new ForbiddenException("Delete transfer of other user not allowed");
+        return super.create(bean);
     }
 
     @Override

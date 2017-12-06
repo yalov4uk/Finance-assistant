@@ -1,6 +1,8 @@
 package com.perfect.team.business.service.custom;
 
+import com.perfect.team.business.entity.Category;
 import com.perfect.team.business.entity.Transaction;
+import com.perfect.team.business.exception.ValidationException;
 import com.perfect.team.business.mapper.TransactionMapper;
 import com.perfect.team.business.mapper.base.CrudMapper;
 import com.perfect.team.business.service.custom.base.CrudServiceBase;
@@ -8,12 +10,16 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TransactionServiceImpl extends CrudServiceBase<Transaction> implements TransactionService {
 
     @Inject
     private TransactionMapper transactionMapper;
+
+    @Inject
+    private AccountService accountService;
 
     @Override
     protected CrudMapper<Transaction> getMapper() {
@@ -28,6 +34,20 @@ public class TransactionServiceImpl extends CrudServiceBase<Transaction> impleme
     @Override
     protected void setBeanId(Long id, Transaction bean) {
         bean.setId(id);
+    }
+
+    @Override
+    public Long create(Transaction bean) {
+        if (Objects.equals(bean.getCategory().getCategoryType(), Category.CategoryType.INCOME)) {
+            bean.getAccount().setBalance(bean.getAccount().getBalance() + bean.getValue());
+        } else if (Objects.equals(bean.getCategory().getCategoryType(), Category.CategoryType.OUTCOME)) {
+            if (bean.getAccount().getBalance() - bean.getValue() < 0) {
+                throw new ValidationException("Insufficient funds");
+            }
+            bean.getAccount().setBalance(bean.getAccount().getBalance() - bean.getValue());
+        }
+        accountService.update(bean.getAccount().getId(), bean.getAccount());
+        return super.create(bean);
     }
 
     @Override

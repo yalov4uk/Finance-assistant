@@ -11,7 +11,7 @@ public class Category implements Serializable {
 
     private String icon;
 
-    private Integer categoryType;
+    private CategoryType categoryType;
 
     private User user;
 
@@ -39,11 +39,11 @@ public class Category implements Serializable {
         this.icon = icon;
     }
 
-    public Integer getCategoryType() {
+    public CategoryType getCategoryType() {
         return categoryType;
     }
 
-    public void setCategoryType(Integer categoryType) {
+    public void setCategoryType(CategoryType categoryType) {
         this.categoryType = categoryType;
     }
 
@@ -78,5 +78,10 @@ public class Category implements Serializable {
                 ", icon='" + icon + '\'' +
                 ", categoryType=" + categoryType +
                 '}';
+    }
+
+    public enum CategoryType {
+        INCOME,
+        OUTCOME,
     }
 }
