@@ -8,7 +8,7 @@
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="icon" column="icon"/>
-        <result property="balance" column="initial_balance"/>
+        <result property="balance" column="balance"/>
         <result property="currency" column="currency"/>
         <result property="initialDate" column="initial_date"/>
     </resultMap>
@@ -17,7 +17,7 @@
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="icon" column="icon"/>
-        <result property="balance" column="initial_balance"/>
+        <result property="balance" column="balance"/>
         <result property="initialDate" column="initial_date"/>
         <result property="currency" column="currency"/>
         <result property="user.id" column="user_id"/>

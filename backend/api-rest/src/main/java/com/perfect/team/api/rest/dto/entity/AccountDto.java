@@ -14,7 +14,7 @@ public class AccountDto {
     private String icon;
 
     @JsonProperty(value = "balance")
-    private long balance;
+    private Long balance;
 
     @JsonProperty(value = "initialDate")
     private Long initialDate;
@@ -49,11 +49,11 @@ public class AccountDto {
         this.icon = icon;
     }
 
-    public long getBalance() {
+    public Long getBalance() {
         return balance;
     }
 
-    public void setBalance(long balance) {
+    public void setBalance(Long balance) {
         this.balance = balance;
     }
 
