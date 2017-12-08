@@ -39,7 +39,7 @@
         <set>
             <if test="name != null">name = #{name},</if>
             <if test="icon != null">icon = #{icon},</if>
-            <if test="balance != null">initial_balance = #{balance},</if>
+            <if test="balance != null">balance = #{balance},</if>
             <if test="initialDate != null">initial_date = #{initialDate},</if>
             <if test="currency != null">currency = #{currency},</if>
         </set>

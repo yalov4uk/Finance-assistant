@@ -20,6 +20,9 @@ public class TransactionAuthServiceImpl extends AuthCrudServiceBase<Transaction>
     @Inject
     private AccountAuthService accountAuthService;
 
+    @Inject
+    private CategoryAuthService categoryAuthService;
+
     @Override
     protected CrudService<Transaction> getService() {
         return transactionService;
@@ -41,8 +44,8 @@ public class TransactionAuthServiceImpl extends AuthCrudServiceBase<Transaction>
     public Long create(Transaction bean) {
         if (bean.getAccount() == null) throw new ValidationException("Account is null");
         if (bean.getCategory() == null) throw new ValidationException("Category is null");
-        accountAuthService.read(bean.getAccount().getId());
-
+        bean.setAccount(accountAuthService.read(bean.getAccount().getId()));
+        bean.setCategory(categoryAuthService.read(bean.getCategory().getId()));
         return super.create(bean);
     }
 

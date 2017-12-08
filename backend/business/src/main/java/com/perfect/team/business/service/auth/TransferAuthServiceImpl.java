@@ -4,6 +4,7 @@ import com.perfect.team.business.entity.Transfer;
 import com.perfect.team.business.entity.User;
 import com.perfect.team.business.exception.ValidationException;
 import com.perfect.team.business.service.auth.base.AuthCrudServiceBase;
+import com.perfect.team.business.service.custom.AccountService;
 import com.perfect.team.business.service.custom.TransferService;
 import com.perfect.team.business.service.custom.base.CrudService;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class TransferAuthServiceImpl extends AuthCrudServiceBase<Transfer> imple
 
     @Inject
     private AccountAuthService accountAuthService;
+
+    @Inject
+    private AccountService accountService;
 
     @Override
     protected CrudService<Transfer> getService() {
@@ -41,8 +45,8 @@ public class TransferAuthServiceImpl extends AuthCrudServiceBase<Transfer> imple
     public Long create(Transfer bean) {
         if (bean.getFromAccount() == null) throw new ValidationException("From account is null");
         if (bean.getToAccount() == null) throw new ValidationException("To account is null");
-        accountAuthService.read(bean.getFromAccount().getId());
-
+        bean.setFromAccount(accountAuthService.read(bean.getFromAccount().getId()));
+        bean.setToAccount(accountService.read(bean.getFromAccount().getId()));
         return super.create(bean);
     }
 

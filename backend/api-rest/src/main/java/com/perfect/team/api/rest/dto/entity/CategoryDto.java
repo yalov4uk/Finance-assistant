@@ -13,8 +13,8 @@ public class CategoryDto {
     @JsonProperty(value = "icon")
     private String icon;
 
-    @JsonProperty(value = "categoryType")
-    private String categoryType;
+    @JsonProperty(value = "categoryTypeId")
+    private Long categoryTypeId;
 
     @JsonProperty(value = "userId")
     private Long userId;
@@ -43,12 +43,12 @@ public class CategoryDto {
         this.icon = icon;
     }
 
-    public String getCategoryType() {
-        return categoryType;
+    public Long getCategoryTypeId() {
+        return categoryTypeId;
     }
 
-    public void setCategoryType(String categoryType) {
-        this.categoryType = categoryType;
+    public void setCategoryTypeId(Long categoryTypeId) {
+        this.categoryTypeId = categoryTypeId;
     }
 
     public Long getUserId() {

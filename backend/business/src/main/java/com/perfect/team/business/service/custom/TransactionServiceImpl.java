@@ -1,6 +1,5 @@
 package com.perfect.team.business.service.custom;
 
-import com.perfect.team.business.entity.Category;
 import com.perfect.team.business.entity.Transaction;
 import com.perfect.team.business.exception.ValidationException;
 import com.perfect.team.business.mapper.TransactionMapper;
@@ -38,9 +37,9 @@ public class TransactionServiceImpl extends CrudServiceBase<Transaction> impleme
 
     @Override
     public Long create(Transaction bean) {
-        if (Objects.equals(bean.getCategory().getCategoryType(), Category.CategoryType.INCOME)) {
+        if (Objects.equals(bean.getCategory().getCategoryType().getId(), 0L)) {
             bean.getAccount().setBalance(bean.getAccount().getBalance() + bean.getValue());
-        } else if (Objects.equals(bean.getCategory().getCategoryType(), Category.CategoryType.OUTCOME)) {
+        } else if (Objects.equals(bean.getCategory().getCategoryType().getId(), 1L)) {
             if (bean.getAccount().getBalance() - bean.getValue() < 0) {
                 throw new ValidationException("Insufficient funds");
             }

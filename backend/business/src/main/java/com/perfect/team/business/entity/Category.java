@@ -61,13 +61,12 @@ public class Category implements Serializable {
         if (!(o instanceof Category)) return false;
         Category category = (Category) o;
         return Objects.equals(name, category.name) &&
-                Objects.equals(icon, category.icon) &&
-                Objects.equals(categoryType, category.categoryType);
+                Objects.equals(icon, category.icon);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, icon, categoryType);
+        return Objects.hash(name, icon);
     }
 
     @Override
@@ -76,12 +75,6 @@ public class Category implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", icon='" + icon + '\'' +
-                ", categoryType=" + categoryType +
                 '}';
-    }
-
-    public enum CategoryType {
-        INCOME,
-        OUTCOME,
     }
 }

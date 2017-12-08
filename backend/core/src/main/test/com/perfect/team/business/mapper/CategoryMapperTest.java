@@ -75,7 +75,6 @@ public class CategoryMapperTest {
     private Category createCategory() {
         Category category = new Category();
         category.setName(UUID.randomUUID().toString());
-        category.setCategoryType(Category.CategoryType.INCOME);
         category.setIcon(UUID.randomUUID().toString());
         categoryMapper.insert(category);
         return category;

@@ -8,20 +8,19 @@
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="icon" column="icon"/>
-        <result property="categoryType" column="category_type"/>
     </resultMap>
 
     <resultMap id="categoryWithUserResultMap" type="Category">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="icon" column="icon"/>
-        <result property="categoryType" column="category_type"/>
+        <result property="categoryType.id" column="category_type_id"/>
         <result property="user.id" column="user_id"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO category (category_type, icon, name, user_id)
-        VALUES (#{categoryType}, #{icon}, #{name}, #{user.id})
+        INSERT INTO category (category_type_id, icon, name, user_id)
+        VALUES (#{categoryType.id}, #{icon}, #{name}, #{user.id})
     </insert>
 
     <select id="select" resultMap="categoryWithUserResultMap">
@@ -34,8 +33,7 @@
         UPDATE category
         <set>
             <if test="name != null">name = #{name},</if>
-            <if test="icon != null">icon = #{icon},</if>
-            <if test="categoryType != null">category_type = #{categoryType},</if>
+            <if test="icon != null">icon = #{icon}</if>
         </set>
         WHERE id = #{id}
     </update>
