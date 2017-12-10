@@ -46,8 +46,13 @@ public class TransferRestServiceImpl
         TransfersResponse transfersResponse = new TransfersResponse();
         transfersResponse.setTransferDtos(transfers
                 .stream()
-                .map(transfer -> modelMapper.map(transfer, TransferDto.class))
-                .collect(Collectors.toList()));
+                .map(transfer -> {
+                    TransferDto transferDto = modelMapper.map(transfer, TransferDto.class);
+                    if (transfer.getDate() != null) {
+                        transferDto.setDate(transfer.getDate().getTime());
+                    }
+                    return transferDto;
+                }).collect(Collectors.toList()));
         return transfersResponse;
     }
 

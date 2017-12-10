@@ -16,7 +16,7 @@ public class TransferDto {
     private String note;
 
     @JsonProperty(value = "date")
-    private Date date;
+    private Long date;
 
     @JsonProperty(value = "fromAccountId")
     private Long fromAccountId;
@@ -51,11 +51,11 @@ public class TransferDto {
         this.note = note;
     }
 
-    public Date getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 
