@@ -16,8 +16,8 @@
         <result property="value" column="value"/>
         <result property="note" column="note"/>
         <result property="date" column="date"/>
-        <result property="account.id" column="from_account_id"/>
-        <result property="account.id" column="to_account_id"/>
+        <result property="fromAccount.id" column="from_account_id"/>
+        <result property="toAccount.id" column="to_account_id"/>
         <result property="user.id" column="user_id"/>
     </resultMap>
 
