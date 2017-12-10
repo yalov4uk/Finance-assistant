@@ -7,9 +7,12 @@ CREATE TABLE `category_type` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-ALTER TABLE category add COLUMN category_type_id BIGINT;
-ALTER TABLE category ADD FOREIGN KEY (category_type_id) REFERENCES category_type (id);
-ALTER TABLE category drop COLUMN category_type;
+ALTER TABLE category
+  ADD COLUMN category_type_id BIGINT;
+ALTER TABLE category
+  ADD FOREIGN KEY (category_type_id) REFERENCES category_type (id);
+ALTER TABLE category
+  DROP COLUMN category_type;
 
 INSERT INTO category_type (name, balance_type) VALUES ('', 'INCOME');
 INSERT INTO category_type (name, balance_type) VALUES ('', 'OUTCOME');

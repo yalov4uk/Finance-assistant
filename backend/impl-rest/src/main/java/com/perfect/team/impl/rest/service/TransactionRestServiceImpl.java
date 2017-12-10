@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,13 +32,20 @@ public class TransactionRestServiceImpl
 
     @Override
     protected Transaction mapRequestToEntity(TransactionRequest transactionRequest) {
-        return modelMapper.map(transactionRequest.getTransactionDto(), Transaction.class);
+        Transaction transaction = modelMapper.map(transactionRequest.getTransactionDto(), Transaction.class);
+        if (transactionRequest.getTransactionDto().getDate() != null) {
+            transaction.setDate(new Date(transactionRequest.getTransactionDto().getDate()));
+        }
+        return transaction;
     }
 
     @Override
     protected TransactionResponse mapEntityToResponse(Transaction transaction) {
         TransactionResponse transactionResponse = new TransactionResponse();
         transactionResponse.setTransactionDto(modelMapper.map(transaction, TransactionDto.class));
+        if (transaction.getDate() != null) {
+            transactionResponse.getTransactionDto().setDate(transaction.getDate().getTime());
+        }
         return transactionResponse;
     }
 
@@ -46,7 +54,13 @@ public class TransactionRestServiceImpl
         TransactionsResponse transactionsResponse = new TransactionsResponse();
         transactionsResponse.setTransactionDtos(transactions
                 .stream()
-                .map(transaction -> modelMapper.map(transaction, TransactionDto.class))
+                .map(transaction -> {
+                    TransactionDto transactionDto = modelMapper.map(transaction, TransactionDto.class);
+                    if (transaction.getDate() != null) {
+                        transactionDto.setDate(transaction.getDate().getTime());
+                    }
+                    return transactionDto;
+                })
                 .collect(Collectors.toList()));
         return transactionsResponse;
     }

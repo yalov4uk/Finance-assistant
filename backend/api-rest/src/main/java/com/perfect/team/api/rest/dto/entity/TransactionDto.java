@@ -2,8 +2,6 @@ package com.perfect.team.api.rest.dto.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.sql.Date;
-
 public class TransactionDto {
 
     @JsonProperty(value = "id")
@@ -16,7 +14,7 @@ public class TransactionDto {
     private String note;
 
     @JsonProperty(value = "date")
-    private Date date;
+    private Long date;
 
     @JsonProperty(value = "userId")
     private Long userId;
@@ -51,11 +49,11 @@ public class TransactionDto {
         this.note = note;
     }
 
-    public Date getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 

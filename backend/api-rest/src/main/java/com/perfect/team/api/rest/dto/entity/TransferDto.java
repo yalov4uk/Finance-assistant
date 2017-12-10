@@ -2,8 +2,6 @@ package com.perfect.team.api.rest.dto.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.sql.Date;
-
 public class TransferDto {
 
     @JsonProperty(value = "id")

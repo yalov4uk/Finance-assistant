@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,13 +32,20 @@ public class TransferRestServiceImpl
 
     @Override
     protected Transfer mapRequestToEntity(TransferRequest transferRequest) {
-        return modelMapper.map(transferRequest.getTransferDto(), Transfer.class);
+        Transfer transfer = modelMapper.map(transferRequest.getTransferDto(), Transfer.class);
+        if (transferRequest.getTransferDto().getDate() != null) {
+            transfer.setDate(new Date(transferRequest.getTransferDto().getDate()));
+        }
+        return transfer;
     }
 
     @Override
     protected TransferResponse mapEntityToResponse(Transfer transfer) {
         TransferResponse transferResponse = new TransferResponse();
         transferResponse.setTransferDto(modelMapper.map(transfer, TransferDto.class));
+        if (transfer.getDate() != null) {
+            transferResponse.getTransferDto().setDate(transfer.getDate().getTime());
+        }
         return transferResponse;
     }
 

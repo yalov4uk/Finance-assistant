@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,11 @@ public class AccountRestServiceImpl
 
     @Override
     protected Account mapRequestToEntity(AccountRequest accountRequest) {
-        return modelMapper.map(accountRequest.getAccountDto(), Account.class);
+        Account account = modelMapper.map(accountRequest.getAccountDto(), Account.class);
+        if (accountRequest.getAccountDto().getInitialDate() != null) {
+            account.setInitialDate(new Date(accountRequest.getAccountDto().getInitialDate()));
+        }
+        return account;
     }
 
     @Override

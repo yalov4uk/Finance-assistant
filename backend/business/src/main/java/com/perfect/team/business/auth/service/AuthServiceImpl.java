@@ -43,6 +43,8 @@ public class AuthServiceImpl implements AuthService {
     public AuthUser signUp(User user, String confirmPassword) {
         if (!Objects.equals(user.getPassword(), confirmPassword)) throw new ValidationException("Passwords mismatch");
 
+        if (userService.readByEmail(user.getEmail()) != null) throw new ValidationException("Email already in use");
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Long userId = userService.create(user);
         user.setId(userId);
