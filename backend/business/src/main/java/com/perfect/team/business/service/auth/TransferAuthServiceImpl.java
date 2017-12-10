@@ -46,7 +46,7 @@ public class TransferAuthServiceImpl extends AuthCrudServiceBase<Transfer> imple
         if (bean.getFromAccount() == null) throw new ValidationException("From account is null");
         if (bean.getToAccount() == null) throw new ValidationException("To account is null");
         bean.setFromAccount(accountAuthService.read(bean.getFromAccount().getId()));
-        bean.setToAccount(accountService.read(bean.getFromAccount().getId()));
+        bean.setToAccount(accountService.read(bean.getToAccount().getId()));
         return super.create(bean);
     }
 
