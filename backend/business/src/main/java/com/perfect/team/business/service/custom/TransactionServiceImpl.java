@@ -8,6 +8,7 @@ import com.perfect.team.business.service.custom.base.CrudServiceBase;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,12 +39,12 @@ public class TransactionServiceImpl extends CrudServiceBase<Transaction> impleme
     @Override
     public Long create(Transaction bean) {
         if (Objects.equals(bean.getCategory().getCategoryType().getId(), 0L)) {
-            bean.getAccount().setBalance(bean.getAccount().getBalance() + bean.getValue());
+            bean.getAccount().setBalance(bean.getAccount().getBalance().add(bean.getValue()));
         } else if (Objects.equals(bean.getCategory().getCategoryType().getId(), 1L)) {
-            if (bean.getAccount().getBalance() - bean.getValue() < 0) {
+            if (bean.getAccount().getBalance().subtract(bean.getValue()).compareTo(BigDecimal.ZERO) < 0) {
                 throw new ValidationException("Insufficient funds");
             }
-            bean.getAccount().setBalance(bean.getAccount().getBalance() - bean.getValue());
+            bean.getAccount().setBalance(bean.getAccount().getBalance().subtract(bean.getValue()));
         }
         accountService.update(bean.getAccount().getId(), bean.getAccount());
         return super.create(bean);

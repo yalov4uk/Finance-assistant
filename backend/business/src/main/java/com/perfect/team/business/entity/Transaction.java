@@ -1,6 +1,7 @@
 package com.perfect.team.business.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ public class Transaction implements Serializable {
 
     private Long id;
 
-    private Integer value;
+    private BigDecimal value;
 
     private String note;
 
@@ -28,11 +29,11 @@ public class Transaction implements Serializable {
         this.id = id;
     }
 
-    public Integer getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 

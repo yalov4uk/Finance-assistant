@@ -1,7 +1,7 @@
 package com.perfect.team.api.rest.request.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.perfect.team.api.rest.dto.entity.CategoryDto;
+import com.perfect.team.api.rest.dto.entity.CategoryInDto;
 
 /**
  * Created by Denis on 25.11.2017.
@@ -9,13 +9,13 @@ import com.perfect.team.api.rest.dto.entity.CategoryDto;
 public class CategoryRequest {
 
     @JsonProperty(value = "category")
-    private CategoryDto categoryDto;
+    private CategoryInDto categoryDto;
 
-    public CategoryDto getCategoryDto() {
+    public CategoryInDto getCategoryDto() {
         return categoryDto;
     }
 
-    public void setCategoryDto(CategoryDto categoryDto) {
+    public void setCategoryDto(CategoryInDto categoryDto) {
         this.categoryDto = categoryDto;
     }
 }

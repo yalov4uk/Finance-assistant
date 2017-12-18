@@ -2,13 +2,15 @@ package com.perfect.team.api.rest.dto.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigDecimal;
+
 public class TransactionDto {
 
     @JsonProperty(value = "id")
     private Long id;
 
     @JsonProperty(value = "value")
-    private Integer value;
+    private BigDecimal value;
 
     @JsonProperty(value = "note")
     private String note;
@@ -33,11 +35,11 @@ public class TransactionDto {
         this.id = id;
     }
 
-    public Integer getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 

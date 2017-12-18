@@ -7,7 +7,9 @@ import com.perfect.team.business.service.custom.base.CrudServiceBase;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class AccountServiceImpl extends CrudServiceBase<Account> implements AccountService {
@@ -32,7 +34,11 @@ public class AccountServiceImpl extends CrudServiceBase<Account> implements Acco
 
     @Override
     public Long create(Account bean) {
-        bean.setCurrency(Account.Currency.BYN);
+        if (Arrays
+                .stream(Account.Currency.values())
+                .noneMatch(currency -> Objects.equals(currency, bean.getCurrency()))) {
+            bean.setCurrency(Account.Currency.BYN);
+        }
         return super.create(bean);
     }
 

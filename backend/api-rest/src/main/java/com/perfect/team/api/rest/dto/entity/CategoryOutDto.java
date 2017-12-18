@@ -2,9 +2,7 @@ package com.perfect.team.api.rest.dto.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.math.BigDecimal;
-
-public class AccountDto {
+public class CategoryOutDto {
 
     @JsonProperty(value = "id")
     private Long id;
@@ -15,14 +13,8 @@ public class AccountDto {
     @JsonProperty(value = "icon")
     private String icon;
 
-    @JsonProperty(value = "balance")
-    private BigDecimal balance;
-
-    @JsonProperty(value = "initialDate")
-    private Long initialDate;
-
-    @JsonProperty(value = "currency")
-    private String currency;
+    @JsonProperty(value = "categoryType")
+    private CategoryTypeDto categoryTypeDto;
 
     @JsonProperty(value = "userId")
     private Long userId;
@@ -51,28 +43,12 @@ public class AccountDto {
         this.icon = icon;
     }
 
-    public BigDecimal getBalance() {
-        return balance;
+    public CategoryTypeDto getCategoryTypeDto() {
+        return categoryTypeDto;
     }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
-    public Long getInitialDate() {
-        return initialDate;
-    }
-
-    public void setInitialDate(Long initialDate) {
-        this.initialDate = initialDate;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setCategoryTypeDto(CategoryTypeDto categoryTypeDto) {
+        this.categoryTypeDto = categoryTypeDto;
     }
 
     public Long getUserId() {
