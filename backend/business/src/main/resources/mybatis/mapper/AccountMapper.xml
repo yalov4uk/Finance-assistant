@@ -9,18 +9,10 @@
         <result property="name" column="name"/>
         <result property="icon" column="icon"/>
         <result property="balance" column="balance"/>
-        <result property="currency" column="currency"/>
-        <result property="initialDate" column="initial_date"/>
-    </resultMap>
-
-    <resultMap id="accountWithUserResultMap" type="Account">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
-        <result property="icon" column="icon"/>
-        <result property="balance" column="balance"/>
         <result property="initialDate" column="initial_date"/>
         <result property="currency" column="currency"/>
-        <result property="user.id" column="user_id"/>
+        <association property="user" column="user_id" foreignColumn="id" columnPrefix="user_"
+                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -28,9 +20,15 @@
         VALUES (#{icon}, #{balance}, #{initialDate}, #{name}, #{currency}, #{user.id})
     </insert>
 
-    <select id="select" resultMap="accountWithUserResultMap">
-        SELECT *
-        FROM account
+    <select id="select" resultMap="accountResultMap">
+        SELECT
+            a.id,
+            a.name,
+            a.initial_date,
+            a.balance,
+            a.user_id,
+            a.currency
+        FROM account a
         WHERE id = #{id}
     </select>
 
@@ -41,7 +39,7 @@
             <if test="icon != null">icon = #{icon},</if>
             <if test="balance != null">balance = #{balance},</if>
             <if test="initialDate != null">initial_date = #{initialDate},</if>
-            <if test="currency != null">currency = #{currency},</if>
+            <if test="currency != null">currency = #{currency}</if>
         </set>
         WHERE id = #{id}
     </update>
@@ -55,21 +53,41 @@
         WHERE id = #{id}
     </delete>
 
-    <select id="selectAll" resultMap="accountWithUserResultMap">
-        SELECT *
-        FROM account
+    <select id="selectAll" resultMap="accountResultMap">
+        SELECT
+            a.id,
+            a.name,
+            a.initial_date,
+            a.balance,
+            a.user_id,
+            a.currency
+        FROM account a
     </select>
 
-    <select id="selectWithUser" resultMap="accountWithUserResultMap">
-        SELECT *
-        FROM account
-            LEFT JOIN user ON account.user_id = user.id
-        WHERE account.id = #{id}
+    <select id="selectWithUser" resultMap="accountResultMap">
+        SELECT
+            a.id,
+            a.name,
+            a.initial_date,
+            a.balance,
+            a.user_id,
+            a.currency,
+            u.name,
+            u.email
+        FROM account a
+            LEFT JOIN user u ON a.user_id = u.id
+        WHERE a.id = #{id}
     </select>
 
-    <select id="selectAllByUserId" resultMap="accountWithUserResultMap">
-        SELECT *
-        FROM account
+    <select id="selectAllByUserId" resultMap="accountResultMap">
+        SELECT
+            a.id,
+            a.name,
+            a.initial_date,
+            a.balance,
+            a.user_id,
+            a.currency
+        FROM account a
         WHERE user_id = #{userId}
     </select>
 </mapper>

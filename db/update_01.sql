@@ -16,3 +16,9 @@ ALTER TABLE category
 
 INSERT INTO category_type (name, balance_type) VALUES ('', 'INCOME');
 INSERT INTO category_type (name, balance_type) VALUES ('', 'OUTCOME');
+
+ALTER TABLE account ADD currency VARCHAR(255) NULL;
+
+ALTER TABLE account CHANGE initial_balance balance DECIMAL(10,2);
+ALTER TABLE transaction MODIFY value DECIMAL(10,2);
+ALTER TABLE transfer MODIFY value DECIMAL(10,2);

@@ -25,16 +25,8 @@
             c.name,
             c.icon,
             c.user_id,
-            c.category_type_id,
-            u.id,
-            u.name          AS user_name,
-            u.email         AS user_email,
-            ct.id,
-            ct.name         AS category_type_name,
-            ct.balance_type AS category_type_balance_type
+            c.category_type_id
         FROM category c
-            LEFT JOIN user u ON c.user_id = u.id
-            LEFT JOIN category_type ct ON c.category_type_id = ct.id
         WHERE c.id = #{id}
     </select>
 
@@ -48,8 +40,10 @@
     </update>
 
     <delete id="delete">
+        DELETE FROM transaction
+        WHERE category_id = #{id};
         DELETE FROM category
-        WHERE id = #{id}
+        WHERE id = #{id};
     </delete>
 
     <select id="selectAll" resultMap="categoryResultMap">
@@ -58,23 +52,21 @@
             c.name,
             c.icon,
             c.user_id,
-            c.category_type_id,
-            u.id,
-            u.name          AS user_name,
-            u.email         AS user_email,
-            ct.id,
-            ct.name         AS category_type_name,
-            ct.balance_type AS category_type_balance_type
+            c.category_type_id
         FROM category c
-            LEFT JOIN user u ON c.user_id = u.id
-            LEFT JOIN category_type ct ON c.category_type_id = ct.id
     </select>
 
     <select id="selectWithUser" resultMap="categoryResultMap">
-        SELECT *
+        SELECT
+            c.id,
+            c.name,
+            c.icon,
+            c.user_id,
+            c.category_type_id,
+            u.name,
+            u.email
         FROM category c
             LEFT JOIN user u ON c.user_id = u.id
-            LEFT JOIN category_type ct ON c.category_type_id = ct.id
         WHERE c.id = #{id}
     </select>
 
@@ -84,16 +76,8 @@
             c.name,
             c.icon,
             c.user_id,
-            c.category_type_id,
-            u.id,
-            u.name          AS user_name,
-            u.email         AS user_email,
-            ct.id,
-            ct.name         AS category_type_name,
-            ct.balance_type AS category_type_balance_type
+            c.category_type_id
         FROM category c
-            LEFT JOIN user u ON c.user_id = u.id
-            LEFT JOIN category_type ct ON c.category_type_id = ct.id
         WHERE c.user_id = #{userId}
     </select>
 </mapper>
