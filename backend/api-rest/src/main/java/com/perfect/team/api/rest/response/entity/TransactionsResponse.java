@@ -1,7 +1,7 @@
 package com.perfect.team.api.rest.response.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.perfect.team.api.rest.dto.entity.TransactionDto;
+import com.perfect.team.api.rest.dto.entity.TransactionOutDto;
 
 import java.util.List;
 
@@ -11,13 +11,13 @@ import java.util.List;
 public class TransactionsResponse {
 
     @JsonProperty(value = "transactions")
-    private List<TransactionDto> transactionDtos;
+    private List<TransactionOutDto> transactionDtos;
 
-    public List<TransactionDto> getTransactionDtos() {
+    public List<TransactionOutDto> getTransactionDtos() {
         return transactionDtos;
     }
 
-    public void setTransactionDtos(List<TransactionDto> transactionDtos) {
+    public void setTransactionDtos(List<TransactionOutDto> transactionDtos) {
         this.transactionDtos = transactionDtos;
     }
 }

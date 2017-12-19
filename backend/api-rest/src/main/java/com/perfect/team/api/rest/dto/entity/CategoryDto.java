@@ -2,7 +2,7 @@ package com.perfect.team.api.rest.dto.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CategoryInDto {
+public class CategoryDto {
 
     @JsonProperty(value = "id")
     private Long id;

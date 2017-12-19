@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 
-public class TransactionDto {
+public class TransactionOutDto {
 
     @JsonProperty(value = "id")
     private Long id;
@@ -21,8 +21,8 @@ public class TransactionDto {
     @JsonProperty(value = "userId")
     private Long userId;
 
-    @JsonProperty(value = "categoryId")
-    private Long categoryId;
+    @JsonProperty(value = "category")
+    private CategoryDto category;
 
     @JsonProperty(value = "accountId")
     private Long accountId;
@@ -67,12 +67,12 @@ public class TransactionDto {
         this.userId = userId;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public CategoryDto getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(CategoryDto category) {
+        this.category = category;
     }
 
     public Long getAccountId() {

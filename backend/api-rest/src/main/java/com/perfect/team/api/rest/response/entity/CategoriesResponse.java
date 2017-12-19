@@ -1,7 +1,7 @@
 package com.perfect.team.api.rest.response.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.perfect.team.api.rest.dto.entity.CategoryOutDto;
+import com.perfect.team.api.rest.dto.entity.CategoryDto;
 
 import java.util.List;
 
@@ -11,13 +11,13 @@ import java.util.List;
 public class CategoriesResponse {
 
     @JsonProperty(value = "categories")
-    private List<CategoryOutDto> categoryDtos;
+    private List<CategoryDto> categoryDtos;
 
-    public List<CategoryOutDto> getCategoryDtos() {
+    public List<CategoryDto> getCategoryDtos() {
         return categoryDtos;
     }
 
-    public void setCategoryDtos(List<CategoryOutDto> categoryDtos) {
+    public void setCategoryDtos(List<CategoryDto> categoryDtos) {
         this.categoryDtos = categoryDtos;
     }
 }

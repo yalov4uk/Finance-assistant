@@ -1,6 +1,6 @@
 package com.perfect.team.impl.rest.service;
 
-import com.perfect.team.api.rest.dto.entity.CategoryOutDto;
+import com.perfect.team.api.rest.dto.entity.CategoryDto;
 import com.perfect.team.api.rest.dto.entity.CategoryTypeDto;
 import com.perfect.team.api.rest.request.entity.CategoryRequest;
 import com.perfect.team.api.rest.response.entity.CategoriesResponse;
@@ -38,11 +38,7 @@ public class CategoryRestServiceImpl
     @Override
     protected CategoryResponse mapEntityToResponse(Category category) {
         CategoryResponse categoryResponse = new CategoryResponse();
-        categoryResponse.setCategoryDto(modelMapper.map(category, CategoryOutDto.class));
-        if (category.getCategoryType() != null) {
-            categoryResponse.getCategoryDto()
-                    .setCategoryTypeDto(modelMapper.map(category.getCategoryType(), CategoryTypeDto.class));
-        }
+        categoryResponse.setCategoryDto(modelMapper.map(category, CategoryDto.class));
         return categoryResponse;
     }
 
@@ -51,14 +47,7 @@ public class CategoryRestServiceImpl
         CategoriesResponse categoriesResponse = new CategoriesResponse();
         categoriesResponse.setCategoryDtos(categories
                 .stream()
-                .map(category -> {
-                    CategoryOutDto categoryOutDto = modelMapper.map(category, CategoryOutDto.class);
-                    if (category.getCategoryType() != null) {
-                        categoryOutDto
-                                .setCategoryTypeDto(modelMapper.map(category.getCategoryType(), CategoryTypeDto.class));
-                    }
-                    return categoryOutDto;
-                })
+                .map(category -> modelMapper.map(category, CategoryDto.class))
                 .collect(Collectors.toList()));
         return categoriesResponse;
     }

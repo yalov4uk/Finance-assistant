@@ -1,7 +1,7 @@
 package com.perfect.team.api.rest.request.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.perfect.team.api.rest.dto.entity.TransactionDto;
+import com.perfect.team.api.rest.dto.entity.TransactionInDto;
 
 /**
  * Created by Denis on 25.11.2017.
@@ -9,13 +9,13 @@ import com.perfect.team.api.rest.dto.entity.TransactionDto;
 public class TransactionRequest {
 
     @JsonProperty(value = "transaction")
-    private TransactionDto transactionDto;
+    private TransactionInDto transactionDto;
 
-    public TransactionDto getTransactionDto() {
+    public TransactionInDto getTransactionDto() {
         return transactionDto;
     }
 
-    public void setTransactionDto(TransactionDto transactionDto) {
+    public void setTransactionDto(TransactionInDto transactionDto) {
         this.transactionDto = transactionDto;
     }
 }
