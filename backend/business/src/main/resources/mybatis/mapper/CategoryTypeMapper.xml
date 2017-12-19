@@ -36,15 +36,8 @@
     </update>
 
     <delete id="delete">
-        DELETE FROM transaction
-        WHERE category_id = (SELECT id
-                             FROM category
-                             WHERE category.category_type_id = #{id}
-                             LIMIT 1);
-        DELETE FROM category
-        WHERE category_type_id = #{id};
         DELETE FROM category_type
-        WHERE id = #{id};
+        WHERE id = #{id}
     </delete>
 
     <select id="selectAll" resultMap="categoryTypeResultMap">

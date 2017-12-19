@@ -45,10 +45,6 @@
     </update>
 
     <delete id="delete">
-        DELETE FROM transaction
-        WHERE transaction.account_id = #{id};
-        DELETE FROM transfer
-        WHERE transfer.from_account_id = #{id} OR transfer.to_account_id = #{id};
         DELETE FROM account
         WHERE id = #{id}
     </delete>

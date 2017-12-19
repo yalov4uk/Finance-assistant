@@ -40,10 +40,8 @@
     </update>
 
     <delete id="delete">
-        DELETE FROM transaction
-        WHERE category_id = #{id};
         DELETE FROM category
-        WHERE id = #{id};
+        WHERE id = #{id}
     </delete>
 
     <select id="selectAll" resultMap="categoryResultMap">
