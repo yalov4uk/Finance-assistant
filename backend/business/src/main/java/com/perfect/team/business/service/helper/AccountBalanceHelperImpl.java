@@ -2,6 +2,7 @@ package com.perfect.team.business.service.helper;
 
 import com.perfect.team.business.entity.CategoryType;
 import com.perfect.team.business.entity.Transaction;
+import com.perfect.team.business.exception.ProcessingException;
 import com.perfect.team.business.exception.ValidationException;
 import com.perfect.team.business.service.custom.AccountService;
 import com.perfect.team.business.service.custom.CategoryService;
@@ -90,7 +91,7 @@ public class AccountBalanceHelperImpl implements AccountBalanceHelper {
                     field.set(newTransaction, field.get(existedTransaction));
                 }
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                throw new ProcessingException("Error while update account balance");
             }
         }
     }
