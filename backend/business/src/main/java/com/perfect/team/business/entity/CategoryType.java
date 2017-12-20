@@ -1,5 +1,7 @@
 package com.perfect.team.business.entity;
 
+import com.perfect.team.business.exception.ValidationException;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -72,6 +74,17 @@ public class CategoryType implements Serializable {
 
     public enum BalanceType {
         INCOME,
-        OUTCOME,
+        OUTCOME;
+
+        public BalanceType getReverse() {
+            switch (this) {
+                case INCOME:
+                    return OUTCOME;
+                case OUTCOME:
+                    return INCOME;
+                default:
+                    throw new ValidationException("Wrong balance type");
+            }
+        }
     }
 }

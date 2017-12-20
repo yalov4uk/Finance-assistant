@@ -2,7 +2,11 @@ package com.perfect.team.business.service.helper;
 
 import com.perfect.team.business.entity.Transaction;
 
-public interface TransactionBalanceTypeHelper {
+public interface AccountBalanceHelper {
 
-    void updateBalance(Transaction transaction);
+    void updateOnCreate(Transaction transaction);
+
+    void updateOnUpdate(Long id, Transaction transaction);
+
+    void updateOnDelete(Long id);
 }

@@ -44,9 +44,21 @@ public class TransactionAuthServiceImpl extends AuthCrudServiceBase<Transaction>
     public Long create(Transaction bean) {
         if (bean.getAccount() == null) throw new ValidationException("Account is null");
         if (bean.getCategory() == null) throw new ValidationException("Category is null");
-        bean.setAccount(accountAuthService.read(bean.getAccount().getId()));
-        bean.setCategory(categoryAuthService.read(bean.getCategory().getId()));
+        accountAuthService.read(bean.getAccount().getId());
+        categoryAuthService.read(bean.getCategory().getId());
         return super.create(bean);
+    }
+
+    @Override
+    public Transaction update(Long id, Transaction bean) {
+        if (bean.getAccount() != null) accountAuthService.read(id);
+        if (bean.getCategory() != null) categoryAuthService.read(id);
+        return super.update(id, bean);
+    }
+
+    @Override
+    public void delete(Long id) {
+        super.delete(id);
     }
 
     @Override
