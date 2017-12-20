@@ -9,6 +9,7 @@
         <result property="value" column="value"/>
         <result property="note" column="note"/>
         <result property="date" column="date"/>
+        <result property="exchangeRate" column="exchange_rate"/>
         <association property="fromAccount" column="from_account_id" foreignColumn="id" columnPrefix="from_account_"
                      resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
         <association property="toAccount" column="to_account_id" foreignColumn="id" columnPrefix="to_account_"
@@ -18,8 +19,8 @@
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO transfer (date, note, value, from_account_id, to_account_id, user_id)
-        VALUES (#{date}, #{note}, #{value}, #{fromAccount.id}, #{toAccount.id}, #{user.id})
+        INSERT INTO transfer (date, note, value, exchange_rate, from_account_id, to_account_id, user_id)
+        VALUES (#{date}, #{note}, #{value}, ${exchangeRate}, #{fromAccount.id}, #{toAccount.id}, #{user.id})
     </insert>
 
     <select id="select" resultMap="transferResultMap">
@@ -28,6 +29,7 @@
             t.date,
             t.note,
             t.value,
+            t.exchange_rate,
             t.from_account_id,
             t.to_account_id,
             t.user_id
@@ -41,6 +43,7 @@
             <if test="value != null">value = #{value},</if>
             <if test="note != null">note = #{note},</if>
             <if test="date != null">date = #{date},</if>
+            <if test="exchangeRate != null">exchange_rate = #{exchangeRate}</if>
         </set>
         WHERE id = #{id}
     </update>
@@ -56,6 +59,7 @@
             t.date,
             t.note,
             t.value,
+            t.exchange_rate,
             t.from_account_id,
             t.to_account_id,
             t.user_id
@@ -68,6 +72,7 @@
             t.date,
             t.note,
             t.value,
+            t.exchange_rate,
             t.from_account_id,
             t.to_account_id,
             t.user_id
@@ -84,6 +89,7 @@
             t.date,
             t.note,
             t.value,
+            t.exchange_rate,
             t.from_account_id,
             t.to_account_id,
             t.user_id

@@ -18,6 +18,9 @@ public class TransferDto {
     @JsonProperty(value = "date")
     private Long date;
 
+    @JsonProperty(value = "exchangeRate")
+    private BigDecimal exchangeRate;
+
     @JsonProperty(value = "fromAccountId")
     private Long fromAccountId;
 
@@ -57,6 +60,14 @@ public class TransferDto {
 
     public void setDate(Long date) {
         this.date = date;
+    }
+
+    public BigDecimal getExchangeRate() {
+        return exchangeRate;
+    }
+
+    public void setExchangeRate(BigDecimal exchangeRate) {
+        this.exchangeRate = exchangeRate;
     }
 
     public Long getFromAccountId() {

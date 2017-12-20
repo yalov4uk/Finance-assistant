@@ -15,6 +15,8 @@ public class Transfer implements Serializable {
 
     private Date date;
 
+    private BigDecimal exchangeRate;
+
     private Account fromAccount;
 
     private Account toAccount;
@@ -53,6 +55,14 @@ public class Transfer implements Serializable {
         this.date = date;
     }
 
+    public BigDecimal getExchangeRate() {
+        return exchangeRate;
+    }
+
+    public void setExchangeRate(BigDecimal exchangeRate) {
+        this.exchangeRate = exchangeRate;
+    }
+
     public Account getFromAccount() {
         return fromAccount;
     }
@@ -83,12 +93,13 @@ public class Transfer implements Serializable {
         if (!(o instanceof Transfer)) return false;
         Transfer transfer = (Transfer) o;
         return Objects.equals(value, transfer.value) &&
-                Objects.equals(note, transfer.note);
+                Objects.equals(note, transfer.note) &&
+                Objects.equals(exchangeRate, transfer.exchangeRate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, note);
+        return Objects.hash(value, exchangeRate);
     }
 
     @Override
@@ -98,6 +109,7 @@ public class Transfer implements Serializable {
                 ", value=" + value +
                 ", note='" + note + '\'' +
                 ", date=" + date +
+                ", exchangeRate=" + exchangeRate +
                 '}';
     }
 }

@@ -49,7 +49,7 @@
             <if test="value != null">value = #{value},</if>
             <if test="note != null">note = #{note},</if>
             <if test="date != null">date = #{date},</if>
-            <if test="category.id != null">category_id = #{category.id},</if>
+            <if test="category.id != null">category_id = #{category.id}</if>
         </set>
         WHERE id = #{id}
     </update>

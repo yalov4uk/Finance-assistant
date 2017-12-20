@@ -84,3 +84,6 @@ ALTER TABLE transfer
   ADD CONSTRAINT FKddbjk8kle2s7siw04lua30sjl
 FOREIGN KEY (user_id) REFERENCES user (id)
   ON DELETE CASCADE;
+
+ALTER TABLE transfer
+  ADD exchange_rate DECIMAL(10, 2) DEFAULT 1 NULL;

@@ -37,11 +37,18 @@ public class TransferServiceImpl extends CrudServiceBase<Transfer> implements Tr
 
     @Override
     public Long create(Transfer bean) {
-        if (bean.getFromAccount().getBalance().subtract(bean.getValue()).compareTo(BigDecimal.ZERO) < 0) {
+        if (bean.getExchangeRate() == null) bean.setExchangeRate(BigDecimal.ONE);
+
+        if (bean.getFromAccount().getBalance()
+                .subtract(bean.getValue()
+                        .multiply(bean.getExchangeRate()))
+                .compareTo(BigDecimal.ZERO) < 0) {
             throw new ValidationException("Insufficient funds");
         }
         bean.getFromAccount().setBalance(bean.getFromAccount().getBalance().subtract(bean.getValue()));
-        bean.getToAccount().setBalance(bean.getToAccount().getBalance().add(bean.getValue()));
+        bean.getToAccount().setBalance(bean.getToAccount().getBalance()
+                .add(bean.getValue()
+                        .multiply(bean.getExchangeRate())));
         accountService.update(bean.getFromAccount().getId(), bean.getFromAccount());
         accountService.update(bean.getToAccount().getId(), bean.getToAccount());
         return super.create(bean);

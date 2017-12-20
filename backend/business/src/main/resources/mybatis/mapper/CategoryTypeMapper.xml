@@ -30,7 +30,7 @@
         UPDATE category_type
         <set>
             <if test="name != null">name = #{name},</if>
-            <if test="balanceType != null">balance_type = #{balanceType},</if>
+            <if test="balanceType != null">balance_type = #{balanceType}</if>
         </set>
         WHERE id = #{id}
     </update>
