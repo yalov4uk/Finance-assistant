@@ -8,14 +8,10 @@
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="icon" column="icon"/>
-    </resultMap>
-
-    <resultMap id="categoryWithUserResultMap" type="Category">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
-        <result property="icon" column="icon"/>
-        <result property="categoryType.id" column="category_type_id"/>
-        <result property="user.id" column="user_id"/>
+        <association property="user" column="user_id" foreignColumn="id" columnPrefix="user_"
+                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
+        <association property="categoryType" column="category_type_id" foreignColumn="id" columnPrefix="category_type_"
+                     resultMap="com.perfect.team.business.mapper.CategoryTypeMapper.categoryTypeResultMap"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -23,10 +19,15 @@
         VALUES (#{categoryType.id}, #{icon}, #{name}, #{user.id})
     </insert>
 
-    <select id="select" resultMap="categoryWithUserResultMap">
-        SELECT *
-        FROM category
-        WHERE id = #{id}
+    <select id="select" resultMap="categoryResultMap">
+        SELECT
+            c.id,
+            c.name,
+            c.icon,
+            c.user_id,
+            c.category_type_id
+        FROM category c
+        WHERE c.id = #{id}
     </select>
 
     <update id="update" useGeneratedKeys="true" keyProperty="id">
@@ -43,21 +44,38 @@
         WHERE id = #{id}
     </delete>
 
-    <select id="selectAll" resultMap="categoryWithUserResultMap">
-        SELECT *
-        FROM category
+    <select id="selectAll" resultMap="categoryResultMap">
+        SELECT
+            c.id,
+            c.name,
+            c.icon,
+            c.user_id,
+            c.category_type_id
+        FROM category c
     </select>
 
-    <select id="selectWithUser" resultMap="categoryWithUserResultMap">
-        SELECT *
-        FROM category
-            LEFT JOIN user ON category.user_id = user.id
-        WHERE account.id = #{id}
+    <select id="selectWithUser" resultMap="categoryResultMap">
+        SELECT
+            c.id,
+            c.name,
+            c.icon,
+            c.user_id,
+            c.category_type_id,
+            u.name,
+            u.email
+        FROM category c
+            LEFT JOIN user u ON c.user_id = u.id
+        WHERE c.id = #{id}
     </select>
 
-    <select id="selectAllByUserId" resultMap="categoryWithUserResultMap">
-        SELECT *
-        FROM category
-        WHERE user_id = #{userId}
+    <select id="selectAllByUserId" resultMap="categoryResultMap">
+        SELECT
+            c.id,
+            c.name,
+            c.icon,
+            c.user_id,
+            c.category_type_id
+        FROM category c
+        WHERE c.user_id = #{userId}
     </select>
 </mapper>

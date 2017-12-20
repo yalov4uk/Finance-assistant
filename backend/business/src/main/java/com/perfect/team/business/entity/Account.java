@@ -1,6 +1,7 @@
 package com.perfect.team.business.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public class Account implements Serializable {
 
     private String icon;
 
-    private Long balance;
+    private BigDecimal balance;
 
     private Date initialDate;
 
@@ -44,11 +45,11 @@ public class Account implements Serializable {
         this.icon = icon;
     }
 
-    public Long getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(Long balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
@@ -105,6 +106,8 @@ public class Account implements Serializable {
     }
 
     public enum Currency {
+        USD,
+        EUR,
         BYN,
     }
 }

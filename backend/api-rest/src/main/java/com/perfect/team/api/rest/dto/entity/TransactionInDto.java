@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 
-public class TransferDto {
+public class TransactionInDto {
 
     @JsonProperty(value = "id")
     private Long id;
@@ -18,14 +18,14 @@ public class TransferDto {
     @JsonProperty(value = "date")
     private Long date;
 
-    @JsonProperty(value = "fromAccountId")
-    private Long fromAccountId;
-
-    @JsonProperty(value = "toAccountId")
-    private Long toAccountId;
-
     @JsonProperty(value = "userId")
     private Long userId;
+
+    @JsonProperty(value = "categoryId")
+    private Long categoryId;
+
+    @JsonProperty(value = "accountId")
+    private Long accountId;
 
     public Long getId() {
         return id;
@@ -59,27 +59,27 @@ public class TransferDto {
         this.date = date;
     }
 
-    public Long getFromAccountId() {
-        return fromAccountId;
-    }
-
-    public void setFromAccountId(Long fromAccountId) {
-        this.fromAccountId = fromAccountId;
-    }
-
-    public Long getToAccountId() {
-        return toAccountId;
-    }
-
-    public void setToAccountId(Long toAccountId) {
-        this.toAccountId = toAccountId;
-    }
-
     public Long getUserId() {
         return userId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }

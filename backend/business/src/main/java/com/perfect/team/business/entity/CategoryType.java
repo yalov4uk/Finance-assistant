@@ -1,6 +1,7 @@
 package com.perfect.team.business.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 public class CategoryType implements Serializable {
@@ -10,6 +11,8 @@ public class CategoryType implements Serializable {
     private String name;
 
     private BalanceType balanceType;
+
+    private List<Category> categories;
 
     public Long getId() {
         return id;
@@ -33,6 +36,14 @@ public class CategoryType implements Serializable {
 
     public void setBalanceType(BalanceType balanceType) {
         this.balanceType = balanceType;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     @Override

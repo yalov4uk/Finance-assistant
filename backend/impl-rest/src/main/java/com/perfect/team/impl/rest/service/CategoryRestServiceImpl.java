@@ -1,6 +1,7 @@
 package com.perfect.team.impl.rest.service;
 
 import com.perfect.team.api.rest.dto.entity.CategoryDto;
+import com.perfect.team.api.rest.dto.entity.CategoryTypeDto;
 import com.perfect.team.api.rest.request.entity.CategoryRequest;
 import com.perfect.team.api.rest.response.entity.CategoriesResponse;
 import com.perfect.team.api.rest.response.entity.CategoryResponse;

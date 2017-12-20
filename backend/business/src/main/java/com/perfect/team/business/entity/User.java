@@ -1,8 +1,8 @@
 package com.perfect.team.business.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class User implements Serializable {
 
@@ -14,13 +14,13 @@ public class User implements Serializable {
 
     private String password;
 
-    private Set<Account> accounts;
+    private List<Account> accounts;
 
-    private Set<Category> categories;
+    private List<Category> categories;
 
-    private Set<Transaction> transactions;
+    private List<Transaction> transactions;
 
-    private Set<Transfer> transfers;
+    private List<Transfer> transfers;
 
     public User() {
     }
@@ -62,35 +62,35 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Set<Account> getAccounts() {
+    public List<Account> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Set<Account> accounts) {
+    public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
 
-    public Set<Category> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(Set<Category> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 
-    public Set<Transaction> getTransactions() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(Set<Transaction> transactions) {
+    public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
 
-    public Set<Transfer> getTransfers() {
+    public List<Transfer> getTransfers() {
         return transfers;
     }
 
-    public void setTransfers(Set<Transfer> transfers) {
+    public void setTransfers(List<Transfer> transfers) {
         this.transfers = transfers;
     }
 

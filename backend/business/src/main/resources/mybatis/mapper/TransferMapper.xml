@@ -9,16 +9,12 @@
         <result property="value" column="value"/>
         <result property="note" column="note"/>
         <result property="date" column="date"/>
-    </resultMap>
-
-    <resultMap id="transferFullResultMap" type="Transfer">
-        <id property="id" column="id"/>
-        <result property="value" column="value"/>
-        <result property="note" column="note"/>
-        <result property="date" column="date"/>
-        <result property="fromAccount.id" column="from_account_id"/>
-        <result property="toAccount.id" column="to_account_id"/>
-        <result property="user.id" column="user_id"/>
+        <association property="fromAccount" column="from_account_id" foreignColumn="id" columnPrefix="from_account_"
+                     resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
+        <association property="toAccount" column="to_account_id" foreignColumn="id" columnPrefix="to_account_"
+                     resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
+        <association property="user" column="user_id" foreignColumn="id" columnPrefix="user_"
+                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -26,9 +22,16 @@
         VALUES (#{date}, #{note}, #{value}, #{fromAccount.id}, #{toAccount.id}, #{user.id})
     </insert>
 
-    <select id="select" resultMap="transferFullResultMap">
-        SELECT *
-        FROM transfer
+    <select id="select" resultMap="transferResultMap">
+        SELECT
+            t.id,
+            t.date,
+            t.note,
+            t.value,
+            t.from_account_id,
+            t.to_account_id,
+            t.user_id
+        FROM transfer t
         WHERE id = #{id}
     </select>
 
@@ -47,23 +50,44 @@
         WHERE id = #{id}
     </delete>
 
-    <select id="selectAll" resultMap="transferFullResultMap">
-        SELECT *
-        FROM transfer
+    <select id="selectAll" resultMap="transferResultMap">
+        SELECT
+            t.id,
+            t.date,
+            t.note,
+            t.value,
+            t.from_account_id,
+            t.to_account_id,
+            t.user_id
+        FROM transfer t
     </select>
 
-    <select id="selectWithUser" resultMap="transferFullResultMap">
-        SELECT *
-        FROM transfer
-            LEFT JOIN account ON transfer.from_account_id = account.id
-            LEFT JOIN account ON transfer.to_account_id = account.id
-            LEFT JOIN user ON transaction.user_id = user.id
-        WHERE account.id = #{id}
+    <select id="selectWithUser" resultMap="transferResultMap">
+        SELECT
+            t.id,
+            t.date,
+            t.note,
+            t.value,
+            t.from_account_id,
+            t.to_account_id,
+            t.user_id
+        FROM transfer t
+            LEFT JOIN account a_from ON t.from_account_id = a_from.id
+            LEFT JOIN account a_to ON t.to_account_id = a_to.id
+            LEFT JOIN user u ON t.user_id = u.id
+        WHERE t.id = #{id}
     </select>
 
-    <select id="selectAllByUserId" resultMap="transferFullResultMap">
-        SELECT *
-        FROM transfer
+    <select id="selectAllByUserId" resultMap="transferResultMap">
+        SELECT
+            t.id,
+            t.date,
+            t.note,
+            t.value,
+            t.from_account_id,
+            t.to_account_id,
+            t.user_id
+        FROM transfer t
         WHERE user_id = #{userId}
     </select>
 </mapper>

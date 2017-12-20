@@ -9,6 +9,14 @@
         <result property="email" column="email"/>
         <result property="name" column="name"/>
         <result property="password" column="password"/>
+        <collection property="accounts" column="id" foreignColumn="user_id" columnPrefix="account_"
+                    resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
+        <collection property="categories" column="id" foreignColumn="user_id" columnPrefix="category_"
+                    resultMap="com.perfect.team.business.mapper.CategoryMapper.categoryResultMap"/>
+        <collection property="transactions" column="id" foreignColumn="user_id" columnPrefix="transaction_"
+                    resultMap="com.perfect.team.business.mapper.TransactionMapper.transactionResultMap"/>
+        <collection property="transfers" column="id" foreignColumn="user_id" columnPrefix="transfer_"
+                    resultMap="com.perfect.team.business.mapper.TransferMapper.transferResultMap"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -16,8 +24,12 @@
     </insert>
 
     <select id="select" resultMap="userResultMap">
-        SELECT *
-        FROM user
+        SELECT
+            u.id,
+            u.email,
+            u.name,
+            u.password
+        FROM user u
         WHERE id = #{id}
     </select>
 
@@ -37,13 +49,21 @@
     </delete>
 
     <select id="selectAll" resultMap="userResultMap">
-        SELECT *
-        FROM user
+        SELECT
+            u.id,
+            u.email,
+            u.name,
+            u.password
+        FROM user u
     </select>
 
     <select id="selectByEmail" resultMap="userResultMap">
-        SELECT *
-        FROM user
+        SELECT
+            u.id,
+            u.email,
+            u.name,
+            u.password
+        FROM user u
         WHERE email = #{email}
     </select>
 </mapper>

@@ -2,6 +2,8 @@ package com.perfect.team.api.rest.dto.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigDecimal;
+
 public class AccountDto {
 
     @JsonProperty(value = "id")
@@ -14,7 +16,7 @@ public class AccountDto {
     private String icon;
 
     @JsonProperty(value = "balance")
-    private Long balance;
+    private BigDecimal balance;
 
     @JsonProperty(value = "initialDate")
     private Long initialDate;
@@ -49,11 +51,11 @@ public class AccountDto {
         this.icon = icon;
     }
 
-    public Long getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(Long balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 

@@ -9,16 +9,12 @@
         <result property="value" column="value"/>
         <result property="note" column="note"/>
         <result property="date" column="date"/>
-    </resultMap>
-
-    <resultMap id="transactionFullResultMap" type="Transaction">
-        <id property="id" column="id"/>
-        <result property="value" column="value"/>
-        <result property="note" column="note"/>
-        <result property="date" column="date"/>
-        <result property="account.id" column="account_id"/>
-        <result property="category.id" column="category_id"/>
-        <result property="user.id" column="user_id"/>
+        <association property="account" column="account_id" foreignColumn="id" columnPrefix="account_"
+                     resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
+        <association property="category" column="category_id" foreignColumn="id" columnPrefix="category_"
+                     resultMap="com.perfect.team.business.mapper.CategoryMapper.categoryResultMap"/>
+        <association property="user" column="user_id" foreignColumn="id" columnPrefix="user_"
+                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -26,10 +22,25 @@
         VALUES (#{date}, #{note}, #{value}, #{account.id}, #{category.id}, #{user.id})
     </insert>
 
-    <select id="select" resultMap="transactionFullResultMap">
-        SELECT *
-        FROM transaction
-        WHERE id = #{id}
+    <select id="select" resultMap="transactionResultMap">
+        SELECT
+            t.id,
+            t.date,
+            t.note,
+            t.value,
+            t.account_id,
+            t.category_id,
+            t.user_id,
+            c.name             AS category_name,
+            c.icon             AS category_icon,
+            c.user_id          AS category_user_id,
+            c.category_type_id AS category_category_type_id,
+            ct.name            AS category_type_name,
+            ct.balance_type    AS category_type_balance_type
+        FROM transaction t
+            LEFT JOIN category c ON t.category_id = c.id
+            LEFT JOIN category_type ct ON c.category_type_id = ct.id
+        WHERE t.id = #{id}
     </select>
 
     <update id="update" useGeneratedKeys="true" keyProperty="id">
@@ -47,23 +58,67 @@
         WHERE id = #{id}
     </delete>
 
-    <select id="selectAll" resultMap="transactionFullResultMap">
-        SELECT *
-        FROM transaction
+    <select id="selectAll" resultMap="transactionResultMap">
+        SELECT
+            t.id,
+            t.date,
+            t.note,
+            t.value,
+            t.account_id,
+            t.category_id,
+            t.user_id,
+            c.name             AS category_name,
+            c.icon             AS category_icon,
+            c.user_id          AS category_user_id,
+            c.category_type_id AS category_category_type_id,
+            ct.name            AS category_type_name,
+            ct.balance_type    AS category_type_balance_type
+        FROM transaction t
+            LEFT JOIN category c ON t.category_id = c.id
+            LEFT JOIN category_type ct ON c.category_type_id = ct.id
     </select>
 
-    <select id="selectWithFull" resultMap="transactionFullResultMap">
-        SELECT *
-        FROM transaction
-            LEFT JOIN account ON transaction.account_id = account.id
-            LEFT JOIN category ON transaction.category_id = category.id
-            LEFT JOIN user ON transaction.user_id = user.id
-        WHERE account.id = #{id}
+    <select id="selectWithFull" resultMap="transactionResultMap">
+        SELECT
+            t.id,
+            t.date,
+            t.note,
+            t.value,
+            t.account_id,
+            t.category_id,
+            t.user_id,
+            c.name             AS category_name,
+            c.icon             AS category_icon,
+            c.user_id          AS category_user_id,
+            c.category_type_id AS category_category_type_id,
+            ct.name            AS category_type_name,
+            ct.balance_type    AS category_type_balance_type
+        FROM transaction t
+            LEFT JOIN account a ON t.account_id = a.id
+            LEFT JOIN category c ON t.category_id = c.id
+            LEFT JOIN category_type ct ON c.category_type_id = ct.id
+            LEFT JOIN user u ON t.user_id = u.id
+        WHERE t.id = #{id}
     </select>
 
-    <select id="selectAllByUserId" resultMap="transactionFullResultMap">
-        SELECT *
-        FROM transaction
-        WHERE user_id = #{userId}
+    <select id="selectAllByUserId" resultMap="transactionResultMap">
+        SELECT
+            t.id,
+            t.date,
+            t.note,
+            t.value,
+            t.account_id,
+            t.category_id,
+            t.user_id,
+            c.name             AS category_name,
+            c.icon             AS category_icon,
+            c.user_id          AS category_user_id,
+            c.category_type_id AS category_category_type_id,
+            ct.name            AS category_type_name,
+            ct.balance_type    AS category_type_balance_type
+        FROM transaction t
+            LEFT JOIN category c ON t.category_id = c.id
+            LEFT JOIN category_type ct ON c.category_type_id = ct.id
+        WHERE t.user_id = #{userId}
     </select>
 </mapper>

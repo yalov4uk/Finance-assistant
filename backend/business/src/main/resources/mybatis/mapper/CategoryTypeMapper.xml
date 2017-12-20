@@ -8,6 +8,8 @@
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="balanceType" column="balance_type"/>
+        <collection property="categories" column="id" foreignColumn="category_type_id" columnPrefix="category_"
+                    resultMap="com.perfect.team.business.mapper.CategoryMapper.categoryResultMap"/>
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -16,8 +18,11 @@
     </insert>
 
     <select id="select" resultMap="categoryTypeResultMap">
-        SELECT *
-        FROM category_type
+        SELECT
+            ct.id,
+            ct.name,
+            ct.balance_type
+        FROM category_type ct
         WHERE id = #{id}
     </select>
 
@@ -36,7 +41,10 @@
     </delete>
 
     <select id="selectAll" resultMap="categoryTypeResultMap">
-        SELECT *
-        FROM category_type
+        SELECT
+            ct.id,
+            ct.name,
+            ct.balance_type
+        FROM category_type ct
     </select>
 </mapper>

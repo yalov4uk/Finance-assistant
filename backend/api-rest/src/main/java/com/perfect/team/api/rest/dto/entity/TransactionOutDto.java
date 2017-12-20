@@ -2,13 +2,15 @@ package com.perfect.team.api.rest.dto.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TransactionDto {
+import java.math.BigDecimal;
+
+public class TransactionOutDto {
 
     @JsonProperty(value = "id")
     private Long id;
 
     @JsonProperty(value = "value")
-    private Integer value;
+    private BigDecimal value;
 
     @JsonProperty(value = "note")
     private String note;
@@ -19,8 +21,8 @@ public class TransactionDto {
     @JsonProperty(value = "userId")
     private Long userId;
 
-    @JsonProperty(value = "categoryId")
-    private Long categoryId;
+    @JsonProperty(value = "category")
+    private CategoryDto category;
 
     @JsonProperty(value = "accountId")
     private Long accountId;
@@ -33,11 +35,11 @@ public class TransactionDto {
         this.id = id;
     }
 
-    public Integer getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 
@@ -65,12 +67,12 @@ public class TransactionDto {
         this.userId = userId;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public CategoryDto getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(CategoryDto category) {
+        this.category = category;
     }
 
     public Long getAccountId() {
