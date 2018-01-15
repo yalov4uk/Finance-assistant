@@ -6,12 +6,10 @@ import com.perfect.team.api.rest.request.SignUpRequest;
 import com.perfect.team.api.rest.request.TokenRequest;
 import com.perfect.team.api.rest.response.AuthResponse;
 import com.perfect.team.impl.rest.service.AuthRestService;
-import org.springframework.stereotype.Controller;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
-@Controller
 public class AuthControllerImpl implements AuthController {
 
     @Inject

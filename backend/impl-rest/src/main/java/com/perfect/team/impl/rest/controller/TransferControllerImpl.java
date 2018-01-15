@@ -5,11 +5,9 @@ import com.perfect.team.api.rest.request.entity.TransferRequest;
 import com.perfect.team.impl.rest.controller.base.CrudControllerBase;
 import com.perfect.team.impl.rest.service.TransferRestService;
 import com.perfect.team.impl.rest.service.base.CrudRestService;
-import org.springframework.stereotype.Controller;
 
 import javax.inject.Inject;
 
-@Controller
 public class TransferControllerImpl extends CrudControllerBase<TransferRequest> implements TransferController {
 
     @Inject

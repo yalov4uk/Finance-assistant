@@ -1,11 +1,11 @@
-package com.perfect.team.core.config;
+package com.perfect.team.impl.rest.config;
 
-import com.perfect.team.api.rest.controller.AccountController;
-import com.perfect.team.api.rest.controller.AuthController;
-import com.perfect.team.api.rest.controller.CategoryController;
-import com.perfect.team.api.rest.controller.TransactionController;
-import com.perfect.team.api.rest.controller.TransferController;
-import com.perfect.team.api.rest.controller.UserController;
+import com.perfect.team.impl.rest.controller.AccountControllerImpl;
+import com.perfect.team.impl.rest.controller.AuthControllerImpl;
+import com.perfect.team.impl.rest.controller.CategoryControllerImpl;
+import com.perfect.team.impl.rest.controller.TransactionControllerImpl;
+import com.perfect.team.impl.rest.controller.TransferControllerImpl;
+import com.perfect.team.impl.rest.controller.UserControllerImpl;
 import com.perfect.team.impl.rest.provider.exception.ForbiddenExceptionHandler;
 import com.perfect.team.impl.rest.provider.exception.NotFoundExceptionHandler;
 import com.perfect.team.impl.rest.provider.exception.ValidationExceptionHandler;
@@ -26,12 +26,12 @@ public class JerseyConfig extends ResourceConfig {
     }
 
     private void registerEndpoints() {
-        register(AccountController.class);
-        register(AuthController.class);
-        register(CategoryController.class);
-        register(TransactionController.class);
-        register(TransferController.class);
-        register(UserController.class);
+        register(AccountControllerImpl.class);
+        register(AuthControllerImpl.class);
+        register(CategoryControllerImpl.class);
+        register(TransactionControllerImpl.class);
+        register(TransferControllerImpl.class);
+        register(UserControllerImpl.class);
 
         register(ForbiddenExceptionHandler.class);
         register(NotFoundExceptionHandler.class);
