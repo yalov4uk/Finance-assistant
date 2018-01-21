@@ -1,6 +1,6 @@
 package com.perfect.team.impl.rest.service;
 
-import com.perfect.team.api.rest.dto.entity.UserDto;
+import com.perfect.team.api.rest.dto.UserReadDto;
 import com.perfect.team.api.rest.request.SignInRequest;
 import com.perfect.team.api.rest.request.SignUpRequest;
 import com.perfect.team.api.rest.request.TokenRequest;
@@ -26,8 +26,8 @@ public class AuthRestServiceImpl implements AuthRestService {
 
     @Override
     public AuthResponse signUp(SignUpRequest signUpRequest) {
-        User user = modelMapper.map(signUpRequest.getSignUpUserDto(), User.class);
-        AuthUser authUser = authService.signUp(user, signUpRequest.getSignUpUserDto().getPasswordConfirmation());
+        User user = modelMapper.map(signUpRequest.getSignUpDto(), User.class);
+        AuthUser authUser = authService.signUp(user, signUpRequest.getSignUpDto().getPasswordConfirmation());
         return mapAuthUserToAuthResponse(authUser);
     }
 
@@ -45,7 +45,7 @@ public class AuthRestServiceImpl implements AuthRestService {
 
     private AuthResponse mapAuthUserToAuthResponse(AuthUser authUser) {
         AuthResponse authResponse = modelMapper.map(authUser, AuthResponse.class);
-        authResponse.setUserDto(modelMapper.map(authUser.getUser(), UserDto.class));
+        authResponse.setUserReadDto(modelMapper.map(authUser.getUser(), UserReadDto.class));
         return authResponse;
     }
 }

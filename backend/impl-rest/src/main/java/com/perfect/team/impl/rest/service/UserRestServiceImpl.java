@@ -1,9 +1,9 @@
 package com.perfect.team.impl.rest.service;
 
-import com.perfect.team.api.rest.dto.entity.UserDto;
+import com.perfect.team.api.rest.dto.UserReadDto;
 import com.perfect.team.api.rest.request.entity.UserRequest;
-import com.perfect.team.api.rest.response.entity.UserResponse;
-import com.perfect.team.api.rest.response.entity.UsersResponse;
+import com.perfect.team.api.rest.response.UserResponse;
+import com.perfect.team.api.rest.response.UsersResponse;
 import com.perfect.team.business.entity.User;
 import com.perfect.team.business.service.auth.UserAuthService;
 import com.perfect.team.business.service.custom.base.CrudService;
@@ -31,22 +31,22 @@ public class UserRestServiceImpl
 
     @Override
     protected User mapRequestToEntity(UserRequest request) {
-        return modelMapper.map(request.getUserDto(), User.class);
+        return modelMapper.map(request.getUserReadDto(), User.class);
     }
 
     @Override
     protected UserResponse mapEntityToResponse(User user) {
         UserResponse userResponse = new UserResponse();
-        userResponse.setUserDto(modelMapper.map(user, UserDto.class));
+        userResponse.setUserReadDto(modelMapper.map(user, UserReadDto.class));
         return userResponse;
     }
 
     @Override
     protected UsersResponse mapEntitiesToListResponse(List<User> users) {
         UsersResponse usersResponse = new UsersResponse();
-        usersResponse.setUserDtos(users
+        usersResponse.setUserReadDtos(users
                 .stream()
-                .map(user -> modelMapper.map(user, UserDto.class))
+                .map(user -> modelMapper.map(user, UserReadDto.class))
                 .collect(Collectors.toList()));
         return usersResponse;
     }

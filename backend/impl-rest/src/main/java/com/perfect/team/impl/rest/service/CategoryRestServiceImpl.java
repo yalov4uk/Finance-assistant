@@ -1,9 +1,9 @@
 package com.perfect.team.impl.rest.service;
 
-import com.perfect.team.api.rest.dto.entity.CategoryDto;
+import com.perfect.team.api.rest.dto.CategoryReadDto;
 import com.perfect.team.api.rest.request.entity.CategoryRequest;
-import com.perfect.team.api.rest.response.entity.CategoriesResponse;
-import com.perfect.team.api.rest.response.entity.CategoryResponse;
+import com.perfect.team.api.rest.response.CategoriesResponse;
+import com.perfect.team.api.rest.response.CategoryResponse;
 import com.perfect.team.business.entity.Category;
 import com.perfect.team.business.service.auth.CategoryAuthService;
 import com.perfect.team.business.service.custom.base.CrudService;
@@ -31,22 +31,22 @@ public class CategoryRestServiceImpl
 
     @Override
     protected Category mapRequestToEntity(CategoryRequest categoryRequest) {
-        return modelMapper.map(categoryRequest.getCategoryDto(), Category.class);
+        return modelMapper.map(categoryRequest.getCategoryReadDto(), Category.class);
     }
 
     @Override
     protected CategoryResponse mapEntityToResponse(Category category) {
         CategoryResponse categoryResponse = new CategoryResponse();
-        categoryResponse.setCategoryDto(modelMapper.map(category, CategoryDto.class));
+        categoryResponse.setCategoryReadDto(modelMapper.map(category, CategoryReadDto.class));
         return categoryResponse;
     }
 
     @Override
     protected CategoriesResponse mapEntitiesToListResponse(List<Category> categories) {
         CategoriesResponse categoriesResponse = new CategoriesResponse();
-        categoriesResponse.setCategoryDtos(categories
+        categoriesResponse.setCategoryReadDtos(categories
                 .stream()
-                .map(category -> modelMapper.map(category, CategoryDto.class))
+                .map(category -> modelMapper.map(category, CategoryReadDto.class))
                 .collect(Collectors.toList()));
         return categoriesResponse;
     }

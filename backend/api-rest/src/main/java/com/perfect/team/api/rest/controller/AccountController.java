@@ -1,8 +1,9 @@
 package com.perfect.team.api.rest.controller;
 
-import com.perfect.team.api.rest.request.entity.AccountRequest;
-import com.perfect.team.api.rest.response.entity.AccountResponse;
-import com.perfect.team.api.rest.response.entity.AccountsResponse;
+import com.perfect.team.api.rest.request.AccountCreateRequest;
+import com.perfect.team.api.rest.request.AccountUpdateRequest;
+import com.perfect.team.api.rest.response.AccountResponse;
+import com.perfect.team.api.rest.response.AccountsResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -31,7 +32,7 @@ public interface AccountController {
                     @ResponseHeader(name = "location", response = URI.class)
             })
     )
-    Response create(AccountRequest request);
+    Response create(AccountCreateRequest request);
 
     @GET
     @Path("/{id}")
@@ -45,7 +46,7 @@ public interface AccountController {
     @ApiResponses(
             @ApiResponse(code = 200, message = "", response = AccountResponse.class)
     )
-    Response update(@PathParam("id") Long id, AccountRequest request);
+    Response update(@PathParam("id") Long id, AccountUpdateRequest request);
 
     @DELETE
     @Path("/{id}")

@@ -1,9 +1,9 @@
 package com.perfect.team.impl.rest.service;
 
-import com.perfect.team.api.rest.dto.entity.TransferDto;
+import com.perfect.team.api.rest.dto.TransferReadDto;
 import com.perfect.team.api.rest.request.entity.TransferRequest;
-import com.perfect.team.api.rest.response.entity.TransferResponse;
-import com.perfect.team.api.rest.response.entity.TransfersResponse;
+import com.perfect.team.api.rest.response.TransferResponse;
+import com.perfect.team.api.rest.response.TransfersResponse;
 import com.perfect.team.business.entity.Transfer;
 import com.perfect.team.business.service.auth.TransferAuthService;
 import com.perfect.team.business.service.custom.base.CrudService;
@@ -32,9 +32,9 @@ public class TransferRestServiceImpl
 
     @Override
     protected Transfer mapRequestToEntity(TransferRequest transferRequest) {
-        Transfer transfer = modelMapper.map(transferRequest.getTransferDto(), Transfer.class);
-        if (transferRequest.getTransferDto().getDate() != null) {
-            transfer.setDate(new Date(transferRequest.getTransferDto().getDate()));
+        Transfer transfer = modelMapper.map(transferRequest.getTransferReadDto(), Transfer.class);
+        if (transferRequest.getTransferReadDto().getDate() != null) {
+            transfer.setDate(new Date(transferRequest.getTransferReadDto().getDate()));
         }
         return transfer;
     }
@@ -42,9 +42,9 @@ public class TransferRestServiceImpl
     @Override
     protected TransferResponse mapEntityToResponse(Transfer transfer) {
         TransferResponse transferResponse = new TransferResponse();
-        transferResponse.setTransferDto(modelMapper.map(transfer, TransferDto.class));
+        transferResponse.setTransferReadDto(modelMapper.map(transfer, TransferReadDto.class));
         if (transfer.getDate() != null) {
-            transferResponse.getTransferDto().setDate(transfer.getDate().getTime());
+            transferResponse.getTransferReadDto().setDate(transfer.getDate().getTime());
         }
         return transferResponse;
     }
@@ -52,14 +52,14 @@ public class TransferRestServiceImpl
     @Override
     protected TransfersResponse mapEntitiesToListResponse(List<Transfer> transfers) {
         TransfersResponse transfersResponse = new TransfersResponse();
-        transfersResponse.setTransferDtos(transfers
+        transfersResponse.setTransferReadDtos(transfers
                 .stream()
                 .map(transfer -> {
-                    TransferDto transferDto = modelMapper.map(transfer, TransferDto.class);
+                    TransferReadDto transferReadDto = modelMapper.map(transfer, TransferReadDto.class);
                     if (transfer.getDate() != null) {
-                        transferDto.setDate(transfer.getDate().getTime());
+                        transferReadDto.setDate(transfer.getDate().getTime());
                     }
-                    return transferDto;
+                    return transferReadDto;
                 }).collect(Collectors.toList()));
         return transfersResponse;
     }

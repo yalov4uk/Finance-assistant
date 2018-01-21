@@ -1,8 +1,9 @@
 package com.perfect.team.api.rest.controller;
 
-import com.perfect.team.api.rest.request.entity.CategoryRequest;
-import com.perfect.team.api.rest.response.entity.CategoriesResponse;
-import com.perfect.team.api.rest.response.entity.CategoryResponse;
+import com.perfect.team.api.rest.request.CategoryCreateRequest;
+import com.perfect.team.api.rest.request.CategoryUpdateRequest;
+import com.perfect.team.api.rest.response.CategoriesResponse;
+import com.perfect.team.api.rest.response.CategoryResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -31,7 +32,7 @@ public interface CategoryController {
                     @ResponseHeader(name = "location", response = URI.class)
             })
     )
-    Response create(CategoryRequest request);
+    Response create(CategoryCreateRequest request);
 
     @GET
     @Path("/{id}")
@@ -45,7 +46,7 @@ public interface CategoryController {
     @ApiResponses(
             @ApiResponse(code = 200, message = "", response = CategoryResponse.class)
     )
-    Response update(@PathParam("id") Long id, CategoryRequest request);
+    Response update(@PathParam("id") Long id, CategoryUpdateRequest request);
 
     @DELETE
     @Path("/{id}")

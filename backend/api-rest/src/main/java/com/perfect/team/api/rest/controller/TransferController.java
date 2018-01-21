@@ -1,8 +1,9 @@
 package com.perfect.team.api.rest.controller;
 
-import com.perfect.team.api.rest.request.entity.TransferRequest;
-import com.perfect.team.api.rest.response.entity.TransferResponse;
-import com.perfect.team.api.rest.response.entity.TransfersResponse;
+import com.perfect.team.api.rest.request.TransferCreateRequest;
+import com.perfect.team.api.rest.request.TransferUpdateRequest;
+import com.perfect.team.api.rest.response.TransferResponse;
+import com.perfect.team.api.rest.response.TransfersResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -31,7 +32,7 @@ public interface TransferController {
                     @ResponseHeader(name = "location", response = URI.class)
             })
     )
-    Response create(TransferRequest request);
+    Response create(TransferCreateRequest request);
 
     @GET
     @Path("/{id}")
@@ -45,7 +46,7 @@ public interface TransferController {
     @ApiResponses(
             @ApiResponse(code = 200, message = "", response = TransferResponse.class)
     )
-    Response update(@PathParam("id") Long id, TransferRequest request);
+    Response update(@PathParam("id") Long id, TransferUpdateRequest request);
 
     @DELETE
     @Path("/{id}")

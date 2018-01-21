@@ -1,8 +1,9 @@
 package com.perfect.team.api.rest.controller;
 
-import com.perfect.team.api.rest.request.entity.TransactionRequest;
-import com.perfect.team.api.rest.response.entity.TransactionResponse;
-import com.perfect.team.api.rest.response.entity.TransactionsResponse;
+import com.perfect.team.api.rest.request.TransactionCreateRequest;
+import com.perfect.team.api.rest.request.TransactionUpdateRequest;
+import com.perfect.team.api.rest.response.TransactionResponse;
+import com.perfect.team.api.rest.response.TransactionsResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -31,7 +32,7 @@ public interface TransactionController {
                     @ResponseHeader(name = "location", response = URI.class)
             })
     )
-    Response create(TransactionRequest request);
+    Response create(TransactionCreateRequest request);
 
     @GET
     @Path("/{id}")
@@ -45,7 +46,7 @@ public interface TransactionController {
     @ApiResponses(
             @ApiResponse(code = 200, message = "", response = TransactionResponse.class)
     )
-    Response update(@PathParam("id") Long id, TransactionRequest request);
+    Response update(@PathParam("id") Long id, TransactionUpdateRequest request);
 
     @DELETE
     @Path("/{id}")

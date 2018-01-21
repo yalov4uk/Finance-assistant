@@ -1,10 +1,10 @@
 package com.perfect.team.impl.rest.service;
 
-import com.perfect.team.api.rest.dto.entity.CategoryDto;
-import com.perfect.team.api.rest.dto.entity.TransactionOutDto;
+import com.perfect.team.api.rest.dto.CategoryReadDto;
+import com.perfect.team.api.rest.dto.TransactionReadDto;
 import com.perfect.team.api.rest.request.entity.TransactionRequest;
-import com.perfect.team.api.rest.response.entity.TransactionResponse;
-import com.perfect.team.api.rest.response.entity.TransactionsResponse;
+import com.perfect.team.api.rest.response.TransactionResponse;
+import com.perfect.team.api.rest.response.TransactionsResponse;
 import com.perfect.team.business.entity.Transaction;
 import com.perfect.team.business.service.auth.TransactionAuthService;
 import com.perfect.team.business.service.custom.base.CrudService;
@@ -43,13 +43,13 @@ public class TransactionRestServiceImpl
     @Override
     protected TransactionResponse mapEntityToResponse(Transaction transaction) {
         TransactionResponse transactionResponse = new TransactionResponse();
-        transactionResponse.setTransactionDto(modelMapper.map(transaction, TransactionOutDto.class));
+        transactionResponse.setTransactionDto(modelMapper.map(transaction, TransactionReadDto.class));
         if (transaction.getDate() != null) {
             transactionResponse.getTransactionDto().setDate(transaction.getDate().getTime());
         }
         if (transaction.getCategory() != null) {
             transactionResponse.getTransactionDto()
-                    .setCategory(modelMapper.map(transaction.getCategory(), CategoryDto.class));
+                    .setCategory(modelMapper.map(transaction.getCategory(), CategoryReadDto.class));
         }
         return transactionResponse;
     }
@@ -60,12 +60,12 @@ public class TransactionRestServiceImpl
         transactionsResponse.setTransactionDtos(transactions
                 .stream()
                 .map(transaction -> {
-                    TransactionOutDto transactionDto = modelMapper.map(transaction, TransactionOutDto.class);
+                    TransactionReadDto transactionDto = modelMapper.map(transaction, TransactionReadDto.class);
                     if (transaction.getDate() != null) {
                         transactionDto.setDate(transaction.getDate().getTime());
                     }
                     if (transaction.getCategory() != null) {
-                        transactionDto.setCategory(modelMapper.map(transaction.getCategory(), CategoryDto.class));
+                        transactionDto.setCategory(modelMapper.map(transaction.getCategory(), CategoryReadDto.class));
                     }
                     return transactionDto;
                 })

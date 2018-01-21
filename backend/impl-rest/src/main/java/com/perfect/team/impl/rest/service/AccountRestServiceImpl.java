@@ -1,9 +1,9 @@
 package com.perfect.team.impl.rest.service;
 
-import com.perfect.team.api.rest.dto.entity.AccountDto;
+import com.perfect.team.api.rest.dto.AccountReadDto;
 import com.perfect.team.api.rest.request.entity.AccountRequest;
-import com.perfect.team.api.rest.response.entity.AccountResponse;
-import com.perfect.team.api.rest.response.entity.AccountsResponse;
+import com.perfect.team.api.rest.response.AccountResponse;
+import com.perfect.team.api.rest.response.AccountsResponse;
 import com.perfect.team.business.entity.Account;
 import com.perfect.team.business.service.auth.AccountAuthService;
 import com.perfect.team.business.service.custom.base.CrudService;
@@ -32,9 +32,9 @@ public class AccountRestServiceImpl
 
     @Override
     protected Account mapRequestToEntity(AccountRequest accountRequest) {
-        Account account = modelMapper.map(accountRequest.getAccountDto(), Account.class);
-        if (accountRequest.getAccountDto().getInitialDate() != null) {
-            account.setInitialDate(new Date(accountRequest.getAccountDto().getInitialDate()));
+        Account account = modelMapper.map(accountRequest.getAccountReadDto(), Account.class);
+        if (accountRequest.getAccountReadDto().getInitialDate() != null) {
+            account.setInitialDate(new Date(accountRequest.getAccountReadDto().getInitialDate()));
         }
         return account;
     }
@@ -42,9 +42,9 @@ public class AccountRestServiceImpl
     @Override
     protected AccountResponse mapEntityToResponse(Account account) {
         AccountResponse accountResponse = new AccountResponse();
-        accountResponse.setAccountDto(modelMapper.map(account, AccountDto.class));
+        accountResponse.setAccountReadDto(modelMapper.map(account, AccountReadDto.class));
         if (account.getInitialDate() != null) {
-            accountResponse.getAccountDto().setInitialDate(account.getInitialDate().getTime());
+            accountResponse.getAccountReadDto().setInitialDate(account.getInitialDate().getTime());
         }
         return accountResponse;
     }
@@ -52,14 +52,14 @@ public class AccountRestServiceImpl
     @Override
     protected AccountsResponse mapEntitiesToListResponse(List<Account> accounts) {
         AccountsResponse accountsResponse = new AccountsResponse();
-        accountsResponse.setAccountDtos(accounts
+        accountsResponse.setAccountReadDtos(accounts
                 .stream()
                 .map(account -> {
-                    AccountDto accountDto = modelMapper.map(account, AccountDto.class);
+                    AccountReadDto accountReadDto = modelMapper.map(account, AccountReadDto.class);
                     if (account.getInitialDate() != null) {
-                        accountDto.setInitialDate(account.getInitialDate().getTime());
+                        accountReadDto.setInitialDate(account.getInitialDate().getTime());
                     }
-                    return accountDto;
+                    return accountReadDto;
                 })
                 .collect(Collectors.toList()));
         return accountsResponse;

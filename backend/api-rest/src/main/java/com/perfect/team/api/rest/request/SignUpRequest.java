@@ -1,18 +1,18 @@
 package com.perfect.team.api.rest.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.perfect.team.api.rest.dto.SignUpUserDto;
+import com.perfect.team.api.rest.dto.SignUpDto;
 
 public class SignUpRequest {
 
     @JsonProperty(value = "user")
-    private SignUpUserDto signUpUserDto;
+    private SignUpDto signUpDto;
 
-    public SignUpUserDto getSignUpUserDto() {
-        return signUpUserDto;
+    public SignUpDto getSignUpDto() {
+        return signUpDto;
     }
 
-    public void setSignUpUserDto(SignUpUserDto signUpUserDto) {
-        this.signUpUserDto = signUpUserDto;
+    public void setSignUpDto(SignUpDto signUpDto) {
+        this.signUpDto = signUpDto;
     }
 }
