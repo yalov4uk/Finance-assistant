@@ -11,7 +11,5 @@ import java.util.List;
 @Component
 public interface CategoryMapper extends CrudMapper<Category> {
 
-    Category selectWithUser(Long id);
-
     List<Category> selectAllByUserId(Long userId);
 }

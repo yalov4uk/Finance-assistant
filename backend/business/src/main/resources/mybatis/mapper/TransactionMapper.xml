@@ -17,6 +17,16 @@
                      resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
     </resultMap>
 
+    <sql id="transactionColumns">
+        ${transaction}.id as "${prefix}id",
+        ${transaction}.date as "${prefix}date",
+        ${transaction}.note as "${prefix}note",
+        ${transaction}.value as "${prefix}value",
+        ${transaction}.account_id as "${prefix}account_id",
+        ${transaction}.category_id as "${prefix}category_id",
+        ${transaction}.user_id as "${prefix}user_id",
+    </sql>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO transaction (date, note, value, account_id, category_id, user_id)
         VALUES (#{date}, #{note}, #{value}, #{account.id}, #{category.id}, #{user.id})
@@ -24,22 +34,10 @@
 
     <select id="select" resultMap="transactionResultMap">
         SELECT
-            t.id,
-            t.date,
-            t.note,
-            t.value,
-            t.account_id,
-            t.category_id,
-            t.user_id,
-            c.name             AS category_name,
-            c.icon             AS category_icon,
-            c.user_id          AS category_user_id,
-            c.category_type_id AS category_category_type_id,
-            ct.name            AS category_type_name,
-            ct.balance_type    AS category_type_balance_type
+        <include refid="transactionColumns">
+            <property name="transaction" value="t"/>
+        </include>
         FROM transaction t
-            LEFT JOIN category c ON t.category_id = c.id
-            LEFT JOIN category_type ct ON c.category_type_id = ct.id
         WHERE t.id = #{id}
     </select>
 
@@ -61,65 +59,18 @@
 
     <select id="selectAll" resultMap="transactionResultMap">
         SELECT
-            t.id,
-            t.date,
-            t.note,
-            t.value,
-            t.account_id,
-            t.category_id,
-            t.user_id,
-            c.name             AS category_name,
-            c.icon             AS category_icon,
-            c.user_id          AS category_user_id,
-            c.category_type_id AS category_category_type_id,
-            ct.name            AS category_type_name,
-            ct.balance_type    AS category_type_balance_type
+        <include refid="transactionColumns">
+            <property name="transaction" value="t"/>
+        </include>
         FROM transaction t
-            LEFT JOIN category c ON t.category_id = c.id
-            LEFT JOIN category_type ct ON c.category_type_id = ct.id
-    </select>
-
-    <select id="selectWithFull" resultMap="transactionResultMap">
-        SELECT
-            t.id,
-            t.date,
-            t.note,
-            t.value,
-            t.account_id,
-            t.category_id,
-            t.user_id,
-            c.name             AS category_name,
-            c.icon             AS category_icon,
-            c.user_id          AS category_user_id,
-            c.category_type_id AS category_category_type_id,
-            ct.name            AS category_type_name,
-            ct.balance_type    AS category_type_balance_type
-        FROM transaction t
-            LEFT JOIN account a ON t.account_id = a.id
-            LEFT JOIN category c ON t.category_id = c.id
-            LEFT JOIN category_type ct ON c.category_type_id = ct.id
-            LEFT JOIN user u ON t.user_id = u.id
-        WHERE t.id = #{id}
     </select>
 
     <select id="selectAllByUserId" resultMap="transactionResultMap">
         SELECT
-            t.id,
-            t.date,
-            t.note,
-            t.value,
-            t.account_id,
-            t.category_id,
-            t.user_id,
-            c.name             AS category_name,
-            c.icon             AS category_icon,
-            c.user_id          AS category_user_id,
-            c.category_type_id AS category_category_type_id,
-            ct.name            AS category_type_name,
-            ct.balance_type    AS category_type_balance_type
+        <include refid="transactionColumns">
+            <property name="transaction" value="t"/>
+        </include>
         FROM transaction t
-            LEFT JOIN category c ON t.category_id = c.id
-            LEFT JOIN category_type ct ON c.category_type_id = ct.id
         WHERE t.user_id = #{userId}
     </select>
 </mapper>

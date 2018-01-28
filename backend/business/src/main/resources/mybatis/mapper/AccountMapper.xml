@@ -15,6 +15,15 @@
                      resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
     </resultMap>
 
+    <sql id="accountColumns">
+        ${account}.id as "${prefix}id",
+        ${account}.name as "${prefix}name",
+        ${account}.initial_date as "${prefix}initial_date",
+        ${account}.balance as "${prefix}balance",
+        ${account}.user_id as "${prefix}user_id",
+        ${account}.currency as "${prefix}currency"
+    </sql>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO account (icon, balance, initial_date, name, currency, user_id)
         VALUES (#{icon}, #{balance}, #{initialDate}, #{name}, #{currency}, #{user.id})
@@ -22,14 +31,11 @@
 
     <select id="select" resultMap="accountResultMap">
         SELECT
-            a.id,
-            a.name,
-            a.initial_date,
-            a.balance,
-            a.user_id,
-            a.currency
+        <include refid="accountColumns">
+            <property name="account" value="a"/>
+        </include>
         FROM account a
-        WHERE id = #{id}
+        WHERE a.id = #{id}
     </select>
 
     <update id="update" useGeneratedKeys="true" keyProperty="id">
@@ -51,39 +57,18 @@
 
     <select id="selectAll" resultMap="accountResultMap">
         SELECT
-            a.id,
-            a.name,
-            a.initial_date,
-            a.balance,
-            a.user_id,
-            a.currency
+        <include refid="accountColumns">
+            <property name="account" value="a"/>
+        </include>
         FROM account a
-    </select>
-
-    <select id="selectWithUser" resultMap="accountResultMap">
-        SELECT
-            a.id,
-            a.name,
-            a.initial_date,
-            a.balance,
-            a.user_id,
-            a.currency,
-            u.name,
-            u.email
-        FROM account a
-            LEFT JOIN user u ON a.user_id = u.id
-        WHERE a.id = #{id}
     </select>
 
     <select id="selectAllByUserId" resultMap="accountResultMap">
         SELECT
-            a.id,
-            a.name,
-            a.initial_date,
-            a.balance,
-            a.user_id,
-            a.currency
+        <include refid="accountColumns">
+            <property name="account" value="a"/>
+        </include>
         FROM account a
-        WHERE user_id = #{userId}
+        WHERE a.user_id = #{userId}
     </select>
 </mapper>

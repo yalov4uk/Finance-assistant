@@ -12,6 +12,12 @@
                     resultMap="com.perfect.team.business.mapper.CategoryMapper.categoryResultMap"/>
     </resultMap>
 
+    <sql id="categoryTypeColumns">
+        ${categoryType}.id as "${prefix}id",
+        ${categoryType}.name as "${prefix}name",
+        ${categoryType}.balance_type as "${prefix}balance_type"
+    </sql>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO category_type (name, balance_type)
         VALUES (#{name}, #{balanceType})
@@ -19,11 +25,11 @@
 
     <select id="select" resultMap="categoryTypeResultMap">
         SELECT
-            ct.id,
-            ct.name,
-            ct.balance_type
+        <include refid="categoryTypeColumns">
+            <property name="categoryType" value="ct"/>
+        </include>
         FROM category_type ct
-        WHERE id = #{id}
+        WHERE ct.id = #{id}
     </select>
 
     <update id="update" useGeneratedKeys="true" keyProperty="id">
@@ -42,9 +48,9 @@
 
     <select id="selectAll" resultMap="categoryTypeResultMap">
         SELECT
-            ct.id,
-            ct.name,
-            ct.balance_type
+        <include refid="categoryTypeColumns">
+            <property name="categoryType" value="ct"/>
+        </include>
         FROM category_type ct
     </select>
 </mapper>

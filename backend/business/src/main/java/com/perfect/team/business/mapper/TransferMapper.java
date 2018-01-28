@@ -11,7 +11,5 @@ import java.util.List;
 @Component
 public interface TransferMapper extends CrudMapper<Transfer> {
 
-    Transfer selectWithFull(Long id);
-
     List<Transfer> selectAllByUserId(Long userId);
 }

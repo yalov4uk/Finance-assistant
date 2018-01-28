@@ -11,7 +11,5 @@ import java.util.List;
 @Component
 public interface TransactionMapper extends CrudMapper<Transaction> {
 
-    Transaction selectWithFull(Long id);
-
     List<Transaction> selectAllByUserId(Long userId);
 }

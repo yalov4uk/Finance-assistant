@@ -19,18 +19,24 @@
                     resultMap="com.perfect.team.business.mapper.TransferMapper.transferResultMap"/>
     </resultMap>
 
+    <sql id="userColumns">
+        ${user}.id as "${prefix}id",
+        ${user}.email as "${prefix}email",
+        ${user}.name as "${prefix}name",
+        ${user}.password as "${prefix}password"
+    </sql>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user (email, name, password) VALUES (#{email}, #{name}, #{password})
     </insert>
 
     <select id="select" resultMap="userResultMap">
         SELECT
-            u.id,
-            u.email,
-            u.name,
-            u.password
+        <include refid="userColumns">
+            <property name="user" value="u"/>
+        </include>
         FROM user u
-        WHERE id = #{id}
+        WHERE u.id = #{id}
     </select>
 
     <update id="update" useGeneratedKeys="true" keyProperty="id">
@@ -50,20 +56,18 @@
 
     <select id="selectAll" resultMap="userResultMap">
         SELECT
-            u.id,
-            u.email,
-            u.name,
-            u.password
+        <include refid="userColumns">
+            <property name="user" value="u"/>
+        </include>
         FROM user u
     </select>
 
     <select id="selectByEmail" resultMap="userResultMap">
         SELECT
-            u.id,
-            u.email,
-            u.name,
-            u.password
+        <include refid="userColumns">
+            <property name="user" value="u"/>
+        </include>
         FROM user u
-        WHERE email = #{email}
+        WHERE u.email = #{email}
     </select>
 </mapper>

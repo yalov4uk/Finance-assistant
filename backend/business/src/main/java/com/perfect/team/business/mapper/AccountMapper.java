@@ -11,7 +11,5 @@ import java.util.List;
 @Component
 public interface AccountMapper extends CrudMapper<Account> {
 
-    Account selectWithUser(Long id);
-
     List<Account> selectAllByUserId(Long userId);
 }

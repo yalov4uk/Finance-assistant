@@ -18,6 +18,17 @@
                      resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
     </resultMap>
 
+    <sql id="transferColumns">
+        ${transfer}.id as "${prefix}id",
+        ${transfer}.date as "${prefix}date",
+        ${transfer}.note as "${prefix}note",
+        ${transfer}.value as "${prefix}value",
+        ${transfer}.exchange_rate as "${prefix}exchange_rate",
+        ${transfer}.from_account_id as "${prefix}from_account_id",
+        ${transfer}.to_account_id as "${prefix}to_account_id",
+        ${transfer}.user_id as "${prefix}user_id",
+    </sql>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO transfer (date, note, value, exchange_rate, from_account_id, to_account_id, user_id)
         VALUES (#{date}, #{note}, #{value}, ${exchangeRate}, #{fromAccount.id}, #{toAccount.id}, #{user.id})
@@ -25,16 +36,11 @@
 
     <select id="select" resultMap="transferResultMap">
         SELECT
-            t.id,
-            t.date,
-            t.note,
-            t.value,
-            t.exchange_rate,
-            t.from_account_id,
-            t.to_account_id,
-            t.user_id
+        <include refid="transferColumns">
+            <property name="transfer" value="t"/>
+        </include>
         FROM transfer t
-        WHERE id = #{id}
+        WHERE t.id = #{id}
     </select>
 
     <update id="update" useGeneratedKeys="true" keyProperty="id">
@@ -55,45 +61,18 @@
 
     <select id="selectAll" resultMap="transferResultMap">
         SELECT
-            t.id,
-            t.date,
-            t.note,
-            t.value,
-            t.exchange_rate,
-            t.from_account_id,
-            t.to_account_id,
-            t.user_id
+        <include refid="transferColumns">
+            <property name="transfer" value="t"/>
+        </include>
         FROM transfer t
-    </select>
-
-    <select id="selectWithUser" resultMap="transferResultMap">
-        SELECT
-            t.id,
-            t.date,
-            t.note,
-            t.value,
-            t.exchange_rate,
-            t.from_account_id,
-            t.to_account_id,
-            t.user_id
-        FROM transfer t
-            LEFT JOIN account a_from ON t.from_account_id = a_from.id
-            LEFT JOIN account a_to ON t.to_account_id = a_to.id
-            LEFT JOIN user u ON t.user_id = u.id
-        WHERE t.id = #{id}
     </select>
 
     <select id="selectAllByUserId" resultMap="transferResultMap">
         SELECT
-            t.id,
-            t.date,
-            t.note,
-            t.value,
-            t.exchange_rate,
-            t.from_account_id,
-            t.to_account_id,
-            t.user_id
+        <include refid="transferColumns">
+            <property name="transfer" value="t"/>
+        </include>
         FROM transfer t
-        WHERE user_id = #{userId}
+        WHERE t.user_id = #{userId}
     </select>
 </mapper>

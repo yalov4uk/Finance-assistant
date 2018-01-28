@@ -14,6 +14,14 @@
                      resultMap="com.perfect.team.business.mapper.CategoryTypeMapper.categoryTypeResultMap"/>
     </resultMap>
 
+    <sql id="categoryColumns">
+        ${category}.id as "${prefix}id",
+        ${category}.name as "${prefix}name",
+        ${category}.icon as "${prefix}icon",
+        ${category}.user_id as "${prefix}user_id",
+        ${category}.category_type_id as "${prefix}category_type_id"
+    </sql>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO category (category_type_id, icon, name, user_id)
         VALUES (#{categoryType.id}, #{icon}, #{name}, #{user.id})
@@ -21,11 +29,9 @@
 
     <select id="select" resultMap="categoryResultMap">
         SELECT
-            c.id,
-            c.name,
-            c.icon,
-            c.user_id,
-            c.category_type_id
+        <include refid="categoryColumns">
+            <property name="category" value="c"/>
+        </include>
         FROM category c
         WHERE c.id = #{id}
     </select>
@@ -46,35 +52,17 @@
 
     <select id="selectAll" resultMap="categoryResultMap">
         SELECT
-            c.id,
-            c.name,
-            c.icon,
-            c.user_id,
-            c.category_type_id
+        <include refid="categoryColumns">
+            <property name="category" value="c"/>
+        </include>
         FROM category c
-    </select>
-
-    <select id="selectWithUser" resultMap="categoryResultMap">
-        SELECT
-            c.id,
-            c.name,
-            c.icon,
-            c.user_id,
-            c.category_type_id,
-            u.name,
-            u.email
-        FROM category c
-            LEFT JOIN user u ON c.user_id = u.id
-        WHERE c.id = #{id}
     </select>
 
     <select id="selectAllByUserId" resultMap="categoryResultMap">
         SELECT
-            c.id,
-            c.name,
-            c.icon,
-            c.user_id,
-            c.category_type_id
+        <include refid="categoryColumns">
+            <property name="category" value="c"/>
+        </include>
         FROM category c
         WHERE c.user_id = #{userId}
     </select>
