@@ -7,6 +7,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -34,7 +36,7 @@ public interface UserController {
     @ApiResponses(
             @ApiResponse(code = 200, message = "", response = UserResponse.class)
     )
-    Response update(@PathParam("id") Long id, UserUpdateRequest request);
+    Response update(@PathParam("id") Long id, @NotNull @Valid UserUpdateRequest request);
 
     @DELETE
     @Path("/{id}")

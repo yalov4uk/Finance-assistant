@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ResponseHeader;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,7 +34,7 @@ public interface AccountController {
                     @ResponseHeader(name = "location", response = URI.class)
             })
     )
-    Response create(AccountCreateRequest request);
+    Response create(@NotNull @Valid AccountCreateRequest request);
 
     @GET
     @Path("/{id}")
@@ -46,7 +48,7 @@ public interface AccountController {
     @ApiResponses(
             @ApiResponse(code = 200, message = "", response = AccountResponse.class)
     )
-    Response update(@PathParam("id") Long id, AccountUpdateRequest request);
+    Response update(@PathParam("id") Long id, @NotNull @Valid AccountUpdateRequest request);
 
     @DELETE
     @Path("/{id}")

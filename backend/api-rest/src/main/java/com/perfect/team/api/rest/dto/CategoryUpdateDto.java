@@ -2,6 +2,8 @@ package com.perfect.team.api.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.Pattern;
+
 public class CategoryUpdateDto {
 
     @JsonProperty(value = "name")
@@ -10,8 +12,9 @@ public class CategoryUpdateDto {
     @JsonProperty(value = "icon")
     private String icon;
 
-    @JsonProperty(value = "categoryTypeId")
-    private Long categoryTypeId;
+    @Pattern(regexp = "(IN)|(OUT)")
+    @JsonProperty(value = "type")
+    private String type;
 
     public String getName() {
         return name;
@@ -29,11 +32,11 @@ public class CategoryUpdateDto {
         this.icon = icon;
     }
 
-    public Long getCategoryTypeId() {
-        return categoryTypeId;
+    public String getType() {
+        return type;
     }
 
-    public void setCategoryTypeId(Long categoryTypeId) {
-        this.categoryTypeId = categoryTypeId;
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -2,10 +2,14 @@ package com.perfect.team.api.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class TransactionCreateDto {
 
+    @DecimalMin("0")
+    @NotNull
     @JsonProperty(value = "value")
     private BigDecimal value;
 
@@ -15,9 +19,11 @@ public class TransactionCreateDto {
     @JsonProperty(value = "date")
     private Long date;
 
+    @NotNull
     @JsonProperty(value = "categoryId")
     private Long categoryId;
 
+    @NotNull
     @JsonProperty(value = "accountId")
     private Long accountId;
 

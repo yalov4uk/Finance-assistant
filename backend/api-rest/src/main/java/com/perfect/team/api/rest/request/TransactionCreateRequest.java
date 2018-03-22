@@ -3,8 +3,13 @@ package com.perfect.team.api.rest.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.perfect.team.api.rest.dto.TransactionCreateDto;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 public class TransactionCreateRequest {
 
+    @NotNull
+    @Valid
     @JsonProperty(value = "transaction")
     private TransactionCreateDto transactionDto;
 

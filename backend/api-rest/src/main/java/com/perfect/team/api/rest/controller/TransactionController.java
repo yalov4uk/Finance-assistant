@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ResponseHeader;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,7 +34,7 @@ public interface TransactionController {
                     @ResponseHeader(name = "location", response = URI.class)
             })
     )
-    Response create(TransactionCreateRequest request);
+    Response create(@NotNull @Valid TransactionCreateRequest request);
 
     @GET
     @Path("/{id}")
@@ -46,7 +48,7 @@ public interface TransactionController {
     @ApiResponses(
             @ApiResponse(code = 200, message = "", response = TransactionResponse.class)
     )
-    Response update(@PathParam("id") Long id, TransactionUpdateRequest request);
+    Response update(@PathParam("id") Long id, @NotNull @Valid TransactionUpdateRequest request);
 
     @DELETE
     @Path("/{id}")

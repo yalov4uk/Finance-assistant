@@ -2,10 +2,11 @@ package com.perfect.team.api.rest.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.perfect.team.api.rest.dto.AccountReadDto;
+import com.perfect.team.api.rest.response.base.BaseResponse;
 
 import java.util.List;
 
-public class AccountsResponse {
+public class AccountsResponse extends BaseResponse {
 
     @JsonProperty(value = "accounts")
     private List<AccountReadDto> accountReadDtos;

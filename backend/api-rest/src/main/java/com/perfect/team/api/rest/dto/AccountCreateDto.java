@@ -2,16 +2,21 @@ package com.perfect.team.api.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class AccountCreateDto {
 
+    @NotNull
     @JsonProperty(value = "name")
     private String name;
 
     @JsonProperty(value = "icon")
     private String icon;
 
+    @DecimalMin("0")
+    @NotNull
     @JsonProperty(value = "balance")
     private BigDecimal balance;
 

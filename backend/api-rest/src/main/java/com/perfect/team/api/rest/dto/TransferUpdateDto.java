@@ -2,10 +2,12 @@ package com.perfect.team.api.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 
 public class TransferUpdateDto {
 
+    @DecimalMin("0")
     @JsonProperty(value = "value")
     private BigDecimal value;
 
