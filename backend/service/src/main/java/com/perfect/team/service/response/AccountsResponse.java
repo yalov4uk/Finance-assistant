@@ -16,4 +16,11 @@ public class AccountsResponse extends BaseResponse {
     public void setAccountReadDtos(List<AccountReadDto> accountReadDtos) {
         this.accountReadDtos = accountReadDtos;
     }
+
+    @Override
+    public String toString() {
+        return "AccountsResponse{" +
+                "accountReadDtos=" + accountReadDtos +
+                "} " + super.toString();
+    }
 }

@@ -30,4 +30,13 @@ public class CategoryCreateDto {
     public void setType(Category.Type type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "CategoryCreateDto{" +
+                "name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }

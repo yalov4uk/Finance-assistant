@@ -14,4 +14,11 @@ public class TransactionResponse extends BaseResponse {
     public void setTransactionDto(TransactionReadDto transactionDto) {
         this.transactionDto = transactionDto;
     }
+
+    @Override
+    public String toString() {
+        return "TransactionResponse{" +
+                "transactionDto=" + transactionDto +
+                "} " + super.toString();
+    }
 }

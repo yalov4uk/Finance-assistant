@@ -13,5 +13,5 @@ import org.springframework.validation.annotation.Validated;
 public interface AuthService {
     UserResponse signUp(@SignUp SignUpRequest request);
 
-    AuthResponse signIn(@SignIn SignInRequest request, AuthMethod method);
+    AuthResponse signIn(@SignIn SignInRequest request);
 }

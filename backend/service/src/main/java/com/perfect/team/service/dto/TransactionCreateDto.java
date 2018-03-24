@@ -48,4 +48,15 @@ public class TransactionCreateDto {
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
+
+    @Override
+    public String toString() {
+        return "TransactionCreateDto{" +
+                "value=" + value +
+                ", note='" + note + '\'' +
+                ", date=" + date +
+                ", categoryId=" + categoryId +
+                ", accountId=" + accountId +
+                '}';
+    }
 }

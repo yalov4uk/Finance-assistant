@@ -16,4 +16,11 @@ public class UsersResponse extends BaseResponse {
     public void setUserReadDtos(List<UserReadDto> userReadDtos) {
         this.userReadDtos = userReadDtos;
     }
+
+    @Override
+    public String toString() {
+        return "UsersResponse{" +
+                "userReadDtos=" + userReadDtos +
+                "} " + super.toString();
+    }
 }

@@ -1,13 +1,17 @@
 package com.perfect.team.service.impl;
 
 import com.perfect.team.service.api.TransferService;
+import com.perfect.team.service.request.IdRequest;
 import com.perfect.team.service.request.TransferCreateRequest;
 import com.perfect.team.service.request.TransferUpdateRequest;
+import com.perfect.team.service.request.base.AuthRequest;
 import com.perfect.team.service.response.CategoriesResponse;
 import com.perfect.team.service.response.TransferResponse;
+import org.springframework.stereotype.Service;
 
 import java.net.URI;
 
+@Service("TransferServiceImpl")
 public class TransferServiceImpl implements TransferService {
     @Override
     public URI create(TransferCreateRequest request) {
@@ -15,22 +19,22 @@ public class TransferServiceImpl implements TransferService {
     }
 
     @Override
-    public TransferResponse read(Long id) {
+    public TransferResponse read(IdRequest request) {
         return null;
     }
 
     @Override
-    public TransferResponse update(Long id, TransferUpdateRequest request) {
+    public TransferResponse update(TransferUpdateRequest request) {
         return null;
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(IdRequest request) {
 
     }
 
     @Override
-    public CategoriesResponse readAll() {
+    public CategoriesResponse readAll(AuthRequest request) {
         return null;
     }
 }

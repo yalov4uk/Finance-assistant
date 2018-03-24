@@ -15,4 +15,11 @@ public class TransfersResponse extends BaseResponse {
     public void setTransferReadDtos(List<TransferReadDto> transferReadDtos) {
         this.transferReadDtos = transferReadDtos;
     }
+
+    @Override
+    public String toString() {
+        return "TransfersResponse{" +
+                "transferReadDtos=" + transferReadDtos +
+                "} " + super.toString();
+    }
 }

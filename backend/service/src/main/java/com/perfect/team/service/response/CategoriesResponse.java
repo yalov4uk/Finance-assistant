@@ -16,4 +16,11 @@ public class CategoriesResponse extends BaseResponse {
     public void setCategoryReadDtos(List<CategoryReadDto> categoryReadDtos) {
         this.categoryReadDtos = categoryReadDtos;
     }
+
+    @Override
+    public String toString() {
+        return "CategoriesResponse{" +
+                "categoryReadDtos=" + categoryReadDtos +
+                "} " + super.toString();
+    }
 }

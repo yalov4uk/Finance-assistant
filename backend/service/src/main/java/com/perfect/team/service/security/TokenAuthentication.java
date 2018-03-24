@@ -1,4 +1,4 @@
-package com.perfect.team.business.auth.model;
+package com.perfect.team.service.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

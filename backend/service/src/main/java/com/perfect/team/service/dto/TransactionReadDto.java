@@ -66,4 +66,17 @@ public class TransactionReadDto {
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
+
+    @Override
+    public String toString() {
+        return "TransactionReadDto{" +
+                "id=" + id +
+                ", value=" + value +
+                ", note='" + note + '\'' +
+                ", date=" + date +
+                ", userId=" + userId +
+                ", category=" + category +
+                ", accountId=" + accountId +
+                '}';
+    }
 }

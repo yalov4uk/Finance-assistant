@@ -28,4 +28,13 @@ public class AccountUpdateDto {
     public void setCurrency(String currency) {
         this.currency = currency;
     }
+
+    @Override
+    public String toString() {
+        return "AccountUpdateDto{" +
+                "name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", currency='" + currency + '\'' +
+                '}';
+    }
 }

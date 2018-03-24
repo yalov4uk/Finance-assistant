@@ -48,4 +48,15 @@ public class CategoryReadDto {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "CategoryReadDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", type=" + type +
+                ", userId=" + userId +
+                '}';
+    }
 }

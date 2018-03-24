@@ -1,6 +1,6 @@
-package com.perfect.team.business.auth.model;
+package com.perfect.team.service.security;
 
-import com.perfect.team.business.entity.User;
+import com.perfect.team.business.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

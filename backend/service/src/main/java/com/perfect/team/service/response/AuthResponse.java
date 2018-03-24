@@ -23,4 +23,12 @@ public class AuthResponse extends BaseResponse {
     public void setToken(String token) {
         this.token = token;
     }
+
+    @Override
+    public String toString() {
+        return "AuthResponse{" +
+                "userReadDto=" + userReadDto +
+                ", token='" + token + '\'' +
+                "} " + super.toString();
+    }
 }

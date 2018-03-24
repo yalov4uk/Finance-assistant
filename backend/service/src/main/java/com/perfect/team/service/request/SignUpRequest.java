@@ -14,4 +14,11 @@ public class SignUpRequest extends BaseRequest {
     public void setSignUpDto(SignUpDto signUpDto) {
         this.signUpDto = signUpDto;
     }
+
+    @Override
+    public String toString() {
+        return "SignUpRequest{" +
+                "signUpDto=" + signUpDto +
+                "} " + super.toString();
+    }
 }

@@ -17,4 +17,11 @@ public class BaseResponse {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "BaseResponse{" +
+                "date=" + date +
+                '}';
+    }
 }

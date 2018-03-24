@@ -16,4 +16,11 @@ public class TransactionsResponse extends BaseResponse {
     public void setTransactionDtos(List<TransactionReadDto> transactionDtos) {
         this.transactionDtos = transactionDtos;
     }
+
+    @Override
+    public String toString() {
+        return "TransactionsResponse{" +
+                "transactionDtos=" + transactionDtos +
+                "} " + super.toString();
+    }
 }

@@ -13,4 +13,11 @@ public class UserResponse extends BaseResponse {
     public void setUserReadDto(UserReadDto userReadDto) {
         this.userReadDto = userReadDto;
     }
+
+    @Override
+    public String toString() {
+        return "UserResponse{" +
+                "userReadDto=" + userReadDto +
+                "} " + super.toString();
+    }
 }

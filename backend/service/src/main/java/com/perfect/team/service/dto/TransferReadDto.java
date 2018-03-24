@@ -75,4 +75,18 @@ public class TransferReadDto {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "TransferReadDto{" +
+                "id=" + id +
+                ", value=" + value +
+                ", note='" + note + '\'' +
+                ", date=" + date +
+                ", exchangeRate=" + exchangeRate +
+                ", fromAccountId=" + fromAccountId +
+                ", toAccountId=" + toAccountId +
+                ", userId=" + userId +
+                '}';
+    }
 }

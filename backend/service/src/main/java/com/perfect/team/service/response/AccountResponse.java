@@ -14,4 +14,11 @@ public class AccountResponse extends BaseResponse {
     public void setAccountReadDto(AccountReadDto accountReadDto) {
         this.accountReadDto = accountReadDto;
     }
+
+    @Override
+    public String toString() {
+        return "AccountResponse{" +
+                "accountReadDto=" + accountReadDto +
+                "} " + super.toString();
+    }
 }

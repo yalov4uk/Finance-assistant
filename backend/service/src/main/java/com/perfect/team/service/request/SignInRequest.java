@@ -1,33 +1,23 @@
 package com.perfect.team.service.request;
 
+import com.perfect.team.service.dto.SignInDto;
 import com.perfect.team.service.request.base.BaseRequest;
 
 public class SignInRequest extends BaseRequest {
-    private String email;
-    private String password;
-    private String token;
+    private SignInDto signInDto;
 
-    public String getEmail() {
-        return email;
+    public SignInDto getSignInDto() {
+        return signInDto;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSignInDto(SignInDto signInDto) {
+        this.signInDto = signInDto;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+    @Override
+    public String toString() {
+        return "SignInRequest{" +
+                "signInDto=" + signInDto +
+                "} " + super.toString();
     }
 }

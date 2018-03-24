@@ -1,10 +1,12 @@
 package com.perfect.team.service.validation;
 
 import com.perfect.team.service.request.SignUpRequest;
+import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+@Component
 public class SignUpValidator implements ConstraintValidator<SignUp, SignUpRequest> {
     @Override
     public void initialize(SignUp constraintAnnotation) {
@@ -12,6 +14,6 @@ public class SignUpValidator implements ConstraintValidator<SignUp, SignUpReques
 
     @Override
     public boolean isValid(SignUpRequest value, ConstraintValidatorContext context) {
-        return false;
+        return true;
     }
 }

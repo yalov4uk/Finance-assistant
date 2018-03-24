@@ -2,6 +2,8 @@ package com.perfect.team.service.api;
 
 import com.perfect.team.service.request.AccountCreateRequest;
 import com.perfect.team.service.request.AccountUpdateRequest;
+import com.perfect.team.service.request.IdRequest;
+import com.perfect.team.service.request.base.AuthRequest;
 import com.perfect.team.service.response.AccountResponse;
 import com.perfect.team.service.response.AccountsResponse;
 import com.perfect.team.service.validation.AccountCreate;
@@ -15,11 +17,11 @@ import java.net.URI;
 public interface AccountService {
     URI create(@AccountCreate AccountCreateRequest request);
 
-    AccountResponse read(@AccountId Long id);
+    AccountResponse read(@AccountId IdRequest request);
 
-    AccountResponse update(@AccountId Long id, @AccountUpdate AccountUpdateRequest request);
+    AccountResponse update(@AccountUpdate AccountUpdateRequest request);
 
-    void delete(@AccountId Long id);
+    void delete(@AccountId IdRequest request);
 
-    AccountsResponse readAll();
+    AccountsResponse readAll(AuthRequest request);
 }

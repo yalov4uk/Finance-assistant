@@ -2,9 +2,10 @@ package com.perfect.team.service.request;
 
 
 import com.perfect.team.service.dto.AccountUpdateDto;
+import com.perfect.team.service.request.base.AuthRequest;
 import com.perfect.team.service.request.base.BaseRequest;
 
-public class AccountUpdateRequest extends BaseRequest {
+public class AccountUpdateRequest extends IdRequest {
     private AccountUpdateDto accountDto;
 
     public AccountUpdateDto getAccountDto() {
@@ -13,5 +14,12 @@ public class AccountUpdateRequest extends BaseRequest {
 
     public void setAccountDto(AccountUpdateDto accountDto) {
         this.accountDto = accountDto;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountUpdateRequest{" +
+                "accountDto=" + accountDto +
+                "} " + super.toString();
     }
 }

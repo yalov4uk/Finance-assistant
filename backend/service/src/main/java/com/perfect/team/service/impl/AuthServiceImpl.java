@@ -8,7 +8,7 @@ import com.perfect.team.service.response.AuthResponse;
 import com.perfect.team.service.response.UserResponse;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("AuthServiceImpl")
 public class AuthServiceImpl implements AuthService {
     @Override
     public UserResponse signUp(SignUpRequest request) {
@@ -16,7 +16,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public AuthResponse signIn(SignInRequest request, AuthMethod method) {
+    public AuthResponse signIn(SignInRequest request) {
         return null;
     }
 }

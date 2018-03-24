@@ -2,6 +2,8 @@ package com.perfect.team.service.api;
 
 import com.perfect.team.service.request.CategoryCreateRequest;
 import com.perfect.team.service.request.CategoryUpdateRequest;
+import com.perfect.team.service.request.IdRequest;
+import com.perfect.team.service.request.base.AuthRequest;
 import com.perfect.team.service.response.CategoriesResponse;
 import com.perfect.team.service.response.CategoryResponse;
 import com.perfect.team.service.validation.CategoryCreate;
@@ -15,11 +17,11 @@ import java.net.URI;
 public interface CategoryService {
     URI create(@CategoryCreate CategoryCreateRequest request);
 
-    CategoryResponse read(@CategoryId Long id);
+    CategoryResponse read(@CategoryId IdRequest request);
 
-    CategoryResponse update(@CategoryId Long id, @CategoryUpdate CategoryUpdateRequest request);
+    CategoryResponse update(@CategoryUpdate CategoryUpdateRequest request);
 
-    void delete(@CategoryId Long id);
+    void delete(@CategoryId IdRequest request);
 
-    CategoriesResponse readAll();
+    CategoriesResponse readAll(AuthRequest request);
 }

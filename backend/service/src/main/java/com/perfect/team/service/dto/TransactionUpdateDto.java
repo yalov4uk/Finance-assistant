@@ -48,4 +48,15 @@ public class TransactionUpdateDto {
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
+
+    @Override
+    public String toString() {
+        return "TransactionUpdateDto{" +
+                "value=" + value +
+                ", note='" + note + '\'' +
+                ", date=" + date +
+                ", category=" + category +
+                ", accountId=" + accountId +
+                '}';
+    }
 }

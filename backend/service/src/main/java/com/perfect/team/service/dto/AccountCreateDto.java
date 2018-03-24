@@ -48,4 +48,15 @@ public class AccountCreateDto {
     public void setCurrency(String currency) {
         this.currency = currency;
     }
+
+    @Override
+    public String toString() {
+        return "AccountCreateDto{" +
+                "name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", balance=" + balance +
+                ", initialDate=" + initialDate +
+                ", currency='" + currency + '\'' +
+                '}';
+    }
 }
