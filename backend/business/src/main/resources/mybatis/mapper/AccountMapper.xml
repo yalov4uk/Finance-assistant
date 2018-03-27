@@ -1,74 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.perfect.team.business.mapper.AccountMapper">
 
-    <resultMap id="accountResultMap" type="Account">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
-        <result property="icon" column="icon"/>
-        <result property="balance" column="balance"/>
-        <result property="initialDate" column="initial_date"/>
-        <result property="currency" column="currency"/>
-        <association property="user" column="user_id" foreignColumn="id" columnPrefix="user_"
-                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
-    </resultMap>
+  <resultMap id="accountResultMap" type="Account">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="icon" property="icon"/>
+    <result column="balance" property="balance"/>
+    <result column="initial_date" property="initialDate"/>
+    <result column="currency" property="currency"/>
+    <association column="user_id" columnPrefix="user_" foreignColumn="id" property="user"
+      resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
+  </resultMap>
 
-    <sql id="accountColumns">
-        ${account}.id as "${prefix}id",
-        ${account}.name as "${prefix}name",
-        ${account}.initial_date as "${prefix}initial_date",
-        ${account}.balance as "${prefix}balance",
-        ${account}.user_id as "${prefix}user_id",
-        ${account}.currency as "${prefix}currency"
-    </sql>
+  <sql id="accountColumns">
+    ${account}.id as "${prefix}id",
+    ${account}.name as "${prefix}name",
+    ${account}.icon as "${prefix}icon",
+    ${account}.initial_date as "${prefix}initial_date",
+    ${account}.balance as "${prefix}balance",
+    ${account}.user_id as "${prefix}user_id",
+    ${account}.currency as "${prefix}currency"
+  </sql>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO account (icon, balance, initial_date, name, currency, user_id)
-        VALUES (#{icon}, #{balance}, #{initialDate}, #{name}, #{currency}, #{user.id})
-    </insert>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO account (icon, balance, initial_date, name, currency, user_id)
+    VALUES (#{icon}, #{balance}, #{initialDate}, #{name}, #{currency}, #{user.id})
+  </insert>
 
-    <select id="select" resultMap="accountResultMap">
-        SELECT
-        <include refid="accountColumns">
-            <property name="account" value="a"/>
-        </include>
-        FROM account a
-        WHERE a.id = #{id}
-    </select>
+  <select id="select" resultMap="accountResultMap">
+    SELECT
+    <include refid="accountColumns">
+      <property name="account" value="a"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM account a
+    WHERE a.id = #{id}
+  </select>
 
-    <update id="update" useGeneratedKeys="true" keyProperty="id">
-        UPDATE account
-        <set>
-            <if test="name != null">name = #{name},</if>
-            <if test="icon != null">icon = #{icon},</if>
-            <if test="balance != null">balance = #{balance},</if>
-            <if test="initialDate != null">initial_date = #{initialDate},</if>
-            <if test="currency != null">currency = #{currency}</if>
-        </set>
-        WHERE id = #{id}
-    </update>
+  <update id="update" keyProperty="id" useGeneratedKeys="true">
+    UPDATE account
+    SET
+    name = #{name},
+    icon = #{icon},
+    balance = #{balance},
+    initial_date = #{initialDate},
+    currency = #{currency}
+    WHERE id = #{id}
+  </update>
 
-    <delete id="delete">
-        DELETE FROM account
-        WHERE id = #{id}
-    </delete>
+  <delete id="delete">
+    DELETE FROM account
+    WHERE id = #{id}
+  </delete>
 
-    <select id="selectAll" resultMap="accountResultMap">
-        SELECT
-        <include refid="accountColumns">
-            <property name="account" value="a"/>
-        </include>
-        FROM account a
-    </select>
+  <select id="selectAll" resultMap="accountResultMap">
+    SELECT
+    <include refid="accountColumns">
+      <property name="account" value="a"/>
+    </include>
+    FROM account a
+  </select>
 
-    <select id="selectAllByUserId" resultMap="accountResultMap">
-        SELECT
-        <include refid="accountColumns">
-            <property name="account" value="a"/>
-        </include>
-        FROM account a
-        WHERE a.user_id = #{userId}
-    </select>
+  <select id="selectAllByUserId" resultMap="accountResultMap">
+    SELECT
+    <include refid="accountColumns">
+      <property name="account" value="a"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM account a
+    WHERE a.user_id = #{userId}
+  </select>
 </mapper>

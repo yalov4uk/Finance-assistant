@@ -3,60 +3,61 @@ package com.perfect.team.service.dto;
 import java.math.BigDecimal;
 
 public class AccountCreateDto {
-    private String name;
-    private String icon;
-    private BigDecimal balance;
-    private Long initialDate;
-    private String currency;
 
-    public String getName() {
-        return name;
-    }
+  private String name;
+  private String icon;
+  private BigDecimal balance;
+  private Long initialDate;
+  private String currency;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getIcon() {
-        return icon;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+  public String getIcon() {
+    return icon;
+  }
 
-    public BigDecimal getBalance() {
-        return balance;
-    }
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
+  public BigDecimal getBalance() {
+    return balance;
+  }
 
-    public Long getInitialDate() {
-        return initialDate;
-    }
+  public void setBalance(BigDecimal balance) {
+    this.balance = balance;
+  }
 
-    public void setInitialDate(Long initialDate) {
-        this.initialDate = initialDate;
-    }
+  public Long getInitialDate() {
+    return initialDate;
+  }
 
-    public String getCurrency() {
-        return currency;
-    }
+  public void setInitialDate(Long initialDate) {
+    this.initialDate = initialDate;
+  }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
+  public String getCurrency() {
+    return currency;
+  }
 
-    @Override
-    public String toString() {
-        return "AccountCreateDto{" +
-                "name='" + name + '\'' +
-                ", icon='" + icon + '\'' +
-                ", balance=" + balance +
-                ", initialDate=" + initialDate +
-                ", currency='" + currency + '\'' +
-                '}';
-    }
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+  @Override
+  public String toString() {
+    return "AccountCreateDto{" +
+        "name='" + name + '\'' +
+        ", icon='" + icon + '\'' +
+        ", balance=" + balance +
+        ", initialDate=" + initialDate +
+        ", currency='" + currency + '\'' +
+        '}';
+  }
 }

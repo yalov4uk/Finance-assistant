@@ -7,14 +7,16 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class TransactionCreateValidator implements ConstraintValidator<TransactionCreate, TransactionCreateRequest> {
-    @Override
-    public void initialize(TransactionCreate constraintAnnotation) {
+public class TransactionCreateValidator implements
+    ConstraintValidator<TransactionCreate, TransactionCreateRequest> {
 
-    }
+  @Override
+  public void initialize(TransactionCreate constraintAnnotation) {
 
-    @Override
-    public boolean isValid(TransactionCreateRequest value, ConstraintValidatorContext context) {
-        return true;
-    }
+  }
+
+  @Override
+  public boolean isValid(TransactionCreateRequest value, ConstraintValidatorContext context) {
+    return true;
+  }
 }

@@ -8,18 +8,20 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class AccountUpdateValidator implements ConstraintValidator<AccountUpdate, AccountUpdateRequest> {
-    @Inject
-    private AccountIdValidator accountIdValidator;
+public class AccountUpdateValidator implements
+    ConstraintValidator<AccountUpdate, AccountUpdateRequest> {
 
-    @Override
-    public void initialize(AccountUpdate constraintAnnotation) {
+  @Inject
+  private AccountIdValidator accountIdValidator;
 
-    }
+  @Override
+  public void initialize(AccountUpdate constraintAnnotation) {
 
-    @Override
-    public boolean isValid(AccountUpdateRequest value, ConstraintValidatorContext context) {
-        boolean result = accountIdValidator.isValid(value, context);
-        return true;
-    }
+  }
+
+  @Override
+  public boolean isValid(AccountUpdateRequest value, ConstraintValidatorContext context) {
+    boolean result = accountIdValidator.isValid(value, context);
+    return true;
+  }
 }

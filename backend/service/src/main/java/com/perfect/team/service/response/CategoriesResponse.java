@@ -3,24 +3,24 @@ package com.perfect.team.service.response;
 
 import com.perfect.team.service.dto.CategoryReadDto;
 import com.perfect.team.service.response.base.BaseResponse;
-
 import java.util.List;
 
 public class CategoriesResponse extends BaseResponse {
-    private List<CategoryReadDto> categoryReadDtos;
 
-    public List<CategoryReadDto> getCategoryReadDtos() {
-        return categoryReadDtos;
-    }
+  private List<CategoryReadDto> categoryReadDtos;
 
-    public void setCategoryReadDtos(List<CategoryReadDto> categoryReadDtos) {
-        this.categoryReadDtos = categoryReadDtos;
-    }
+  public List<CategoryReadDto> getCategoryReadDtos() {
+    return categoryReadDtos;
+  }
 
-    @Override
-    public String toString() {
-        return "CategoriesResponse{" +
-                "categoryReadDtos=" + categoryReadDtos +
-                "} " + super.toString();
-    }
+  public void setCategoryReadDtos(List<CategoryReadDto> categoryReadDtos) {
+    this.categoryReadDtos = categoryReadDtos;
+  }
+
+  @Override
+  public String toString() {
+    return "CategoriesResponse{" +
+        "categoryReadDtos=" + categoryReadDtos +
+        "} " + super.toString();
+  }
 }

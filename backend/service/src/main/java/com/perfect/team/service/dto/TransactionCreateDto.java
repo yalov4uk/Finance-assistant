@@ -3,60 +3,61 @@ package com.perfect.team.service.dto;
 import java.math.BigDecimal;
 
 public class TransactionCreateDto {
-    private BigDecimal value;
-    private String note;
-    private Long date;
-    private Long categoryId;
-    private Long accountId;
 
-    public BigDecimal getValue() {
-        return value;
-    }
+  private BigDecimal value;
+  private String note;
+  private Long date;
+  private Long categoryId;
+  private Long accountId;
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
+  public BigDecimal getValue() {
+    return value;
+  }
 
-    public String getNote() {
-        return note;
-    }
+  public void setValue(BigDecimal value) {
+    this.value = value;
+  }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+  public String getNote() {
+    return note;
+  }
 
-    public Long getDate() {
-        return date;
-    }
+  public void setNote(String note) {
+    this.note = note;
+  }
 
-    public void setDate(Long date) {
-        this.date = date;
-    }
+  public Long getDate() {
+    return date;
+  }
 
-    public Long getCategoryId() {
-        return categoryId;
-    }
+  public void setDate(Long date) {
+    this.date = date;
+  }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
+  public Long getCategoryId() {
+    return categoryId;
+  }
 
-    public Long getAccountId() {
-        return accountId;
-    }
+  public void setCategoryId(Long categoryId) {
+    this.categoryId = categoryId;
+  }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
+  public Long getAccountId() {
+    return accountId;
+  }
 
-    @Override
-    public String toString() {
-        return "TransactionCreateDto{" +
-                "value=" + value +
-                ", note='" + note + '\'' +
-                ", date=" + date +
-                ", categoryId=" + categoryId +
-                ", accountId=" + accountId +
-                '}';
-    }
+  public void setAccountId(Long accountId) {
+    this.accountId = accountId;
+  }
+
+  @Override
+  public String toString() {
+    return "TransactionCreateDto{" +
+        "value=" + value +
+        ", note='" + note + '\'' +
+        ", date=" + date +
+        ", categoryId=" + categoryId +
+        ", accountId=" + accountId +
+        '}';
+  }
 }

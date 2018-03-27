@@ -1,11 +1,21 @@
 package com.perfect.team.business.service.custom;
 
-import com.perfect.team.business.entity.Account;
-import com.perfect.team.business.service.custom.base.CrudService;
-
+import com.perfect.team.business.model.Account;
 import java.util.List;
+import org.springframework.validation.annotation.Validated;
 
-public interface AccountService extends CrudService<Account> {
+@Validated
+public interface AccountService {
 
-    List<Account> readAllByUserId(Long userId);
+  Long create(Account account);
+
+  Account read(Long id);
+
+  Account update(Long id, Account account);
+
+  void delete(Long id);
+
+  List<Account> readAll();
+
+  List<Account> readAllByUserId(Long userId);
 }

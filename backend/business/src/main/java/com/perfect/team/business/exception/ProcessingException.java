@@ -1,12 +1,14 @@
 package com.perfect.team.business.exception;
 
-public class ProcessingException extends RuntimeException {
+import com.perfect.team.business.exception.base.BusinessException;
 
-    public ProcessingException() {
-        super();
-    }
+public class ProcessingException extends BusinessException {
 
-    public ProcessingException(String message) {
-        super(message);
-    }
+  public ProcessingException() {
+    super();
+  }
+
+  public ProcessingException(String message) {
+    super(message);
+  }
 }

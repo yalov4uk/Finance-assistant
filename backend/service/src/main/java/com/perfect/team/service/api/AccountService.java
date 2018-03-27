@@ -9,19 +9,19 @@ import com.perfect.team.service.response.AccountsResponse;
 import com.perfect.team.service.validation.AccountCreate;
 import com.perfect.team.service.validation.AccountId;
 import com.perfect.team.service.validation.AccountUpdate;
-import org.springframework.validation.annotation.Validated;
-
 import java.net.URI;
+import org.springframework.validation.annotation.Validated;
 
 @Validated
 public interface AccountService {
-    URI create(@AccountCreate AccountCreateRequest request);
 
-    AccountResponse read(@AccountId IdRequest request);
+  URI create(@AccountCreate AccountCreateRequest request);
 
-    AccountResponse update(@AccountUpdate AccountUpdateRequest request);
+  AccountResponse read(@AccountId IdRequest request);
 
-    void delete(@AccountId IdRequest request);
+  AccountResponse update(@AccountUpdate AccountUpdateRequest request);
 
-    AccountsResponse readAll(AuthRequest request);
+  void delete(@AccountId IdRequest request);
+
+  AccountsResponse readAll(AuthRequest request);
 }

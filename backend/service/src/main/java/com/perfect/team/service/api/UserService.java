@@ -5,15 +5,15 @@ import com.perfect.team.service.request.UserUpdateRequest;
 import com.perfect.team.service.request.base.AuthRequest;
 import com.perfect.team.service.response.CategoriesResponse;
 import com.perfect.team.service.response.UserResponse;
+import com.perfect.team.service.response.UsersResponse;
 import com.perfect.team.service.validation.UserId;
 import com.perfect.team.service.validation.UserUpdate;
 
 public interface UserService {
-    UserResponse read(@UserId IdRequest request);
 
-    UserResponse update(@UserUpdate UserUpdateRequest request);
+  UserResponse read(@UserId IdRequest request);
 
-    void delete(@UserId IdRequest request);
+  UserResponse update(@UserUpdate UserUpdateRequest request);
 
-    CategoriesResponse readAll(AuthRequest request);
+  UsersResponse readAll(AuthRequest request);
 }

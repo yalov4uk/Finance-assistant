@@ -1,12 +1,14 @@
 package com.perfect.team.business.exception;
 
-public class ValidationException extends RuntimeException {
+import com.perfect.team.business.exception.base.BusinessException;
 
-    public ValidationException() {
-        super();
-    }
+public class ValidationException extends BusinessException {
 
-    public ValidationException(String message) {
-        super(message);
-    }
+  public ValidationException() {
+    super();
+  }
+
+  public ValidationException(String message) {
+    super(message);
+  }
 }

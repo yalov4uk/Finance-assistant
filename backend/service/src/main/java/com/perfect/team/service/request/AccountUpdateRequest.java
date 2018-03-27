@@ -2,24 +2,23 @@ package com.perfect.team.service.request;
 
 
 import com.perfect.team.service.dto.AccountUpdateDto;
-import com.perfect.team.service.request.base.AuthRequest;
-import com.perfect.team.service.request.base.BaseRequest;
 
 public class AccountUpdateRequest extends IdRequest {
-    private AccountUpdateDto accountDto;
 
-    public AccountUpdateDto getAccountDto() {
-        return accountDto;
-    }
+  private AccountUpdateDto accountDto;
 
-    public void setAccountDto(AccountUpdateDto accountDto) {
-        this.accountDto = accountDto;
-    }
+  public AccountUpdateDto getAccountDto() {
+    return accountDto;
+  }
 
-    @Override
-    public String toString() {
-        return "AccountUpdateRequest{" +
-                "accountDto=" + accountDto +
-                "} " + super.toString();
-    }
+  public void setAccountDto(AccountUpdateDto accountDto) {
+    this.accountDto = accountDto;
+  }
+
+  @Override
+  public String toString() {
+    return "AccountUpdateRequest{" +
+        "accountDto=" + accountDto +
+        "} " + super.toString();
+  }
 }

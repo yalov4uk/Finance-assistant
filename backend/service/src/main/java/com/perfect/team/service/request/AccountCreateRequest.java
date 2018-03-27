@@ -3,23 +3,23 @@ package com.perfect.team.service.request;
 
 import com.perfect.team.service.dto.AccountCreateDto;
 import com.perfect.team.service.request.base.AuthRequest;
-import com.perfect.team.service.request.base.BaseRequest;
 
 public class AccountCreateRequest extends AuthRequest {
-    private AccountCreateDto accountDto;
 
-    public AccountCreateDto getAccountDto() {
-        return accountDto;
-    }
+  private AccountCreateDto accountDto;
 
-    public void setAccountDto(AccountCreateDto accountDto) {
-        this.accountDto = accountDto;
-    }
+  public AccountCreateDto getAccountDto() {
+    return accountDto;
+  }
 
-    @Override
-    public String toString() {
-        return "AccountCreateRequest{" +
-                "accountDto=" + accountDto +
-                "} " + super.toString();
-    }
+  public void setAccountDto(AccountCreateDto accountDto) {
+    this.accountDto = accountDto;
+  }
+
+  @Override
+  public String toString() {
+    return "AccountCreateRequest{" +
+        "accountDto=" + accountDto +
+        "} " + super.toString();
+  }
 }

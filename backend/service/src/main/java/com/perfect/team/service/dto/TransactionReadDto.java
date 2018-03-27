@@ -3,80 +3,81 @@ package com.perfect.team.service.dto;
 import java.math.BigDecimal;
 
 public class TransactionReadDto {
-    private Long id;
-    private BigDecimal value;
-    private String note;
-    private Long date;
-    private Long userId;
-    private CategoryReadDto category;
-    private Long accountId;
 
-    public Long getId() {
-        return id;
-    }
+  private Long id;
+  private BigDecimal value;
+  private String note;
+  private Long date;
+  private Long userId;
+  private CategoryReadDto category;
+  private Long accountId;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public BigDecimal getValue() {
-        return value;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
+  public BigDecimal getValue() {
+    return value;
+  }
 
-    public String getNote() {
-        return note;
-    }
+  public void setValue(BigDecimal value) {
+    this.value = value;
+  }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+  public String getNote() {
+    return note;
+  }
 
-    public Long getDate() {
-        return date;
-    }
+  public void setNote(String note) {
+    this.note = note;
+  }
 
-    public void setDate(Long date) {
-        this.date = date;
-    }
+  public Long getDate() {
+    return date;
+  }
 
-    public Long getUserId() {
-        return userId;
-    }
+  public void setDate(Long date) {
+    this.date = date;
+  }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+  public Long getUserId() {
+    return userId;
+  }
 
-    public CategoryReadDto getCategory() {
-        return category;
-    }
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
 
-    public void setCategory(CategoryReadDto category) {
-        this.category = category;
-    }
+  public CategoryReadDto getCategory() {
+    return category;
+  }
 
-    public Long getAccountId() {
-        return accountId;
-    }
+  public void setCategory(CategoryReadDto category) {
+    this.category = category;
+  }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
+  public Long getAccountId() {
+    return accountId;
+  }
 
-    @Override
-    public String toString() {
-        return "TransactionReadDto{" +
-                "id=" + id +
-                ", value=" + value +
-                ", note='" + note + '\'' +
-                ", date=" + date +
-                ", userId=" + userId +
-                ", category=" + category +
-                ", accountId=" + accountId +
-                '}';
-    }
+  public void setAccountId(Long accountId) {
+    this.accountId = accountId;
+  }
+
+  @Override
+  public String toString() {
+    return "TransactionReadDto{" +
+        "id=" + id +
+        ", value=" + value +
+        ", note='" + note + '\'' +
+        ", date=" + date +
+        ", userId=" + userId +
+        ", category=" + category +
+        ", accountId=" + accountId +
+        '}';
+  }
 }

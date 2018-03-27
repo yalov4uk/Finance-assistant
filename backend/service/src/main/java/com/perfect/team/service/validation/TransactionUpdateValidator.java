@@ -7,14 +7,16 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class TransactionUpdateValidator implements ConstraintValidator<TransactionUpdate, TransactionUpdateRequest> {
-    @Override
-    public void initialize(TransactionUpdate constraintAnnotation) {
+public class TransactionUpdateValidator implements
+    ConstraintValidator<TransactionUpdate, TransactionUpdateRequest> {
 
-    }
+  @Override
+  public void initialize(TransactionUpdate constraintAnnotation) {
 
-    @Override
-    public boolean isValid(TransactionUpdateRequest value, ConstraintValidatorContext context) {
-        return true;
-    }
+  }
+
+  @Override
+  public boolean isValid(TransactionUpdateRequest value, ConstraintValidatorContext context) {
+    return true;
+  }
 }

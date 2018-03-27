@@ -5,30 +5,31 @@ import com.perfect.team.service.dto.UserReadDto;
 import com.perfect.team.service.response.base.BaseResponse;
 
 public class AuthResponse extends BaseResponse {
-    private UserReadDto userReadDto;
-    private String token;
 
-    public UserReadDto getUserReadDto() {
-        return userReadDto;
-    }
+  private UserReadDto userReadDto;
+  private String token;
 
-    public void setUserReadDto(UserReadDto userReadDto) {
-        this.userReadDto = userReadDto;
-    }
+  public UserReadDto getUserReadDto() {
+    return userReadDto;
+  }
 
-    public String getToken() {
-        return token;
-    }
+  public void setUserReadDto(UserReadDto userReadDto) {
+    this.userReadDto = userReadDto;
+  }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+  public String getToken() {
+    return token;
+  }
 
-    @Override
-    public String toString() {
-        return "AuthResponse{" +
-                "userReadDto=" + userReadDto +
-                ", token='" + token + '\'' +
-                "} " + super.toString();
-    }
+  public void setToken(String token) {
+    this.token = token;
+  }
+
+  @Override
+  public String toString() {
+    return "AuthResponse{" +
+        "userReadDto=" + userReadDto +
+        ", token='" + token + '\'' +
+        "} " + super.toString();
+  }
 }

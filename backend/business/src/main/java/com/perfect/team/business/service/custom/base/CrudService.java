@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface CrudService<T extends Serializable> {
 
-    Long create(T bean);
+  Long create(T bean);
 
-    T read(Long id);
+  T read(Long id);
 
-    T update(Long id, T bean);
+  T update(Long id, T bean);
 
-    void delete(Long id);
+  void delete(Long id);
 
-    List<T> readAll();
+  List<T> readAll();
 }

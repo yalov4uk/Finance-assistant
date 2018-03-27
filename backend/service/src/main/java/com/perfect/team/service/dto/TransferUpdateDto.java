@@ -3,60 +3,61 @@ package com.perfect.team.service.dto;
 import java.math.BigDecimal;
 
 public class TransferUpdateDto {
-    private BigDecimal value;
-    private String note;
-    private Long date;
-    private BigDecimal exchangeRate;
-    private Long toAccountId;
 
-    public BigDecimal getValue() {
-        return value;
-    }
+  private BigDecimal value;
+  private String note;
+  private Long date;
+  private BigDecimal exchangeRate;
+  private Long toAccountId;
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
+  public BigDecimal getValue() {
+    return value;
+  }
 
-    public String getNote() {
-        return note;
-    }
+  public void setValue(BigDecimal value) {
+    this.value = value;
+  }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+  public String getNote() {
+    return note;
+  }
 
-    public Long getDate() {
-        return date;
-    }
+  public void setNote(String note) {
+    this.note = note;
+  }
 
-    public void setDate(Long date) {
-        this.date = date;
-    }
+  public Long getDate() {
+    return date;
+  }
 
-    public BigDecimal getExchangeRate() {
-        return exchangeRate;
-    }
+  public void setDate(Long date) {
+    this.date = date;
+  }
 
-    public void setExchangeRate(BigDecimal exchangeRate) {
-        this.exchangeRate = exchangeRate;
-    }
+  public BigDecimal getExchangeRate() {
+    return exchangeRate;
+  }
 
-    public Long getToAccountId() {
-        return toAccountId;
-    }
+  public void setExchangeRate(BigDecimal exchangeRate) {
+    this.exchangeRate = exchangeRate;
+  }
 
-    public void setToAccountId(Long toAccountId) {
-        this.toAccountId = toAccountId;
-    }
+  public Long getToAccountId() {
+    return toAccountId;
+  }
 
-    @Override
-    public String toString() {
-        return "TransferUpdateDto{" +
-                "value=" + value +
-                ", note='" + note + '\'' +
-                ", date=" + date +
-                ", exchangeRate=" + exchangeRate +
-                ", toAccountId=" + toAccountId +
-                '}';
-    }
+  public void setToAccountId(Long toAccountId) {
+    this.toAccountId = toAccountId;
+  }
+
+  @Override
+  public String toString() {
+    return "TransferUpdateDto{" +
+        "value=" + value +
+        ", note='" + note + '\'' +
+        ", date=" + date +
+        ", exchangeRate=" + exchangeRate +
+        ", toAccountId=" + toAccountId +
+        '}';
+  }
 }

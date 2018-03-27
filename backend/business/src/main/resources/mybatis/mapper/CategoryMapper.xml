@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.perfect.team.business.mapper.CategoryMapper">
 
-    <resultMap id="categoryResultMap" type="Category">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
-        <result property="icon" column="icon"/>
-        <association property="user" column="user_id" foreignColumn="id" columnPrefix="user_"
-                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
-        <association property="categoryType" column="category_type_id" foreignColumn="id" columnPrefix="category_type_"
-                     resultMap="com.perfect.team.business.mapper.CategoryTypeMapper.categoryTypeResultMap"/>
-    </resultMap>
+  <resultMap id="categoryResultMap" type="Category">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="icon" property="icon"/>
+    <association column="user_id" columnPrefix="user_" foreignColumn="id" property="user"
+      resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
+    <association column="category_type_id" columnPrefix="category_type_" foreignColumn="id"
+      property="categoryType"
+      resultMap="com.perfect.team.business.mapper.CategoryTypeMapper.categoryTypeResultMap"/>
+  </resultMap>
 
-    <sql id="categoryColumns">
-        ${category}.id as "${prefix}id",
-        ${category}.name as "${prefix}name",
-        ${category}.icon as "${prefix}icon",
-        ${category}.user_id as "${prefix}user_id",
-        ${category}.category_type_id as "${prefix}category_type_id"
-    </sql>
+  <sql id="categoryColumns">
+    ${category}.id as "${prefix}id",
+    ${category}.name as "${prefix}name",
+    ${category}.icon as "${prefix}icon",
+    ${category}.user_id as "${prefix}user_id",
+    ${category}.category_type_id as "${prefix}category_type_id"
+  </sql>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO category (category_type_id, icon, name, user_id)
-        VALUES (#{categoryType.id}, #{icon}, #{name}, #{user.id})
-    </insert>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO category (category_type_id, icon, name, user_id)
+    VALUES (#{categoryType.id}, #{icon}, #{name}, #{user.id})
+  </insert>
 
-    <select id="select" resultMap="categoryResultMap">
-        SELECT
-        <include refid="categoryColumns">
-            <property name="category" value="c"/>
-        </include>
-        FROM category c
-        WHERE c.id = #{id}
-    </select>
+  <select id="select" resultMap="categoryResultMap">
+    SELECT
+    <include refid="categoryColumns">
+      <property name="category" value="c"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM category c
+    WHERE c.id = #{id}
+  </select>
 
-    <update id="update" useGeneratedKeys="true" keyProperty="id">
-        UPDATE category
-        <set>
-            <if test="name != null">name = #{name},</if>
-            <if test="icon != null">icon = #{icon}</if>
-        </set>
-        WHERE id = #{id}
-    </update>
+  <update id="update" keyProperty="id" useGeneratedKeys="true">
+    UPDATE category
+    <set>
+      <if test="name != null">name = #{name},</if>
+      <if test="icon != null">icon = #{icon}</if>
+    </set>
+    WHERE id = #{id}
+  </update>
 
-    <delete id="delete">
-        DELETE FROM category
-        WHERE id = #{id}
-    </delete>
+  <delete id="delete">
+    DELETE FROM category
+    WHERE id = #{id}
+  </delete>
 
-    <select id="selectAll" resultMap="categoryResultMap">
-        SELECT
-        <include refid="categoryColumns">
-            <property name="category" value="c"/>
-        </include>
-        FROM category c
-    </select>
+  <select id="selectAll" resultMap="categoryResultMap">
+    SELECT
+    <include refid="categoryColumns">
+      <property name="category" value="c"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM category c
+  </select>
 
-    <select id="selectAllByUserId" resultMap="categoryResultMap">
-        SELECT
-        <include refid="categoryColumns">
-            <property name="category" value="c"/>
-        </include>
-        FROM category c
-        WHERE c.user_id = #{userId}
-    </select>
+  <select id="selectAllByUserId" resultMap="categoryResultMap">
+    SELECT
+    <include refid="categoryColumns">
+      <property name="category" value="c"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM category c
+    WHERE c.user_id = #{userId}
+  </select>
 </mapper>

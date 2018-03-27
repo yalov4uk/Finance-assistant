@@ -1,95 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>financial-service</artifactId>
-        <groupId>com.perfect.team</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>financial-service</artifactId>
+    <groupId>com.perfect.team</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>core</artifactId>
+  <artifactId>core</artifactId>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
 
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <env>dev</env>
-            </properties>
-        </profile>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <env>dev</env>
+      </properties>
+    </profile>
 
-        <profile>
-            <id>docker</id>
-            <properties>
-                <env>docker</env>
-            </properties>
-        </profile>
-    </profiles>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <env>docker</env>
+      </properties>
+    </profile>
+  </profiles>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.perfect.team</groupId>
-            <artifactId>impl-rest</artifactId>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>com.perfect.team</groupId>
+      <artifactId>business</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.perfect.team</groupId>
+      <artifactId>service</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.perfect.team</groupId>
+      <artifactId>rest-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.perfect.team</groupId>
+      <artifactId>rest-impl</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-jersey2-jaxrs</artifactId>
+    </dependency>
+  </dependencies>
 
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-jersey2-jaxrs</artifactId>
-        </dependency>
-    </dependencies>
+  <build>
+    <filters>
+      <filter>${basedir}/build-${env}.properties</filter>
+    </filters>
 
-    <build>
-        <filters>
-            <filter>${basedir}/build-${env}.properties</filter>
-        </filters>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
 
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
+      <resource>
+        <directory>src/main/filter</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
 
-            <resource>
-                <directory>src/main/filter</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${version.spring.boot}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
 
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${version.spring.boot}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-
-        <finalName>${parent.artifactId}</finalName>
-    </build>
+    <finalName>${parent.artifactId}</finalName>
+  </build>
 
 </project>

@@ -12,15 +12,16 @@ import org.springframework.stereotype.Component;
 @Order(10)
 @Component
 public class LoggingAspect {
-    private static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Around("execution(public * com.perfect.team.service.api..*(..))")
-    public Object authenticate(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        for (Object arg : proceedingJoinPoint.getArgs()) {
-            logger.info("Request: {}", arg.toString());
-        }
-        Object result = proceedingJoinPoint.proceed();
-        logger.info("Response: {}", result != null ? result.toString() : null);
-        return result;
+  private static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
+
+  @Around("execution(public * com.perfect.team.service.api..*(..))")
+  public Object authenticate(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    for (Object arg : proceedingJoinPoint.getArgs()) {
+      logger.info("Request: {}", arg.toString());
     }
+    Object result = proceedingJoinPoint.proceed();
+    logger.info("Response: {}", result != null ? result.toString() : null);
+    return result;
+  }
 }

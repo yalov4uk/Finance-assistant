@@ -8,13 +8,15 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class AccountCreateValidator implements ConstraintValidator<AccountCreate, AccountCreateRequest> {
-    @Override
-    public void initialize(AccountCreate constraintAnnotation) {
-    }
+public class AccountCreateValidator implements
+    ConstraintValidator<AccountCreate, AccountCreateRequest> {
 
-    @Override
-    public boolean isValid(AccountCreateRequest value, ConstraintValidatorContext context) {
-        return true;
-    }
+  @Override
+  public void initialize(AccountCreate constraintAnnotation) {
+  }
+
+  @Override
+  public boolean isValid(AccountCreateRequest value, ConstraintValidatorContext context) {
+    return true;
+  }
 }

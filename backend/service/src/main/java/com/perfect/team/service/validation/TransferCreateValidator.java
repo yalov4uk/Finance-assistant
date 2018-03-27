@@ -7,14 +7,16 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class TransferCreateValidator implements ConstraintValidator<TransferCreate, TransferCreateRequest> {
-    @Override
-    public void initialize(TransferCreate constraintAnnotation) {
+public class TransferCreateValidator implements
+    ConstraintValidator<TransferCreate, TransferCreateRequest> {
 
-    }
+  @Override
+  public void initialize(TransferCreate constraintAnnotation) {
 
-    @Override
-    public boolean isValid(TransferCreateRequest value, ConstraintValidatorContext context) {
-        return true;
-    }
+  }
+
+  @Override
+  public boolean isValid(TransferCreateRequest value, ConstraintValidatorContext context) {
+    return true;
+  }
 }

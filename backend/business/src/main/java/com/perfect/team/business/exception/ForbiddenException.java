@@ -1,12 +1,14 @@
 package com.perfect.team.business.exception;
 
-public class ForbiddenException extends RuntimeException {
+import com.perfect.team.business.exception.base.BusinessException;
 
-    public ForbiddenException() {
-        super();
-    }
+public class ForbiddenException extends BusinessException {
 
-    public ForbiddenException(String message) {
-        super(message);
-    }
+  public ForbiddenException() {
+    super();
+  }
+
+  public ForbiddenException(String message) {
+    super(message);
+  }
 }

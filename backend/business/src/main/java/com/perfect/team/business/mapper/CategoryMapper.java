@@ -1,6 +1,6 @@
 package com.perfect.team.business.mapper;
 
-import com.perfect.team.business.entity.Category;
+import com.perfect.team.business.model.Category;
 import com.perfect.team.business.mapper.base.CrudMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -11,5 +11,5 @@ import java.util.List;
 @Component
 public interface CategoryMapper extends CrudMapper<Category> {
 
-    List<Category> selectAllByUserId(Long userId);
+  List<Category> selectAllByUserId(Long userId);
 }

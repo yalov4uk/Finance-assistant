@@ -1,30 +1,31 @@
 package com.perfect.team.service.dto;
 
 public class UserUpdateDto {
-    private String name;
-    private String email;
 
-    public String getName() {
-        return name;
-    }
+  private String name;
+  private String email;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    @Override
-    public String toString() {
-        return "UserUpdateDto{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  @Override
+  public String toString() {
+    return "UserUpdateDto{" +
+        "name='" + name + '\'' +
+        ", email='" + email + '\'' +
+        '}';
+  }
 }

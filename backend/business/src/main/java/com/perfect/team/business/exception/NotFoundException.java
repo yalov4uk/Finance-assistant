@@ -1,12 +1,14 @@
 package com.perfect.team.business.exception;
 
-public class NotFoundException extends RuntimeException {
+import com.perfect.team.business.exception.base.BusinessException;
 
-    public NotFoundException() {
-        super();
-    }
+public class NotFoundException extends BusinessException {
 
-    public NotFoundException(String message) {
-        super(message);
-    }
+  public NotFoundException() {
+    super();
+  }
+
+  public NotFoundException(String message) {
+    super(message);
+  }
 }

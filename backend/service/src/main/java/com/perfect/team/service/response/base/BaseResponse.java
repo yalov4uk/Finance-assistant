@@ -4,24 +4,24 @@ import java.util.Date;
 
 public class BaseResponse {
 
-    private Date date;
+  private Date date;
 
-    public BaseResponse() {
-        date = new Date();
-    }
+  public BaseResponse() {
+    date = new Date();
+  }
 
-    public Date getDate() {
-        return date;
-    }
+  public Date getDate() {
+    return date;
+  }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+  public void setDate(Date date) {
+    this.date = date;
+  }
 
-    @Override
-    public String toString() {
-        return "BaseResponse{" +
-                "date=" + date +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "BaseResponse{" +
+        "date=" + date +
+        '}';
+  }
 }

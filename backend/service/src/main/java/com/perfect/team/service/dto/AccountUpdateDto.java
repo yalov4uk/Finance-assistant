@@ -1,40 +1,41 @@
 package com.perfect.team.service.dto;
 
 public class AccountUpdateDto {
-    private String name;
-    private String icon;
-    private String currency;
 
-    public String getName() {
-        return name;
-    }
+  private String name;
+  private String icon;
+  private String currency;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getIcon() {
-        return icon;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+  public String getIcon() {
+    return icon;
+  }
 
-    public String getCurrency() {
-        return currency;
-    }
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
+  public String getCurrency() {
+    return currency;
+  }
 
-    @Override
-    public String toString() {
-        return "AccountUpdateDto{" +
-                "name='" + name + '\'' +
-                ", icon='" + icon + '\'' +
-                ", currency='" + currency + '\'' +
-                '}';
-    }
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+  @Override
+  public String toString() {
+    return "AccountUpdateDto{" +
+        "name='" + name + '\'' +
+        ", icon='" + icon + '\'' +
+        ", currency='" + currency + '\'' +
+        '}';
+  }
 }

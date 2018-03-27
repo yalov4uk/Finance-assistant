@@ -1,20 +1,21 @@
 package com.perfect.team.service.request.base;
 
 public class AuthRequest extends BaseRequest {
-    private String token;
 
-    public String getToken() {
-        return token;
-    }
+  private String token;
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+  public String getToken() {
+    return token;
+  }
 
-    @Override
-    public String toString() {
-        return "AuthRequest{" +
-                "token='" + token + '\'' +
-                "} " + super.toString();
-    }
+  public void setToken(String token) {
+    this.token = token;
+  }
+
+  @Override
+  public String toString() {
+    return "AuthRequest{" +
+        "token='" + token + '\'' +
+        "} " + super.toString();
+  }
 }

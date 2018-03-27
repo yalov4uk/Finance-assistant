@@ -1,6 +1,6 @@
 package com.perfect.team.business.mapper;
 
-import com.perfect.team.business.entity.User;
+import com.perfect.team.business.model.User;
 import com.perfect.team.business.mapper.base.CrudMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserMapper extends CrudMapper<User> {
 
-    User selectByEmail(String email);
+  User selectByEmail(String email);
 }

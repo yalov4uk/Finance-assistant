@@ -3,80 +3,81 @@ package com.perfect.team.service.dto;
 import java.math.BigDecimal;
 
 public class AccountReadDto {
-    private Long id;
-    private String name;
-    private String icon;
-    private BigDecimal balance;
-    private Long initialDate;
-    private String currency;
-    private Long userId;
 
-    public Long getId() {
-        return id;
-    }
+  private Long id;
+  private String name;
+  private String icon;
+  private BigDecimal balance;
+  private Long initialDate;
+  private String currency;
+  private Long userId;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getIcon() {
-        return icon;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+  public String getIcon() {
+    return icon;
+  }
 
-    public BigDecimal getBalance() {
-        return balance;
-    }
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
+  public BigDecimal getBalance() {
+    return balance;
+  }
 
-    public Long getInitialDate() {
-        return initialDate;
-    }
+  public void setBalance(BigDecimal balance) {
+    this.balance = balance;
+  }
 
-    public void setInitialDate(Long initialDate) {
-        this.initialDate = initialDate;
-    }
+  public Long getInitialDate() {
+    return initialDate;
+  }
 
-    public String getCurrency() {
-        return currency;
-    }
+  public void setInitialDate(Long initialDate) {
+    this.initialDate = initialDate;
+  }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
+  public String getCurrency() {
+    return currency;
+  }
 
-    public Long getUserId() {
-        return userId;
-    }
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+  public Long getUserId() {
+    return userId;
+  }
 
-    @Override
-    public String toString() {
-        return "AccountReadDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", icon='" + icon + '\'' +
-                ", balance=" + balance +
-                ", initialDate=" + initialDate +
-                ", currency='" + currency + '\'' +
-                ", userId=" + userId +
-                '}';
-    }
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
+
+  @Override
+  public String toString() {
+    return "AccountReadDto{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", icon='" + icon + '\'' +
+        ", balance=" + balance +
+        ", initialDate=" + initialDate +
+        ", currency='" + currency + '\'' +
+        ", userId=" + userId +
+        '}';
+  }
 }

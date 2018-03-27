@@ -6,27 +6,24 @@ import com.perfect.team.service.request.UserUpdateRequest;
 import com.perfect.team.service.request.base.AuthRequest;
 import com.perfect.team.service.response.CategoriesResponse;
 import com.perfect.team.service.response.UserResponse;
+import com.perfect.team.service.response.UsersResponse;
 import org.springframework.stereotype.Service;
 
 @Service("UserServiceImpl")
 public class UserServiceImpl implements UserService {
-    @Override
-    public UserResponse read(IdRequest request) {
-        return null;
-    }
 
-    @Override
-    public UserResponse update(UserUpdateRequest request) {
-        return null;
-    }
+  @Override
+  public UserResponse read(IdRequest request) {
+    return null;
+  }
 
-    @Override
-    public void delete(IdRequest request) {
+  @Override
+  public UserResponse update(UserUpdateRequest request) {
+    return null;
+  }
 
-    }
-
-    @Override
-    public CategoriesResponse readAll(AuthRequest request) {
-        return null;
-    }
+  @Override
+  public UsersResponse readAll(AuthRequest request) {
+    return null;
+  }
 }

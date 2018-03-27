@@ -1,73 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.perfect.team.business.mapper.UserMapper">
 
-    <resultMap id="userResultMap" type="User">
-        <id property="id" column="id"/>
-        <result property="email" column="email"/>
-        <result property="name" column="name"/>
-        <result property="password" column="password"/>
-        <collection property="accounts" column="id" foreignColumn="user_id" columnPrefix="account_"
-                    resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
-        <collection property="categories" column="id" foreignColumn="user_id" columnPrefix="category_"
-                    resultMap="com.perfect.team.business.mapper.CategoryMapper.categoryResultMap"/>
-        <collection property="transactions" column="id" foreignColumn="user_id" columnPrefix="transaction_"
-                    resultMap="com.perfect.team.business.mapper.TransactionMapper.transactionResultMap"/>
-        <collection property="transfers" column="id" foreignColumn="user_id" columnPrefix="transfer_"
-                    resultMap="com.perfect.team.business.mapper.TransferMapper.transferResultMap"/>
-    </resultMap>
+  <resultMap id="userResultMap" type="User">
+    <id column="id" property="id"/>
+    <result column="email" property="email"/>
+    <result column="name" property="name"/>
+    <result column="password" property="password"/>
+    <collection column="id" columnPrefix="account_" foreignColumn="user_id" property="accounts"
+      resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
+    <collection column="id" columnPrefix="category_" foreignColumn="user_id" property="categories"
+      resultMap="com.perfect.team.business.mapper.CategoryMapper.categoryResultMap"/>
+    <collection column="id" columnPrefix="transaction_" foreignColumn="user_id"
+      property="transactions"
+      resultMap="com.perfect.team.business.mapper.TransactionMapper.transactionResultMap"/>
+    <collection column="id" columnPrefix="transfer_" foreignColumn="user_id" property="transfers"
+      resultMap="com.perfect.team.business.mapper.TransferMapper.transferResultMap"/>
+  </resultMap>
 
-    <sql id="userColumns">
-        ${user}.id as "${prefix}id",
-        ${user}.email as "${prefix}email",
-        ${user}.name as "${prefix}name",
-        ${user}.password as "${prefix}password"
-    </sql>
+  <sql id="userColumns">
+    ${user}.id as "${prefix}id",
+    ${user}.email as "${prefix}email",
+    ${user}.name as "${prefix}name",
+    ${user}.password as "${prefix}password"
+  </sql>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user (email, name, password) VALUES (#{email}, #{name}, #{password})
-    </insert>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO user (email, name, password) VALUES (#{email}, #{name}, #{password})
+  </insert>
 
-    <select id="select" resultMap="userResultMap">
-        SELECT
-        <include refid="userColumns">
-            <property name="user" value="u"/>
-        </include>
-        FROM user u
-        WHERE u.id = #{id}
-    </select>
+  <select id="select" resultMap="userResultMap">
+    SELECT
+    <include refid="userColumns">
+      <property name="user" value="u"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM user u
+    WHERE u.id = #{id}
+  </select>
 
-    <update id="update" useGeneratedKeys="true" keyProperty="id">
-        UPDATE user
-        <set>
-            <if test="email != null">email = #{email},</if>
-            <if test="name != null">name = #{name},</if>
-            <if test="password != null">password = #{password}</if>
-        </set>
-        WHERE id = #{id}
-    </update>
+  <update id="update" keyProperty="id" useGeneratedKeys="true">
+    UPDATE user
+    <set>
+      <if test="email != null">email = #{email},</if>
+      <if test="name != null">name = #{name},</if>
+      <if test="password != null">password = #{password}</if>
+    </set>
+    WHERE id = #{id}
+  </update>
 
-    <delete id="delete">
-        DELETE FROM user
-        WHERE id = #{id}
-    </delete>
+  <delete id="delete">
+    DELETE FROM user
+    WHERE id = #{id}
+  </delete>
 
-    <select id="selectAll" resultMap="userResultMap">
-        SELECT
-        <include refid="userColumns">
-            <property name="user" value="u"/>
-        </include>
-        FROM user u
-    </select>
+  <select id="selectAll" resultMap="userResultMap">
+    SELECT
+    <include refid="userColumns">
+      <property name="user" value="u"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM user u
+  </select>
 
-    <select id="selectByEmail" resultMap="userResultMap">
-        SELECT
-        <include refid="userColumns">
-            <property name="user" value="u"/>
-        </include>
-        FROM user u
-        WHERE u.email = #{email}
-    </select>
+  <select id="selectByEmail" resultMap="userResultMap">
+    SELECT
+    <include refid="userColumns">
+      <property name="user" value="u"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM user u
+    WHERE u.email = #{email}
+  </select>
 </mapper>

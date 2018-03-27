@@ -9,19 +9,19 @@ import com.perfect.team.service.response.CategoryResponse;
 import com.perfect.team.service.validation.CategoryCreate;
 import com.perfect.team.service.validation.CategoryId;
 import com.perfect.team.service.validation.CategoryUpdate;
-import org.springframework.validation.annotation.Validated;
-
 import java.net.URI;
+import org.springframework.validation.annotation.Validated;
 
 @Validated
 public interface CategoryService {
-    URI create(@CategoryCreate CategoryCreateRequest request);
 
-    CategoryResponse read(@CategoryId IdRequest request);
+  URI create(@CategoryCreate CategoryCreateRequest request);
 
-    CategoryResponse update(@CategoryUpdate CategoryUpdateRequest request);
+  CategoryResponse read(@CategoryId IdRequest request);
 
-    void delete(@CategoryId IdRequest request);
+  CategoryResponse update(@CategoryUpdate CategoryUpdateRequest request);
 
-    CategoriesResponse readAll(AuthRequest request);
+  void delete(@CategoryId IdRequest request);
+
+  CategoriesResponse readAll(AuthRequest request);
 }

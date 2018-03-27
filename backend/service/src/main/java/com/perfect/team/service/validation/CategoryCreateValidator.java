@@ -7,14 +7,16 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class CategoryCreateValidator implements ConstraintValidator<CategoryCreate, CategoryCreateRequest> {
-    @Override
-    public void initialize(CategoryCreate constraintAnnotation) {
+public class CategoryCreateValidator implements
+    ConstraintValidator<CategoryCreate, CategoryCreateRequest> {
 
-    }
+  @Override
+  public void initialize(CategoryCreate constraintAnnotation) {
 
-    @Override
-    public boolean isValid(CategoryCreateRequest value, ConstraintValidatorContext context) {
-        return true;
-    }
+  }
+
+  @Override
+  public boolean isValid(CategoryCreateRequest value, ConstraintValidatorContext context) {
+    return true;
+  }
 }

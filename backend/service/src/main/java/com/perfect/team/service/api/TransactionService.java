@@ -7,20 +7,21 @@ import com.perfect.team.service.request.TransactionUpdateRequest;
 import com.perfect.team.service.request.base.AuthRequest;
 import com.perfect.team.service.response.CategoriesResponse;
 import com.perfect.team.service.response.TransactionResponse;
+import com.perfect.team.service.response.TransactionsResponse;
 import com.perfect.team.service.validation.TransactionCreate;
 import com.perfect.team.service.validation.TransactionId;
 import com.perfect.team.service.validation.TransactionUpdate;
-
 import java.net.URI;
 
 public interface TransactionService {
-    URI create(@TransactionCreate TransactionCreateRequest request);
 
-    TransactionResponse read(@TransactionId IdRequest request);
+  URI create(@TransactionCreate TransactionCreateRequest request);
 
-    TransactionResponse update(@TransactionUpdate TransactionUpdateRequest request);
+  TransactionResponse read(@TransactionId IdRequest request);
 
-    void delete(@TransactionId IdRequest request);
+  TransactionResponse update(@TransactionUpdate TransactionUpdateRequest request);
 
-    CategoriesResponse readAll(AuthRequest request);
+  void delete(@TransactionId IdRequest request);
+
+  TransactionsResponse readAll(AuthRequest request);
 }

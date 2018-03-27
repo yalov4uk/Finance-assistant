@@ -1,49 +1,52 @@
 package com.perfect.team.business.service.custom;
 
-import com.perfect.team.business.entity.Account;
 import com.perfect.team.business.mapper.AccountMapper;
-import com.perfect.team.business.mapper.base.CrudMapper;
-import com.perfect.team.business.service.custom.base.CrudServiceBase;
-import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
+import com.perfect.team.business.model.Account;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import javax.inject.Inject;
+import org.springframework.stereotype.Service;
 
 @Service
-public class AccountServiceImpl extends CrudServiceBase<Account> implements AccountService {
+public class AccountServiceImpl implements AccountService {
 
-    @Inject
-    private AccountMapper accountMapper;
+  @Inject
+  private AccountMapper accountMapper;
 
-    @Override
-    protected CrudMapper<Account> getMapper() {
-        return accountMapper;
+  @Override
+  public Long create(Account bean) {
+    if (Arrays
+        .stream(Account.Currency.values())
+        .noneMatch(currency -> Objects.equals(currency, bean.getCurrency()))) {
+      bean.setCurrency(Account.Currency.BYN);
     }
+    accountMapper.insert(bean);
+    return bean.getId();
+  }
 
-    @Override
-    protected Long getBeanId(Account bean) {
-        return bean.getId();
-    }
+  @Override
+  public Account read(Long id) {
+    return null;
+  }
 
-    @Override
-    protected void setBeanId(Long id, Account bean) {
-        bean.setId(id);
-    }
+  @Override
+  public Account update(Long id, Account account) {
+    return null;
+  }
 
-    @Override
-    public Long create(Account bean) {
-        if (Arrays
-                .stream(Account.Currency.values())
-                .noneMatch(currency -> Objects.equals(currency, bean.getCurrency()))) {
-            bean.setCurrency(Account.Currency.BYN);
-        }
-        return super.create(bean);
-    }
+  @Override
+  public void delete(Long id) {
 
-    @Override
-    public List<Account> readAllByUserId(Long userId) {
-        return accountMapper.selectAllByUserId(userId);
-    }
+  }
+
+  @Override
+  public List<Account> readAll() {
+    return null;
+  }
+
+  @Override
+  public List<Account> readAllByUserId(Long userId) {
+    return accountMapper.selectAllByUserId(userId);
+  }
 }

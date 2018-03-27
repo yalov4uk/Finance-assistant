@@ -1,78 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.perfect.team.business.mapper.TransferMapper">
 
-    <resultMap id="transferResultMap" type="Transfer">
-        <id property="id" column="id"/>
-        <result property="value" column="value"/>
-        <result property="note" column="note"/>
-        <result property="date" column="date"/>
-        <result property="exchangeRate" column="exchange_rate"/>
-        <association property="fromAccount" column="from_account_id" foreignColumn="id" columnPrefix="from_account_"
-                     resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
-        <association property="toAccount" column="to_account_id" foreignColumn="id" columnPrefix="to_account_"
-                     resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
-        <association property="user" column="user_id" foreignColumn="id" columnPrefix="user_"
-                     resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
-    </resultMap>
+  <resultMap id="transferResultMap" type="Transfer">
+    <id column="id" property="id"/>
+    <result column="value" property="value"/>
+    <result column="note" property="note"/>
+    <result column="date" property="date"/>
+    <result column="exchange_rate" property="exchangeRate"/>
+    <association column="from_account_id" columnPrefix="from_account_" foreignColumn="id"
+      property="fromAccount"
+      resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
+    <association column="to_account_id" columnPrefix="to_account_" foreignColumn="id"
+      property="toAccount"
+      resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
+    <association column="user_id" columnPrefix="user_" foreignColumn="id" property="user"
+      resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
+  </resultMap>
 
-    <sql id="transferColumns">
-        ${transfer}.id as "${prefix}id",
-        ${transfer}.date as "${prefix}date",
-        ${transfer}.note as "${prefix}note",
-        ${transfer}.value as "${prefix}value",
-        ${transfer}.exchange_rate as "${prefix}exchange_rate",
-        ${transfer}.from_account_id as "${prefix}from_account_id",
-        ${transfer}.to_account_id as "${prefix}to_account_id",
-        ${transfer}.user_id as "${prefix}user_id",
-    </sql>
+  <sql id="transferColumns">
+    ${transfer}.id as "${prefix}id",
+    ${transfer}.date as "${prefix}date",
+    ${transfer}.note as "${prefix}note",
+    ${transfer}.value as "${prefix}value",
+    ${transfer}.exchange_rate as "${prefix}exchange_rate",
+    ${transfer}.from_account_id as "${prefix}from_account_id",
+    ${transfer}.to_account_id as "${prefix}to_account_id",
+    ${transfer}.user_id as "${prefix}user_id",
+  </sql>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO transfer (date, note, value, exchange_rate, from_account_id, to_account_id, user_id)
-        VALUES (#{date}, #{note}, #{value}, ${exchangeRate}, #{fromAccount.id}, #{toAccount.id}, #{user.id})
-    </insert>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO transfer (date, note, value, exchange_rate, from_account_id, to_account_id, user_id)
+    VALUES (#{date}, #{note}, #{value}, ${exchangeRate}, #{fromAccount.id}, #{toAccount.id},
+    #{user.id})
+  </insert>
 
-    <select id="select" resultMap="transferResultMap">
-        SELECT
-        <include refid="transferColumns">
-            <property name="transfer" value="t"/>
-        </include>
-        FROM transfer t
-        WHERE t.id = #{id}
-    </select>
+  <select id="select" resultMap="transferResultMap">
+    SELECT
+    <include refid="transferColumns">
+      <property name="transfer" value="t"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM transfer t
+    WHERE t.id = #{id}
+  </select>
 
-    <update id="update" useGeneratedKeys="true" keyProperty="id">
-        UPDATE transfer
-        <set>
-            <if test="value != null">value = #{value},</if>
-            <if test="note != null">note = #{note},</if>
-            <if test="date != null">date = #{date},</if>
-            <if test="exchangeRate != null">exchange_rate = #{exchangeRate}</if>
-        </set>
-        WHERE id = #{id}
-    </update>
+  <update id="update" keyProperty="id" useGeneratedKeys="true">
+    UPDATE transfer
+    <set>
+      <if test="value != null">value = #{value},</if>
+      <if test="note != null">note = #{note},</if>
+      <if test="date != null">date = #{date},</if>
+      <if test="exchangeRate != null">exchange_rate = #{exchangeRate}</if>
+    </set>
+    WHERE id = #{id}
+  </update>
 
-    <delete id="delete">
-        DELETE FROM transfer
-        WHERE id = #{id}
-    </delete>
+  <delete id="delete">
+    DELETE FROM transfer
+    WHERE id = #{id}
+  </delete>
 
-    <select id="selectAll" resultMap="transferResultMap">
-        SELECT
-        <include refid="transferColumns">
-            <property name="transfer" value="t"/>
-        </include>
-        FROM transfer t
-    </select>
+  <select id="selectAll" resultMap="transferResultMap">
+    SELECT
+    <include refid="transferColumns">
+      <property name="transfer" value="t"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM transfer t
+  </select>
 
-    <select id="selectAllByUserId" resultMap="transferResultMap">
-        SELECT
-        <include refid="transferColumns">
-            <property name="transfer" value="t"/>
-        </include>
-        FROM transfer t
-        WHERE t.user_id = #{userId}
-    </select>
+  <select id="selectAllByUserId" resultMap="transferResultMap">
+    SELECT
+    <include refid="transferColumns">
+      <property name="transfer" value="t"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM transfer t
+    WHERE t.user_id = #{userId}
+  </select>
 </mapper>

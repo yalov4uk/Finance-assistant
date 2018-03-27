@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface CrudMapper<T extends Serializable> {
 
-    int insert(T bean);
+  int insert(T bean);
 
-    T select(Long id);
+  T select(Long id);
 
-    int update(T bean);
+  int update(T bean);
 
-    int delete(Long id);
+  int delete(Long id);
 
-    List<T> selectAll();
+  List<T> selectAll();
 }
