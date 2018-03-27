@@ -1,7 +1,6 @@
 package com.perfect.team.business.model;
 
 import com.perfect.team.business.exception.ValidationException;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;

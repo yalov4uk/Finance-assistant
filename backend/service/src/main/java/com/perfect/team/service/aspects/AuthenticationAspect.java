@@ -21,7 +21,8 @@ public class AuthenticationAspect {
   @Inject
   private AuthenticationManager authenticationManager;
 
-  @Before("execution(public * com.perfect.team.service.api..*(..))")
+  @Before("execution(public * com.perfect.team.service.api..*(..)) "
+      + "&& !execution(public * com.perfect.team.service.api.AuthService..*())")
   public void authenticate(JoinPoint joinPoint) throws AuthenticationException {
     for (Object arg : joinPoint.getArgs()) {
       if (arg instanceof AuthRequest) {

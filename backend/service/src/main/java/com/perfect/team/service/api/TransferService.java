@@ -4,7 +4,6 @@ import com.perfect.team.service.request.IdRequest;
 import com.perfect.team.service.request.TransferCreateRequest;
 import com.perfect.team.service.request.TransferUpdateRequest;
 import com.perfect.team.service.request.base.AuthRequest;
-import com.perfect.team.service.response.CategoriesResponse;
 import com.perfect.team.service.response.TransferResponse;
 import com.perfect.team.service.response.TransfersResponse;
 import com.perfect.team.service.validation.TransferCreate;

@@ -7,6 +7,7 @@ import com.perfect.team.rest.api.response.TransfersRs;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
 import io.swagger.annotations.ResponseHeader;
 import java.net.URI;
 import javax.validation.Valid;
@@ -21,12 +22,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("transfers")
-@Produces("application/json")
-@Consumes("application/json")
-@Api
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+@Api(authorizations = {@Authorization("Auth-token")})
 public interface TransferResource {
 
   @POST

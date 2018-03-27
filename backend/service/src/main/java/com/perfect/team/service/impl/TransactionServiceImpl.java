@@ -5,7 +5,6 @@ import com.perfect.team.service.request.IdRequest;
 import com.perfect.team.service.request.TransactionCreateRequest;
 import com.perfect.team.service.request.TransactionUpdateRequest;
 import com.perfect.team.service.request.base.AuthRequest;
-import com.perfect.team.service.response.CategoriesResponse;
 import com.perfect.team.service.response.TransactionResponse;
 import com.perfect.team.service.response.TransactionsResponse;
 import java.net.URI;

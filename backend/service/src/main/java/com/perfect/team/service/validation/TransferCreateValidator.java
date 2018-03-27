@@ -1,10 +1,9 @@
 package com.perfect.team.service.validation;
 
 import com.perfect.team.service.request.TransferCreateRequest;
-import org.springframework.stereotype.Component;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.springframework.stereotype.Component;
 
 @Component
 public class TransferCreateValidator implements

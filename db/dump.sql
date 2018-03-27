@@ -25,27 +25,16 @@ CREATE TABLE `account` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-CREATE TABLE `category_type` (
-  `id`           BIGINT(20) NOT NULL AUTO_INCREMENT,
-  `name`         VARCHAR(255)        DEFAULT NULL,
-  `balance_type` VARCHAR(255)        DEFAULT NULL,
-  PRIMARY KEY (`id`)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
 CREATE TABLE `category` (
-  `id`               BIGINT(20) NOT NULL AUTO_INCREMENT,
-  `icon`             VARCHAR(255)        DEFAULT NULL,
-  `name`             VARCHAR(255)        DEFAULT NULL,
-  `user_id`          BIGINT(20)          DEFAULT NULL,
-  `category_type_id` BIGINT(20)          DEFAULT NULL,
+  `id`      BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `icon`    VARCHAR(255)        DEFAULT NULL,
+  `name`    VARCHAR(255)        DEFAULT NULL,
+  `type`    VARCHAR(255)        DEFAULT NULL,
+  `user_id` BIGINT(20)          DEFAULT NULL,
+
   PRIMARY KEY (`id`),
   KEY `FKpfk8djhv5natgshmxiav6xkpu` (`user_id`),
-  KEY `FKpfk8djhv5natqshmxiav6xkpu` (`category_type_id`),
   CONSTRAINT `FKpfk8djhv5natgshmxiav6xkpu` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-    ON DELETE CASCADE,
-  CONSTRAINT `FKpfk8djhv5natqshmxiav6xkpu` FOREIGN KEY (`category_type_id`) REFERENCES `category_type` (`id`)
     ON DELETE CASCADE
 )
   ENGINE = InnoDB

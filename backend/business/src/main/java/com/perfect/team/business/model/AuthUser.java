@@ -1,7 +1,5 @@
 package com.perfect.team.business.model;
 
-import com.perfect.team.business.model.User;
-
 public class AuthUser {
 
   private User user;

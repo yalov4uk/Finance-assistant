@@ -1,10 +1,9 @@
 package com.perfect.team.service.validation;
 
 import com.perfect.team.service.request.IdRequest;
-import org.springframework.stereotype.Component;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.springframework.stereotype.Component;
 
 @Component
 public class TransactionIdValidator implements ConstraintValidator<TransactionId, IdRequest> {
