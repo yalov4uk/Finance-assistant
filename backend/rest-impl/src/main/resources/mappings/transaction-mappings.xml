@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://dozer.sourceforge.net"
+  xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+  <mapping>
+    <class-a>com.perfect.team.api.request.TransactionCreateRequest</class-a>
+    <class-b>com.perfect.team.business.model.Transaction</class-b>
+    <field>
+      <a>transactionDto</a>
+      <b>this</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.business.model.Transaction</class-a>
+    <class-b>com.perfect.team.api.response.TransactionResponse</class-b>
+    <field>
+      <a>this</a>
+      <b>transactionDto</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.api.request.TransactionUpdateRequest</class-a>
+    <class-b>com.perfect.team.business.model.Transaction</class-b>
+    <field>
+      <a>transactionDto</a>
+      <b>this</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.rest.impl.model.CollectionWrapper</class-a>
+    <class-b>com.perfect.team.api.response.TransactionsResponse</class-b>
+    <field>
+      <a>collection</a>
+      <b>transactionDtos</b>
+    </field>
+  </mapping>
+</mappings>

@@ -19,13 +19,13 @@
     ${category}.id as "${prefix}id",
     ${category}.name as "${prefix}name",
     ${category}.icon as "${prefix}icon",
-    ${category}.user_id as "${prefix}user_id",
-    ${category}.category_type_id as "${prefix}category_type_id"
+    ${category}.type as "${prefix}type"
+    ${category}.user_id as "${prefix}user_id"
   </sql>
 
   <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-    INSERT INTO category (category_type_id, icon, name, user_id)
-    VALUES (#{categoryType.id}, #{icon}, #{name}, #{user.id})
+    INSERT INTO category (icon, name, type, user_id)
+    VALUES (#{icon}, #{name}, #{type}, #{user.id})
   </insert>
 
   <select id="select" resultMap="categoryResultMap">
@@ -39,17 +39,19 @@
   </select>
 
   <update id="update" keyProperty="id" useGeneratedKeys="true">
-    UPDATE category
+    UPDATE category c
     <set>
-      <if test="name != null">name = #{name},</if>
-      <if test="icon != null">icon = #{icon}</if>
+      <if test="name != null">c.name = #{name},</if>
+      <if test="icon != null">c.icon = #{icon},</if>
+      <if test="type != null">c.type = #{type},</if>
+      <if test="user.id != null">c.user_id = #{user.id}</if>
     </set>
-    WHERE id = #{id}
+    WHERE c.id = #{id}
   </update>
 
   <delete id="delete">
-    DELETE FROM category
-    WHERE id = #{id}
+    DELETE FROM category c
+    WHERE c.id = #{id}
   </delete>
 
   <select id="selectAll" resultMap="categoryResultMap">
@@ -61,7 +63,7 @@
     FROM category c
   </select>
 
-  <select id="selectAllByUserId" resultMap="categoryResultMap">
+  <select id="selectByUserId" resultMap="categoryResultMap">
     SELECT
     <include refid="categoryColumns">
       <property name="category" value="c"/>

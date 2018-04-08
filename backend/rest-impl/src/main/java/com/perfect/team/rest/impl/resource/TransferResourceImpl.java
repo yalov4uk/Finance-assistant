@@ -1,23 +1,18 @@
 package com.perfect.team.rest.impl.resource;
 
-import com.perfect.team.rest.api.request.TransferCreateRq;
-import com.perfect.team.rest.api.request.TransferUpdateRq;
-import com.perfect.team.rest.api.resource.TransferResource;
-import com.perfect.team.rest.api.response.TransferRs;
-import com.perfect.team.rest.api.response.TransfersRs;
-import com.perfect.team.rest.impl.helper.RequestHelper;
-import com.perfect.team.service.api.TransferService;
-import com.perfect.team.service.request.IdRequest;
-import com.perfect.team.service.request.TransferCreateRequest;
-import com.perfect.team.service.request.TransferUpdateRequest;
-import com.perfect.team.service.request.base.AuthRequest;
-import com.perfect.team.service.response.TransferResponse;
-import com.perfect.team.service.response.TransfersResponse;
+import com.perfect.team.api.request.TransferCreateRequest;
+import com.perfect.team.api.request.TransferUpdateRequest;
+import com.perfect.team.api.response.TransferResponse;
+import com.perfect.team.api.response.TransfersResponse;
+import com.perfect.team.api.rest.TransferResource;
+import com.perfect.team.business.model.Transfer;
+import com.perfect.team.business.service.TransferService;
+import com.perfect.team.rest.impl.model.CollectionWrapper;
 import java.net.URI;
 import javax.inject.Inject;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
-import org.modelmapper.ModelMapper;
+import javax.ws.rs.core.UriBuilder;
+import org.dozer.DozerBeanMapper;
 
 public class TransferResourceImpl implements TransferResource {
 
@@ -25,49 +20,40 @@ public class TransferResourceImpl implements TransferResource {
   private TransferService service;
 
   @Inject
-  private ModelMapper mapper;
-
-  @Inject
-  private RequestHelper requestHelper;
+  private DozerBeanMapper mapper;
 
   @Override
-  public Response create(TransferCreateRq request, HttpHeaders headers) {
-    TransferCreateRequest createRequest = mapper.map(request, TransferCreateRequest.class);
-    requestHelper.prepareRequest(createRequest, headers);
-    URI location = service.create(createRequest);
+  public Response create(TransferCreateRequest request) {
+    Transfer bean = mapper.map(request, Transfer.class);
+    Long beanId = service.create(bean);
+    URI location = UriBuilder.fromResource(TransferResource.class).path(beanId.toString())
+        .build();
     return Response.created(location).build();
   }
 
   @Override
-  public Response read(Long id, HttpHeaders headers) {
-    IdRequest idRequest = mapper.map(id, IdRequest.class);
-    requestHelper.prepareRequest(idRequest, headers);
-    TransferResponse response = service.read(idRequest);
-    return Response.ok(mapper.map(response, TransferRs.class)).build();
+  public Response read(Long id) {
+    Transfer bean = service.read(id);
+    return Response.ok(mapper.map(bean, TransferResponse.class)).build();
   }
 
   @Override
-  public Response update(Long id, TransferUpdateRq request, HttpHeaders headers) {
-    TransferUpdateRequest updateRequest = mapper.map(request, TransferUpdateRequest.class);
-    mapper.map(id, updateRequest);
-    requestHelper.prepareRequest(updateRequest, headers);
-    TransferResponse response = service.update(updateRequest);
-    return Response.ok(mapper.map(response, TransferRs.class)).build();
+  public Response update(Long id, TransferUpdateRequest request) {
+    Transfer bean = mapper.map(request, Transfer.class);
+    bean.setId(id);
+    bean = service.update(bean);
+    return Response.ok(mapper.map(bean, TransferResponse.class)).build();
   }
 
   @Override
-  public Response delete(Long id, HttpHeaders headers) {
-    IdRequest idRequest = mapper.map(id, IdRequest.class);
-    requestHelper.prepareRequest(idRequest, headers);
-    service.delete(idRequest);
+  public Response delete(Long id) {
+    service.delete(id);
     return Response.noContent().build();
   }
 
   @Override
-  public Response readAll(HttpHeaders headers) {
-    AuthRequest authRequest = new AuthRequest();
-    requestHelper.prepareRequest(authRequest, headers);
-    TransfersResponse response = service.readAll(authRequest);
-    return Response.ok(mapper.map(response, TransfersRs.class)).build();
+  public Response readAll() {
+    CollectionWrapper<Transfer> beans = new CollectionWrapper<>(service.readAll());
+    return Response.ok(mapper.map(beans, TransfersResponse.class)).build();
   }
 }

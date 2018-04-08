@@ -19,13 +19,13 @@
   <dependencies>
     <dependency>
       <groupId>com.perfect.team</groupId>
-      <artifactId>service</artifactId>
+      <artifactId>api</artifactId>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>com.perfect.team</groupId>
-      <artifactId>rest-api</artifactId>
+      <artifactId>business</artifactId>
       <scope>provided</scope>
     </dependency>
 
@@ -35,8 +35,13 @@
     </dependency>
 
     <dependency>
-      <groupId>org.modelmapper</groupId>
-      <artifactId>modelmapper</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sf.dozer</groupId>
+      <artifactId>dozer</artifactId>
     </dependency>
   </dependencies>
 

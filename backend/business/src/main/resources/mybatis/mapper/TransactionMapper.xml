@@ -44,19 +44,21 @@
   </select>
 
   <update id="update" keyProperty="id" useGeneratedKeys="true">
-    UPDATE transaction
+    UPDATE transaction t
     <set>
-      <if test="value != null">value = #{value},</if>
-      <if test="note != null">note = #{note},</if>
-      <if test="date != null">date = #{date},</if>
-      <if test="category.id != null">category_id = #{category.id}</if>
+      <if test="value != null">t.value = #{value},</if>
+      <if test="note != null">t.note = #{note},</if>
+      <if test="date != null">t.date = #{date},</if>
+      <if test="account.id != null">t.account_id = #{account.id},</if>
+      <if test="category.id != null">t.category_id = #{category.id},</if>
+      <if test="user.id != null">t.user_id = #{user.id}</if>
     </set>
-    WHERE id = #{id}
+    WHERE t.id = #{id}
   </update>
 
   <delete id="delete">
-    DELETE FROM transaction
-    WHERE id = #{id}
+    DELETE FROM transaction t
+    WHERE t.id = #{id}
   </delete>
 
   <select id="selectAll" resultMap="transactionResultMap">
@@ -68,7 +70,7 @@
     FROM transaction t
   </select>
 
-  <select id="selectAllByUserId" resultMap="transactionResultMap">
+  <select id="selectByUserId" resultMap="transactionResultMap">
     SELECT
     <include refid="transactionColumns">
       <property name="transaction" value="t"/>

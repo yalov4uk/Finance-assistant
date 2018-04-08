@@ -1,7 +1,7 @@
 package com.perfect.team.business.mapper.base;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 
 public interface CrudMapper<T extends Serializable> {
 
@@ -13,5 +13,5 @@ public interface CrudMapper<T extends Serializable> {
 
   int delete(Long id);
 
-  List<T> selectAll();
+  Collection<T> selectAll();
 }

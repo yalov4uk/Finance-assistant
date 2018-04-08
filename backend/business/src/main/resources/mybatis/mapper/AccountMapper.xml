@@ -21,8 +21,8 @@
     ${account}.icon as "${prefix}icon",
     ${account}.initial_date as "${prefix}initial_date",
     ${account}.balance as "${prefix}balance",
-    ${account}.user_id as "${prefix}user_id",
-    ${account}.currency as "${prefix}currency"
+    ${account}.currency as "${prefix}currency",
+    ${account}.user_id as "${prefix}user_id"
   </sql>
 
   <insert id="insert" keyProperty="id" useGeneratedKeys="true">
@@ -41,30 +41,33 @@
   </select>
 
   <update id="update" keyProperty="id" useGeneratedKeys="true">
-    UPDATE account
-    SET
-    name = #{name},
-    icon = #{icon},
-    balance = #{balance},
-    initial_date = #{initialDate},
-    currency = #{currency}
-    WHERE id = #{id}
+    UPDATE account a
+    <set>
+      <if test="name != null">a.name = #{name},</if>
+      <if test="icon != null">a.icon = #{icon},</if>
+      <if test="balance != null">a.balance = #{balance},</if>
+      <if test="initialDate != null">a.initial_date = #{initialDate},</if>
+      <if test="currency != null">a.currency = #{currency},</if>
+      <if test="user.id != null">a.user_id = #{user.id}</if>
+    </set>
+    WHERE a.id = #{id}
   </update>
 
   <delete id="delete">
-    DELETE FROM account
-    WHERE id = #{id}
+    DELETE FROM account a
+    WHERE a.id = #{id}
   </delete>
 
   <select id="selectAll" resultMap="accountResultMap">
     SELECT
     <include refid="accountColumns">
       <property name="account" value="a"/>
+      <property name="prefix" value=""/>
     </include>
     FROM account a
   </select>
 
-  <select id="selectAllByUserId" resultMap="accountResultMap">
+  <select id="selectByUserId" resultMap="accountResultMap">
     SELECT
     <include refid="accountColumns">
       <property name="account" value="a"/>

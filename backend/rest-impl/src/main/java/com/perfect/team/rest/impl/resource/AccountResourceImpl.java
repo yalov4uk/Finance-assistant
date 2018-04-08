@@ -1,24 +1,19 @@
 package com.perfect.team.rest.impl.resource;
 
-import com.perfect.team.rest.api.request.AccountCreateRq;
-import com.perfect.team.rest.api.request.AccountUpdateRq;
-import com.perfect.team.rest.api.resource.AccountResource;
-import com.perfect.team.rest.api.response.AccountRs;
-import com.perfect.team.rest.api.response.AccountsRs;
-import com.perfect.team.rest.impl.helper.RequestHelper;
-import com.perfect.team.service.api.AccountService;
-import com.perfect.team.service.request.AccountCreateRequest;
-import com.perfect.team.service.request.AccountUpdateRequest;
-import com.perfect.team.service.request.IdRequest;
-import com.perfect.team.service.request.base.AuthRequest;
-import com.perfect.team.service.response.AccountResponse;
-import com.perfect.team.service.response.AccountsResponse;
+import com.perfect.team.api.request.AccountCreateRequest;
+import com.perfect.team.api.request.AccountUpdateRequest;
+import com.perfect.team.api.response.AccountResponse;
+import com.perfect.team.api.response.AccountsResponse;
+import com.perfect.team.api.rest.AccountResource;
+import com.perfect.team.business.model.Account;
+import com.perfect.team.business.service.AccountService;
+import com.perfect.team.rest.impl.model.CollectionWrapper;
 import java.net.URI;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
-import org.modelmapper.ModelMapper;
+import javax.ws.rs.core.UriBuilder;
+import org.dozer.DozerBeanMapper;
 
 @Singleton
 public class AccountResourceImpl implements AccountResource {
@@ -27,49 +22,39 @@ public class AccountResourceImpl implements AccountResource {
   private AccountService service;
 
   @Inject
-  private ModelMapper mapper;
-
-  @Inject
-  private RequestHelper requestHelper;
+  private DozerBeanMapper mapper;
 
   @Override
-  public Response create(AccountCreateRq request, HttpHeaders headers) {
-    AccountCreateRequest createRequest = mapper.map(request, AccountCreateRequest.class);
-    requestHelper.prepareRequest(createRequest, headers);
-    URI location = service.create(createRequest);
+  public Response create(AccountCreateRequest request) {
+    Account bean = mapper.map(request, Account.class);
+    Long beanId = service.create(bean);
+    URI location = UriBuilder.fromResource(AccountResource.class).path(beanId.toString()).build();
     return Response.created(location).build();
   }
 
   @Override
-  public Response read(Long id, HttpHeaders headers) {
-    IdRequest idRequest = mapper.map(id, IdRequest.class);
-    requestHelper.prepareRequest(idRequest, headers);
-    AccountResponse response = service.read(idRequest);
-    return Response.ok(mapper.map(response, AccountRs.class)).build();
+  public Response read(Long id) {
+    Account bean = service.read(id);
+    return Response.ok(mapper.map(bean, AccountResponse.class)).build();
   }
 
   @Override
-  public Response update(Long id, AccountUpdateRq request, HttpHeaders headers) {
-    AccountUpdateRequest updateRequest = mapper.map(request, AccountUpdateRequest.class);
-    mapper.map(id, updateRequest);
-    requestHelper.prepareRequest(updateRequest, headers);
-    AccountResponse response = service.update(updateRequest);
-    return Response.ok(mapper.map(response, AccountRs.class)).build();
+  public Response update(Long id, AccountUpdateRequest request) {
+    Account bean = mapper.map(request, Account.class);
+    bean.setId(id);
+    bean = service.update(bean);
+    return Response.ok(mapper.map(bean, AccountResponse.class)).build();
   }
 
   @Override
-  public Response delete(Long id, HttpHeaders headers) {
-    IdRequest idRequest = mapper.map(id, IdRequest.class);
-    requestHelper.prepareRequest(idRequest, headers);
-    service.delete(idRequest);
+  public Response delete(Long id) {
+    service.delete(id);
     return Response.noContent().build();
   }
 
   @Override
-  public Response readAll(HttpHeaders headers) {
-    AuthRequest authRequest = new AuthRequest();
-    requestHelper.prepareRequest(authRequest, headers);
-    AccountsResponse response = service.readAll(authRequest);
-    return Response.ok(mapper.map(response, AccountsRs.class)).build();
+  public Response readAll() {
+    CollectionWrapper<Account> beans = new CollectionWrapper<>(service.readAll());
+    return Response.ok(mapper.map(beans, AccountsResponse.class)).build();
   }
 }

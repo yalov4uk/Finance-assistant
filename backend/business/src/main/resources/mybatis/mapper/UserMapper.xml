@@ -42,18 +42,18 @@
   </select>
 
   <update id="update" keyProperty="id" useGeneratedKeys="true">
-    UPDATE user
+    UPDATE user u
     <set>
-      <if test="email != null">email = #{email},</if>
-      <if test="name != null">name = #{name},</if>
-      <if test="password != null">password = #{password}</if>
+      <if test="email != null">u.email = #{email},</if>
+      <if test="name != null">u.name = #{name},</if>
+      <if test="password != null">u.password = #{password}</if>
     </set>
-    WHERE id = #{id}
+    WHERE u.id = #{id}
   </update>
 
   <delete id="delete">
-    DELETE FROM user
-    WHERE id = #{id}
+    DELETE FROM user u
+    WHERE u.id = #{id}
   </delete>
 
   <select id="selectAll" resultMap="userResultMap">

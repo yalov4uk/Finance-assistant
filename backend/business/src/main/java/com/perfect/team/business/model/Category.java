@@ -11,7 +11,7 @@ public class Category implements Serializable {
 
   private String icon;
 
-  private CategoryType categoryType;
+  private Type type;
 
   private User user;
 
@@ -39,14 +39,6 @@ public class Category implements Serializable {
     this.icon = icon;
   }
 
-  public CategoryType getCategoryType() {
-    return categoryType;
-  }
-
-  public void setCategoryType(CategoryType categoryType) {
-    this.categoryType = categoryType;
-  }
-
   public User getUser() {
     return user;
   }
@@ -60,17 +52,18 @@ public class Category implements Serializable {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof Category)) {
+    if (o == null || getClass() != o.getClass()) {
       return false;
     }
     Category category = (Category) o;
     return Objects.equals(name, category.name) &&
-        Objects.equals(icon, category.icon);
+        Objects.equals(icon, category.icon) &&
+        type == category.type;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, icon);
+    return Objects.hash(name, icon, type);
   }
 
   @Override
@@ -79,6 +72,7 @@ public class Category implements Serializable {
         "id=" + id +
         ", name='" + name + '\'' +
         ", icon='" + icon + '\'' +
+        ", type=" + type +
         '}';
   }
 
