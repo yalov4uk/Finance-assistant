@@ -31,15 +31,12 @@ public class TokenAuthenticationManager implements AuthenticationManager {
   }
 
   private Authentication grantTokenAuthentication(TokenAuthentication authentication)
-      throws AuthenticationCredentialsNotFoundException, BadCredentialsException {
+      throws AuthenticationCredentialsNotFoundException {
     if (authentication.getToken() == null) {
       throw new AuthenticationCredentialsNotFoundException("Token is null");
     }
     Long userId = tokenService.decode(authentication.getToken());
     User user = userService.read(userId);
-    if (user == null) {
-      throw new BadCredentialsException("User not found");
-    }
     UserDetails userDetails = new CustomUserDetails(user);
     authentication = new TokenAuthentication(authentication.getToken(), userDetails);
     authentication.setAuthenticated(true);

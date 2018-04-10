@@ -19,6 +19,4 @@ public interface UserService {
   void delete(@UserId Long id);
 
   Collection<User> readAll();
-
-  User readByEmail(String email);
 }

@@ -2,6 +2,7 @@ package com.perfect.team.business.service;
 
 import com.perfect.team.business.exception.NotFoundException;
 import com.perfect.team.business.exception.ValidationException;
+import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.model.AuthMethod;
 import com.perfect.team.business.model.AuthUser;
 import com.perfect.team.business.model.User;
@@ -33,14 +34,13 @@ public class AuthServiceImpl implements AuthService {
   private UserService userService;
 
   @Inject
+  private UserMapper userMapper;
+
+  @Inject
   private TokenService tokenService;
 
   @Override
   public User signUp(User user) {
-    if (userService.readByEmail(user.getEmail()) != null) {
-      throw new ValidationException("Email already in use");
-    }
-
     user.setPassword(encode(user.getPassword()));
     Long userId = userService.create(user);
     user.setId(userId);
@@ -49,7 +49,7 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public AuthUser signIn(String email, String password) {
-    User user = userService.readByEmail(email);
+    User user = userMapper.selectByEmail(email);
     if (user == null || !Objects.equals(encode(password), user.getPassword())) {
       throw new NotFoundException("User not found");
     }
@@ -78,7 +78,7 @@ public class AuthServiceImpl implements AuthService {
       throw new ValidationException("Facebook email is null");
     }
 
-    User user = userService.readByEmail(facebookUser.getEmail());
+    User user = userMapper.selectByEmail(facebookUser.getEmail());
     if (user != null) {
       user.setName(facebookUser.getName());
       user = userService.update(user);

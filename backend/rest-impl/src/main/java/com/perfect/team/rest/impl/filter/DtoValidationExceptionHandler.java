@@ -1,15 +1,19 @@
 package com.perfect.team.rest.impl.filter;
 
-import javax.validation.ValidationException;
+import java.util.stream.Collectors;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
 
-@Provider
-public class DtoValidationExceptionHandler implements ExceptionMapper<ValidationException> {
+public class DtoValidationExceptionHandler implements
+    ExceptionMapper<ConstraintViolationException> {
 
   @Override
-  public Response toResponse(ValidationException exception) {
-    return Response.status(Response.Status.BAD_REQUEST).entity(exception.getMessage()).build();
+  public Response toResponse(ConstraintViolationException exception) {
+    String message = exception.getConstraintViolations().stream()
+        .map(ConstraintViolation::getMessage)
+        .collect(Collectors.joining("\n"));
+    return Response.status(Response.Status.BAD_REQUEST).entity(message).build();
   }
 }

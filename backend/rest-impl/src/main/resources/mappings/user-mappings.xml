@@ -23,6 +23,15 @@
   </mapping>
 
   <mapping>
+    <class-a>com.perfect.team.business.model.AuthUser</class-a>
+    <class-b>com.perfect.team.api.response.SignInResponse</class-b>
+    <field>
+      <a>user</a>
+      <b>userDto</b>
+    </field>
+  </mapping>
+
+  <mapping>
     <class-a>com.perfect.team.business.model.User</class-a>
     <class-b>com.perfect.team.api.response.SignUpResponse</class-b>
     <field>

@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SignUpDto {
 
-  @JsonProperty(value = "id")
-  private Long id;
-
   @JsonProperty(value = "name")
   private String name;
 
@@ -15,17 +12,6 @@ public class SignUpDto {
 
   @JsonProperty(value = "password")
   private String password;
-
-  @JsonProperty(value = "passwordConfirmation")
-  private String passwordConfirmation;
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
 
   public String getName() {
     return name;
@@ -49,13 +35,5 @@ public class SignUpDto {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getPasswordConfirmation() {
-    return passwordConfirmation;
-  }
-
-  public void setPasswordConfirmation(String passwordConfirmation) {
-    this.passwordConfirmation = passwordConfirmation;
   }
 }

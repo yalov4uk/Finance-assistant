@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Objects;
 import javax.inject.Inject;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.validation.annotation.Validated;
 
 public abstract class CrudServiceBase<T extends Serializable> implements CrudService<T> {
 
@@ -29,15 +30,12 @@ public abstract class CrudServiceBase<T extends Serializable> implements CrudSer
 
   @Override
   public T read(Long id) {
-    T bean = getMapper().select(id);
-    validate(bean);
-    return bean;
+    return getMapper().select(id);
   }
 
   @Override
   public T update(T bean) {
     T oldObject = getMapper().select(getPrimaryKey(bean));
-    validate(bean);
     getMapper().update(bean);
     T newObject = getMapper().select(getPrimaryKey(bean));
     applicationEventPublisher.publishEvent(getOnChangeEvent(this, oldObject, newObject));
@@ -47,7 +45,6 @@ public abstract class CrudServiceBase<T extends Serializable> implements CrudSer
   @Override
   public void delete(Long id) {
     T oldObject = getMapper().select(id);
-    validate(oldObject);
     getMapper().delete(id);
     applicationEventPublisher.publishEvent(getOnChangeEvent(this, oldObject, null));
   }
@@ -57,12 +54,6 @@ public abstract class CrudServiceBase<T extends Serializable> implements CrudSer
     Collection<T> beans = getMapper().selectAll();
     validate(beans);
     return beans;
-  }
-
-  protected void validate(T bean) {
-    if (Objects.isNull(bean)) {
-      throw new NotFoundException();
-    }
   }
 
   protected void validate(Collection<T> beans) {
