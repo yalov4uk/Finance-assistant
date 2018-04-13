@@ -48,7 +48,6 @@ public class AccountServiceImpl extends CrudServiceBase<Account> implements Acco
   @Override
   public Collection<Account> readByUserId(Long userId) {
     Collection<Account> accounts = accountMapper.selectByUserId(userId);
-    validate(accounts);
     return accounts;
   }
 }

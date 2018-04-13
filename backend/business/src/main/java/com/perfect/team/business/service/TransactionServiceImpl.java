@@ -36,7 +36,6 @@ public class TransactionServiceImpl extends CrudServiceBase<Transaction> impleme
   @Override
   public Collection<Transaction> readByUserId(Long userId) {
     Collection<Transaction> transactions = transactionMapper.selectByUserId(userId);
-    validate(transactions);
     return transactions;
   }
 }

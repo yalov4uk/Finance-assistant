@@ -33,7 +33,7 @@
     VALUES (#{date}, #{note}, #{value}, #{account.id}, #{category.id}, #{user.id})
   </insert>
 
-  <select id="select" resultMap="transactionResultMap">
+  <select id="selectById" resultMap="transactionResultMap">
     SELECT
     <include refid="transactionColumns">
       <property name="transaction" value="t"/>
@@ -57,8 +57,8 @@
   </update>
 
   <delete id="delete">
-    DELETE FROM transaction t
-    WHERE t.id = #{id}
+    DELETE FROM transaction
+    WHERE id = #{id}
   </delete>
 
   <select id="selectAll" resultMap="transactionResultMap">

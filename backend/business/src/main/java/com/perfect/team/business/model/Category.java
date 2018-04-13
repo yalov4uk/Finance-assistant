@@ -39,6 +39,14 @@ public class Category implements Serializable {
     this.icon = icon;
   }
 
+  public Type getType() {
+    return type;
+  }
+
+  public void setType(Type type) {
+    this.type = type;
+  }
+
   public User getUser() {
     return user;
   }

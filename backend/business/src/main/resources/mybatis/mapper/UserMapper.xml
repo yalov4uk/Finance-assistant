@@ -31,7 +31,7 @@
     INSERT INTO user (email, name, password) VALUES (#{email}, #{name}, #{password})
   </insert>
 
-  <select id="select" resultMap="userResultMap">
+  <select id="selectById" resultMap="userResultMap">
     SELECT
     <include refid="userColumns">
       <property name="user" value="u"/>
@@ -52,8 +52,8 @@
   </update>
 
   <delete id="delete">
-    DELETE FROM user u
-    WHERE u.id = #{id}
+    DELETE FROM user
+    WHERE id = #{id}
   </delete>
 
   <select id="selectAll" resultMap="userResultMap">

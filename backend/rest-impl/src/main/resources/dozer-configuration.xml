@@ -6,5 +6,11 @@
 
   <configuration>
     <wildcard>true</wildcard>
+    <custom-converters>
+      <converter type="com.perfect.team.rest.impl.converter.CategoryTypeToStringConverter">
+        <class-a>java.lang.String</class-a>
+        <class-b>com.perfect.team.business.model.Category.Type</class-b>
+      </converter>
+    </custom-converters>
   </configuration>
 </mappings>

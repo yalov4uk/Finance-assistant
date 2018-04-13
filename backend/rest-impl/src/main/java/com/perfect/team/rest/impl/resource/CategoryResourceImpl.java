@@ -6,6 +6,7 @@ import com.perfect.team.api.response.CategoriesResponse;
 import com.perfect.team.api.response.CategoryResponse;
 import com.perfect.team.api.rest.CategoryResource;
 import com.perfect.team.business.model.Category;
+import com.perfect.team.business.model.Category.Type;
 import com.perfect.team.business.service.CategoryService;
 import com.perfect.team.rest.impl.model.CollectionWrapper;
 import java.net.URI;
@@ -33,9 +34,10 @@ public class CategoryResourceImpl implements CategoryResource {
   }
 
   @Override
-  public Response read(Long id) {
-    Category bean = service.read(id);
-    return Response.ok(mapper.map(bean, CategoryResponse.class)).build();
+  public Response read(Long id, Long userId, String type) {
+    CollectionWrapper<Category> beans = new CollectionWrapper<>(
+        service.read(id, userId, type == null ? null : mapper.map(type, Type.class)));
+    return Response.ok(mapper.map(beans, CategoriesResponse.class)).build();
   }
 
   @Override
@@ -50,11 +52,5 @@ public class CategoryResourceImpl implements CategoryResource {
   public Response delete(Long id) {
     service.delete(id);
     return Response.noContent().build();
-  }
-
-  @Override
-  public Response readAll() {
-    CollectionWrapper<Category> beans = new CollectionWrapper<>(service.readAll());
-    return Response.ok(mapper.map(beans, CategoriesResponse.class)).build();
   }
 }

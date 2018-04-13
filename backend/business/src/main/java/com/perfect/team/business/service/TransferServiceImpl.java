@@ -61,7 +61,6 @@ public class TransferServiceImpl extends CrudServiceBase<Transfer> implements Tr
   @Override
   public Collection<Transfer> readByUserId(Long userId) {
     Collection<Transfer> transfers = transferMapper.selectByUserId(userId);
-    validate(transfers);
     return transfers;
   }
 }

@@ -14,6 +14,19 @@
   </mapping>
 
   <mapping>
+    <class-a>com.perfect.team.api.dto.CategoryCreateDto</class-a>
+    <class-b>com.perfect.team.business.model.Category</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.CategoryTypeToStringConverter">
+      <a>type</a>
+      <b>type</b>
+    </field>
+    <field>
+      <a>userId</a>
+      <b>user.id</b>
+    </field>
+  </mapping>
+
+  <mapping>
     <class-a>com.perfect.team.business.model.Category</class-a>
     <class-b>com.perfect.team.api.response.CategoryResponse</class-b>
     <field>
@@ -23,11 +36,33 @@
   </mapping>
 
   <mapping>
+    <class-a>com.perfect.team.business.model.Category</class-a>
+    <class-b>com.perfect.team.api.dto.CategoryReadDto</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.CategoryTypeToStringConverter">
+      <a>type</a>
+      <b>type</b>
+    </field>
+    <field>
+      <a>user.id</a>
+      <b>userId</b>
+    </field>
+  </mapping>
+
+  <mapping>
     <class-a>com.perfect.team.api.request.CategoryUpdateRequest</class-a>
     <class-b>com.perfect.team.business.model.Category</class-b>
     <field>
       <a>categoryDto</a>
       <b>this</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.api.dto.CategoryUpdateDto</class-a>
+    <class-b>com.perfect.team.business.model.Category</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.CategoryTypeToStringConverter">
+      <a>type</a>
+      <b>type</b>
     </field>
   </mapping>
 

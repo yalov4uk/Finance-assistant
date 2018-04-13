@@ -1,28 +1,14 @@
 package com.perfect.team.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class UserReadDto {
 
-  @JsonProperty(value = "id")
   private Long id;
 
-  @JsonProperty(value = "name")
   private String name;
 
-  @JsonProperty(value = "email")
   private String email;
 
-  @JsonProperty(value = "password")
   private String password;
-
-  public UserReadDto() {
-  }
-
-  public UserReadDto(String name, String email) {
-    this.name = name;
-    this.email = email;
-  }
 
   public Long getId() {
     return id;

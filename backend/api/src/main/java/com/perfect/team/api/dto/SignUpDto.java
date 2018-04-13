@@ -1,16 +1,16 @@
 package com.perfect.team.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.validation.constraints.NotNull;
 
 public class SignUpDto {
 
-  @JsonProperty(value = "name")
+  @NotNull
   private String name;
 
-  @JsonProperty(value = "email")
+  @NotNull
   private String email;
 
-  @JsonProperty(value = "password")
+  @NotNull
   private String password;
 
   public String getName() {

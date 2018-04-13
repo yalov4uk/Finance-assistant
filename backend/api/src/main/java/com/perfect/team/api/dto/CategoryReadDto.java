@@ -1,22 +1,15 @@
 package com.perfect.team.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class CategoryReadDto {
 
-  @JsonProperty(value = "id")
   private Long id;
 
-  @JsonProperty(value = "name")
   private String name;
 
-  @JsonProperty(value = "icon")
   private String icon;
 
-  @JsonProperty(value = "type")
   private String type;
 
-  @JsonProperty(value = "userId")
   private Long userId;
 
   public Long getId() {

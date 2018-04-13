@@ -1,13 +1,9 @@
 package com.perfect.team.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class UserUpdateDto {
 
-  @JsonProperty(value = "name")
   private String name;
 
-  @JsonProperty(value = "email")
   private String email;
 
   public String getName() {

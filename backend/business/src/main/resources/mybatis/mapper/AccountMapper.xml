@@ -30,7 +30,7 @@
     VALUES (#{icon}, #{balance}, #{initialDate}, #{name}, #{currency}, #{user.id})
   </insert>
 
-  <select id="select" resultMap="accountResultMap">
+  <select id="selectById" resultMap="accountResultMap">
     SELECT
     <include refid="accountColumns">
       <property name="account" value="a"/>
@@ -54,8 +54,8 @@
   </update>
 
   <delete id="delete">
-    DELETE FROM account a
-    WHERE a.id = #{id}
+    DELETE FROM account
+    WHERE id = #{id}
   </delete>
 
   <select id="selectAll" resultMap="accountResultMap">

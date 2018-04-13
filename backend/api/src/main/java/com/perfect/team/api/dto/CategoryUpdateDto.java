@@ -1,18 +1,14 @@
 package com.perfect.team.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.Pattern;
 
 public class CategoryUpdateDto {
 
-  @JsonProperty(value = "name")
   private String name;
 
-  @JsonProperty(value = "icon")
   private String icon;
 
-  @Pattern(regexp = "(IN)|(OUT)")
-  @JsonProperty(value = "type")
+  @Pattern(regexp = "(income)|(outcome)")
   private String type;
 
   public String getName() {

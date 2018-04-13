@@ -8,18 +8,16 @@
     <id column="id" property="id"/>
     <result column="name" property="name"/>
     <result column="icon" property="icon"/>
+    <result column="type" property="type"/>
     <association column="user_id" columnPrefix="user_" foreignColumn="id" property="user"
       resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
-    <association column="category_type_id" columnPrefix="category_type_" foreignColumn="id"
-      property="categoryType"
-      resultMap="com.perfect.team.business.mapper.CategoryTypeMapper.categoryTypeResultMap"/>
   </resultMap>
 
   <sql id="categoryColumns">
     ${category}.id as "${prefix}id",
     ${category}.name as "${prefix}name",
     ${category}.icon as "${prefix}icon",
-    ${category}.type as "${prefix}type"
+    ${category}.type as "${prefix}type",
     ${category}.user_id as "${prefix}user_id"
   </sql>
 
@@ -28,7 +26,7 @@
     VALUES (#{icon}, #{name}, #{type}, #{user.id})
   </insert>
 
-  <select id="select" resultMap="categoryResultMap">
+  <select id="selectById" resultMap="categoryResultMap">
     SELECT
     <include refid="categoryColumns">
       <property name="category" value="c"/>
@@ -44,32 +42,33 @@
       <if test="name != null">c.name = #{name},</if>
       <if test="icon != null">c.icon = #{icon},</if>
       <if test="type != null">c.type = #{type},</if>
-      <if test="user.id != null">c.user_id = #{user.id}</if>
+      <if test="user != null and user.id != null">c.user_id = #{user.id}</if>
     </set>
     WHERE c.id = #{id}
   </update>
 
   <delete id="delete">
-    DELETE FROM category c
-    WHERE c.id = #{id}
+    DELETE FROM category
+    WHERE id = #{id}
   </delete>
 
-  <select id="selectAll" resultMap="categoryResultMap">
+  <select id="select" resultMap="categoryResultMap">
     SELECT
     <include refid="categoryColumns">
       <property name="category" value="c"/>
       <property name="prefix" value=""/>
     </include>
     FROM category c
-  </select>
-
-  <select id="selectByUserId" resultMap="categoryResultMap">
-    SELECT
-    <include refid="categoryColumns">
-      <property name="category" value="c"/>
-      <property name="prefix" value=""/>
-    </include>
-    FROM category c
-    WHERE c.user_id = #{userId}
+    <where>
+      <if test="id != null">
+        c.id = #{id}
+      </if>
+      <if test="userId != null">
+        AND c.user_id = #{userId}
+      </if>
+      <if test="type != null">
+        AND c.type = #{type}
+      </if>
+    </where>
   </select>
 </mapper>

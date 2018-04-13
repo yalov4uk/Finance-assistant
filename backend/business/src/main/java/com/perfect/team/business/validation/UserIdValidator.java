@@ -2,7 +2,6 @@ package com.perfect.team.business.validation;
 
 import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.security.CustomUserDetails;
-import com.perfect.team.business.service.UserService;
 import java.util.Objects;
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
@@ -32,7 +31,7 @@ public class UserIdValidator implements ConstraintValidator<UserId, Long> {
         context.buildConstraintViolationWithTemplate("Wrong user id").addConstraintViolation();
       }
     }
-    if (userMapper.select(value) == null) {
+    if (userMapper.selectById(value) == null) {
       valid = false;
       context.buildConstraintViolationWithTemplate("User not found").addConstraintViolation();
     }

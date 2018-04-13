@@ -1,25 +1,24 @@
 package com.perfect.team.business.validation;
 
-import com.perfect.team.business.model.Category;
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CategoryUpdateValidator implements ConstraintValidator<CategoryUpdate, Category> {
+public class CategoryIdOrNullValidator implements ConstraintValidator<CategoryIdOrNull, Long> {
 
   @Inject
   private ConstraintValidator<CategoryId, Long> categoryIdValidator;
 
   @Override
-  public void initialize(CategoryUpdate constraintAnnotation) {
+  public void initialize(CategoryIdOrNull constraintAnnotation) {
   }
 
   @Override
-  public boolean isValid(Category value, ConstraintValidatorContext context) {
+  public boolean isValid(Long value, ConstraintValidatorContext context) {
     boolean valid = true;
-    if (!categoryIdValidator.isValid(value.getId(), context)) {
+    if (value != null && !categoryIdValidator.isValid(value, context)) {
       valid = false;
     }
     return valid;

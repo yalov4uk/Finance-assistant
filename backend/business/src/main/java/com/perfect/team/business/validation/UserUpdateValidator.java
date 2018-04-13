@@ -2,7 +2,6 @@ package com.perfect.team.business.validation;
 
 import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.model.User;
-import com.perfect.team.business.service.UserService;
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -24,7 +23,9 @@ public class UserUpdateValidator implements ConstraintValidator<UserUpdate, User
   @Override
   public boolean isValid(User value, ConstraintValidatorContext context) {
     boolean valid = true;
-    valid = userIdValidator.isValid(value.getId(), context);
+    if (!userIdValidator.isValid(value.getId(), context)) {
+      valid = false;
+    }
     if (value.getEmail() != null && userMapper.selectByEmail(value.getEmail()) != null) {
       valid = false;
       context.buildConstraintViolationWithTemplate("Email already in use").addConstraintViolation();

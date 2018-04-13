@@ -2,7 +2,6 @@ package com.perfect.team.business.validation;
 
 import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.model.User;
-import com.perfect.team.business.service.UserService;
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

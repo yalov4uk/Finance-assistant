@@ -37,7 +37,7 @@
             #{user.id})
   </insert>
 
-  <select id="select" resultMap="transferResultMap">
+  <select id="selectById" resultMap="transferResultMap">
     SELECT
     <include refid="transferColumns">
       <property name="transfer" value="t"/>
@@ -62,8 +62,8 @@
   </update>
 
   <delete id="delete">
-    DELETE FROM transfer t
-    WHERE t.id = #{id}
+    DELETE FROM transfer
+    WHERE id = #{id}
   </delete>
 
   <select id="selectAll" resultMap="transferResultMap">

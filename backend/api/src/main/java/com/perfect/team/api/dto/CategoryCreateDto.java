@@ -1,22 +1,21 @@
 package com.perfect.team.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class CategoryCreateDto {
 
   @NotNull
-  @JsonProperty(value = "name")
   private String name;
 
-  @JsonProperty(value = "icon")
   private String icon;
 
-  @Pattern(regexp = "(IN)|(OUT)")
+  @Pattern(regexp = "(income)|(outcome)")
   @NotNull
-  @JsonProperty(value = "type")
   private String type;
+
+  @NotNull
+  private Long userId;
 
   public String getName() {
     return name;
@@ -40,5 +39,13 @@ public class CategoryCreateDto {
 
   public void setType(String type) {
     this.type = type;
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 }
