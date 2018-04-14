@@ -11,6 +11,10 @@
         <class-a>java.lang.String</class-a>
         <class-b>com.perfect.team.business.model.Category.Type</class-b>
       </converter>
+      <converter type="com.perfect.team.rest.impl.converter.AccountCurrencyToStringConverter">
+        <class-a>java.lang.String</class-a>
+        <class-b>com.perfect.team.business.model.Category.Type</class-b>
+      </converter>
     </custom-converters>
   </configuration>
 </mappings>

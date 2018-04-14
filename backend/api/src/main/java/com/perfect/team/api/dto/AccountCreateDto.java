@@ -1,29 +1,28 @@
 package com.perfect.team.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class AccountCreateDto {
 
   @NotNull
-  @JsonProperty(value = "name")
   private String name;
 
-  @JsonProperty(value = "icon")
   private String icon;
 
   @DecimalMin("0")
   @NotNull
-  @JsonProperty(value = "balance")
   private BigDecimal balance;
 
-  @JsonProperty(value = "initialDate")
   private Long initialDate;
 
-  @JsonProperty(value = "currency")
+  @Pattern(regexp = "(usd)|(eur)|(byn)")
+  @NotNull
   private String currency;
+
+  private Long userId;
 
   public String getName() {
     return name;
@@ -63,5 +62,13 @@ public class AccountCreateDto {
 
   public void setCurrency(String currency) {
     this.currency = currency;
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 }

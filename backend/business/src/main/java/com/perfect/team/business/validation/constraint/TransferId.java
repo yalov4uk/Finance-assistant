@@ -1,5 +1,6 @@
-package com.perfect.team.business.validation;
+package com.perfect.team.business.validation.constraint;
 
+import com.perfect.team.business.validation.TransferIdValidator;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -7,12 +8,12 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = UserCreateValidator.class)
-@Target(ElementType.PARAMETER)
+@Constraint(validatedBy = TransferIdValidator.class)
+@Target({ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UserCreate {
+public @interface TransferId {
 
-  String message() default "{UserCreate.message}";
+  String message() default "{TransferId.message}";
 
   Class<?>[] groups() default {};
 

@@ -1,6 +1,7 @@
 package com.perfect.team.business.validation;
 
 import com.perfect.team.business.model.Transaction;
+import com.perfect.team.business.validation.constraint.TransactionUpdate;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Component;

@@ -2,11 +2,10 @@ package com.perfect.team.business.service;
 
 import com.perfect.team.business.model.Category;
 import com.perfect.team.business.model.Category.Type;
-import com.perfect.team.business.validation.CategoryCreate;
-import com.perfect.team.business.validation.CategoryId;
-import com.perfect.team.business.validation.CategoryIdOrNull;
-import com.perfect.team.business.validation.CategoryUpdate;
-import com.perfect.team.business.validation.UserIdOrNull;
+import com.perfect.team.business.validation.constraint.CategoryCreate;
+import com.perfect.team.business.validation.constraint.CategoryId;
+import com.perfect.team.business.validation.constraint.CategoryUpdate;
+import com.perfect.team.business.validation.constraint.UserId;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
 
@@ -15,7 +14,7 @@ public interface CategoryService {
 
   Long create(@CategoryCreate Category bean);
 
-  List<Category> read(@CategoryIdOrNull Long id, @UserIdOrNull Long userId, Type type);
+  List<Category> read(@CategoryId Long id, String name, Type type, @UserId Long userId);
 
   Category update(@CategoryUpdate Category bean);
 

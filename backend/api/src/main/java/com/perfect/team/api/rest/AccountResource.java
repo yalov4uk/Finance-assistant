@@ -1,9 +1,11 @@
 package com.perfect.team.api.rest;
 
 import com.perfect.team.api.request.AccountCreateRequest;
+import com.perfect.team.api.request.AccountReadRequest;
 import com.perfect.team.api.request.AccountUpdateRequest;
 import com.perfect.team.api.response.AccountResponse;
 import com.perfect.team.api.response.AccountsResponse;
+import com.perfect.team.api.validation.constraint.AtLeastOneNotNull;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -12,6 +14,7 @@ import io.swagger.annotations.ResponseHeader;
 import java.net.URI;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -38,11 +41,11 @@ public interface AccountResource {
   Response create(@NotNull @Valid AccountCreateRequest request);
 
   @GET
-  @Path("{id}")
   @ApiResponses(
-      @ApiResponse(code = 200, message = "", response = AccountResponse.class)
+      @ApiResponse(code = 200, message = "", response = AccountsResponse.class)
   )
-  Response read(@PathParam("id") Long id);
+  Response read(@AtLeastOneNotNull(fieldNames = {"id",
+      "userId"}) @Valid @BeanParam AccountReadRequest request);
 
   @PUT
   @Path("{id}")
@@ -57,10 +60,4 @@ public interface AccountResource {
       @ApiResponse(code = 204, message = "")
   )
   Response delete(@PathParam("id") Long id);
-
-  @GET
-  @ApiResponses(
-      @ApiResponse(code = 200, message = "", response = AccountsResponse.class)
-  )
-  Response readAll();
 }

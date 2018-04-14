@@ -1,6 +1,8 @@
 package com.perfect.team.business.validation;
 
 import com.perfect.team.business.model.Category;
+import com.perfect.team.business.validation.constraint.CategoryCreate;
+import com.perfect.team.business.validation.constraint.UserId;
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -19,10 +21,6 @@ public class CategoryCreateValidator implements ConstraintValidator<CategoryCrea
   @Override
   public boolean isValid(Category value, ConstraintValidatorContext context) {
     boolean valid = true;
-    if (value.getUser() == null) {
-      valid = false;
-      context.buildConstraintViolationWithTemplate("User required").addConstraintViolation();
-    }
     if (value.getUser() != null && !userIdValidator.isValid(value.getUser().getId(), context)) {
       valid = false;
     }

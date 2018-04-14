@@ -45,10 +45,7 @@
     <set>
       <if test="name != null">a.name = #{name},</if>
       <if test="icon != null">a.icon = #{icon},</if>
-      <if test="balance != null">a.balance = #{balance},</if>
-      <if test="initialDate != null">a.initial_date = #{initialDate},</if>
-      <if test="currency != null">a.currency = #{currency},</if>
-      <if test="user.id != null">a.user_id = #{user.id}</if>
+      <if test="currency != null">a.currency = #{currency}</if>
     </set>
     WHERE a.id = #{id}
   </update>
@@ -58,22 +55,26 @@
     WHERE id = #{id}
   </delete>
 
-  <select id="selectAll" resultMap="accountResultMap">
+  <select id="select" resultMap="accountResultMap">
     SELECT
     <include refid="accountColumns">
       <property name="account" value="a"/>
       <property name="prefix" value=""/>
     </include>
     FROM account a
-  </select>
-
-  <select id="selectByUserId" resultMap="accountResultMap">
-    SELECT
-    <include refid="accountColumns">
-      <property name="account" value="a"/>
-      <property name="prefix" value=""/>
-    </include>
-    FROM account a
-    WHERE a.user_id = #{userId}
+    <where>
+      <if test="id != null">
+        a.id = #{id}
+      </if>
+      <if test="name != null">
+        AND a.name = #{name}
+      </if>
+      <if test="currency != null">
+        AND a.currency = #{currency}
+      </if>
+      <if test="userId != null">
+        AND a.user_id = #{userId}
+      </if>
+    </where>
   </select>
 </mapper>

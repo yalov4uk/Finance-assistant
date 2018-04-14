@@ -3,7 +3,7 @@ package com.perfect.team.api.request;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.QueryParam;
 
-public class CategoryReadRequest {
+public class AccountReadRequest {
 
   @QueryParam("id")
   private Long id;
@@ -11,9 +11,9 @@ public class CategoryReadRequest {
   @QueryParam("name")
   private String name;
 
-  @Pattern(regexp = "(income)|(outcome)")
-  @QueryParam("type")
-  private String type;
+  @Pattern(regexp = "(usd)|(eur)|(byn)")
+  @QueryParam("currency")
+  private String currency;
 
   @QueryParam("userId")
   private Long userId;
@@ -34,12 +34,12 @@ public class CategoryReadRequest {
     this.name = name;
   }
 
-  public String getType() {
-    return type;
+  public String getCurrency() {
+    return currency;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setCurrency(String currency) {
+    this.currency = currency;
   }
 
   public Long getUserId() {

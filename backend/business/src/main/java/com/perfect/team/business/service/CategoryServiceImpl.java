@@ -26,8 +26,8 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
-  public List<Category> read(Long id, Long userId, Type type) {
-    return categoryMapper.select(id, userId, type);
+  public List<Category> read(Long id, String name, Type type, Long userId) {
+    return categoryMapper.select(id, name, type, userId);
   }
 
   @Override

@@ -1,11 +1,13 @@
 package com.perfect.team.rest.impl.resource;
 
 import com.perfect.team.api.request.AccountCreateRequest;
+import com.perfect.team.api.request.AccountReadRequest;
 import com.perfect.team.api.request.AccountUpdateRequest;
 import com.perfect.team.api.response.AccountResponse;
 import com.perfect.team.api.response.AccountsResponse;
 import com.perfect.team.api.rest.AccountResource;
 import com.perfect.team.business.model.Account;
+import com.perfect.team.business.model.Account.Currency;
 import com.perfect.team.business.service.AccountService;
 import com.perfect.team.rest.impl.model.CollectionWrapper;
 import java.net.URI;
@@ -33,9 +35,12 @@ public class AccountResourceImpl implements AccountResource {
   }
 
   @Override
-  public Response read(Long id) {
-    Account bean = service.read(id);
-    return Response.ok(mapper.map(bean, AccountResponse.class)).build();
+  public Response read(AccountReadRequest request) {
+    CollectionWrapper<Account> beans = new CollectionWrapper<>(service
+        .read(request.getId(), request.getName(),
+            request.getCurrency() == null ? null : mapper.map(request,
+                Currency.class), request.getUserId()));
+    return Response.ok(mapper.map(beans, AccountsResponse.class)).build();
   }
 
   @Override
@@ -50,11 +55,5 @@ public class AccountResourceImpl implements AccountResource {
   public Response delete(Long id) {
     service.delete(id);
     return Response.noContent().build();
-  }
-
-  @Override
-  public Response readAll() {
-    CollectionWrapper<Account> beans = new CollectionWrapper<>(service.readAll());
-    return Response.ok(mapper.map(beans, AccountsResponse.class)).build();
   }
 }

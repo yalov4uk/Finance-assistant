@@ -41,8 +41,7 @@
     <set>
       <if test="name != null">c.name = #{name},</if>
       <if test="icon != null">c.icon = #{icon},</if>
-      <if test="type != null">c.type = #{type},</if>
-      <if test="user != null and user.id != null">c.user_id = #{user.id}</if>
+      <if test="type != null">c.type = #{type}</if>
     </set>
     WHERE c.id = #{id}
   </update>
@@ -63,11 +62,14 @@
       <if test="id != null">
         c.id = #{id}
       </if>
-      <if test="userId != null">
-        AND c.user_id = #{userId}
+      <if test="name != null">
+        AND c.name = #{name}
       </if>
       <if test="type != null">
         AND c.type = #{type}
+      </if>
+      <if test="userId != null">
+        AND c.user_id = #{userId}
       </if>
     </where>
   </select>

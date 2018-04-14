@@ -1,6 +1,8 @@
 package com.perfect.team.business.validation;
 
 import com.perfect.team.business.model.User;
+import com.perfect.team.business.validation.constraint.SignUp;
+import com.perfect.team.business.validation.constraint.UserCreate;
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

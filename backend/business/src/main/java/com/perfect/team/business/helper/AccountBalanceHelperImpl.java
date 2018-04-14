@@ -24,7 +24,7 @@ public class AccountBalanceHelperImpl implements AccountBalanceHelper {
 
   @Override
   public void updateOnCreate(Transaction transaction) {
-    transaction.setAccount(accountService.read(transaction.getAccount().getId()));
+//    transaction.setAccount(accountService.read(transaction.getAccount().getId()));
 //    transaction.setCategory(categoryService.read(transaction.getCategory().getId()));
 
 //    CategoryType categoryType = categoryTypeService
@@ -46,9 +46,9 @@ public class AccountBalanceHelperImpl implements AccountBalanceHelper {
 
   @Override
   public void updateOnDelete(Long id) {
-    Transaction transaction = transactionService.read(id);
+//    Transaction transaction = transactionService.read(id);
 
-    transaction.setAccount(accountService.read(transaction.getAccount().getId()));
+//    transaction.setAccount(accountService.read(transaction.getAccount().getId()));
 //    transaction.setCategory(categoryService.read(transaction.getCategory().getId()));
 
 //    CategoryType categoryType = categoryTypeService

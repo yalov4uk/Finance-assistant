@@ -1,16 +1,14 @@
 package com.perfect.team.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.validation.constraints.Pattern;
 
 public class AccountUpdateDto {
 
-  @JsonProperty(value = "name")
   private String name;
 
-  @JsonProperty(value = "icon")
   private String icon;
 
-  @JsonProperty(value = "currency")
+  @Pattern(regexp = "(usd)|(eur)|(byn)")
   private String currency;
 
   public String getName() {

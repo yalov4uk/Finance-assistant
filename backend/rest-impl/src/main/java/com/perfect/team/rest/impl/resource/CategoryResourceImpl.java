@@ -37,8 +37,9 @@ public class CategoryResourceImpl implements CategoryResource {
   @Override
   public Response read(CategoryReadRequest request) {
     CollectionWrapper<Category> beans = new CollectionWrapper<>(
-        service.read(request.getId(), request.getUserId(),
-            request.getType() == null ? null : mapper.map(request.getType(), Type.class)));
+        service.read(request.getId(), request.getName(),
+            request.getType() == null ? null : mapper.map(request.getType(), Type.class),
+            request.getUserId()));
     return Response.ok(mapper.map(beans, CategoriesResponse.class)).build();
   }
 

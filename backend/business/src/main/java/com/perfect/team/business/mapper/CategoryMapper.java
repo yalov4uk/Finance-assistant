@@ -12,6 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface CategoryMapper extends CrudMapper<Category> {
 
-  List<Category> select(@Param("id") Long id, @Param("userId") Long userId,
-      @Param("type") Type type);
+  List<Category> select(@Param("id") Long id, @Param("name") String name,
+      @Param("type") Type type, @Param("userId") Long userId);
 }

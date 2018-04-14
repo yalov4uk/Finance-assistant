@@ -14,11 +14,37 @@
   </mapping>
 
   <mapping>
+    <class-a>com.perfect.team.api.dto.AccountCreateDto</class-a>
+    <class-b>com.perfect.team.business.model.Account</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.AccountCurrencyToStringConverter">
+      <a>currency</a>
+      <b>currency</b>
+    </field>
+    <field>
+      <a>userId</a>
+      <b>user.id</b>
+    </field>
+  </mapping>
+
+  <mapping>
     <class-a>com.perfect.team.business.model.Account</class-a>
     <class-b>com.perfect.team.api.response.AccountResponse</class-b>
     <field>
       <a>this</a>
       <b>accountDto</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.business.model.Account</class-a>
+    <class-b>com.perfect.team.api.dto.AccountReadDto</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.AccountCurrencyToStringConverter">
+      <a>currency</a>
+      <b>currency</b>
+    </field>
+    <field>
+      <a>user.id</a>
+      <b>userId</b>
     </field>
   </mapping>
 
@@ -32,11 +58,20 @@
   </mapping>
 
   <mapping>
+    <class-a>com.perfect.team.api.dto.AccountUpdateDto</class-a>
+    <class-b>com.perfect.team.business.model.Account</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.AccountCurrencyToStringConverter">
+      <a>currency</a>
+      <b>currency</b>
+    </field>
+  </mapping>
+
+  <mapping>
     <class-a>com.perfect.team.rest.impl.model.CollectionWrapper</class-a>
     <class-b>com.perfect.team.api.response.AccountsResponse</class-b>
     <field>
       <a>collection</a>
-      <b>accountDtos</b>
+      <b>AccountDtos</b>
     </field>
   </mapping>
 </mappings>
