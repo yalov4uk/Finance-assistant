@@ -1,6 +1,7 @@
 package com.perfect.team.rest.impl.resource;
 
 import com.perfect.team.api.request.CategoryCreateRequest;
+import com.perfect.team.api.request.CategoryReadRequest;
 import com.perfect.team.api.request.CategoryUpdateRequest;
 import com.perfect.team.api.response.CategoriesResponse;
 import com.perfect.team.api.response.CategoryResponse;
@@ -34,9 +35,10 @@ public class CategoryResourceImpl implements CategoryResource {
   }
 
   @Override
-  public Response read(Long id, Long userId, String type) {
+  public Response read(CategoryReadRequest request) {
     CollectionWrapper<Category> beans = new CollectionWrapper<>(
-        service.read(id, userId, type == null ? null : mapper.map(type, Type.class)));
+        service.read(request.getId(), request.getUserId(),
+            request.getType() == null ? null : mapper.map(request.getType(), Type.class)));
     return Response.ok(mapper.map(beans, CategoriesResponse.class)).build();
   }
 
