@@ -1,35 +1,30 @@
-package com.perfect.team.api.dto;
+package com.perfect.team.api.request;
 
-import java.math.BigDecimal;
-import javax.validation.constraints.DecimalMin;
+import javax.ws.rs.QueryParam;
 
-public class TransactionUpdateDto {
+public class TransactionReadRequest {
 
-  @DecimalMin("0")
-  private BigDecimal value;
+  @QueryParam("id")
+  private Long id;
 
-  private String note;
-
+  @QueryParam("date")
   private Long date;
 
+  @QueryParam("categoryId")
   private Long categoryId;
 
+  @QueryParam("accountId")
   private Long accountId;
 
-  public BigDecimal getValue() {
-    return value;
+  @QueryParam("userId")
+  private Long userId;
+
+  public Long getId() {
+    return id;
   }
 
-  public void setValue(BigDecimal value) {
-    this.value = value;
-  }
-
-  public String getNote() {
-    return note;
-  }
-
-  public void setNote(String note) {
-    this.note = note;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public Long getDate() {
@@ -54,5 +49,13 @@ public class TransactionUpdateDto {
 
   public void setAccountId(Long accountId) {
     this.accountId = accountId;
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 }

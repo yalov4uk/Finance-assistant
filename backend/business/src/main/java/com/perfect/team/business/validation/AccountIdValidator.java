@@ -24,6 +24,9 @@ public class AccountIdValidator implements ConstraintValidator<AccountId, Long> 
 
   @Override
   public boolean isValid(Long value, ConstraintValidatorContext context) {
+    if (value == null) {
+      return true;
+    }
     boolean valid = true;
     if (accountMapper.selectById(value) == null) {
       valid = false;

@@ -1,41 +1,48 @@
 package com.perfect.team.business.service;
 
 import com.perfect.team.business.event.TransactionChangedEvent;
-import com.perfect.team.business.event.base.ChangedBaseEvent;
 import com.perfect.team.business.mapper.TransactionMapper;
-import com.perfect.team.business.mapper.base.CrudMapper;
 import com.perfect.team.business.model.Transaction;
-import com.perfect.team.business.service.base.CrudServiceBase;
-import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import javax.inject.Inject;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TransactionServiceImpl extends CrudServiceBase<Transaction> implements
-    TransactionService {
+public class TransactionServiceImpl implements TransactionService {
 
   @Inject
   private TransactionMapper transactionMapper;
 
-  @Override
-  protected CrudMapper<Transaction> getMapper() {
-    return transactionMapper;
-  }
+  @Inject
+  private ApplicationEventPublisher applicationEventPublisher;
 
   @Override
-  protected ChangedBaseEvent<Transaction> getOnChangeEvent(Object source, Transaction oldObject,
-      Transaction newObject) {
-    return new TransactionChangedEvent(source, oldObject, newObject);
-  }
-
-  @Override
-  protected Long getPrimaryKey(Transaction bean) {
+  public Long create(Transaction bean) {
+    transactionMapper.insert(bean);
+    applicationEventPublisher.publishEvent(new TransactionChangedEvent(this, null, bean));
     return bean.getId();
   }
 
   @Override
-  public Collection<Transaction> readByUserId(Long userId) {
-    Collection<Transaction> transactions = transactionMapper.selectByUserId(userId);
-    return transactions;
+  public List<Transaction> read(Long id, Date date, Long categoryId, Long accountId, Long userId) {
+    return transactionMapper.select(id, date, categoryId, accountId, userId);
+  }
+
+  @Override
+  public Transaction update(Transaction bean) {
+    Transaction oldObject = transactionMapper.selectById(bean.getId());
+    transactionMapper.update(bean);
+    Transaction newObject = transactionMapper.selectById(bean.getId());
+    applicationEventPublisher.publishEvent(new TransactionChangedEvent(this, oldObject, newObject));
+    return newObject;
+  }
+
+  @Override
+  public void delete(Long id) {
+    Transaction oldObject = transactionMapper.selectById(id);
+    transactionMapper.delete(id);
+    applicationEventPublisher.publishEvent(new TransactionChangedEvent(this, oldObject, null));
   }
 }

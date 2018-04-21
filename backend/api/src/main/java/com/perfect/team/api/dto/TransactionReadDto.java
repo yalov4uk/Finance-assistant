@@ -20,8 +20,8 @@ public class TransactionReadDto {
   @JsonProperty(value = "userId")
   private Long userId;
 
-  @JsonProperty(value = "category")
-  private CategoryReadDto category;
+  @JsonProperty(value = "categoryId")
+  private Long categoryId;
 
   @JsonProperty(value = "accountId")
   private Long accountId;
@@ -66,12 +66,12 @@ public class TransactionReadDto {
     this.userId = userId;
   }
 
-  public CategoryReadDto getCategory() {
-    return category;
+  public Long getCategoryId() {
+    return categoryId;
   }
 
-  public void setCategory(CategoryReadDto category) {
-    this.category = category;
+  public void setCategoryId(Long categoryId) {
+    this.categoryId = categoryId;
   }
 
   public Long getAccountId() {

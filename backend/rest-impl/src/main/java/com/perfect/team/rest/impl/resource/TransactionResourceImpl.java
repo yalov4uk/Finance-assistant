@@ -1,6 +1,7 @@
 package com.perfect.team.rest.impl.resource;
 
 import com.perfect.team.api.request.TransactionCreateRequest;
+import com.perfect.team.api.request.TransactionReadRequest;
 import com.perfect.team.api.request.TransactionUpdateRequest;
 import com.perfect.team.api.response.TransactionResponse;
 import com.perfect.team.api.response.TransactionsResponse;
@@ -9,6 +10,7 @@ import com.perfect.team.business.model.Transaction;
 import com.perfect.team.business.service.TransactionService;
 import com.perfect.team.rest.impl.model.CollectionWrapper;
 import java.net.URI;
+import java.util.Date;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -32,9 +34,11 @@ public class TransactionResourceImpl implements TransactionResource {
   }
 
   @Override
-  public Response read(Long id) {
-    Transaction bean = service.read(id);
-    return Response.ok(mapper.map(bean, TransactionResponse.class)).build();
+  public Response read(TransactionReadRequest request) {
+    CollectionWrapper<Transaction> beans = new CollectionWrapper<>(service
+        .read(request.getId(), request.getDate() == null ? null : mapper.map(request.getDate(),
+            Date.class), request.getCategoryId(), request.getAccountId(), request.getUserId()));
+    return Response.ok(mapper.map(beans, TransactionsResponse.class)).build();
   }
 
   @Override
@@ -49,11 +53,5 @@ public class TransactionResourceImpl implements TransactionResource {
   public Response delete(Long id) {
     service.delete(id);
     return Response.noContent().build();
-  }
-
-  @Override
-  public Response readAll() {
-    CollectionWrapper<Transaction> beans = new CollectionWrapper<>(service.readAll());
-    return Response.ok(mapper.map(beans, TransactionsResponse.class)).build();
   }
 }

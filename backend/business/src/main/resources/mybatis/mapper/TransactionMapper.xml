@@ -25,7 +25,7 @@
     ${transaction}.value as "${prefix}value",
     ${transaction}.account_id as "${prefix}account_id",
     ${transaction}.category_id as "${prefix}category_id",
-    ${transaction}.user_id as "${prefix}user_id",
+    ${transaction}.user_id as "${prefix}user_id"
   </sql>
 
   <insert id="insert" keyProperty="id" useGeneratedKeys="true">
@@ -49,9 +49,8 @@
       <if test="value != null">t.value = #{value},</if>
       <if test="note != null">t.note = #{note},</if>
       <if test="date != null">t.date = #{date},</if>
-      <if test="account.id != null">t.account_id = #{account.id},</if>
-      <if test="category.id != null">t.category_id = #{category.id},</if>
-      <if test="user.id != null">t.user_id = #{user.id}</if>
+      <if test="account != null and account.id != null">t.account_id = #{account.id},</if>
+      <if test="category != null and category.id != null">t.category_id = #{category.id},</if>
     </set>
     WHERE t.id = #{id}
   </update>
@@ -61,22 +60,29 @@
     WHERE id = #{id}
   </delete>
 
-  <select id="selectAll" resultMap="transactionResultMap">
+  <select id="select" resultMap="transactionResultMap">
     SELECT
     <include refid="transactionColumns">
       <property name="transaction" value="t"/>
       <property name="prefix" value=""/>
     </include>
     FROM transaction t
-  </select>
-
-  <select id="selectByUserId" resultMap="transactionResultMap">
-    SELECT
-    <include refid="transactionColumns">
-      <property name="transaction" value="t"/>
-      <property name="prefix" value=""/>
-    </include>
-    FROM transaction t
-    WHERE t.user_id = #{userId}
+    <where>
+      <if test="id != null">
+        t.id = #{id}
+      </if>
+      <if test="date != null">
+        AND t.date = #{date}
+      </if>
+      <if test="categoryId != null">
+        AND t.category_id = #{categoryId}
+      </if>
+      <if test="accountId != null">
+        AND t.account_id = #{accountId}
+      </if>
+      <if test="userId != null">
+        AND t.user_id = #{userId}
+      </if>
+    </where>
   </select>
 </mapper>

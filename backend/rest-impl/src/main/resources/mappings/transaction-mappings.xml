@@ -14,6 +14,27 @@
   </mapping>
 
   <mapping>
+    <class-a>com.perfect.team.api.dto.TransactionCreateDto</class-a>
+    <class-b>com.perfect.team.business.model.Transaction</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.LongToDateConverter">
+      <a>date</a>
+      <b>date</b>
+    </field>
+    <field>
+      <a>categoryId</a>
+      <b>category.id</b>
+    </field>
+    <field>
+      <a>accountId</a>
+      <b>account.id</b>
+    </field>
+    <field>
+      <a>userId</a>
+      <b>user.id</b>
+    </field>
+  </mapping>
+
+  <mapping>
     <class-a>com.perfect.team.business.model.Transaction</class-a>
     <class-b>com.perfect.team.api.response.TransactionResponse</class-b>
     <field>
@@ -23,11 +44,49 @@
   </mapping>
 
   <mapping>
+    <class-a>com.perfect.team.business.model.Transaction</class-a>
+    <class-b>com.perfect.team.api.dto.TransactionReadDto</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.LongToDateConverter">
+      <a>date</a>
+      <b>date</b>
+    </field>
+    <field>
+      <a>category.id</a>
+      <b>categoryId</b>
+    </field>
+    <field>
+      <a>account.id</a>
+      <b>accountId</b>
+    </field>
+    <field>
+      <a>user.id</a>
+      <b>userId</b>
+    </field>
+  </mapping>
+
+  <mapping>
     <class-a>com.perfect.team.api.request.TransactionUpdateRequest</class-a>
     <class-b>com.perfect.team.business.model.Transaction</class-b>
     <field>
       <a>transactionDto</a>
       <b>this</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.api.dto.TransactionUpdateDto</class-a>
+    <class-b>com.perfect.team.business.model.Transaction</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.LongToDateConverter">
+      <a>date</a>
+      <b>date</b>
+    </field>
+    <field>
+      <a>categoryId</a>
+      <b>category.id</b>
+    </field>
+    <field>
+      <a>accountId</a>
+      <b>account.id</b>
     </field>
   </mapping>
 

@@ -11,7 +11,10 @@ public class CategoryTypeToStringConverter extends DozerConverter<Type, String> 
 
   @Override
   public String convertTo(Type source, String destination) {
-    return source.toString().toLowerCase();
+    if (source != null) {
+      return source.toString().toLowerCase();
+    }
+    return null;
   }
 
   @Override

@@ -24,6 +24,9 @@ public class CategoryIdValidator implements ConstraintValidator<CategoryId, Long
 
   @Override
   public boolean isValid(Long value, ConstraintValidatorContext context) {
+    if (value == null) {
+      return true;
+    }
     boolean valid = true;
     Category category = categoryMapper.selectById(value);
     if (category == null) {

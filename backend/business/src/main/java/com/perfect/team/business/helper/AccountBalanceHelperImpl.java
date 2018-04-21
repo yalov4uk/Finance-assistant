@@ -38,10 +38,10 @@ public class AccountBalanceHelperImpl implements AccountBalanceHelper {
   @Transactional
   @Override
   public void updateOnUpdate(Long id, Transaction transaction) {
-    Transaction existedTransaction = transactionService.read(id);
-    updateOnDelete(existedTransaction.getId());
-    mapTransaction(transaction, existedTransaction);
-    updateOnCreate(transaction);
+//    Transaction existedTransaction = transactionService.read(id);
+//    updateOnDelete(existedTransaction.getId());
+//    mapTransaction(transaction, existedTransaction);
+//    updateOnCreate(transaction);
   }
 
   @Override

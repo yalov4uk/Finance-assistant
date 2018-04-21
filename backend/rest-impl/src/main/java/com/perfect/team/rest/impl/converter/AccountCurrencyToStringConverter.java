@@ -11,7 +11,10 @@ public class AccountCurrencyToStringConverter extends DozerConverter<Currency, S
 
   @Override
   public String convertTo(Currency source, String destination) {
-    return source.toString().toLowerCase();
+    if (source != null) {
+      return source.toString().toLowerCase();
+    }
+    return null;
   }
 
   @Override

@@ -1,9 +1,11 @@
 package com.perfect.team.api.rest;
 
 import com.perfect.team.api.request.TransactionCreateRequest;
+import com.perfect.team.api.request.TransactionReadRequest;
 import com.perfect.team.api.request.TransactionUpdateRequest;
 import com.perfect.team.api.response.TransactionResponse;
 import com.perfect.team.api.response.TransactionsResponse;
+import com.perfect.team.api.validation.constraint.AtLeastOneNotNull;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -12,6 +14,7 @@ import io.swagger.annotations.ResponseHeader;
 import java.net.URI;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -38,11 +41,11 @@ public interface TransactionResource {
   Response create(@NotNull @Valid TransactionCreateRequest request);
 
   @GET
-  @Path("{id}")
   @ApiResponses(
-      @ApiResponse(code = 200, message = "", response = TransactionResponse.class)
+      @ApiResponse(code = 200, message = "", response = TransactionsResponse.class)
   )
-  Response read(@PathParam("id") Long id);
+  Response read(@AtLeastOneNotNull(fieldNames = {"id", "categoryId", "accountId",
+      "userId"}) @Valid @BeanParam TransactionReadRequest request);
 
   @PUT
   @Path("{id}")
@@ -57,10 +60,4 @@ public interface TransactionResource {
       @ApiResponse(code = 204, message = "")
   )
   Response delete(@PathParam("id") Long id);
-
-  @GET
-  @ApiResponses(
-      @ApiResponse(code = 200, message = "", response = TransactionsResponse.class)
-  )
-  Response readAll();
 }
