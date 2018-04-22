@@ -16,25 +16,6 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
-  <profiles>
-    <profile>
-      <id>dev</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <env>dev</env>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>docker</id>
-      <properties>
-        <env>docker</env>
-      </properties>
-    </profile>
-  </profiles>
-
   <dependencies>
     <dependency>
       <groupId>com.perfect.team</groupId>
@@ -57,16 +38,12 @@
 
   <build>
     <filters>
-      <filter>${basedir}/build-${env}.properties</filter>
+      <filter>src/main/filter/build-${env}.properties</filter>
     </filters>
 
     <resources>
       <resource>
         <directory>src/main/resources</directory>
-      </resource>
-
-      <resource>
-        <directory>src/main/filter</directory>
         <filtering>true</filtering>
       </resource>
     </resources>
@@ -88,5 +65,24 @@
 
     <finalName>${project.parent.artifactId}</finalName>
   </build>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <env>dev</env>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>docker</id>
+      <properties>
+        <env>docker</env>
+      </properties>
+    </profile>
+  </profiles>
 
 </project>

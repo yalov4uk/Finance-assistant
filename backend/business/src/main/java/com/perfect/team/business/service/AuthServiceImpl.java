@@ -1,5 +1,6 @@
 package com.perfect.team.business.service;
 
+import com.perfect.team.business.config.FacebookProperties;
 import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.model.AuthMethod;
 import com.perfect.team.business.model.AuthUser;
@@ -11,22 +12,13 @@ import com.restfb.Version;
 import java.util.List;
 import javax.inject.Inject;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 @Service
-@PropertySource("classpath:business.properties")
 public class AuthServiceImpl implements AuthService {
 
-  @Value("${facebook.api.version}")
-  private String facebookApiVersion;
-
-  @Value("${facebook.app.id}")
-  private String facebookAppId;
-
-  @Value("${facebook.app.secret}")
-  private String facebookAppSecret;
+  @Inject
+  private FacebookProperties facebookProperties;
 
   @Inject
   private UserService userService;
@@ -62,8 +54,9 @@ public class AuthServiceImpl implements AuthService {
   }
 
   private AuthUser signInWithFacebook(String accessToken) {
-    FacebookClient facebookClient = new DefaultFacebookClient(accessToken, facebookAppSecret,
-        Version.valueOf(facebookApiVersion));
+    FacebookClient facebookClient = new DefaultFacebookClient(accessToken,
+        facebookProperties.appSecret,
+        Version.valueOf(facebookProperties.apiVersion));
     com.restfb.types.User facebookUser = facebookClient
         .fetchObject("me", com.restfb.types.User.class,
             Parameter.with("fields", "email, name"));

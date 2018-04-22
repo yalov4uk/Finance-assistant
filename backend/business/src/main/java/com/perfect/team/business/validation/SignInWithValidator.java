@@ -1,5 +1,6 @@
 package com.perfect.team.business.validation;
 
+import com.perfect.team.business.config.FacebookProperties;
 import com.perfect.team.business.model.AuthMethod;
 import com.perfect.team.business.validation.constraint.SignInWith;
 import com.restfb.DefaultFacebookClient;
@@ -7,25 +8,19 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.exception.FacebookOAuthException;
+import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.constraintvalidation.SupportedValidationTarget;
 import javax.validation.constraintvalidation.ValidationTarget;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @SupportedValidationTarget(ValidationTarget.PARAMETERS)
 @Component
 public class SignInWithValidator implements ConstraintValidator<SignInWith, Object[]> {
 
-  @Value("${facebook.api.version}")
-  private String facebookApiVersion;
-
-  @Value("${facebook.app.id}")
-  private String facebookAppId;
-
-  @Value("${facebook.app.secret}")
-  private String facebookAppSecret;
+  @Inject
+  private FacebookProperties facebookProperties;
 
   @Override
   public void initialize(SignInWith constraintAnnotation) {
@@ -44,8 +39,9 @@ public class SignInWithValidator implements ConstraintValidator<SignInWith, Obje
   }
 
   private boolean isValidFacebook(String accessToken, ConstraintValidatorContext context) {
-    FacebookClient facebookClient = new DefaultFacebookClient(accessToken, facebookAppSecret,
-        Version.valueOf(facebookApiVersion));
+    FacebookClient facebookClient = new DefaultFacebookClient(accessToken,
+        facebookProperties.appSecret,
+        Version.valueOf(facebookProperties.apiVersion));
     try {
       com.restfb.types.User facebookUser = facebookClient
           .fetchObject("me", com.restfb.types.User.class,

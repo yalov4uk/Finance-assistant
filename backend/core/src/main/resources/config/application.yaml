@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${db.url}
+    username: root
+    password: root
+
+server:
+  port: 8090
+
+mybatis:
+  typeAliasesPackage: com.perfect.team.business.model
+  mapper-locations: classpath*:**/mybatis/mapper/*.xml
+
+logging:
+  level:
+    com.perfect.team.business.mapper: debug
+
+security:
+  ignored: /**
