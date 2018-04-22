@@ -1,12 +1,25 @@
-package com.perfect.team.api.dto;
+package com.perfect.team.api.request;
 
-public class UserUpdateDto {
+import javax.ws.rs.QueryParam;
 
+public class UserReadRequest {
+
+  @QueryParam("id")
+  private Long id;
+
+  @QueryParam("name")
   private String name;
 
+  @QueryParam("email")
   private String email;
 
-  private String password;
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public String getName() {
     return name;
@@ -22,13 +35,5 @@ public class UserUpdateDto {
 
   public void setEmail(String email) {
     this.email = email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
   }
 }

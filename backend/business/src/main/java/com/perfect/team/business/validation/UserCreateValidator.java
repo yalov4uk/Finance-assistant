@@ -21,7 +21,7 @@ public class UserCreateValidator implements ConstraintValidator<UserCreate, User
   @Override
   public boolean isValid(User value, ConstraintValidatorContext context) {
     boolean valid = true;
-    if (userMapper.selectByEmail(value.getEmail()) != null) {
+    if (!userMapper.select(null, null, value.getEmail()).isEmpty()) {
       valid = false;
       context.buildConstraintViolationWithTemplate("Email already in use").addConstraintViolation();
     }

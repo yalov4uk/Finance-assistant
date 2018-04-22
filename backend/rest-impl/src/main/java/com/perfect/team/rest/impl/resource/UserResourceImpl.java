@@ -1,5 +1,6 @@
 package com.perfect.team.rest.impl.resource;
 
+import com.perfect.team.api.request.UserReadRequest;
 import com.perfect.team.api.request.UserUpdateRequest;
 import com.perfect.team.api.response.UserResponse;
 import com.perfect.team.api.response.UsersResponse;
@@ -20,9 +21,10 @@ public class UserResourceImpl implements UserResource {
   private DozerBeanMapper mapper;
 
   @Override
-  public Response read(Long id) {
-    User bean = service.read(id);
-    return Response.ok(mapper.map(bean, UserResponse.class)).build();
+  public Response read(UserReadRequest request) {
+    CollectionWrapper<User> beans = new CollectionWrapper<>(
+        service.read(request.getId(), request.getName(), request.getEmail()));
+    return Response.ok(mapper.map(beans, UsersResponse.class)).build();
   }
 
   @Override
@@ -31,11 +33,5 @@ public class UserResourceImpl implements UserResource {
     bean.setId(id);
     bean = service.update(bean);
     return Response.ok(mapper.map(bean, UserResponse.class)).build();
-  }
-
-  @Override
-  public Response readAll() {
-    CollectionWrapper<User> beans = new CollectionWrapper<>(service.readAll());
-    return Response.ok(mapper.map(beans, UsersResponse.class)).build();
   }
 }

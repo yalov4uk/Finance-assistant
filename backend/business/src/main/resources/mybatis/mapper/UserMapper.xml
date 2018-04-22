@@ -56,22 +56,23 @@
     WHERE id = #{id}
   </delete>
 
-  <select id="selectAll" resultMap="userResultMap">
+  <select id="select" resultMap="userResultMap">
     SELECT
     <include refid="userColumns">
       <property name="user" value="u"/>
       <property name="prefix" value=""/>
     </include>
     FROM user u
-  </select>
-
-  <select id="selectByEmail" resultMap="userResultMap">
-    SELECT
-    <include refid="userColumns">
-      <property name="user" value="u"/>
-      <property name="prefix" value=""/>
-    </include>
-    FROM user u
-    WHERE u.email = #{email}
+    <where>
+      <if test="id != null">
+        u.id = #{id}
+      </if>
+      <if test="name != null">
+        AND u.name = #{name}
+      </if>
+      <if test="email != null">
+        AND u.email = #{email}
+      </if>
+    </where>
   </select>
 </mapper>

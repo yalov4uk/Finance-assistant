@@ -28,7 +28,7 @@ public class UserUpdateValidator implements ConstraintValidator<UserUpdate, User
     if (!userIdValidator.isValid(value.getId(), context)) {
       valid = false;
     }
-    if (value.getEmail() != null && userMapper.selectByEmail(value.getEmail()) != null) {
+    if (value.getEmail() != null && !userMapper.select(null, null, value.getEmail()).isEmpty()) {
       valid = false;
       context.buildConstraintViolationWithTemplate("Email already in use").addConstraintViolation();
     }

@@ -1,7 +1,5 @@
 package com.perfect.team.business.service;
 
-import com.perfect.team.business.exception.NotFoundException;
-import com.perfect.team.business.exception.ValidationException;
 import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.model.AuthMethod;
 import com.perfect.team.business.model.AuthUser;
@@ -10,7 +8,7 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.Version;
-import java.util.Objects;
+import java.util.List;
 import javax.inject.Inject;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public User signUp(User user) {
-    user.setPassword(encode(user.getPassword()));
+    user.setPassword(DigestUtils.sha256Hex(user.getPassword()));
     Long userId = userService.create(user);
     user.setId(userId);
     return user;
@@ -49,11 +47,7 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public AuthUser signIn(String email, String password) {
-    User user = userMapper.selectByEmail(email);
-    if (user == null || !Objects.equals(encode(password), user.getPassword())) {
-      throw new NotFoundException("User not found");
-    }
-
+    User user = userMapper.select(null, null, email).get(0);
     return new AuthUser(user, tokenService.encode(user));
   }
 
@@ -73,12 +67,8 @@ public class AuthServiceImpl implements AuthService {
     com.restfb.types.User facebookUser = facebookClient
         .fetchObject("me", com.restfb.types.User.class,
             Parameter.with("fields", "email, name"));
-
-    if (facebookUser.getEmail() == null) {
-      throw new ValidationException("Facebook email is null");
-    }
-
-    User user = userMapper.selectByEmail(facebookUser.getEmail());
+    List<User> users = userMapper.select(null, null, facebookUser.getEmail());
+    User user = users.isEmpty() ? null : users.get(0);
     if (user != null) {
       user.setName(facebookUser.getName());
       user = userService.update(user);
@@ -88,9 +78,5 @@ public class AuthServiceImpl implements AuthService {
       user.setId(userId);
     }
     return new AuthUser(user, tokenService.encode(user));
-  }
-
-  private String encode(String text) {
-    return DigestUtils.sha256Hex(text);
   }
 }
