@@ -45,6 +45,8 @@
     <set>
       <if test="name != null">a.name = #{name},</if>
       <if test="icon != null">a.icon = #{icon},</if>
+      <if test="initialDate != null">a.initial_date = #{initialDate},</if>
+      <if test="balance != null">a.balance = #{balance},</if>
       <if test="currency != null">a.currency = #{currency}</if>
     </set>
     WHERE a.id = #{id}
