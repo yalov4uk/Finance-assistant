@@ -1,6 +1,5 @@
 package com.perfect.team.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -9,21 +8,22 @@ public class TransferCreateDto {
 
   @DecimalMin("0")
   @NotNull
-  @JsonProperty(value = "value")
   private BigDecimal value;
 
-  @JsonProperty(value = "note")
   private String note;
 
-  @JsonProperty(value = "date")
   private Long date;
 
-  @JsonProperty(value = "exchangeRate")
   private BigDecimal exchangeRate;
 
   @NotNull
-  @JsonProperty(value = "toAccountId")
+  private Long fromAccountId;
+
+  @NotNull
   private Long toAccountId;
+
+  @NotNull
+  private Long userId;
 
   public BigDecimal getValue() {
     return value;
@@ -57,11 +57,27 @@ public class TransferCreateDto {
     this.exchangeRate = exchangeRate;
   }
 
+  public Long getFromAccountId() {
+    return fromAccountId;
+  }
+
+  public void setFromAccountId(Long fromAccountId) {
+    this.fromAccountId = fromAccountId;
+  }
+
   public Long getToAccountId() {
     return toAccountId;
   }
 
   public void setToAccountId(Long toAccountId) {
     this.toAccountId = toAccountId;
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 }

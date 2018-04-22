@@ -1,6 +1,7 @@
 package com.perfect.team.rest.impl.resource;
 
 import com.perfect.team.api.request.TransferCreateRequest;
+import com.perfect.team.api.request.TransferReadRequest;
 import com.perfect.team.api.request.TransferUpdateRequest;
 import com.perfect.team.api.response.TransferResponse;
 import com.perfect.team.api.response.TransfersResponse;
@@ -9,6 +10,7 @@ import com.perfect.team.business.model.Transfer;
 import com.perfect.team.business.service.TransferService;
 import com.perfect.team.rest.impl.model.CollectionWrapper;
 import java.net.URI;
+import java.util.Date;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -32,9 +34,12 @@ public class TransferResourceImpl implements TransferResource {
   }
 
   @Override
-  public Response read(Long id) {
-    Transfer bean = service.read(id);
-    return Response.ok(mapper.map(bean, TransferResponse.class)).build();
+  public Response read(TransferReadRequest request) {
+    CollectionWrapper<Transfer> beans = new CollectionWrapper<>(
+        service.read(request.getId(),
+            request.getDate() == null ? null : mapper.map(request.getDate(), Date.class),
+            request.getFromAccountId(), request.getToAccountId(), request.getUserId()));
+    return Response.ok(mapper.map(beans, TransfersResponse.class)).build();
   }
 
   @Override
@@ -49,11 +54,5 @@ public class TransferResourceImpl implements TransferResource {
   public Response delete(Long id) {
     service.delete(id);
     return Response.noContent().build();
-  }
-
-  @Override
-  public Response readAll() {
-    CollectionWrapper<Transfer> beans = new CollectionWrapper<>(service.readAll());
-    return Response.ok(mapper.map(beans, TransfersResponse.class)).build();
   }
 }

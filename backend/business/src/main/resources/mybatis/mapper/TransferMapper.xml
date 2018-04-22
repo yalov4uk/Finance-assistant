@@ -28,7 +28,7 @@
     ${transfer}.exchange_rate as "${prefix}exchange_rate",
     ${transfer}.from_account_id as "${prefix}from_account_id",
     ${transfer}.to_account_id as "${prefix}to_account_id",
-    ${transfer}.user_id as "${prefix}user_id",
+    ${transfer}.user_id as "${prefix}user_id"
   </sql>
 
   <insert id="insert" keyProperty="id" useGeneratedKeys="true">
@@ -54,9 +54,10 @@
       <if test="note != null">t.note = #{note},</if>
       <if test="date != null">t.date = #{date},</if>
       <if test="exchangeRate != null">t.exchange_rate = #{exchangeRate},</if>
-      <if test="fromAccount.id != null">t.from_account_id = #{fromAccount.id},</if>
-      <if test="toAccount.id != null">t.to_account_id = #{toAccount.id},</if>
-      <if test="user.id != null">t.user_id = #{user.id}</if>
+      <if test="fromAccount != null and fromAccount.id != null">t.from_account_id =
+        #{fromAccount.id},
+      </if>
+      <if test="toAccount != null and toAccount.id != null">t.to_account_id = #{toAccount.id},</if>
     </set>
     WHERE t.id = #{id}
   </update>
@@ -66,22 +67,29 @@
     WHERE id = #{id}
   </delete>
 
-  <select id="selectAll" resultMap="transferResultMap">
+  <select id="select" resultMap="transferResultMap">
     SELECT
     <include refid="transferColumns">
       <property name="transfer" value="t"/>
       <property name="prefix" value=""/>
     </include>
     FROM transfer t
-  </select>
-
-  <select id="selectByUserId" resultMap="transferResultMap">
-    SELECT
-    <include refid="transferColumns">
-      <property name="transfer" value="t"/>
-      <property name="prefix" value=""/>
-    </include>
-    FROM transfer t
-    WHERE t.user_id = #{userId}
+    <where>
+      <if test="id != null">
+        t.id = #{id}
+      </if>
+      <if test="date != null">
+        AND t.date = #{date}
+      </if>
+      <if test="fromAccountId != null">
+        AND t.from_account_id = #{fromAccountId}
+      </if>
+      <if test="toAccountId != null">
+        AND t.toAccount_id = #{toAccountId}
+      </if>
+      <if test="userId != null">
+        AND t.user_id = #{userId}
+      </if>
+    </where>
   </select>
 </mapper>
