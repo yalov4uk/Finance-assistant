@@ -1,8 +1,7 @@
 package com.perfect.team.rest.impl.config;
 
-import com.perfect.team.rest.impl.filter.TokenAuthenticationFilter;
+import com.perfect.team.rest.impl.filter.BearerAuthenticationFilter;
 import javax.inject.Inject;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -27,11 +26,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http
         .csrf().disable()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and().addFilterBefore(new TokenAuthenticationFilter(authenticationManager),
+        .and().addFilterBefore(new BearerAuthenticationFilter(authenticationManager),
         RequestCacheAwareFilter.class)
         .authorizeRequests()
-        .antMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
-        .antMatchers(HttpMethod.GET, "/api/v1/users").permitAll() // todo: for dev
         .antMatchers("/api/v1/auth/*").permitAll()
         .antMatchers("/api/v1/**").authenticated()
         .anyRequest().permitAll();
