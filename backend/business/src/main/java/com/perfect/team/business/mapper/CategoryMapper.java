@@ -6,10 +6,8 @@ import com.perfect.team.business.model.Category.Type;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 @Mapper
-@Component
 public interface CategoryMapper extends CrudMapper<Category> {
 
   List<Category> select(@Param("id") Long id, @Param("name") String name,

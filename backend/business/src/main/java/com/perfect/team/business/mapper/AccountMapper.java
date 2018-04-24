@@ -6,10 +6,8 @@ import com.perfect.team.business.model.Account.Currency;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 @Mapper
-@Component
 public interface AccountMapper extends CrudMapper<Account> {
 
   List<Account> select(@Param("id") Long id, @Param("name") String name,

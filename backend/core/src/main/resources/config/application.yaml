@@ -10,7 +10,7 @@ server:
 
 mybatis:
   typeAliasesPackage: com.perfect.team.business.model
-  mapper-locations: classpath*:**/mybatis/mapper/*.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
 
 logging:
   level:

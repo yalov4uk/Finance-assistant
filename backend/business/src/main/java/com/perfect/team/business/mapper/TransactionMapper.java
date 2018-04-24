@@ -6,10 +6,8 @@ import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 @Mapper
-@Component
 public interface TransactionMapper extends CrudMapper<Transaction> {
 
   List<Transaction> select(@Param("id") Long id, @Param("date") Date date,
