@@ -1,5 +1,6 @@
 package com.perfect.team.rest.impl.resource;
 
+import com.perfect.team.api.request.UserCreateRequest;
 import com.perfect.team.api.request.UserReadRequest;
 import com.perfect.team.api.request.UserUpdateRequest;
 import com.perfect.team.api.response.UserResponse;
@@ -8,9 +9,11 @@ import com.perfect.team.api.rest.UserResource;
 import com.perfect.team.business.model.User;
 import com.perfect.team.business.service.UserService;
 import com.perfect.team.rest.impl.model.CollectionWrapper;
+import java.net.URI;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
-import org.dozer.DozerBeanMapper;
+import javax.ws.rs.core.UriBuilder;
+import org.dozer.Mapper;
 
 public class UserResourceImpl implements UserResource {
 
@@ -18,7 +21,16 @@ public class UserResourceImpl implements UserResource {
   private UserService service;
 
   @Inject
-  private DozerBeanMapper mapper;
+  private Mapper mapper;
+
+  @Override
+  public Response create(UserCreateRequest request) {
+    User bean = mapper.map(request, User.class);
+    Long beanId = service.create(bean);
+    URI location = UriBuilder.fromResource(UserResource.class).path(beanId.toString())
+        .build();
+    return Response.created(location).build();
+  }
 
   @Override
   public Response read(UserReadRequest request) {
@@ -33,5 +45,11 @@ public class UserResourceImpl implements UserResource {
     bean.setId(id);
     bean = service.update(bean);
     return Response.ok(mapper.map(bean, UserResponse.class)).build();
+  }
+
+  @Override
+  public Response delete(Long id) {
+    service.delete(id);
+    return Response.noContent().build();
   }
 }

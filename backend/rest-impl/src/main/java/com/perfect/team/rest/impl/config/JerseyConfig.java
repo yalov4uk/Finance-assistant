@@ -5,6 +5,7 @@ import com.perfect.team.rest.impl.filter.LoggingProvider;
 import com.perfect.team.rest.impl.resource.AccountResourceImpl;
 import com.perfect.team.rest.impl.resource.AuthResourceImpl;
 import com.perfect.team.rest.impl.resource.CategoryResourceImpl;
+import com.perfect.team.rest.impl.resource.ConfirmationResourceImpl;
 import com.perfect.team.rest.impl.resource.TransactionResourceImpl;
 import com.perfect.team.rest.impl.resource.TransferResourceImpl;
 import com.perfect.team.rest.impl.resource.UserResourceImpl;
@@ -31,6 +32,7 @@ public class JerseyConfig extends ResourceConfig {
     register(TransactionResourceImpl.class);
     register(TransferResourceImpl.class);
     register(UserResourceImpl.class);
+    register(ConfirmationResourceImpl.class);
   }
 
   private void registerHandlers() {

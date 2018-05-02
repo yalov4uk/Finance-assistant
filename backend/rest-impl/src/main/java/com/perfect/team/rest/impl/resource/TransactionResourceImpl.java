@@ -14,7 +14,7 @@ import java.util.Date;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 public class TransactionResourceImpl implements TransactionResource {
 
@@ -22,7 +22,7 @@ public class TransactionResourceImpl implements TransactionResource {
   private TransactionService service;
 
   @Inject
-  private DozerBeanMapper mapper;
+  private Mapper mapper;
 
   @Override
   public Response create(TransactionCreateRequest request) {

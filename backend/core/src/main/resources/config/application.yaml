@@ -1,9 +1,20 @@
 spring:
+  profiles:
+    active: @env@
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${db.url}
-    username: root
-    password: root
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    test-connection: true
 
 server:
   port: 8090
@@ -11,10 +22,6 @@ server:
 mybatis:
   typeAliasesPackage: com.perfect.team.business.model
   mapper-locations: classpath:mybatis/mapper/*.xml
-
-logging:
-  level:
-    com.perfect.team.business.mapper: debug
 
 security:
   ignored: /**

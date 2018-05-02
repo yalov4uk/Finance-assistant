@@ -10,6 +10,8 @@ public class UserReadDto {
 
   private String password;
 
+  private Boolean confirmed;
+
   public Long getId() {
     return id;
   }
@@ -40,5 +42,13 @@ public class UserReadDto {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public Boolean getConfirmed() {
+    return confirmed;
+  }
+
+  public void setConfirmed(Boolean confirmed) {
+    this.confirmed = confirmed;
   }
 }

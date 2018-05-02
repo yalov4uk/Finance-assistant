@@ -1,9 +1,7 @@
 package com.perfect.team.api.rest;
 
 import com.perfect.team.api.request.SignInRequest;
-import com.perfect.team.api.request.SignUpRequest;
 import com.perfect.team.api.response.SignInResponse;
-import com.perfect.team.api.response.SignUpResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -24,13 +22,6 @@ import javax.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 @Api
 public interface AuthResource {
-
-  @POST
-  @Path("signUp")
-  @ApiResponses(
-      @ApiResponse(code = 200, message = "", response = SignUpResponse.class)
-  )
-  Response signUp(@NotNull @Valid SignUpRequest request);
 
   @POST
   @Path("signIn")

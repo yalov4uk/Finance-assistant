@@ -5,8 +5,8 @@ import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.model.User;
 import java.util.List;
 import javax.inject.Inject;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,10 +16,14 @@ public class UserServiceImpl implements UserService {
   private UserMapper userMapper;
 
   @Inject
+  private PasswordEncoder passwordEncoder;
+
+  @Inject
   private ApplicationEventPublisher applicationEventPublisher;
 
   @Override
   public Long create(User bean) {
+    bean.setPassword(passwordEncoder.encode(bean.getPassword()));
     userMapper.insert(bean);
     applicationEventPublisher.publishEvent(new UserChangedEvent(this, null, bean));
     return bean.getId();
@@ -34,7 +38,7 @@ public class UserServiceImpl implements UserService {
   public User update(User bean) {
     User oldObject = userMapper.selectById(bean.getId());
     if (bean.getPassword() != null) {
-      bean.setPassword(DigestUtils.sha256Hex(bean.getPassword()));
+      bean.setPassword(passwordEncoder.encode(bean.getPassword()));
     }
     userMapper.update(bean);
     User newObject = userMapper.selectById(bean.getId());

@@ -18,7 +18,8 @@ public class RestImplConfig {
         "classpath:mappings/category-mappings.xml",
         "classpath:mappings/transaction-mappings.xml",
         "classpath:mappings/transfer-mappings.xml",
-        "classpath:mappings/user-mappings.xml"
+        "classpath:mappings/user-mappings.xml",
+        "classpath:mappings/confirmation-mappings.xml"
     );
     dozerBean.setMappingFiles(mappingFiles);
     return dozerBean;

@@ -37,10 +37,6 @@
   </dependencies>
 
   <build>
-    <filters>
-      <filter>src/main/filter/build-${env}.properties</filter>
-    </filters>
-
     <resources>
       <resource>
         <directory>src/main/resources</directory>

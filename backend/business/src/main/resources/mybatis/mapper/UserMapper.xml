@@ -9,6 +9,7 @@
     <result column="email" property="email"/>
     <result column="name" property="name"/>
     <result column="password" property="password"/>
+    <result column="confirmed" property="confirmed"/>
     <collection column="id" columnPrefix="account_" foreignColumn="user_id" property="accounts"
       resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
     <collection column="id" columnPrefix="category_" foreignColumn="user_id" property="categories"
@@ -18,13 +19,17 @@
       resultMap="com.perfect.team.business.mapper.TransactionMapper.transactionResultMap"/>
     <collection column="id" columnPrefix="transfer_" foreignColumn="user_id" property="transfers"
       resultMap="com.perfect.team.business.mapper.TransferMapper.transferResultMap"/>
+    <collection column="id" columnPrefix="confirmation_" foreignColumn="user_id"
+      property="confirmations"
+      resultMap="com.perfect.team.business.mapper.ConfirmationMapper.confirmationResultMap"/>
   </resultMap>
 
   <sql id="userColumns">
     ${user}.id as "${prefix}id",
     ${user}.email as "${prefix}email",
     ${user}.name as "${prefix}name",
-    ${user}.password as "${prefix}password"
+    ${user}.password as "${prefix}password",
+    ${user}.confirmed as "${prefix}confirmed"
   </sql>
 
   <insert id="insert" keyProperty="id" useGeneratedKeys="true">
@@ -46,7 +51,8 @@
     <set>
       <if test="email != null">u.email = #{email},</if>
       <if test="name != null">u.name = #{name},</if>
-      <if test="password != null">u.password = #{password}</if>
+      <if test="password != null">u.password = #{password},</if>
+      <if test="confirmed != null">u.confirmed = #{confirmed}</if>
     </set>
     WHERE u.id = #{id}
   </update>

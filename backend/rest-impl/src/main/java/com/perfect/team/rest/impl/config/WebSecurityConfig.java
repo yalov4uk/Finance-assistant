@@ -1,7 +1,9 @@
 package com.perfect.team.rest.impl.config;
 
+import com.perfect.team.business.config.Roles;
 import com.perfect.team.rest.impl.filter.BearerAuthenticationFilter;
 import javax.inject.Inject;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -29,8 +31,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and().addFilterBefore(new BearerAuthenticationFilter(authenticationManager),
         RequestCacheAwareFilter.class)
         .authorizeRequests()
+        .antMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
         .antMatchers("/api/v1/auth/*").permitAll()
-        .antMatchers("/api/v1/**").authenticated()
+        .antMatchers("/api/v1/confirmations").hasRole(Roles.NOT_CONFIRMED)
+        .antMatchers("/api/v1/**").hasRole(Roles.CONFIRMED)
         .anyRequest().permitAll();
   }
 }

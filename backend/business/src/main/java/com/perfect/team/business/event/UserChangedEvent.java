@@ -5,8 +5,7 @@ import com.perfect.team.business.model.User;
 
 public class UserChangedEvent extends ChangedBaseEvent<User> {
 
-  public UserChangedEvent(Object source, User oldObject,
-      User newObject) {
+  public UserChangedEvent(Object source, User oldObject, User newObject) {
     super(source, oldObject, newObject);
   }
 }

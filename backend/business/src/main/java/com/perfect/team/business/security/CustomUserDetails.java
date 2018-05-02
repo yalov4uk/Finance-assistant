@@ -2,7 +2,6 @@ package com.perfect.team.business.security;
 
 import com.perfect.team.business.model.User;
 import java.util.Collection;
-import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,13 +9,16 @@ public class CustomUserDetails implements UserDetails {
 
   private User user;
 
-  public CustomUserDetails(User user) {
+  private Collection<? extends GrantedAuthority> authorities;
+
+  public CustomUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
     this.user = user;
+    this.authorities = authorities;
   }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Collections.emptyList();
+    return authorities;
   }
 
   @Override

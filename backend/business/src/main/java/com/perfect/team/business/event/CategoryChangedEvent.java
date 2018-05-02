@@ -5,8 +5,7 @@ import com.perfect.team.business.model.Category;
 
 public class CategoryChangedEvent extends ChangedBaseEvent<Category> {
 
-  public CategoryChangedEvent(Object source, Category oldObject,
-      Category newObject) {
+  public CategoryChangedEvent(Object source, Category oldObject, Category newObject) {
     super(source, oldObject, newObject);
   }
 }

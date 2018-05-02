@@ -11,7 +11,6 @@ import com.restfb.Parameter;
 import com.restfb.Version;
 import java.util.List;
 import javax.inject.Inject;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,20 +26,12 @@ public class AuthServiceImpl implements AuthService {
   private UserMapper userMapper;
 
   @Inject
-  private TokenService tokenService;
-
-  @Override
-  public User signUp(User user) {
-    user.setPassword(DigestUtils.sha256Hex(user.getPassword()));
-    Long userId = userService.create(user);
-    user.setId(userId);
-    return user;
-  }
+  private CipherService cipherService;
 
   @Override
   public AuthUser signIn(String email, String password) {
     User user = userMapper.select(null, null, email).get(0);
-    return new AuthUser(user, tokenService.encode(user));
+    return new AuthUser(user, cipherService.encode(user.getId()));
   }
 
   @Override
@@ -66,10 +57,10 @@ public class AuthServiceImpl implements AuthService {
       user.setName(facebookUser.getName());
       user = userService.update(user);
     } else {
-      user = new User(facebookUser.getName(), facebookUser.getEmail());
+      user = new User(facebookUser.getName(), facebookUser.getEmail(), true);
       Long userId = userService.create(user);
       user.setId(userId);
     }
-    return new AuthUser(user, tokenService.encode(user));
+    return new AuthUser(user, cipherService.encode(user.getId()));
   }
 }

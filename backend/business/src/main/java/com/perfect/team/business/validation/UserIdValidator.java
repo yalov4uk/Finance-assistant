@@ -29,7 +29,7 @@ public class UserIdValidator implements ConstraintValidator<UserId, Long> {
     }
     boolean valid = true;
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (authentication != null) {
+    if (authentication != null && authentication.getPrincipal() instanceof CustomUserDetails) {
       User authUser = ((CustomUserDetails) authentication.getPrincipal()).getUser();
       if (!Objects.equals(value, authUser.getId())) {
         valid = false;

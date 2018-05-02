@@ -15,7 +15,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 @Singleton
 public class AccountResourceImpl implements AccountResource {
@@ -24,7 +24,7 @@ public class AccountResourceImpl implements AccountResource {
   private AccountService service;
 
   @Inject
-  private DozerBeanMapper mapper;
+  private Mapper mapper;
 
   @Override
   public Response create(AccountCreateRequest request) {

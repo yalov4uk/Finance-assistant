@@ -2,7 +2,7 @@ package com.perfect.team.api.dto;
 
 import javax.validation.constraints.NotNull;
 
-public class SignUpDto {
+public class UserCreateDto {
 
   @NotNull
   private String name;

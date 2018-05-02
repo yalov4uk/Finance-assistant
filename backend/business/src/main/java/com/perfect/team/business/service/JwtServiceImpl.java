@@ -8,29 +8,23 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.perfect.team.business.config.Auth0Properties;
 import com.perfect.team.business.exception.ProcessingException;
-import com.perfect.team.business.model.User;
 import java.io.UnsupportedEncodingException;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JwtServiceImpl implements TokenService {
+public class JwtServiceImpl implements CipherService {
 
   @Inject
   private Auth0Properties auth0Properties;
 
   @Override
-  public String encode(User user) {
-    return encode(user.getId());
-  }
-
-  @Override
-  public String encode(Long userId) {
+  public String encode(Object subject) {
     try {
       Algorithm algorithm = Algorithm.HMAC256(auth0Properties.secret);
       return JWT.create()
           .withIssuer(auth0Properties.issuer)
-          .withSubject(userId.toString())
+          .withSubject(subject.toString())
           .sign(algorithm);
     } catch (UnsupportedEncodingException | JWTCreationException exception) {
       throw new ProcessingException(exception.getMessage());
@@ -38,14 +32,14 @@ public class JwtServiceImpl implements TokenService {
   }
 
   @Override
-  public Long decode(String token) {
+  public Object decode(String token) {
     try {
       Algorithm algorithm = Algorithm.HMAC256(auth0Properties.secret);
       JWTVerifier verifier = JWT.require(algorithm)
           .withIssuer(auth0Properties.issuer)
           .build();
       DecodedJWT jwt = verifier.verify(token);
-      return Long.parseLong(jwt.getSubject());
+      return jwt.getSubject();
     } catch (UnsupportedEncodingException | JWTVerificationException exception) {
       throw new ProcessingException(exception.getMessage());
     }

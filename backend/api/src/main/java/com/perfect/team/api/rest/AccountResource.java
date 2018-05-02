@@ -29,7 +29,7 @@ import javax.ws.rs.core.Response;
 @Path("accounts")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Api(authorizations = {@Authorization("Auth-token")})
+@Api(authorizations = {@Authorization("Authorization")})
 public interface AccountResource {
 
   @POST

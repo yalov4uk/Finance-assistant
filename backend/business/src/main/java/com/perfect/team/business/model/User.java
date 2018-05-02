@@ -14,6 +14,8 @@ public class User implements Serializable {
 
   private String password;
 
+  private Boolean confirmed;
+
   private List<Account> accounts;
 
   private List<Category> categories;
@@ -22,12 +24,20 @@ public class User implements Serializable {
 
   private List<Transfer> transfers;
 
+  private List<Confirmation> confirmations;
+
   public User() {
   }
 
-  public User(String name, String email) {
+  public User(Long id, boolean confirmed) {
+    this.id = id;
+    this.confirmed = confirmed;
+  }
+
+  public User(String name, String email, boolean confirmed) {
     this.name = name;
     this.email = email;
+    this.confirmed = confirmed;
   }
 
   public Long getId() {
@@ -62,6 +72,14 @@ public class User implements Serializable {
     this.password = password;
   }
 
+  public Boolean getConfirmed() {
+    return confirmed;
+  }
+
+  public void setConfirmed(Boolean confirmed) {
+    this.confirmed = confirmed;
+  }
+
   public List<Account> getAccounts() {
     return accounts;
   }
@@ -94,6 +112,14 @@ public class User implements Serializable {
     this.transfers = transfers;
   }
 
+  public List<Confirmation> getConfirmations() {
+    return confirmations;
+  }
+
+  public void setConfirmations(List<Confirmation> confirmations) {
+    this.confirmations = confirmations;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -105,12 +131,13 @@ public class User implements Serializable {
     User user = (User) o;
     return Objects.equals(name, user.name) &&
         Objects.equals(email, user.email) &&
-        Objects.equals(password, user.password);
+        Objects.equals(password, user.password) &&
+        Objects.equals(confirmed, user.confirmed);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email, password);
+    return Objects.hash(name, email, password, confirmed);
   }
 
   @Override
@@ -120,6 +147,7 @@ public class User implements Serializable {
         ", name='" + name + '\'' +
         ", email='" + email + '\'' +
         ", password='" + password + '\'' +
+        ", confirmed=" + confirmed +
         '}';
   }
 }
