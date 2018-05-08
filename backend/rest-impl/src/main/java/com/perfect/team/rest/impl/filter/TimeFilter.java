@@ -1,36 +1,27 @@
 package com.perfect.team.rest.impl.filter;
 
 import java.io.IOException;
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 @Component
-public class TimeFilter implements Filter {
+public class TimeFilter extends OncePerRequestFilter {
 
   private static Logger logger = LoggerFactory.getLogger(TimeFilter.class);
 
   @Override
-  public void init(FilterConfig filterConfig) throws ServletException {
-
-  }
-
-  @Override
-  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-      throws IOException, ServletException {
+  protected void doFilterInternal(HttpServletRequest httpServletRequest,
+      HttpServletResponse httpServletResponse, FilterChain filterChain)
+      throws ServletException, IOException {
     long startTime = System.currentTimeMillis();
-    chain.doFilter(request, response);
+    filterChain.doFilter(httpServletRequest, httpServletResponse);
     long elapsedTime = System.currentTimeMillis() - startTime;
-    logger.info("Method  executed in {} ms", elapsedTime);
-  }
-
-  @Override
-  public void destroy() {
+    logger.info("Executed in {} ms", elapsedTime);
   }
 }
