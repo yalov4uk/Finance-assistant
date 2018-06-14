@@ -31,14 +31,8 @@ public class ConfirmationServiceImpl implements ConfirmationService {
   }
 
   @Override
-  public Confirmation update(Confirmation bean) {
-    Confirmation oldObject = confirmationMapper
-        .selectByCodeAndUserId(bean.getCode(), bean.getUser().getId());
-    bean.setId(oldObject.getId());
-    confirmationMapper.update(bean);
-    Confirmation newObject = confirmationMapper
-        .selectByCodeAndUserId(bean.getCode(), bean.getUser().getId());
+  public void confirm(Confirmation bean) {
+    confirmationMapper.delete(bean.getId());
     jmsTemplate.convertAndSend(topic, new EmailConfirmedEvent(this, bean));
-    return newObject;
   }
 }

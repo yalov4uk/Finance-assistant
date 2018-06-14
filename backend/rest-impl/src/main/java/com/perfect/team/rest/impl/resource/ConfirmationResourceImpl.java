@@ -1,7 +1,7 @@
 package com.perfect.team.rest.impl.resource;
 
 import com.perfect.team.api.request.ConfirmationCreateRequest;
-import com.perfect.team.api.request.ConfirmationUpdateRequest;
+import com.perfect.team.api.request.ConfirmationRequest;
 import com.perfect.team.api.rest.ConfirmationResource;
 import com.perfect.team.api.rest.UserResource;
 import com.perfect.team.business.model.Confirmation;
@@ -30,9 +30,10 @@ public class ConfirmationResourceImpl implements ConfirmationResource {
   }
 
   @Override
-  public Response update(ConfirmationUpdateRequest request) {
+  public Response confirm(Long id, ConfirmationRequest request) {
     Confirmation bean = mapper.map(request, Confirmation.class);
-    service.update(bean);
+    bean.setId(id);
+    service.confirm(bean);
     URI location = UriBuilder.fromResource(UserResource.class)
         .path(bean.getUser().getId().toString()).build();
     return Response.seeOther(location).build();

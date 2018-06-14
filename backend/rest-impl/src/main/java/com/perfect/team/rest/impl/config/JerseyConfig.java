@@ -15,7 +15,7 @@ import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
-@ApplicationPath("api/v2.0")
+@ApplicationPath("api/v2.1")
 @Component
 public class JerseyConfig extends ResourceConfig {
 

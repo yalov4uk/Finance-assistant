@@ -23,7 +23,7 @@
   </mapping>
 
   <mapping>
-    <class-a>com.perfect.team.api.request.ConfirmationUpdateRequest</class-a>
+    <class-a>com.perfect.team.api.request.ConfirmationRequest</class-a>
     <class-b>com.perfect.team.business.model.Confirmation</class-b>
     <field>
       <a>confirmationDto</a>
@@ -32,7 +32,7 @@
   </mapping>
 
   <mapping>
-    <class-a>com.perfect.team.api.dto.ConfirmationUpdateDto</class-a>
+    <class-a>com.perfect.team.api.dto.ConfirmationDto</class-a>
     <class-b>com.perfect.team.business.model.Confirmation</class-b>
     <field>
       <a>userId</a>

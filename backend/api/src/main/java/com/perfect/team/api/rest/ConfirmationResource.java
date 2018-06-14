@@ -1,7 +1,7 @@
 package com.perfect.team.api.rest;
 
 import com.perfect.team.api.request.ConfirmationCreateRequest;
-import com.perfect.team.api.request.ConfirmationUpdateRequest;
+import com.perfect.team.api.request.ConfirmationRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -11,8 +11,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -29,11 +29,12 @@ public interface ConfirmationResource {
   )
   Response create(@NotNull @Valid ConfirmationCreateRequest request);
 
-  @PUT
+  @POST
+  @Path("{id}")
   @ApiResponses(
       @ApiResponse(code = 303, message = "", responseHeaders = {
           @ResponseHeader(name = "location", response = URI.class)
       })
   )
-  Response update(@NotNull @Valid ConfirmationUpdateRequest request);
+  Response confirm(@PathParam("id") Long id, @NotNull @Valid ConfirmationRequest request);
 }

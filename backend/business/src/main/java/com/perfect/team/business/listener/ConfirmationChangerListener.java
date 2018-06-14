@@ -6,12 +6,10 @@ import com.perfect.team.business.model.Confirmation;
 import com.perfect.team.business.model.User;
 import com.perfect.team.business.service.UserService;
 import javax.inject.Inject;
-import org.springframework.context.event.EventListener;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.mail.MailMessage;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component

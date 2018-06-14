@@ -1,16 +1,11 @@
 package com.perfect.team.api.dto;
 
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
-public class ConfirmationUpdateDto {
+public class ConfirmationDto {
 
   @NotNull
   private String code;
-
-  @NotNull
-  @AssertTrue
-  private Boolean confirmed;
 
   @NotNull
   private Long userId;
@@ -21,14 +16,6 @@ public class ConfirmationUpdateDto {
 
   public void setCode(String code) {
     this.code = code;
-  }
-
-  public Boolean getConfirmed() {
-    return confirmed;
-  }
-
-  public void setConfirmed(Boolean confirmed) {
-    this.confirmed = confirmed;
   }
 
   public Long getUserId() {

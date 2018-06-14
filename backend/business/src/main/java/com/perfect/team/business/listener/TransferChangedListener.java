@@ -6,9 +6,7 @@ import com.perfect.team.business.helper.AccountHelper;
 import com.perfect.team.business.model.Transfer;
 import java.util.Objects;
 import javax.inject.Inject;
-import org.springframework.context.event.EventListener;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
