@@ -1,11 +1,13 @@
 package com.perfect.team.business.listener;
 
+import com.perfect.team.business.config.JmsConfig;
 import com.perfect.team.business.event.TransferChangedEvent;
 import com.perfect.team.business.helper.AccountHelper;
 import com.perfect.team.business.model.Transfer;
 import java.util.Objects;
 import javax.inject.Inject;
 import org.springframework.context.event.EventListener;
+import org.springframework.jms.annotation.JmsListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +17,7 @@ public class TransferChangedListener {
   @Inject
   private AccountHelper accountHelper;
 
-  @Async
-  @EventListener
+  @JmsListener(destination = JmsConfig.TEMP_VIRTUAL_TOPIC_DESTINATION)
   public void onApplicationEvent(TransferChangedEvent event) {
     if (event.getOld() == null || event.getCur() == null || !Objects
         .equals(event.getOld().getValue(), event.getCur().getValue()) || !Objects

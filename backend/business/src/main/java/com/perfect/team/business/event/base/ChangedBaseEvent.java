@@ -4,8 +4,8 @@ import org.springframework.context.ApplicationEvent;
 
 public abstract class ChangedBaseEvent<T> extends ApplicationEvent {
 
-  protected T old;
-  protected T cur;
+  private final T old;
+  private final T cur;
 
   public ChangedBaseEvent(Object source, T old, T cur) {
     super(source);
@@ -17,15 +17,7 @@ public abstract class ChangedBaseEvent<T> extends ApplicationEvent {
     return old;
   }
 
-  public void setOld(T old) {
-    this.old = old;
-  }
-
   public T getCur() {
     return cur;
-  }
-
-  public void setCur(T cur) {
-    this.cur = cur;
   }
 }

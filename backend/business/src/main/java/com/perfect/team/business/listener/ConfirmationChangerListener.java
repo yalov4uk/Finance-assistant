@@ -1,11 +1,13 @@
 package com.perfect.team.business.listener;
 
-import com.perfect.team.business.event.ConfirmationChangedEvent;
+import com.perfect.team.business.config.JmsConfig;
+import com.perfect.team.business.event.ConfirmationCreatedEvent;
 import com.perfect.team.business.model.Confirmation;
 import com.perfect.team.business.model.User;
 import com.perfect.team.business.service.UserService;
 import javax.inject.Inject;
 import org.springframework.context.event.EventListener;
+import org.springframework.jms.annotation.JmsListener;
 import org.springframework.mail.MailMessage;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -21,9 +23,8 @@ public class ConfirmationChangerListener {
   @Inject
   private UserService userService;
 
-  @Async
-  @EventListener
-  public void onApplicationEvent(ConfirmationChangedEvent event) {
+  @JmsListener(destination = JmsConfig.TEMP_VIRTUAL_TOPIC_DESTINATION)
+  public void onApplicationEvent(ConfirmationCreatedEvent event) {
     if (event.getOld() == null) {
       sendMail(event.getCur());
     }

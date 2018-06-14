@@ -11,6 +11,4 @@ public interface ConfirmationService {
   Long create(@ConfirmationCreate Confirmation bean);
 
   Confirmation update(@ConfirmationUpdate Confirmation bean);
-
-  void delete(Long id);
 }

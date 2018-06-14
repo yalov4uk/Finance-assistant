@@ -1,11 +1,13 @@
 package com.perfect.team.business.service;
 
-import com.perfect.team.business.event.ConfirmationChangedEvent;
+import com.perfect.team.business.event.ConfirmationCreatedEvent;
+import com.perfect.team.business.event.EmailConfirmedEvent;
 import com.perfect.team.business.mapper.ConfirmationMapper;
 import com.perfect.team.business.model.Confirmation;
 import javax.inject.Inject;
+import javax.jms.Topic;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,13 +17,16 @@ public class ConfirmationServiceImpl implements ConfirmationService {
   private ConfirmationMapper confirmationMapper;
 
   @Inject
-  private ApplicationEventPublisher applicationEventPublisher;
+  private JmsTemplate jmsTemplate;
+
+  @Inject
+  private Topic topic;
 
   @Override
   public Long create(Confirmation bean) {
     bean.setCode(RandomStringUtils.randomAlphanumeric(64));
     confirmationMapper.insert(bean);
-    applicationEventPublisher.publishEvent(new ConfirmationChangedEvent(this, null, bean));
+    jmsTemplate.convertAndSend(topic, new ConfirmationCreatedEvent(this, bean));
     return bean.getId();
   }
 
@@ -33,15 +38,7 @@ public class ConfirmationServiceImpl implements ConfirmationService {
     confirmationMapper.update(bean);
     Confirmation newObject = confirmationMapper
         .selectByCodeAndUserId(bean.getCode(), bean.getUser().getId());
-    applicationEventPublisher
-        .publishEvent(new ConfirmationChangedEvent(this, oldObject, newObject));
+    jmsTemplate.convertAndSend(topic, new EmailConfirmedEvent(this, bean));
     return newObject;
-  }
-
-  @Override
-  public void delete(Long id) {
-    Confirmation oldObject = confirmationMapper.selectById(id);
-    confirmationMapper.delete(id);
-    applicationEventPublisher.publishEvent(new ConfirmationChangedEvent(this, oldObject, null));
   }
 }

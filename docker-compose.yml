@@ -15,3 +15,8 @@ services:
     container_name: finance-db
     ports:
       - 3307:3306
+
+  activemq:
+    image: webcenter/activemq:5.14.3
+    ports:
+      - 61616:61616

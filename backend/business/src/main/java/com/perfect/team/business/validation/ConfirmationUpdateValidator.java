@@ -32,7 +32,8 @@ public class ConfirmationUpdateValidator implements
           .addConstraintViolation();
       return false;
     }
-    if (userMapper.selectById(value.getUser().getId()).getConfirmed()) {
+    if (confirmation.getConfirmed()
+        || userMapper.selectById(value.getUser().getId()).getConfirmed()) {
       context.buildConstraintViolationWithTemplate("User already confirmed")
           .addConstraintViolation();
       return false;

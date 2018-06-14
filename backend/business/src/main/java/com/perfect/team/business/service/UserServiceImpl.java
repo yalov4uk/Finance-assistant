@@ -1,11 +1,14 @@
 package com.perfect.team.business.service;
 
 import com.perfect.team.business.event.UserChangedEvent;
+import com.perfect.team.business.event.UserCreatedEvent;
+import com.perfect.team.business.event.UserDeletedEvent;
 import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.model.User;
 import java.util.List;
 import javax.inject.Inject;
-import org.springframework.context.ApplicationEventPublisher;
+import javax.jms.Topic;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +22,16 @@ public class UserServiceImpl implements UserService {
   private PasswordEncoder passwordEncoder;
 
   @Inject
-  private ApplicationEventPublisher applicationEventPublisher;
+  private JmsTemplate jmsTemplate;
+
+  @Inject
+  private Topic topic;
 
   @Override
   public Long create(User bean) {
     bean.setPassword(passwordEncoder.encode(bean.getPassword()));
     userMapper.insert(bean);
-    applicationEventPublisher.publishEvent(new UserChangedEvent(this, null, bean));
+    jmsTemplate.convertAndSend(topic, new UserCreatedEvent(this, bean));
     return bean.getId();
   }
 
@@ -42,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
     userMapper.update(bean);
     User newObject = userMapper.selectById(bean.getId());
-    applicationEventPublisher.publishEvent(new UserChangedEvent(this, oldObject, newObject));
+    jmsTemplate.convertAndSend(topic, new UserChangedEvent(this, oldObject, newObject));
     return newObject;
   }
 
@@ -50,6 +56,6 @@ public class UserServiceImpl implements UserService {
   public void delete(Long id) {
     User oldObject = userMapper.selectById(id);
     userMapper.delete(id);
-    applicationEventPublisher.publishEvent(new UserChangedEvent(this, oldObject, null));
+    jmsTemplate.convertAndSend(topic, new UserDeletedEvent(this, oldObject));
   }
 }

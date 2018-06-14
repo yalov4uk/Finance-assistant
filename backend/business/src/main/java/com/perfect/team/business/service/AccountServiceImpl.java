@@ -1,12 +1,15 @@
 package com.perfect.team.business.service;
 
 import com.perfect.team.business.event.AccountChangedEvent;
+import com.perfect.team.business.event.AccountCreatedEvent;
+import com.perfect.team.business.event.AccountDeletedEvent;
 import com.perfect.team.business.mapper.AccountMapper;
 import com.perfect.team.business.model.Account;
 import com.perfect.team.business.model.Account.Currency;
 import java.util.List;
 import javax.inject.Inject;
-import org.springframework.context.ApplicationEventPublisher;
+import javax.jms.Topic;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,12 +19,15 @@ public class AccountServiceImpl implements AccountService {
   private AccountMapper accountMapper;
 
   @Inject
-  private ApplicationEventPublisher applicationEventPublisher;
+  private JmsTemplate jmsTemplate;
+
+  @Inject
+  private Topic topic;
 
   @Override
   public Long create(Account bean) {
     accountMapper.insert(bean);
-    applicationEventPublisher.publishEvent(new AccountChangedEvent(this, null, bean));
+    jmsTemplate.convertAndSend(topic, new AccountCreatedEvent(this, bean));
     return bean.getId();
   }
 
@@ -35,7 +41,7 @@ public class AccountServiceImpl implements AccountService {
     Account oldObject = accountMapper.selectById(bean.getId());
     accountMapper.update(bean);
     Account newObject = accountMapper.selectById(bean.getId());
-    applicationEventPublisher.publishEvent(new AccountChangedEvent(this, oldObject, newObject));
+    jmsTemplate.convertAndSend(topic, new AccountChangedEvent(this, oldObject, newObject));
     return newObject;
   }
 
@@ -43,6 +49,6 @@ public class AccountServiceImpl implements AccountService {
   public void delete(Long id) {
     Account oldObject = accountMapper.selectById(id);
     accountMapper.delete(id);
-    applicationEventPublisher.publishEvent(new AccountChangedEvent(this, oldObject, null));
+    jmsTemplate.convertAndSend(topic, new AccountDeletedEvent(this, oldObject));
   }
 }
