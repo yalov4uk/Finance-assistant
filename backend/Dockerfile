@@ -7,4 +7,4 @@ ADD . .
 
 RUN mvn clean install -P docker
 
-CMD java -jar core/target/financial-service.jar
+CMD java -jar core/target/core.jar

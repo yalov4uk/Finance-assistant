@@ -13,6 +13,7 @@
     <module>api</module>
     <module>rest-impl</module>
     <module>edge</module>
+    <module>registry</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -38,6 +39,7 @@
     <version.swagger>1.5.17</version.swagger>
     <vestion.commons.beanutils>1.9.3</vestion.commons.beanutils>
     <version.apache.commons.lang3>3.7</version.apache.commons.lang3>
+    <spring.cloud.version>Edgware.SR3</spring.cloud.version>
   </properties>
 
   <dependencyManagement>
@@ -168,6 +170,14 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-activemq</artifactId>
         <version>${version.spring.boot}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring.cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>

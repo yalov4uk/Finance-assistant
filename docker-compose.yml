@@ -2,11 +2,27 @@ version: "3.4"
 
 services:
 
+  registry:
+    build: backend/registry
+    container_name: finance-registry
+    ports:
+      - 8762:8761
+
+  edge:
+    build: backend/edge
+    container_name: finance-edge
+    depends_on:
+      - registry
+    ports:
+      - 8081:8080
+
   backend:
     build: backend
     container_name: finance-backend
     depends_on:
+      - registry
       - db
+      - activemq
     ports:
       - 8091:8090
 
@@ -19,4 +35,4 @@ services:
   activemq:
     image: webcenter/activemq:5.14.3
     ports:
-      - 61616:61616
+      - 61617:61616

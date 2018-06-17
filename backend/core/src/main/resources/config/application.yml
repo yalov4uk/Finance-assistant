@@ -1,4 +1,7 @@
 spring:
+  application:
+    name: '@artifactId@'
+
   profiles:
     active: '@env@'
 
@@ -25,3 +28,7 @@ mybatis:
 
 security:
   ignored: /**
+
+eureka:
+  instance:
+    prefer-ip-address: true

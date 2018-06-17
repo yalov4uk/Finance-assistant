@@ -9,7 +9,7 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.5.13.RELEASE</version>
   </parent>
-  <artifactId>edge</artifactId>
+  <artifactId>registry</artifactId>
 
   <properties>
     <spring.cloud.version>Edgware.SR3</spring.cloud.version>
@@ -35,12 +35,7 @@
 
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-zuul</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-eureka</artifactId>
+      <artifactId>spring-cloud-starter-eureka-server</artifactId>
     </dependency>
 
     <!--DEV-->
