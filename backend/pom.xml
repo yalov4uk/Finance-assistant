@@ -12,6 +12,7 @@
     <module>business</module>
     <module>api</module>
     <module>rest-impl</module>
+    <module>edge</module>
   </modules>
   <packaging>pom</packaging>
 

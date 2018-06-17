@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+zuul:
+  routes:
+    backend:
+      path: /api/v2.1/**
+      url: http://localhost:8090/api/v2.1/
