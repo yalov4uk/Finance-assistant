@@ -1,14 +1,12 @@
 spring:
   application:
     name: '@artifactId@'
-
   profiles:
     active: '@env@'
 
 server:
-  port: 8761
+  port: 8080
 
 eureka:
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
+  instance:
+    prefer-ip-address: true

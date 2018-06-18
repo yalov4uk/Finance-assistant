@@ -12,8 +12,8 @@
     <module>business</module>
     <module>api</module>
     <module>rest-impl</module>
-    <module>edge</module>
-    <module>registry</module>
+    <module>support/edge</module>
+    <module>support/registry</module>
   </modules>
   <packaging>pom</packaging>
 

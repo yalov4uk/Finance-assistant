@@ -3,13 +3,13 @@ version: "3.4"
 services:
 
   registry:
-    build: backend/registry
+    build: backend/support/registry
     container_name: finance-registry
     ports:
       - 8762:8761
 
   edge:
-    build: backend/edge
+    build: backend/support/edge
     container_name: finance-edge
     depends_on:
       - registry
