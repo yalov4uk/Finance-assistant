@@ -1,6 +1,22 @@
-version: "3.4"
+version: "2.4"
 
 services:
+
+  db:
+    build: db
+    container_name: finance-db
+    ports:
+      - 3307:3306
+    healthcheck:
+      test: /etc/init.d/mysql status
+      interval: 5s
+      timeout: 3S
+
+  activemq:
+    image: webcenter/activemq:5.14.3
+    container_name: finance-activemq
+    ports:
+      - 61617:61616
 
   registry:
     build: backend/support/registry
@@ -8,31 +24,41 @@ services:
     ports:
       - 8762:8761
 
+  config:
+    build: backend/support/config
+    container_name: finance-config
+    depends_on:
+      registry:
+        condition: service_started
+    ports:
+      - 8889:8888
+    healthcheck:
+      test: curl -f http://localhost:8888/health
+      interval: 10s
+      timeout: 3s
+
   edge:
     build: backend/support/edge
     container_name: finance-edge
     depends_on:
-      - registry
+      registry:
+        condition: service_started
+      config:
+        condition: service_healthy
     ports:
       - 8081:8080
 
-  backend:
+  core:
     build: backend
-    container_name: finance-backend
+    container_name: finance-core
     depends_on:
-      - registry
-      - db
-      - activemq
+      registry:
+        condition: service_started
+      config:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      activemq:
+        condition: service_started
     ports:
       - 8091:8090
-
-  db:
-    build: db
-    container_name: finance-db
-    ports:
-      - 3307:3306
-
-  activemq:
-    image: webcenter/activemq:5.14.3
-    ports:
-      - 61617:61616

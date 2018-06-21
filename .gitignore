@@ -7,4 +7,4 @@ target/
 *.ipr
 
 ### Custom ###
-application-*.*
+backend/support/config/src/main/resources/config/bootstrap.yml

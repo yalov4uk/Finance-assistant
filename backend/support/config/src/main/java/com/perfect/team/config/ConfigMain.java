@@ -1,14 +1,16 @@
-package com.perfect.team.core;
+package com.perfect.team.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+@EnableConfigServer
 @EnableEurekaClient
-@SpringBootApplication(scanBasePackages = "com.perfect.team")
-public class Main {
+@SpringBootApplication
+public class ConfigMain {
 
   public static void main(String[] args) {
-    SpringApplication.run(Main.class, args);
+    SpringApplication.run(ConfigMain.class, args);
   }
 }

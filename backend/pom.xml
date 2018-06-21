@@ -7,6 +7,7 @@
   <groupId>com.perfect.team</groupId>
   <artifactId>financial-service</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+
   <modules>
     <module>core</module>
     <module>business</module>
@@ -14,6 +15,7 @@
     <module>rest-impl</module>
     <module>support/edge</module>
     <module>support/registry</module>
+    <module>support/config</module>
   </modules>
   <packaging>pom</packaging>
 
