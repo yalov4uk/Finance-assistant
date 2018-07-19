@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RestImplConfig {
 
+  public static final String SERVLET_PATH = "api/v2.1";
+
   @Bean(name = "org.dozer.Mapper")
   public DozerBeanMapper dozerMapper() {
     DozerBeanMapper dozerBean = new DozerBeanMapper();

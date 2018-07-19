@@ -1,8 +1,11 @@
 package com.perfect.team.business.security;
 
+import com.perfect.team.business.config.Roles;
 import com.perfect.team.business.model.User;
 import java.util.Collection;
+import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetails implements UserDetails {
@@ -11,9 +14,11 @@ public class CustomUserDetails implements UserDetails {
 
   private Collection<? extends GrantedAuthority> authorities;
 
-  public CustomUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
+  public CustomUserDetails(User user, Collection<String> roles) {
     this.user = user;
-    this.authorities = authorities;
+    authorities = roles.stream()
+        .map(role -> new SimpleGrantedAuthority(Roles.ROLE_PREFIX + role))
+        .collect(Collectors.toList());
   }
 
   @Override

@@ -5,20 +5,24 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class TokenAuthentication implements Authentication {
+public class EmailPasswordAuthentication implements Authentication {
 
-  private String token;
+  private String email;
+
+  private String password;
 
   private UserDetails principal;
 
   private boolean authenticated;
 
-  public TokenAuthentication(String token) {
-    this.token = token;
+  public EmailPasswordAuthentication(String email, String password) {
+    this.email = email;
+    this.password = password;
   }
 
-  public TokenAuthentication(String token, UserDetails principal) {
-    this.token = token;
+  public EmailPasswordAuthentication(String email, String password, UserDetails principal) {
+    this.email = email;
+    this.password = password;
     this.principal = principal;
     authenticated = true;
   }
@@ -30,7 +34,7 @@ public class TokenAuthentication implements Authentication {
 
   @Override
   public Object getCredentials() {
-    return null;
+    return password;
   }
 
   @Override
@@ -58,7 +62,7 @@ public class TokenAuthentication implements Authentication {
     return principal.getUsername();
   }
 
-  public String getToken() {
-    return token;
+  public String getEmail() {
+    return email;
   }
 }

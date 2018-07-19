@@ -4,4 +4,6 @@ public class Roles {
 
   public static final String NOT_CONFIRMED = "NOT_CONFIRMED";
   public static final String CONFIRMED = "CONFIRMED";
+
+  public static final String ROLE_PREFIX = "ROLE_";
 }

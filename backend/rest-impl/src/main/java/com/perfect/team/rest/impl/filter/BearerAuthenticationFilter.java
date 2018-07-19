@@ -4,31 +4,37 @@ import com.perfect.team.business.security.TokenAuthentication;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.filter.GenericFilterBean;
 
-public class BearerAuthenticationFilter extends OncePerRequestFilter {
+public class BearerAuthenticationFilter extends GenericFilterBean {
 
-  private static final String AUTHORIZATION_HEADER = "Authorization";
   private static final String BEARER = "Bearer ";
 
-  private AuthenticationManager authenticationManager;
+  private final AuthenticationManager authenticationManager;
 
   public BearerAuthenticationFilter(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
   }
 
+  private boolean authenticationIsRequired() {
+    Authentication existingAuth = SecurityContextHolder.getContext().getAuthentication();
+    return existingAuth == null || !existingAuth.isAuthenticated();
+  }
+
   @Override
-  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-      FilterChain filterChain) throws ServletException, IOException {
-    String authHeader = request.getHeader(AUTHORIZATION_HEADER);
-    if (authHeader == null || !authHeader.startsWith(BEARER)) {
-      filterChain.doFilter(request, response);
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+      throws IOException, ServletException {
+    String authHeader = ((HttpServletRequest) request).getHeader(HttpHeaders.AUTHORIZATION);
+    if (authHeader == null || !authHeader.startsWith(BEARER) || !authenticationIsRequired()) {
+      chain.doFilter(request, response);
       return;
     }
     try {
@@ -39,6 +45,6 @@ public class BearerAuthenticationFilter extends OncePerRequestFilter {
     } catch (AuthenticationException failed) {
       SecurityContextHolder.clearContext();
     }
-    filterChain.doFilter(request, response);
+    chain.doFilter(request, response);
   }
 }
