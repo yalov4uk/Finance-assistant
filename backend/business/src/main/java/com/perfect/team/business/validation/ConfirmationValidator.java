@@ -1,7 +1,7 @@
 package com.perfect.team.business.validation;
 
 import com.perfect.team.business.mapper.ConfirmationMapper;
-import com.perfect.team.business.model.Confirmation;
+import com.perfect.team.common.model.Confirmation;
 import com.perfect.team.business.validation.constraint.ConfirmationConfirm;
 import java.util.Objects;
 import javax.inject.Inject;

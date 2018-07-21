@@ -1,6 +1,6 @@
 package com.perfect.team.business.validation;
 
-import com.perfect.team.business.model.Confirmation;
+import com.perfect.team.common.model.Confirmation;
 import com.perfect.team.business.validation.constraint.ConfirmationCreate;
 import com.perfect.team.business.validation.constraint.UserId;
 import javax.inject.Inject;

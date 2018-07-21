@@ -1,6 +1,6 @@
 package com.perfect.team.business.event;
 
-import com.perfect.team.business.model.Transaction;
+import com.perfect.team.common.model.Transaction;
 
 public class TransactionCreatedEvent extends TransactionChangedEvent {
 

@@ -1,6 +1,6 @@
 package com.perfect.team.business.service;
 
-import com.perfect.team.business.model.AuthMethod;
+import com.perfect.team.common.model.AuthProvider;
 import com.perfect.team.business.validation.constraint.SignIn;
 import com.perfect.team.business.validation.constraint.SignInWith;
 import org.springframework.validation.annotation.Validated;
@@ -12,5 +12,5 @@ public interface AuthService {
   String signIn(String email, String password);
 
   @SignInWith
-  String signInWith(String accessToken, AuthMethod method);
+  String signInWith(String accessToken, AuthProvider method);
 }

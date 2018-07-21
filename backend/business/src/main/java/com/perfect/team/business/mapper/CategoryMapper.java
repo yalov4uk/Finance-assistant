@@ -1,8 +1,8 @@
 package com.perfect.team.business.mapper;
 
 import com.perfect.team.business.mapper.base.CrudMapper;
-import com.perfect.team.business.model.Category;
-import com.perfect.team.business.model.Category.Type;
+import com.perfect.team.common.model.Category;
+import com.perfect.team.common.model.Category.Type;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

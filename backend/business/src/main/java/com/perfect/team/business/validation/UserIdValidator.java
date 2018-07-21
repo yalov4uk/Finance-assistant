@@ -1,7 +1,7 @@
 package com.perfect.team.business.validation;
 
 import com.perfect.team.business.mapper.UserMapper;
-import com.perfect.team.business.model.User;
+import com.perfect.team.common.model.User;
 import com.perfect.team.business.security.UserContext;
 import com.perfect.team.business.validation.constraint.UserId;
 import java.util.Objects;

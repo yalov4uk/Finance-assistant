@@ -1,7 +1,7 @@
 package com.perfect.team.business.validation;
 
 import com.perfect.team.business.mapper.CategoryMapper;
-import com.perfect.team.business.model.Category;
+import com.perfect.team.common.model.Category;
 import com.perfect.team.business.validation.constraint.CategoryId;
 import com.perfect.team.business.validation.constraint.UserId;
 import javax.inject.Inject;

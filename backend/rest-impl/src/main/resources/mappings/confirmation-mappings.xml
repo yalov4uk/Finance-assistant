@@ -6,7 +6,7 @@
 
   <mapping>
     <class-a>com.perfect.team.api.request.ConfirmationCreateRequest</class-a>
-    <class-b>com.perfect.team.business.model.Confirmation</class-b>
+    <class-b>com.perfect.team.common.model.Confirmation</class-b>
     <field>
       <a>confirmationDto</a>
       <b>this</b>
@@ -15,7 +15,7 @@
 
   <mapping>
     <class-a>com.perfect.team.api.dto.ConfirmationCreateDto</class-a>
-    <class-b>com.perfect.team.business.model.Confirmation</class-b>
+    <class-b>com.perfect.team.common.model.Confirmation</class-b>
     <field>
       <a>userId</a>
       <b>user.id</b>
@@ -24,7 +24,7 @@
 
   <mapping>
     <class-a>com.perfect.team.api.request.ConfirmationRequest</class-a>
-    <class-b>com.perfect.team.business.model.Confirmation</class-b>
+    <class-b>com.perfect.team.common.model.Confirmation</class-b>
     <field>
       <a>confirmationDto</a>
       <b>this</b>
@@ -33,7 +33,7 @@
 
   <mapping>
     <class-a>com.perfect.team.api.dto.ConfirmationDto</class-a>
-    <class-b>com.perfect.team.business.model.Confirmation</class-b>
+    <class-b>com.perfect.team.common.model.Confirmation</class-b>
     <field>
       <a>userId</a>
       <b>user.id</b>

@@ -4,8 +4,8 @@ import com.perfect.team.business.config.FacebookProperties;
 import com.perfect.team.business.config.Roles;
 import com.perfect.team.business.helper.JwtHelper;
 import com.perfect.team.business.mapper.UserMapper;
-import com.perfect.team.business.model.AuthMethod;
-import com.perfect.team.business.model.User;
+import com.perfect.team.common.model.AuthProvider;
+import com.perfect.team.common.model.User;
 import com.perfect.team.business.security.UserContext;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -47,7 +47,7 @@ public class AuthServiceImpl implements AuthService {
 
   //  todo: signInWith by filter like signIn
   @Override
-  public String signInWith(String accessToken, AuthMethod method) {
+  public String signInWith(String accessToken, AuthProvider method) {
     switch (method) {
       case FACEBOOK:
         return signInWithFacebook(accessToken);

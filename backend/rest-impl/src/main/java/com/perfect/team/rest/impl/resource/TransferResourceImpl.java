@@ -6,7 +6,7 @@ import com.perfect.team.api.request.TransferUpdateRequest;
 import com.perfect.team.api.response.TransferResponse;
 import com.perfect.team.api.response.TransfersResponse;
 import com.perfect.team.api.rest.TransferResource;
-import com.perfect.team.business.model.Transfer;
+import com.perfect.team.common.model.Transfer;
 import com.perfect.team.business.service.TransferService;
 import com.perfect.team.rest.impl.model.CollectionWrapper;
 import java.net.URI;

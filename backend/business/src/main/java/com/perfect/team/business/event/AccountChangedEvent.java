@@ -1,7 +1,7 @@
 package com.perfect.team.business.event;
 
 import com.perfect.team.business.event.base.ChangedBaseEvent;
-import com.perfect.team.business.model.Account;
+import com.perfect.team.common.model.Account;
 
 public class AccountChangedEvent extends ChangedBaseEvent<Account> {
 

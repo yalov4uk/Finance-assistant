@@ -17,6 +17,13 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>com.perfect.team</groupId>
+      <artifactId>common-model</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
     <dependency>
       <groupId>com.auth0</groupId>
       <artifactId>java-jwt</artifactId>

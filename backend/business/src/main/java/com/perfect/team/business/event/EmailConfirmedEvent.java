@@ -1,6 +1,6 @@
 package com.perfect.team.business.event;
 
-import com.perfect.team.business.model.Confirmation;
+import com.perfect.team.common.model.Confirmation;
 import org.springframework.context.ApplicationEvent;
 
 public class EmailConfirmedEvent extends ApplicationEvent {

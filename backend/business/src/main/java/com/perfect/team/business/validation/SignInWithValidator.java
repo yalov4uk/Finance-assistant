@@ -1,7 +1,7 @@
 package com.perfect.team.business.validation;
 
 import com.perfect.team.business.config.FacebookProperties;
-import com.perfect.team.business.model.AuthMethod;
+import com.perfect.team.common.model.AuthProvider;
 import com.perfect.team.business.validation.constraint.SignInWith;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -29,7 +29,7 @@ public class SignInWithValidator implements ConstraintValidator<SignInWith, Obje
   @Override
   public boolean isValid(Object[] value, ConstraintValidatorContext context) {
     String accessToken = (String) value[0];
-    AuthMethod method = (AuthMethod) value[1];
+    AuthProvider method = (AuthProvider) value[1];
     switch (method) {
       case FACEBOOK:
         return isValidFacebook(accessToken, context);

@@ -1,7 +1,7 @@
 package com.perfect.team.business.event;
 
 import com.perfect.team.business.event.base.ChangedBaseEvent;
-import com.perfect.team.business.model.Confirmation;
+import com.perfect.team.common.model.Confirmation;
 
 public class ConfirmationCreatedEvent extends ChangedBaseEvent<Confirmation> {
 

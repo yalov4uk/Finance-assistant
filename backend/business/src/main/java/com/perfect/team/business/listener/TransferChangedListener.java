@@ -3,7 +3,7 @@ package com.perfect.team.business.listener;
 import com.perfect.team.business.config.JmsConfig;
 import com.perfect.team.business.event.TransferChangedEvent;
 import com.perfect.team.business.helper.AccountHelper;
-import com.perfect.team.business.model.Transfer;
+import com.perfect.team.common.model.Transfer;
 import java.util.Objects;
 import javax.inject.Inject;
 import org.springframework.jms.annotation.JmsListener;

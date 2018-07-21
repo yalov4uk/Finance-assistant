@@ -1,4 +1,4 @@
-package com.perfect.team.business.model;
+package com.perfect.team.common.model;
 
 import java.io.Serializable;
 import java.util.List;

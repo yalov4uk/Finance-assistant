@@ -1,4 +1,4 @@
-package com.perfect.team.business.model;
+package com.perfect.team.common.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -110,8 +110,6 @@ public class Account implements Serializable {
   }
 
   public enum Currency {
-    USD,
-    EUR,
-    BYN,
+    USD, EUR, BYN,
   }
 }

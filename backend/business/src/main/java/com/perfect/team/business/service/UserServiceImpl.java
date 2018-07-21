@@ -4,7 +4,7 @@ import com.perfect.team.business.event.UserChangedEvent;
 import com.perfect.team.business.event.UserCreatedEvent;
 import com.perfect.team.business.event.UserDeletedEvent;
 import com.perfect.team.business.mapper.UserMapper;
-import com.perfect.team.business.model.User;
+import com.perfect.team.common.model.User;
 import java.util.List;
 import javax.inject.Inject;
 import javax.jms.Topic;

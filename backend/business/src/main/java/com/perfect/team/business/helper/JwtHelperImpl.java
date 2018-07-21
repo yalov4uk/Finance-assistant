@@ -8,7 +8,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.perfect.team.business.config.Auth0Properties;
 import com.perfect.team.business.exception.ProcessingException;
-import com.perfect.team.business.model.User;
+import com.perfect.team.common.model.User;
 import com.perfect.team.business.security.UserContext;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;

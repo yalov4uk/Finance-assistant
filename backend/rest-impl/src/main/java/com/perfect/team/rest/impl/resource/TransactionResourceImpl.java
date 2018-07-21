@@ -6,7 +6,7 @@ import com.perfect.team.api.request.TransactionUpdateRequest;
 import com.perfect.team.api.response.TransactionResponse;
 import com.perfect.team.api.response.TransactionsResponse;
 import com.perfect.team.api.rest.TransactionResource;
-import com.perfect.team.business.model.Transaction;
+import com.perfect.team.common.model.Transaction;
 import com.perfect.team.business.service.TransactionService;
 import com.perfect.team.rest.impl.model.CollectionWrapper;
 import java.net.URI;

@@ -6,7 +6,7 @@ import com.perfect.team.api.request.UserUpdateRequest;
 import com.perfect.team.api.response.UserResponse;
 import com.perfect.team.api.response.UsersResponse;
 import com.perfect.team.api.rest.UserResource;
-import com.perfect.team.business.model.User;
+import com.perfect.team.common.model.User;
 import com.perfect.team.business.service.UserService;
 import com.perfect.team.rest.impl.model.CollectionWrapper;
 import java.net.URI;

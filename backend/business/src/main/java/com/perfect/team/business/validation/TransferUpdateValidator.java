@@ -1,6 +1,6 @@
 package com.perfect.team.business.validation;
 
-import com.perfect.team.business.model.Transfer;
+import com.perfect.team.common.model.Transfer;
 import com.perfect.team.business.validation.constraint.AccountId;
 import com.perfect.team.business.validation.constraint.TransferId;
 import com.perfect.team.business.validation.constraint.TransferUpdate;

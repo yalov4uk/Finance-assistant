@@ -1,7 +1,7 @@
 package com.perfect.team.business.event;
 
 import com.perfect.team.business.event.base.ChangedBaseEvent;
-import com.perfect.team.business.model.Transfer;
+import com.perfect.team.common.model.Transfer;
 
 public class TransferChangedEvent extends ChangedBaseEvent<Transfer> {
 

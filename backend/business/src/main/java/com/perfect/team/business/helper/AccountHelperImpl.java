@@ -1,7 +1,7 @@
 package com.perfect.team.business.helper;
 
 import com.perfect.team.business.mapper.AccountMapper;
-import com.perfect.team.business.model.Account;
+import com.perfect.team.common.model.Account;
 import com.perfect.team.business.service.AccountService;
 import java.math.BigDecimal;
 import javax.inject.Inject;

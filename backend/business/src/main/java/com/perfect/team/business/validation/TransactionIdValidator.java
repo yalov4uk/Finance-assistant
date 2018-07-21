@@ -1,7 +1,7 @@
 package com.perfect.team.business.validation;
 
 import com.perfect.team.business.mapper.TransactionMapper;
-import com.perfect.team.business.model.Transaction;
+import com.perfect.team.common.model.Transaction;
 import com.perfect.team.business.validation.constraint.TransactionId;
 import com.perfect.team.business.validation.constraint.UserId;
 import javax.inject.Inject;

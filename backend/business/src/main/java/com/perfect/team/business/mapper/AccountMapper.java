@@ -1,8 +1,8 @@
 package com.perfect.team.business.mapper;
 
 import com.perfect.team.business.mapper.base.CrudMapper;
-import com.perfect.team.business.model.Account;
-import com.perfect.team.business.model.Account.Currency;
+import com.perfect.team.common.model.Account;
+import com.perfect.team.common.model.Account.Currency;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

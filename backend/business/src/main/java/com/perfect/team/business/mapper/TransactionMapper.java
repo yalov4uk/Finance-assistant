@@ -1,7 +1,7 @@
 package com.perfect.team.business.mapper;
 
 import com.perfect.team.business.mapper.base.CrudMapper;
-import com.perfect.team.business.model.Transaction;
+import com.perfect.team.common.model.Transaction;
 import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;

@@ -2,7 +2,7 @@ package com.perfect.team.business.security;
 
 import com.perfect.team.business.config.Roles;
 import com.perfect.team.business.mapper.UserMapper;
-import com.perfect.team.business.model.User;
+import com.perfect.team.common.model.User;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;

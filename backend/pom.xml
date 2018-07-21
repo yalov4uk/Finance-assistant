@@ -16,6 +16,7 @@
     <module>support/edge</module>
     <module>support/registry</module>
     <module>support/config</module>
+    <module>common/common-model</module>
   </modules>
   <packaging>pom</packaging>
 

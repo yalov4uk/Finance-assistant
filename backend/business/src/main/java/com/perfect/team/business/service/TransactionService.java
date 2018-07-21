@@ -1,6 +1,6 @@
 package com.perfect.team.business.service;
 
-import com.perfect.team.business.model.Transaction;
+import com.perfect.team.common.model.Transaction;
 import com.perfect.team.business.validation.constraint.AccountId;
 import com.perfect.team.business.validation.constraint.CategoryId;
 import com.perfect.team.business.validation.constraint.TransactionCreate;

@@ -1,6 +1,6 @@
 package com.perfect.team.business.event;
 
-import com.perfect.team.business.model.User;
+import com.perfect.team.common.model.User;
 
 public class UserCreatedEvent extends UserChangedEvent {
 

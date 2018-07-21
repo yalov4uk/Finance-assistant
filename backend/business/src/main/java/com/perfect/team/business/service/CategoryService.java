@@ -1,7 +1,7 @@
 package com.perfect.team.business.service;
 
-import com.perfect.team.business.model.Category;
-import com.perfect.team.business.model.Category.Type;
+import com.perfect.team.common.model.Category;
+import com.perfect.team.common.model.Category.Type;
 import com.perfect.team.business.validation.constraint.CategoryCreate;
 import com.perfect.team.business.validation.constraint.CategoryId;
 import com.perfect.team.business.validation.constraint.CategoryUpdate;

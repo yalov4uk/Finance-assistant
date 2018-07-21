@@ -1,6 +1,6 @@
 package com.perfect.team.rest.impl.converter;
 
-import com.perfect.team.business.model.Account.Currency;
+import com.perfect.team.common.model.Account.Currency;
 import org.dozer.DozerConverter;
 import org.springframework.stereotype.Component;
 

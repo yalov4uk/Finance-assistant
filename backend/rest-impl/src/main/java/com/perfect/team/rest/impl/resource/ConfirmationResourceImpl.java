@@ -4,7 +4,7 @@ import com.perfect.team.api.request.ConfirmationCreateRequest;
 import com.perfect.team.api.request.ConfirmationRequest;
 import com.perfect.team.api.rest.ConfirmationResource;
 import com.perfect.team.api.rest.UserResource;
-import com.perfect.team.business.model.Confirmation;
+import com.perfect.team.common.model.Confirmation;
 import com.perfect.team.business.service.ConfirmationService;
 import java.net.URI;
 import javax.inject.Inject;

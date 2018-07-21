@@ -4,7 +4,7 @@ import com.perfect.team.business.event.TransactionChangedEvent;
 import com.perfect.team.business.event.TransactionCreatedEvent;
 import com.perfect.team.business.event.TransactionDeletedEvent;
 import com.perfect.team.business.mapper.TransactionMapper;
-import com.perfect.team.business.model.Transaction;
+import com.perfect.team.common.model.Transaction;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;

@@ -1,6 +1,6 @@
 package com.perfect.team.rest.impl.converter;
 
-import com.perfect.team.business.model.Category.Type;
+import com.perfect.team.common.model.Category.Type;
 import org.dozer.DozerConverter;
 import org.springframework.stereotype.Component;
 

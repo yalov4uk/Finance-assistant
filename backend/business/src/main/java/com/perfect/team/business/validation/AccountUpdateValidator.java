@@ -1,6 +1,6 @@
 package com.perfect.team.business.validation;
 
-import com.perfect.team.business.model.Account;
+import com.perfect.team.common.model.Account;
 import com.perfect.team.business.validation.constraint.AccountId;
 import com.perfect.team.business.validation.constraint.AccountUpdate;
 import javax.inject.Inject;

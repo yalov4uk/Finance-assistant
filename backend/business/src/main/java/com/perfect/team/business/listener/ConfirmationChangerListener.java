@@ -2,8 +2,8 @@ package com.perfect.team.business.listener;
 
 import com.perfect.team.business.config.JmsConfig;
 import com.perfect.team.business.event.ConfirmationCreatedEvent;
-import com.perfect.team.business.model.Confirmation;
-import com.perfect.team.business.model.User;
+import com.perfect.team.common.model.Confirmation;
+import com.perfect.team.common.model.User;
 import com.perfect.team.business.service.UserService;
 import javax.inject.Inject;
 import org.springframework.jms.annotation.JmsListener;
