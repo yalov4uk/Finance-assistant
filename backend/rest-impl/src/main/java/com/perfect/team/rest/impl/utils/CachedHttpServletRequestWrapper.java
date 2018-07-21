@@ -22,7 +22,8 @@ public class CachedHttpServletRequestWrapper extends HttpServletRequestWrapper {
   @Override
   public ServletInputStream getInputStream() throws IOException {
     if (cachedBytes == null) {
-      cacheInputStream();
+      cachedBytes = new ByteArrayOutputStream();
+      IOUtils.copy(super.getInputStream(), cachedBytes);
     }
     return new CachedServletInputStream();
   }
@@ -30,11 +31,6 @@ public class CachedHttpServletRequestWrapper extends HttpServletRequestWrapper {
   @Override
   public BufferedReader getReader() throws IOException {
     return new BufferedReader(new InputStreamReader(getInputStream()));
-  }
-
-  private void cacheInputStream() throws IOException {
-    cachedBytes = new ByteArrayOutputStream();
-    IOUtils.copy(super.getInputStream(), cachedBytes);
   }
 
   public class CachedServletInputStream extends ServletInputStream {

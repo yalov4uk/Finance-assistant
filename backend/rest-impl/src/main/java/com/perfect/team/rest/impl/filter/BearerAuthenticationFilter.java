@@ -24,11 +24,6 @@ public class BearerAuthenticationFilter extends GenericFilterBean {
     this.authenticationManager = authenticationManager;
   }
 
-  private boolean authenticationIsRequired() {
-    Authentication existingAuth = SecurityContextHolder.getContext().getAuthentication();
-    return existingAuth == null || !existingAuth.isAuthenticated();
-  }
-
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
@@ -46,5 +41,10 @@ public class BearerAuthenticationFilter extends GenericFilterBean {
       SecurityContextHolder.clearContext();
     }
     chain.doFilter(request, response);
+  }
+
+  private boolean authenticationIsRequired() {
+    Authentication existingAuth = SecurityContextHolder.getContext().getAuthentication();
+    return existingAuth == null || !existingAuth.isAuthenticated();
   }
 }

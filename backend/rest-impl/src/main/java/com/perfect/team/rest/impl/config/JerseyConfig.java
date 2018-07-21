@@ -1,7 +1,6 @@
 package com.perfect.team.rest.impl.config;
 
 import com.perfect.team.rest.impl.filter.DtoValidationExceptionHandler;
-import com.perfect.team.rest.impl.filter.LoggingProvider;
 import com.perfect.team.rest.impl.resource.AccountResourceImpl;
 import com.perfect.team.rest.impl.resource.AuthResourceImpl;
 import com.perfect.team.rest.impl.resource.CategoryResourceImpl;
@@ -37,8 +36,6 @@ public class JerseyConfig extends ResourceConfig {
 
   private void registerHandlers() {
     register(DtoValidationExceptionHandler.class);
-
-    register(LoggingProvider.class);
   }
 
   private void configureSwagger() {

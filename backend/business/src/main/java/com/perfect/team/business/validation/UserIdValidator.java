@@ -2,7 +2,7 @@ package com.perfect.team.business.validation;
 
 import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.model.User;
-import com.perfect.team.business.security.CustomUserDetails;
+import com.perfect.team.business.security.UserContext;
 import com.perfect.team.business.validation.constraint.UserId;
 import java.util.Objects;
 import javax.inject.Inject;
@@ -29,8 +29,8 @@ public class UserIdValidator implements ConstraintValidator<UserId, Long> {
     }
     boolean valid = true;
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (authentication != null && authentication.getPrincipal() instanceof CustomUserDetails) {
-      User authUser = ((CustomUserDetails) authentication.getPrincipal()).getUser();
+    if (authentication != null && authentication.getPrincipal() instanceof UserContext) {
+      User authUser = ((UserContext) authentication.getPrincipal()).getUser();
       if (!Objects.equals(value, authUser.getId())) {
         valid = false;
         context.buildConstraintViolationWithTemplate("Wrong user id").addConstraintViolation();

@@ -6,7 +6,7 @@ import com.perfect.team.business.helper.JwtHelper;
 import com.perfect.team.business.mapper.UserMapper;
 import com.perfect.team.business.model.AuthMethod;
 import com.perfect.team.business.model.User;
-import com.perfect.team.business.security.CustomUserDetails;
+import com.perfect.team.business.security.UserContext;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
@@ -36,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public String signIn(String email, String password) {
-    CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext()
+    UserContext userDetails = (UserContext) SecurityContextHolder.getContext()
         .getAuthentication().getPrincipal();
     Long userId = userDetails.getUser().getId();
     Collection<String> roles = userDetails.getAuthorities().stream()

@@ -38,23 +38,6 @@ public class EmailPasswordAuthenticationFilter extends GenericFilterBean {
     this.authenticationManager = authenticationManager;
   }
 
-  private boolean authenticationIsRequired() {
-    Authentication existingAuth = SecurityContextHolder.getContext().getAuthentication();
-    return existingAuth == null || !existingAuth.isAuthenticated();
-  }
-
-  private SignInDto parseBody(ServletRequest request) {
-    SignInDto signInDto = null;
-    try (ByteArrayOutputStream output = new ByteArrayOutputStream()) {
-      ReaderWriter.writeTo(request.getInputStream(), output);
-      byte[] body = output.toByteArray();
-      signInDto = mapper.readValue(body, SignInRequest.class).getSignInDto();
-    } catch (IOException e) {
-      logger.error("Error while parse json sign in request", e);
-    }
-    return signInDto;
-  }
-
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
@@ -75,5 +58,22 @@ public class EmailPasswordAuthenticationFilter extends GenericFilterBean {
       SecurityContextHolder.clearContext();
     }
     chain.doFilter(request, response);
+  }
+
+  private boolean authenticationIsRequired() {
+    Authentication existingAuth = SecurityContextHolder.getContext().getAuthentication();
+    return existingAuth == null || !existingAuth.isAuthenticated();
+  }
+
+  private SignInDto parseBody(ServletRequest request) {
+    SignInDto signInDto = null;
+    try (ByteArrayOutputStream output = new ByteArrayOutputStream()) {
+      ReaderWriter.writeTo(request.getInputStream(), output);
+      byte[] body = output.toByteArray();
+      signInDto = mapper.readValue(body, SignInRequest.class).getSignInDto();
+    } catch (IOException e) {
+      logger.error("Error while parse json sign in request", e);
+    }
+    return signInDto;
   }
 }

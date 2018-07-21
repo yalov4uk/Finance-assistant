@@ -9,7 +9,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.perfect.team.business.config.Auth0Properties;
 import com.perfect.team.business.exception.ProcessingException;
 import com.perfect.team.business.model.User;
-import com.perfect.team.business.security.CustomUserDetails;
+import com.perfect.team.business.security.UserContext;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import javax.inject.Inject;
@@ -46,7 +46,7 @@ public class JwtHelperImpl implements JwtHelper {
     DecodedJWT jwt = verify(token);
     User user = new User();
     user.setId(jwt.getClaim(USER_ID_CLAIM).asLong());
-    return new CustomUserDetails(user, jwt.getClaim(ROLES_CLAIM).asList(String.class));
+    return new UserContext(user, jwt.getClaim(ROLES_CLAIM).asList(String.class));
   }
 
   @Override

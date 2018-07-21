@@ -34,7 +34,7 @@ public class EmailPasswordAuthenticationProvider implements AuthenticationProvid
     if (email == null || password == null) {
       throw new AuthenticationCredentialsNotFoundException("Email or password is null");
     }
-    UserDetails userDetails = retrive(email);
+    UserDetails userDetails = retrieve(email);
     if (!passwordEncoder.matches(password, userDetails.getPassword())) {
       throw new BadCredentialsException("Wrong password");
     }
@@ -47,7 +47,7 @@ public class EmailPasswordAuthenticationProvider implements AuthenticationProvid
     return EmailPasswordAuthentication.class.isAssignableFrom(authentication);
   }
 
-  private UserDetails retrive(String email) {
+  private UserDetails retrieve(String email) {
     Collection<User> existingUsers = userMapper.select(null, null, email);
     if (existingUsers.isEmpty()) {
       throw new UsernameNotFoundException("User not found");
@@ -60,6 +60,6 @@ public class EmailPasswordAuthenticationProvider implements AuthenticationProvid
     } else {
       roles.add(Roles.NOT_CONFIRMED);
     }
-    return new CustomUserDetails(existingUser, roles);
+    return new UserContext(existingUser, roles);
   }
 }
