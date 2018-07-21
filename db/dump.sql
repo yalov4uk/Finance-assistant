@@ -1,11 +1,20 @@
 CREATE TABLE `user` (
-  `id`        BIGINT(20)   NOT NULL               AUTO_INCREMENT,
-  `email`     VARCHAR(255) NOT NULL,
-  `name`      VARCHAR(255)                        DEFAULT NULL,
-  `password`  VARCHAR(255)                        DEFAULT NULL,
-  `confirmed` BOOLEAN      DEFAULT                FALSE   NOT NULL,
+  `id`   BIGINT(20) NOT NULL               AUTO_INCREMENT,
+  `name` VARCHAR(255)                      DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
+);
+
+CREATE TABLE `сredential` (
+  `id`        BIGINT(20)              NOT NULL               AUTO_INCREMENT,
+  `username`  VARCHAR(255)            NOT NULL,
+  `password`  VARCHAR(255)                                   DEFAULT NULL,
+  `type`      VARCHAR(255)                                   DEFAULT NULL,
+  `confirmed` BOOLEAN DEFAULT FALSE   NOT NULL,
+  `user_id`   BIGINT(20)              NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK7m8ru44m93ukyb61dfxw3apf6` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE `account` (

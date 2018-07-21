@@ -9,6 +9,5 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserMapper extends CrudMapper<User> {
 
-  List<User> select(@Param("id") Long id, @Param("name") String name,
-      @Param("email") String email);
+  List<User> select(@Param("id") Long id, @Param("name") String name);
 }

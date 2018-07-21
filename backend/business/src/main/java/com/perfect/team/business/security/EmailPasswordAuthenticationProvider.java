@@ -55,7 +55,7 @@ public class EmailPasswordAuthenticationProvider implements AuthenticationProvid
 //    todo: consider user's email uniqueness
     User existingUser = ((List<User>) existingUsers).get(0);
     Collection<String> roles = new HashSet<>();
-    if (existingUser.getConfirmed()) {
+    if (existingUser.getEmailConfirmed()) {
       roles.add(Roles.CONFIRMED);
     } else {
       roles.add(Roles.NOT_CONFIRMED);

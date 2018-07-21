@@ -10,12 +10,6 @@ public class User implements Serializable {
 
   private String name;
 
-  private String email;
-
-  private String password;
-
-  private Boolean confirmed;
-
   private List<Account> accounts;
 
   private List<Category> categories;
@@ -26,18 +20,17 @@ public class User implements Serializable {
 
   private List<Confirmation> confirmations;
 
+  private List<Credential> credentials;
+
   public User() {
   }
 
-  public User(Long id, boolean confirmed) {
+  public User(Long id) {
     this.id = id;
-    this.confirmed = confirmed;
   }
 
-  public User(String name, String email, boolean confirmed) {
+  public User(String name) {
     this.name = name;
-    this.email = email;
-    this.confirmed = confirmed;
   }
 
   public Long getId() {
@@ -54,30 +47,6 @@ public class User implements Serializable {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public Boolean getConfirmed() {
-    return confirmed;
-  }
-
-  public void setConfirmed(Boolean confirmed) {
-    this.confirmed = confirmed;
   }
 
   public List<Account> getAccounts() {
@@ -120,6 +89,14 @@ public class User implements Serializable {
     this.confirmations = confirmations;
   }
 
+  public List<Credential> getCredentials() {
+    return credentials;
+  }
+
+  public void setCredentials(List<Credential> credentials) {
+    this.credentials = credentials;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -129,15 +106,12 @@ public class User implements Serializable {
       return false;
     }
     User user = (User) o;
-    return Objects.equals(name, user.name) &&
-        Objects.equals(email, user.email) &&
-        Objects.equals(password, user.password) &&
-        Objects.equals(confirmed, user.confirmed);
+    return Objects.equals(name, user.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email, password, confirmed);
+    return Objects.hash(name);
   }
 
   @Override
@@ -145,9 +119,6 @@ public class User implements Serializable {
     return "User{" +
         "id=" + id +
         ", name='" + name + '\'' +
-        ", email='" + email + '\'' +
-        ", password='" + password + '\'' +
-        ", confirmed=" + confirmed +
         '}';
   }
 }

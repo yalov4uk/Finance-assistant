@@ -1,8 +1,9 @@
 package com.perfect.team.common.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Credentials {
+public class Credential implements Serializable {
 
   private Long id;
 
@@ -11,6 +12,8 @@ public class Credentials {
   private String password;
 
   private Type type;
+
+  private Boolean confirmed;
 
   private User user;
 
@@ -46,6 +49,14 @@ public class Credentials {
     this.type = type;
   }
 
+  public Boolean getConfirmed() {
+    return confirmed;
+  }
+
+  public void setConfirmed(Boolean confirmed) {
+    this.confirmed = confirmed;
+  }
+
   public User getUser() {
     return user;
   }
@@ -62,24 +73,27 @@ public class Credentials {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Credentials that = (Credentials) o;
+    Credential that = (Credential) o;
     return Objects.equals(username, that.username) &&
         Objects.equals(password, that.password) &&
-        type == that.type;
+        type == that.type &&
+        Objects.equals(confirmed, that.confirmed);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, password, type);
+
+    return Objects.hash(username, password, type, confirmed);
   }
 
   @Override
   public String toString() {
-    return "Credentials{" +
+    return "Credential{" +
         "id=" + id +
         ", username='" + username + '\'' +
         ", password='" + password + '\'' +
         ", type=" + type +
+        ", confirmed=" + confirmed +
         '}';
   }
 
