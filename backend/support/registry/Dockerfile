@@ -5,6 +5,6 @@ WORKDIR registry
 
 ADD . .
 
-RUN mvn clean install -P docker
+RUN mvn clean install
 
-CMD java -jar target/registry.jar
+CMD java -jar -Dspring.profiles.active=docker target/registry.jar

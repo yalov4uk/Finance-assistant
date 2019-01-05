@@ -1,8 +1,6 @@
 spring:
   application:
     name: '@project.artifactId@'
-  profiles:
-    active: '@env@'
 
 server:
   port: 8761
