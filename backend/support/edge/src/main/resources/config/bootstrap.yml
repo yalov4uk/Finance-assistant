@@ -1,5 +1,17 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: '@project.artifactId@'
-  profiles:
-    active: '@env@'
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: config
+      fail-fast: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

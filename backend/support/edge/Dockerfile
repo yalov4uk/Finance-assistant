@@ -5,6 +5,6 @@ WORKDIR edge
 
 ADD . .
 
-RUN mvn clean install -P docker
+RUN mvn clean install
 
-CMD java -jar target/edge.jar
+CMD java -jar -Dspring.profiles.active=docker target/edge.jar
