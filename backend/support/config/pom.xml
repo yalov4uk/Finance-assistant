@@ -49,13 +49,6 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-config-server</artifactId>
     </dependency>
-
-    <!--DEV-->
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-    </dependency>
   </dependencies>
 
   <build>
@@ -82,24 +75,5 @@
 
     <finalName>${project.artifactId}</finalName>
   </build>
-
-  <profiles>
-    <profile>
-      <id>dev</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <env>dev</env>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>docker</id>
-      <properties>
-        <env>docker</env>
-      </properties>
-    </profile>
-  </profiles>
 
 </project>
