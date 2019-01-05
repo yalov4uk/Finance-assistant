@@ -1,9 +1,12 @@
 spring:
+  application:
+    name: '@project.artifactId@'
   cloud:
     config:
       discovery:
         enabled: true
         serviceId: config
+      fail-fast: true
 
 eureka:
   client:

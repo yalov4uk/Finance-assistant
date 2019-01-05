@@ -4,10 +4,9 @@ server:
 spring:
   application:
     name: '@project.artifactId@'
-  profiles:
-    active: native
   cloud:
     config:
       server:
         git:
           uri: file://home/yalov4uk/projects/Finance-assistant-config
+          search-paths: '*'
