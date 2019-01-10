@@ -8,4 +8,4 @@ spring:
           password: '{cipher}223e56bc287e205a098a4c478ee828c288b53b3e25533e865f9787a7bca1a9c9'
 
 encrypt:
-  key: key
+  key: some
