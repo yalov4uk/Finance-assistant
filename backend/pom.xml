@@ -9,14 +9,23 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <modules>
-    <module>core</module>
-    <module>business</module>
-    <module>api</module>
-    <module>rest-impl</module>
+    <!--<module>legacy/core</module>-->
+    <!--<module>legacy/business</module>-->
+    <!--<module>legacy/legacy-imp</module>-->
+    <module>legacy/legacy-api</module>
+    <module>legacy/legacy-client</module>
+
     <module>support/edge</module>
     <module>support/registry</module>
     <module>support/config</module>
-    <module>common/common-model</module>
+
+    <module>common/common-imp</module>
+    <module>common/common-api</module>
+    <module>common/common-client</module>
+
+    <module>auth/auth-api</module>
+    <module>auth/auth-client</module>
+    <module>auth/auth-imp</module>
   </modules>
   <packaging>pom</packaging>
 

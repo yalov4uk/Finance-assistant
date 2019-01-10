@@ -1,11 +1,11 @@
-CREATE TABLE `user` (
+CREATE TABLE `userId` (
   `id`   BIGINT(20) NOT NULL               AUTO_INCREMENT,
   `name` VARCHAR(255)                      DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
+  UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`username`)
 );
 
-CREATE TABLE `сredential` (
+CREATE TABLE `credential` (
   `id`        BIGINT(20)              NOT NULL               AUTO_INCREMENT,
   `username`  VARCHAR(255)            NOT NULL,
   `password`  VARCHAR(255)                                   DEFAULT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE `account` (
   `user_id`      BIGINT(20)     NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK7m8ru44m93ukyb61dfxw0apf6` (`user_id`),
-  CONSTRAINT `FK7m8ru44m93ukyb61dfxw0apf6` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `FK7m8ru44m93ukyb61dfxw0apf6` FOREIGN KEY (`user_id`) REFERENCES `userId` (`id`)
     ON DELETE CASCADE
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE `category` (
 
   PRIMARY KEY (`id`),
   KEY `FKpfk8djhv5natgshmxiav6xkpu` (`user_id`),
-  CONSTRAINT `FKpfk8djhv5natgshmxiav6xkpu` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `FKpfk8djhv5natgshmxiav6xkpu` FOREIGN KEY (`user_id`) REFERENCES `userId` (`id`)
     ON DELETE CASCADE
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE `transaction` (
     ON DELETE CASCADE,
   CONSTRAINT `FKgik7ruym8r1n4xngrclc6kiih` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
     ON DELETE CASCADE,
-  CONSTRAINT `FKsg7jp0aj6qipr50856wf6vbw1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `FKsg7jp0aj6qipr50856wf6vbw1` FOREIGN KEY (`user_id`) REFERENCES `userId` (`id`)
     ON DELETE CASCADE
 );
 
@@ -77,7 +77,7 @@ CREATE TABLE `transfer` (
   KEY `FKfbrtpigqywdcc6e64ichki73j` (`from_account_id`),
   KEY `FKrppn0djf9uip7gj308swxq54j` (`to_account_id`),
   KEY `FKddbjk8kle2s7siw04lua30sjl` (`user_id`),
-  CONSTRAINT `FKddbjk8kle2s7siw04lua30sjl` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `FKddbjk8kle2s7siw04lua30sjl` FOREIGN KEY (`user_id`) REFERENCES `userId` (`id`)
     ON DELETE CASCADE,
   CONSTRAINT `FKfbrtpigqywdcc6e64ichki73j` FOREIGN KEY (`from_account_id`) REFERENCES `account` (`id`)
     ON DELETE CASCADE,
@@ -91,6 +91,6 @@ CREATE TABLE confirmation_code
   `code`    VARCHAR(255) NOT NULL,
   `user_id` BIGINT(20)   NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `confirmation_code_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `confirmation_code_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `userId` (`id`)
     ON DELETE CASCADE
 );

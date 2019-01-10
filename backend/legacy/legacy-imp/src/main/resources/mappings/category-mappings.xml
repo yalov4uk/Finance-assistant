@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://dozer.sourceforge.net"
+  xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+  <mapping>
+    <class-a>com.perfect.team.common.request.CategoryCreateRequest</class-a>
+    <class-b>com.perfect.team.common.model.Category</class-b>
+    <field>
+      <a>categoryDto</a>
+      <b>this</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.dto.CategoryCreateDto</class-a>
+    <class-b>com.perfect.team.common.model.Category</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.CategoryTypeToStringConverter">
+      <a>type</a>
+      <b>type</b>
+    </field>
+    <field>
+      <a>userId</a>
+      <b>userId.id</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.model.Category</class-a>
+    <class-b>com.perfect.team.common.response.CategoryResponse</class-b>
+    <field>
+      <a>this</a>
+      <b>categoryDto</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.model.Category</class-a>
+    <class-b>com.perfect.team.common.dto.CategoryReadDto</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.CategoryTypeToStringConverter">
+      <a>type</a>
+      <b>type</b>
+    </field>
+    <field>
+      <a>userId.id</a>
+      <b>userId</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.request.CategoryUpdateRequest</class-a>
+    <class-b>com.perfect.team.common.model.Category</class-b>
+    <field>
+      <a>categoryDto</a>
+      <b>this</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.dto.CategoryUpdateDto</class-a>
+    <class-b>com.perfect.team.common.model.Category</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.CategoryTypeToStringConverter">
+      <a>type</a>
+      <b>type</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.util.CollectionWrapper</class-a>
+    <class-b>com.perfect.team.common.response.CategoriesResponse</class-b>
+    <field>
+      <a>collection</a>
+      <b>categoryDtos</b>
+    </field>
+  </mapping>
+</mappings>

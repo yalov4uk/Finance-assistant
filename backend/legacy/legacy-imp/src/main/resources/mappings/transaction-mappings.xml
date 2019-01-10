@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://dozer.sourceforge.net"
+  xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+  <mapping>
+    <class-a>com.perfect.team.common.request.TransactionCreateRequest</class-a>
+    <class-b>com.perfect.team.common.model.Transaction</class-b>
+    <field>
+      <a>transactionDto</a>
+      <b>this</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.dto.TransactionCreateDto</class-a>
+    <class-b>com.perfect.team.common.model.Transaction</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.LongToDateConverter">
+      <a>date</a>
+      <b>date</b>
+    </field>
+    <field>
+      <a>categoryId</a>
+      <b>category.id</b>
+    </field>
+    <field>
+      <a>accountId</a>
+      <b>account.id</b>
+    </field>
+    <field>
+      <a>userId</a>
+      <b>userId.id</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.model.Transaction</class-a>
+    <class-b>com.perfect.team.common.response.TransactionResponse</class-b>
+    <field>
+      <a>this</a>
+      <b>transactionDto</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.model.Transaction</class-a>
+    <class-b>com.perfect.team.common.dto.TransactionReadDto</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.LongToDateConverter">
+      <a>date</a>
+      <b>date</b>
+    </field>
+    <field>
+      <a>category.id</a>
+      <b>categoryId</b>
+    </field>
+    <field>
+      <a>account.id</a>
+      <b>accountId</b>
+    </field>
+    <field>
+      <a>userId.id</a>
+      <b>userId</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.request.TransactionUpdateRequest</class-a>
+    <class-b>com.perfect.team.common.model.Transaction</class-b>
+    <field>
+      <a>transactionDto</a>
+      <b>this</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.dto.TransactionUpdateDto</class-a>
+    <class-b>com.perfect.team.common.model.Transaction</class-b>
+    <field custom-converter="com.perfect.team.rest.impl.converter.LongToDateConverter">
+      <a>date</a>
+      <b>date</b>
+    </field>
+    <field>
+      <a>categoryId</a>
+      <b>category.id</b>
+    </field>
+    <field>
+      <a>accountId</a>
+      <b>account.id</b>
+    </field>
+  </mapping>
+
+  <mapping>
+    <class-a>com.perfect.team.common.util.CollectionWrapper</class-a>
+    <class-b>com.perfect.team.common.response.TransactionsResponse</class-b>
+    <field>
+      <a>collection</a>
+      <b>transactionDtos</b>
+    </field>
+  </mapping>
+</mappings>

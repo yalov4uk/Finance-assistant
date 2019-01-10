@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.perfect.team.business.mapper.TransactionMapper">
+
+  <resultMap id="transactionResultMap" type="Transaction">
+    <id column="id" property="id"/>
+    <result column="value" property="value"/>
+    <result column="note" property="note"/>
+    <result column="date" property="date"/>
+    <association column="account_id" columnPrefix="account_" foreignColumn="id" property="account"
+      resultMap="com.perfect.team.business.mapper.AccountMapper.accountResultMap"/>
+    <association column="category_id" columnPrefix="category_" foreignColumn="id"
+      property="category"
+      resultMap="com.perfect.team.business.mapper.CategoryMapper.categoryResultMap"/>
+    <association column="user_id" columnPrefix="user_" foreignColumn="id" property="userId"
+      resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
+  </resultMap>
+
+  <sql id="transactionColumns">
+    ${transaction}.id as "${prefix}id",
+    ${transaction}.date as "${prefix}date",
+    ${transaction}.note as "${prefix}note",
+    ${transaction}.value as "${prefix}value",
+    ${transaction}.account_id as "${prefix}account_id",
+    ${transaction}.category_id as "${prefix}category_id",
+    ${transaction}.user_id as "${prefix}user_id"
+  </sql>
+
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    INSERT INTO transaction (date, note, value, account_id, category_id, user_id)
+    VALUES (#{date}, #{note}, #{value}, #{account.id}, #{category.id}, #{userId.id})
+  </insert>
+
+  <select id="selectById" resultMap="transactionResultMap">
+    SELECT
+    <include refid="transactionColumns">
+      <property name="transaction" value="t"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM transaction t
+    WHERE t.id = #{id}
+  </select>
+
+  <update id="update" keyProperty="id" useGeneratedKeys="true">
+    UPDATE transaction t
+    <set>
+      <if test="value != null">t.value = #{value},</if>
+      <if test="note != null">t.note = #{note},</if>
+      <if test="date != null">t.date = #{date},</if>
+      <if test="account != null and account.id != null">t.account_id = #{account.id},</if>
+      <if test="category != null and category.id != null">t.category_id = #{category.id},</if>
+    </set>
+    WHERE t.id = #{id}
+  </update>
+
+  <delete id="delete">
+    DELETE FROM transaction
+    WHERE id = #{id}
+  </delete>
+
+  <select id="select" resultMap="transactionResultMap">
+    SELECT
+    <include refid="transactionColumns">
+      <property name="transaction" value="t"/>
+      <property name="prefix" value=""/>
+    </include>
+    FROM transaction t
+    <where>
+      <if test="id != null">
+        t.id = #{id}
+      </if>
+      <if test="date != null">
+        AND t.date = #{date}
+      </if>
+      <if test="categoryId != null">
+        AND t.category_id = #{categoryId}
+      </if>
+      <if test="accountId != null">
+        AND t.account_id = #{accountId}
+      </if>
+      <if test="userId != null">
+        AND t.user_id = #{userId}
+      </if>
+    </where>
+  </select>
+</mapper>
