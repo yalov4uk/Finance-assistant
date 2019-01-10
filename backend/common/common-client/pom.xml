@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.perfect.team</groupId>
-  <artifactId>common-api</artifactId>
+  <artifactId>common-client</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
   <parent>
@@ -20,26 +20,33 @@
     <version.java>1.8</version.java>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Finchley.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
       <optional>true</optional>
     </dependency>
+
     <dependency>
-      <groupId>commons-beanutils</groupId>
-      <artifactId>commons-beanutils</artifactId>
-      <version>1.9.3</version>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
+      <groupId>io.github.openfeign</groupId>
+      <artifactId>feign-core</artifactId>
       <optional>true</optional>
     </dependency>
   </dependencies>

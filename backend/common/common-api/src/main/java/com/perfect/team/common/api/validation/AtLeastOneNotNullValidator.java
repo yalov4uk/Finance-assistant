@@ -4,13 +4,13 @@ import com.perfect.team.common.api.validation.constraint.AtLeastOneNotNull;
 import java.lang.reflect.InvocationTargetException;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Slf4j
 public class AtLeastOneNotNullValidator implements ConstraintValidator<AtLeastOneNotNull, Object> {
-
-  private static final Logger logger = LoggerFactory.getLogger(AtLeastOneNotNullValidator.class);
 
   private String[] fieldNames;
 
@@ -27,7 +27,7 @@ public class AtLeastOneNotNullValidator implements ConstraintValidator<AtLeastOn
           return true;
         }
       } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-        logger.error("No field {} in type {}", fieldName, value.getClass());
+        log.error("No field {} in type {}", fieldName, value.getClass());
       }
     }
     return false;

@@ -5,13 +5,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+@Slf4j
 public class NotEqualFieldsValidator implements ConstraintValidator<NotEqualFields, Object> {
-
-  private static final Logger logger = LoggerFactory.getLogger(NotEqualFieldsValidator.class);
 
   private String[] fieldNames;
 
@@ -26,7 +24,7 @@ public class NotEqualFieldsValidator implements ConstraintValidator<NotEqualFiel
       try {
         return PropertyUtils.getProperty(value, fieldName);
       } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-        logger.error("No field {} in type {}", fieldName, value.getClass());
+        log.error("No field {} in type {}", fieldName, value.getClass());
         return null;
       }
     }).distinct().count() > 1;
