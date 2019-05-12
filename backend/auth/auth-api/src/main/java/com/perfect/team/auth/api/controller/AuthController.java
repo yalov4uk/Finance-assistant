@@ -5,7 +5,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.perfect.team.auth.api.dto.CredentialRequest;
 import com.perfect.team.auth.api.dto.TokenResponse;
-import com.perfect.team.auth.api.view.BaseView.SignIn;
+import com.perfect.team.common.api.view.BaseView.SignIn;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;

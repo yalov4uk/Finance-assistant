@@ -4,7 +4,7 @@ import com.perfect.team.auth.api.controller.TokenController;
 import com.perfect.team.common.client.config.CommonClientConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 
-@FeignClient(name = "auth", configuration = CommonClientConfig.class)
+@FeignClient(name = "auth", contextId = "tokenClient", configuration = CommonClientConfig.class)
 public interface TokenClient extends TokenController {
 
 }

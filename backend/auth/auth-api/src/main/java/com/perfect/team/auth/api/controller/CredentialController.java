@@ -9,8 +9,8 @@ import com.perfect.team.auth.api.dto.CredentialDto;
 import com.perfect.team.auth.api.dto.CredentialRequest;
 import com.perfect.team.auth.api.dto.CredentialResponse;
 import com.perfect.team.auth.api.dto.CredentialsResponse;
-import com.perfect.team.auth.api.view.BaseView;
 import com.perfect.team.common.api.validation.constraint.AtLeastOneNotNull;
+import com.perfect.team.common.api.view.BaseView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -24,13 +24,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Api(authorizations = {@Authorization(AUTHORIZATION)})
+@Api(authorizations = @Authorization(AUTHORIZATION))
 @RequestMapping(path = CredentialController.CREDENTIALS, consumes = APPLICATION_JSON_UTF8_VALUE,
     produces = APPLICATION_JSON_UTF8_VALUE)
 public interface CredentialController {
@@ -48,10 +48,10 @@ public interface CredentialController {
   @JsonView(BaseView.Read.class)
   @ApiResponses(@ApiResponse(code = 200, message = ""))
   ResponseEntity<CredentialsResponse> read(
-      @RequestBody @JsonView(BaseView.Read.class) @AtLeastOneNotNull(fieldNames = {"id, userId"})
+      @JsonView(BaseView.Read.class) @AtLeastOneNotNull(fieldNames = {"id, userId"})
       @Valid CredentialDto request);
 
-  @PutMapping("/{id}")
+  @PatchMapping("/{id}")
   @JsonView(BaseView.Read.class)
   @ApiResponses(@ApiResponse(code = 200, message = ""))
   ResponseEntity<CredentialResponse> update(

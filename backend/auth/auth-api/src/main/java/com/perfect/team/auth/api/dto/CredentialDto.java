@@ -1,9 +1,9 @@
 package com.perfect.team.auth.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.perfect.team.auth.api.view.BaseView.Create;
-import com.perfect.team.auth.api.view.BaseView.Read;
-import com.perfect.team.auth.api.view.BaseView.Update;
+import com.perfect.team.common.api.view.BaseView.Create;
+import com.perfect.team.common.api.view.BaseView.Read;
+import com.perfect.team.common.api.view.BaseView.Update;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import lombok.AllArgsConstructor;

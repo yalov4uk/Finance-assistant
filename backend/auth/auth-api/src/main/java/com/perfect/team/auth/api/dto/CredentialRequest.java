@@ -1,14 +1,12 @@
 package com.perfect.team.auth.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.perfect.team.auth.api.view.BaseView;
+import com.perfect.team.common.api.view.BaseView;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 
 @Data
 @NoArgsConstructor
