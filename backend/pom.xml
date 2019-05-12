@@ -9,9 +9,9 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <modules>
-    <module>legacy/core</module>
-    <module>legacy/business</module>
-    <module>legacy/legacy-imp</module>
+    <!--<module>legacy/core</module>-->
+    <!--<module>legacy/business</module>-->
+    <!--<module>legacy/legacy-imp</module>-->
     <module>legacy/legacy-api</module>
     <module>legacy/legacy-client</module>
 

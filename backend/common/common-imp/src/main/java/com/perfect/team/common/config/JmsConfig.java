@@ -3,6 +3,8 @@ package com.perfect.team.common.config;
 import javax.jms.Topic;
 import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
+import org.springframework.jms.support.converter.MessageConverter;
 
 public class JmsConfig {
 
@@ -16,5 +18,10 @@ public class JmsConfig {
   @Bean
   public Topic topic() {
     return new ActiveMQTopic(JmsConfig.TEMP_VIRTUAL_TOPIC);
+  }
+
+  @Bean
+  public MessageConverter jacksonJmsMessageConverter() {
+    return new MappingJackson2MessageConverter();
   }
 }

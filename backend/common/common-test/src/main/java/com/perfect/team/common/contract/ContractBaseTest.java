@@ -8,14 +8,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import java.util.HashMap;
 import java.util.Map;
-import javax.inject.Inject;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.context.WebApplicationContext;
 
+@RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @AutoConfigureWireMock(port = 0)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
@@ -23,9 +26,9 @@ public abstract class ContractBaseTest {
 
   private static final String BEARER_TYPE = "Bearer ";
 
-  @Inject
+  @Autowired
   private ObjectMapper objectMapper;
-  @Inject
+  @Autowired
   private WebApplicationContext webApplicationContext;
 
   @Before
