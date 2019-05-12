@@ -1,12 +1,11 @@
 package com.perfect.team.auth.imp.controller;
 
-import com.perfect.team.auth.api.AuthController;
+import com.perfect.team.auth.api.controller.AuthController;
 import com.perfect.team.auth.api.dto.CredentialRequest;
 import com.perfect.team.auth.api.dto.TokenResponse;
 import com.perfect.team.auth.imp.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor

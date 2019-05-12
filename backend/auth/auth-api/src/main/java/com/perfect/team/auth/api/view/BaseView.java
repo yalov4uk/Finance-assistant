@@ -1,24 +1,24 @@
 package com.perfect.team.auth.api.view;
 
-public class BaseView {
+public interface BaseView {
 
-  public interface All {
-
-  }
-
-  public static class Create implements All {
+  interface All {
 
   }
 
-  public static class Read implements All {
+  interface Create extends All {
 
   }
 
-  public static class Update implements All {
+  interface Read extends All {
 
   }
 
-  public static class SignIn implements All {
+  interface Update extends All {
+
+  }
+
+  interface SignIn extends All {
 
   }
 }

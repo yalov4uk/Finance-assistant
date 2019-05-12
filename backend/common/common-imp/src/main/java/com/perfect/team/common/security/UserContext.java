@@ -11,7 +11,6 @@ public class UserContext implements UserDetails {
 
   @Getter
   private Long userId;
-
   private Collection<? extends GrantedAuthority> authorities;
 
   public UserContext(Long userId, Collection<String> roles) {

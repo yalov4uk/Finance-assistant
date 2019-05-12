@@ -11,12 +11,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Import;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@EnableSwagger2
 @EnableEurekaClient
+@SpringBootApplication
 @EnableFeignClients(clients = UserClient.class)
+@EnableGlobalMethodSecurity(jsr250Enabled = true)
 @MapperScan(basePackageClasses = CredentialMapper.class)
 @Import({CommonImpConfig.class, LegacyClientFeignConfig.class, LegacyClientValidationConfig.class})
-@SpringBootApplication
 public class AuthMain {
 
   public static void main(String[] args) {

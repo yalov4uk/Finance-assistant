@@ -8,9 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class TokenAuthentication implements Authentication {
 
   private String token;
-
   private UserDetails principal;
-
   private boolean authenticated;
 
   public TokenAuthentication(String token) {

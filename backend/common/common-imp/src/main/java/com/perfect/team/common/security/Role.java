@@ -1,13 +1,11 @@
 package com.perfect.team.common.security;
 
-public enum Role {
+public class Role {
 
-  EMAIL, EMAIL_CONFIRMED, FACEBOOK;
+  public static final String ROLE_PREFIX = "ROLE_";
 
-  private static final String ROLE_PREFIX = "ROLE_";
-
-  @Override
-  public String toString() {
-    return ROLE_PREFIX + this.name();
-  }
+  public static final String NOT_CONFIRMED = "NOT_CONFIRMED";
+  public static final String CONFIRMED = "CONFIRMED";
+  public static final String FACEBOOK = "FACEBOOK";
+  public static final String INTERNAL = "INTERNAL";
 }

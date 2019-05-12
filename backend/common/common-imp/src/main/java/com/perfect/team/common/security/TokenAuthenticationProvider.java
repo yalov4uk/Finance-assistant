@@ -10,7 +10,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @RequiredArgsConstructor
-public class JwtAuthenticationProvider implements AuthenticationProvider {
+public class TokenAuthenticationProvider implements AuthenticationProvider {
 
   private final ObjectMapper objectMapper;
 

@@ -7,10 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class WebExceptionHandler {
 
-  @ExceptionHandler(ConstraintViolationException.class)
+//  @ExceptionHandler(ConstraintViolationException.class)
   public ResponseEntity<String> dtoValidation(ConstraintViolationException exception) {
     String message = exception.getConstraintViolations()
         .stream()

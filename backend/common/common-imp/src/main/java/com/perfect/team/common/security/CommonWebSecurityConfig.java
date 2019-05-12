@@ -11,7 +11,7 @@ import org.springframework.security.web.savedrequest.RequestCacheAwareFilter;
 @RequiredArgsConstructor
 public class CommonWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private final JwtAuthenticationProvider jwtAuthenticationProvider;
+  private final TokenAuthenticationProvider tokenAuthenticationProvider;
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
@@ -33,12 +33,12 @@ public class CommonWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.authenticationProvider(jwtAuthenticationProvider);
+    auth.authenticationProvider(tokenAuthenticationProvider);
   }
 
   protected String[] permitAll() {
     return new String[]{
-        "/*/swagger*"
+        "/v2/api-docs*"
     };
   }
 }

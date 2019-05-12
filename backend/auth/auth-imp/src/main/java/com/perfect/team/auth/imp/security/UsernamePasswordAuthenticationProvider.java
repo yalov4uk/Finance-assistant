@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -50,9 +49,9 @@ public class UsernamePasswordAuthenticationProvider implements AuthenticationPro
 
   private Collection<String> grantAuthorities(Credential credential) {
     Collection<String> roles = new LinkedHashSet<>();
-    roles.add(Role.EMAIL.toString());
+    roles.add(Role.NOT_CONFIRMED);
     if (credential.getConfirmed()) {
-      roles.add(Role.EMAIL_CONFIRMED.toString());
+      roles.add(Role.CONFIRMED);
     }
     return roles;
   }

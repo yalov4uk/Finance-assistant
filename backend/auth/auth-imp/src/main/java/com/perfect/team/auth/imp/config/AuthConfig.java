@@ -22,7 +22,8 @@ public class AuthConfig {
     DozerBeanMapper dozerBean = new DozerBeanMapper();
     List<String> mappingFiles = Arrays.asList(
         "classpath:dozer-configuration.xml",
-        "classpath:mapping/auth-mapping.xml"
+        "classpath:mapping/auth-mapping.xml",
+        "classpath:mapping/credential-mapping.xml"
     );
     dozerBean.setMappingFiles(mappingFiles);
     return dozerBean;

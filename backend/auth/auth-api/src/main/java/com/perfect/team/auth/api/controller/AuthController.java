@@ -1,4 +1,4 @@
-package com.perfect.team.auth.api;
+package com.perfect.team.auth.api.controller;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 

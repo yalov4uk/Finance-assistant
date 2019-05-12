@@ -15,7 +15,7 @@ public class CredentialCreateValidator implements
     ConstraintValidator<CredentialCreate, Credential> {
 
   private final CredentialMapper credentialMapper;
-  private final ConstraintValidator<UserIdClient, Long> userIdValidator;
+  private final ConstraintValidator<UserIdClient, Long> userIdClientValidator;
 
   @Override
   public void initialize(CredentialCreate constraintAnnotation) {
@@ -24,7 +24,7 @@ public class CredentialCreateValidator implements
   @Override
   public boolean isValid(Credential value, ConstraintValidatorContext context) {
     boolean valid = true;
-    if (!userIdValidator.isValid(value.getUserId(), context)) {
+    if (!userIdClientValidator.isValid(value.getUserId(), context)) {
       valid = false;
     }
     if (!credentialMapper.select(null, value.getUsername(), true, null).isEmpty()) {
