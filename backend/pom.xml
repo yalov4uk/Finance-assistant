@@ -27,6 +27,10 @@
     <module>auth/auth-api</module>
     <module>auth/auth-client</module>
     <module>auth/auth-imp</module>
+
+    <module>user-service/user-service-api</module>
+    <module>user-service/user-service-imp</module>
+    <module>user-service/user-service-client</module>
   </modules>
   <packaging>pom</packaging>
 

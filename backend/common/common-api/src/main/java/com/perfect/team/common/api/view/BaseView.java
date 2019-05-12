@@ -1,4 +1,4 @@
-package com.perfect.team.auth.api.view;
+package com.perfect.team.common.api.view;
 
 public interface BaseView {
 
