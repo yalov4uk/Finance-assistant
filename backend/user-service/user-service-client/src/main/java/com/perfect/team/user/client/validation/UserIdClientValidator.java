@@ -1,13 +1,14 @@
-package com.perfect.team.legacy.client.validation;
+package com.perfect.team.user.client.validation;
 
-import com.perfect.team.legacy.api.request.UserReadRequest;
-import com.perfect.team.legacy.client.UserClient;
-import com.perfect.team.legacy.client.validation.constraint.UserIdClient;
+import com.perfect.team.user.api.dto.UserDto;
+import com.perfect.team.user.api.dto.UsersResponse;
+import com.perfect.team.user.client.UserClient;
+import com.perfect.team.user.client.validation.constraint.UserIdClient;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import javax.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 @RequiredArgsConstructor
 public class UserIdClientValidator implements ConstraintValidator<UserIdClient, Long> {
@@ -24,8 +25,8 @@ public class UserIdClientValidator implements ConstraintValidator<UserIdClient, 
       return true;
     }
     boolean valid = true;
-    Response response = userClient.read(new UserReadRequest(value));
-    if (HttpStatus.OK.value() != response.getStatus()) {
+    ResponseEntity<UsersResponse> response = userClient.read(new UserDto(value));
+    if (HttpStatus.OK != response.getStatusCode()) {
       valid = false;
       context.buildConstraintViolationWithTemplate("Wrong user id").addConstraintViolation();
     }

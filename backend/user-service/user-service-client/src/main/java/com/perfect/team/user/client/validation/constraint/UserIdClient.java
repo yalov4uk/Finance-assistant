@@ -1,6 +1,6 @@
-package com.perfect.team.legacy.client.validation.constraint;
+package com.perfect.team.user.client.validation.constraint;
 
-import com.perfect.team.legacy.client.validation.UserIdClientValidator;
+import com.perfect.team.user.client.validation.UserIdClientValidator;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
