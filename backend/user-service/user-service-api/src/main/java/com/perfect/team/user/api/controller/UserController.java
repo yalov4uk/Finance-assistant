@@ -30,8 +30,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Api(authorizations = @Authorization(AUTHORIZATION))
-@RequestMapping(path = "/users", produces = APPLICATION_JSON_UTF8_VALUE, consumes = APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(path = UserController.USERS, produces = APPLICATION_JSON_UTF8_VALUE,
+    consumes = APPLICATION_JSON_UTF8_VALUE)
 public interface UserController {
+
+  String USERS = "/users";
 
   @PostMapping
   @ApiOperation("")
@@ -41,7 +44,7 @@ public interface UserController {
       @RequestBody @NotNull @Validated(BaseView.Create.class) UserRequest request);
 
   @JsonView(BaseView.Read.class)
-  @GetMapping("/{id}")
+  @GetMapping
   @ApiResponses(@ApiResponse(code = 200, message = ""))
   ResponseEntity<UsersResponse> read(
       @AtLeastOneNotNull(fieldNames = {"id"}) @Validated(BaseView.Read.class) UserDto request);
@@ -53,7 +56,7 @@ public interface UserController {
       @PathVariable("id") Long id,
       @NotNull @Validated(BaseView.Update.class) UserRequest request);
 
-  @DeleteMapping("{id}")
+  @DeleteMapping("/{id}")
   @ApiResponses(@ApiResponse(code = 204, message = ""))
   ResponseEntity<Void> delete(@PathVariable("id") Long id);
 }

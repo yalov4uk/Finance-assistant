@@ -1,6 +1,5 @@
 package com.perfect.team.business.listener;
 
-import com.perfect.team.business.service.UserService;
 import com.perfect.team.common.config.JmsConfig;
 import com.perfect.team.common.event.ConfirmationCreatedEvent;
 import com.perfect.team.common.model.Confirmation;
@@ -17,8 +16,8 @@ public class ConfirmationChangedListener {
   @Inject
   private JavaMailSender mailSender;
 
-  @Inject
-  private UserService userService;
+//  @Inject
+//  private UserService userService;
 
   @JmsListener(destination = JmsConfig.TEMP_VIRTUAL_TOPIC_DESTINATION)
   public void onApplicationEvent(ConfirmationCreatedEvent event) {

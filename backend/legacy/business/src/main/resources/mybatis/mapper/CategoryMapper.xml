@@ -10,7 +10,7 @@
     <result column="icon" property="icon"/>
     <result column="type" property="type"/>
     <association column="user_id" columnPrefix="user_" foreignColumn="id" property="userId"
-      resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
+      resultMap="com.perfect.team.user.imp.repository.UserMapper.userResultMap"/>
   </resultMap>
 
   <sql id="categoryColumns">

@@ -21,8 +21,6 @@ public class Transfer implements Serializable {
 
   private Account toAccount;
 
-  private User user;
-
   public Long getId() {
     return id;
   }
@@ -77,14 +75,6 @@ public class Transfer implements Serializable {
 
   public void setToAccount(Account toAccount) {
     this.toAccount = toAccount;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
   }
 
   @Override

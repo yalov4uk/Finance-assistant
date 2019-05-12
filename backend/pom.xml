@@ -9,9 +9,9 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <modules>
-    <!--<module>legacy/core</module>-->
-    <!--<module>legacy/business</module>-->
-    <!--<module>legacy/legacy-imp</module>-->
+    <module>legacy/core</module>
+    <module>legacy/business</module>
+    <module>legacy/legacy-imp</module>
     <module>legacy/legacy-api</module>
     <module>legacy/legacy-client</module>
 
@@ -29,8 +29,8 @@
     <module>auth/auth-imp</module>
 
     <module>user-service/user-service-api</module>
-    <module>user-service/user-service-imp</module>
     <module>user-service/user-service-client</module>
+    <module>user-service/user-service-imp</module>
   </modules>
   <packaging>pom</packaging>
 

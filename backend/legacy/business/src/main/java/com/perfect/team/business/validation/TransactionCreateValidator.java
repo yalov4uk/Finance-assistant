@@ -3,7 +3,6 @@ package com.perfect.team.business.validation;
 import com.perfect.team.business.validation.constraint.AccountId;
 import com.perfect.team.business.validation.constraint.CategoryId;
 import com.perfect.team.business.validation.constraint.TransactionCreate;
-import com.perfect.team.business.validation.constraint.UserId;
 import com.perfect.team.common.model.Transaction;
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Component;
 public class TransactionCreateValidator implements
     ConstraintValidator<TransactionCreate, Transaction> {
 
-  @Inject
-  private ConstraintValidator<UserId, Long> userIdValidator;
+//  @Inject
+//  private ConstraintValidator<UserId, Long> userIdValidator;
 
   @Inject
   private ConstraintValidator<AccountId, Long> accountIdValidator;
@@ -38,9 +37,9 @@ public class TransactionCreateValidator implements
         .isValid(value.getCategory().getId(), context)) {
       valid = false;
     }
-    if (value.getUser() != null && !userIdValidator.isValid(value.getUser().getId(), context)) {
-      valid = false;
-    }
+//    if (value.getUser() != null && !userIdValidator.isValid(value.getUser().getId(), context)) {
+//      valid = false;
+//    }
     return valid;
   }
 }

@@ -2,7 +2,6 @@ package com.perfect.team.business.validation;
 
 import com.perfect.team.business.validation.constraint.AccountId;
 import com.perfect.team.business.validation.constraint.TransferCreate;
-import com.perfect.team.business.validation.constraint.UserId;
 import com.perfect.team.common.model.Transfer;
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
@@ -12,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class TransferCreateValidator implements ConstraintValidator<TransferCreate, Transfer> {
 
-  @Inject
-  private ConstraintValidator<UserId, Long> userIdValidator;
+//  @Inject
+//  private ConstraintValidator<UserId, Long> userIdValidator;
 
   @Inject
   private ConstraintValidator<AccountId, Long> accountIdValidator;
@@ -33,9 +32,9 @@ public class TransferCreateValidator implements ConstraintValidator<TransferCrea
         .isValid(value.getToAccount().getId(), context)) {
       valid = false;
     }
-    if (value.getUser() != null && !userIdValidator.isValid(value.getUser().getId(), context)) {
-      valid = false;
-    }
+//    if (value.getUser() != null && !userIdValidator.isValid(value.getUser().getId(), context)) {
+//      valid = false;
+//    }
     return valid;
   }
 }

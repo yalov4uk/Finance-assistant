@@ -15,8 +15,6 @@ public class Transaction implements Serializable {
 
   private Date date;
 
-  private User user;
-
   private Category category;
 
   private Account account;
@@ -51,14 +49,6 @@ public class Transaction implements Serializable {
 
   public void setDate(Date date) {
     this.date = date;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
   }
 
   public Category getCategory() {

@@ -11,8 +11,6 @@ public class Confirmation implements Serializable {
 
   private Boolean confirmed;
 
-  private User user;
-
   public Long getId() {
     return id;
   }
@@ -35,14 +33,6 @@ public class Confirmation implements Serializable {
 
   public void setConfirmed(Boolean confirmed) {
     this.confirmed = confirmed;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
   }
 
   @Override

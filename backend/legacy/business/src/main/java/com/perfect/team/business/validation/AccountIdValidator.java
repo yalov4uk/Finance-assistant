@@ -2,7 +2,6 @@ package com.perfect.team.business.validation;
 
 import com.perfect.team.business.mapper.AccountMapper;
 import com.perfect.team.business.validation.constraint.AccountId;
-import com.perfect.team.business.validation.constraint.UserId;
 import com.perfect.team.common.model.Account;
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
@@ -15,8 +14,8 @@ public class AccountIdValidator implements ConstraintValidator<AccountId, Long> 
   @Inject
   private AccountMapper accountMapper;
 
-  @Inject
-  private ConstraintValidator<UserId, Long> userIdValidator;
+//  @Inject
+//  private ConstraintValidator<UserId, Long> userIdValidator;
 
   @Override
   public void initialize(AccountId constraintAnnotation) {
@@ -33,10 +32,10 @@ public class AccountIdValidator implements ConstraintValidator<AccountId, Long> 
       context.buildConstraintViolationWithTemplate("Account not found").addConstraintViolation();
     }
     Account account = accountMapper.selectById(value);
-    if (account != null && account.getUser() != null && !userIdValidator
-        .isValid(account.getUser().getId(), context)) {
-      valid = false;
-    }
+//    if (account != null && account.getUser() != null && !userIdValidator
+//        .isValid(account.getUser().getId(), context)) {
+//      valid = false;
+//    }
     return valid;
   }
 }

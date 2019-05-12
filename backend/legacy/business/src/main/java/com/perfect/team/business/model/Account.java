@@ -19,8 +19,6 @@ public class Account implements Serializable {
 
   private Currency currency;
 
-  private User user;
-
   public Long getId() {
     return id;
   }
@@ -67,14 +65,6 @@ public class Account implements Serializable {
 
   public void setCurrency(Currency currency) {
     this.currency = currency;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
   }
 
   @Override

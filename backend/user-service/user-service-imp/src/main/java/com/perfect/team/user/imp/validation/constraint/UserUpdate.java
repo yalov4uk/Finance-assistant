@@ -1,6 +1,6 @@
-package com.perfect.team.business.validation.constraint;
+package com.perfect.team.user.imp.validation.constraint;
 
-import com.perfect.team.business.validation.UserUpdateValidator;
+import com.perfect.team.user.imp.validation.UserUpdateValidator;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

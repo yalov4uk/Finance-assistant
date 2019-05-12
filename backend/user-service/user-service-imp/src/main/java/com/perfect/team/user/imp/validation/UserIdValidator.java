@@ -1,25 +1,22 @@
-package com.perfect.team.business.validation;
+package com.perfect.team.user.imp.validation;
 
-import com.perfect.team.business.mapper.UserMapper;
-import com.perfect.team.business.validation.constraint.UserId;
+
 import com.perfect.team.common.security.UserContext;
+import com.perfect.team.user.imp.repository.UserMapper;
+import com.perfect.team.user.imp.validation.constraint.UserId;
 import java.util.Objects;
-import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class UserIdValidator implements ConstraintValidator<UserId, Long> {
 
-  @Inject
-  private UserMapper userMapper;
-
-  @Override
-  public void initialize(UserId constraintAnnotation) {
-  }
+  private final UserMapper userMapper;
 
   @Override
   public boolean isValid(Long value, ConstraintValidatorContext context) {

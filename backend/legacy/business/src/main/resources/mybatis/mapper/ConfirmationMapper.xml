@@ -9,7 +9,7 @@
     <result column="code" property="code"/>
     <result column="confirmed" property="confirmed"/>
     <association column="user_id" columnPrefix="user_" foreignColumn="id" property="userId"
-      resultMap="com.perfect.team.business.mapper.UserMapper.userResultMap"/>
+      resultMap="com.perfect.team.user.imp.repository.UserMapper.userResultMap"/>
   </resultMap>
 
   <sql id="confirmationColumns">

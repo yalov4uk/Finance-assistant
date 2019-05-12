@@ -2,7 +2,6 @@ package com.perfect.team.business.validation;
 
 import com.perfect.team.business.mapper.TransactionMapper;
 import com.perfect.team.business.validation.constraint.TransactionId;
-import com.perfect.team.business.validation.constraint.UserId;
 import com.perfect.team.common.model.Transaction;
 import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
@@ -15,8 +14,8 @@ public class TransactionIdValidator implements ConstraintValidator<TransactionId
   @Inject
   private TransactionMapper transactionMapper;
 
-  @Inject
-  private ConstraintValidator<UserId, Long> userIdValidator;
+//  @Inject
+//  private ConstraintValidator<UserId, Long> userIdValidator;
 
   @Override
   public void initialize(TransactionId constraintAnnotation) {
@@ -34,10 +33,10 @@ public class TransactionIdValidator implements ConstraintValidator<TransactionId
       context.buildConstraintViolationWithTemplate("Transaction not found")
           .addConstraintViolation();
     }
-    if (transaction != null && transaction.getUser() != null && !userIdValidator
-        .isValid(transaction.getUser().getId(), context)) {
-      valid = false;
-    }
+//    if (transaction != null && transaction.getUser() != null && !userIdValidator
+//        .isValid(transaction.getUser().getId(), context)) {
+//      valid = false;
+//    }
     return valid;
   }
 }
