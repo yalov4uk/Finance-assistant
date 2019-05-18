@@ -9,17 +9,20 @@ Contract.make {
         urlPath('/users') {
             queryParameters {
                 parameter 'id', 1
-                parameter 'name', 'name'
             }
         }
         headers {
-            contentType applicationJson()
-            accept applicationJson()
-            header authorization(), execute('getAuthorizationHeader()')
+            contentType applicationJsonUtf8()
+            accept applicationJsonUtf8()
+            header authorization(), $(c(~/Bearer \{"userId":1,"roles":\[.*?]}/),
+                    p(execute('getAuthorizationHeader()')))
         }
     }
     response {
         status OK()
+        headers {
+            contentType applicationJsonUtf8()
+        }
         body([
                 users: [
                         [

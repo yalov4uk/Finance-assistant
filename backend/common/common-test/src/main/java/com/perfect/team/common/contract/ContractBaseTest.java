@@ -6,7 +6,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.junit.After;
 import org.junit.Before;
@@ -42,9 +43,16 @@ public abstract class ContractBaseTest {
   }
 
   protected String getAuthorizationHeader() throws JsonProcessingException {
-    Map<String, Object> userContext = new HashMap<>();
-    userContext.put("userId", "1");
+    Map<String, Object> userContext = new LinkedHashMap<>();
+    userContext.put("userId", 1);
     userContext.put("roles", emptyList());
+    return BEARER_TYPE + objectMapper.writeValueAsString(userContext);
+  }
+
+  protected String getAuthorizationHeader(String... roles) throws JsonProcessingException {
+    Map<String, Object> userContext = new LinkedHashMap<>();
+    userContext.put("userId", 1);
+    userContext.put("roles", Arrays.toString(roles));
     return BEARER_TYPE + objectMapper.writeValueAsString(userContext);
   }
 }

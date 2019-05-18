@@ -141,21 +141,12 @@
   </dependencies>
 
   <build>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
-
     <plugins>
       <plugin>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-contract-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <!--<baseClassForTests>com.perfect.team.common.contract.ContractBaseTest</baseClassForTests>-->
-          <!--<basePackageForTests>com.perfect.team.user.imp.controller</basePackageForTests>-->
           <packageWithBaseClasses>com.perfect.team.user.imp.controller</packageWithBaseClasses>
         </configuration>
       </plugin>

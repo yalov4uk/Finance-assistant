@@ -6,7 +6,3 @@ spring:
 mybatis:
   typeAliasesPackage: com.perfect.team.user.imp.model
   mapper-locations: classpath:mybatis/*.xml
-
-logging:
-  level:
-    org.apache.http.wire: DEBUG

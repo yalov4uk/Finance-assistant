@@ -24,13 +24,17 @@
     <module>common/common-client</module>
     <module>common/common-test</module>
 
-    <module>auth/auth-api</module>
-    <module>auth/auth-client</module>
-    <module>auth/auth-imp</module>
+    <module>auth/auth-service-api</module>
+    <module>auth/auth-service-client</module>
+    <module>auth/auth-service-imp</module>
 
     <module>user-service/user-service-api</module>
     <module>user-service/user-service-client</module>
     <module>user-service/user-service-imp</module>
+
+    <module>credential/credential-service-api</module>
+    <module>credential/credential-service-client</module>
+    <module>credential/credential-service-imp</module>
   </modules>
   <packaging>pom</packaging>
 

@@ -8,8 +8,8 @@ Contract.make {
         method POST()
         urlPath '/users'
         headers {
-            contentType applicationJson()
-            accept applicationJson()
+            contentType applicationJsonUtf8()
+            accept applicationJsonUtf8()
         }
         body([
                 user: [

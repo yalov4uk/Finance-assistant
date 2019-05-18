@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
 @MapperScan(basePackageClasses = UserMapper.class)
-@Import({CommonImpConfig.class})
+@Import(CommonImpConfig.class)
 public class UserMain {
 
   public static void main(String[] args) {

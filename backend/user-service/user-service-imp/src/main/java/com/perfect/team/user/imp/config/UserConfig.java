@@ -15,7 +15,7 @@ public class UserConfig {
     DozerBeanMapper dozerBean = new DozerBeanMapper();
     List<String> mappingFiles = Arrays.asList(
         "classpath:dozer-configuration.xml",
-        "classpath:mappings/user-mappings.xml"
+        "classpath:mapping/user-mapping.xml"
     );
     dozerBean.setMappingFiles(mappingFiles);
     return dozerBean;
