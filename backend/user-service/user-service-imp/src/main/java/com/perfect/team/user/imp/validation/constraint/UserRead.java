@@ -1,6 +1,5 @@
 package com.perfect.team.user.imp.validation.constraint;
 
-import com.perfect.team.user.imp.validation.UserIdValidator;
 import com.perfect.team.user.imp.validation.UserReadValidator;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

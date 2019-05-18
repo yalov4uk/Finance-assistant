@@ -3,3 +3,5 @@ CREATE TABLE `user` (
   `name` VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
+
+INSERT INTO `user` VALUES (1, 'name');
